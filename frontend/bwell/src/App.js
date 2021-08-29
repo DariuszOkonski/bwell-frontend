@@ -8,6 +8,7 @@ import logo_mini from './assets/logo_footer.png'
 import { Paper } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import { height } from '@material-ui/system';
+import MainPage from './components/MainPage';
 
 const styles = {
   mainContainer: {
@@ -35,14 +36,9 @@ function App() {
         <Header logo={logo} />
       </Grid>
       <Grid item style={styles.bodyContainer}>
-        <Paper style={styles.paperContainer}>
-          
-          Treść.
-          Treść.
-          Treść.
-          Treść.
-          Treść.
-        </Paper>
+        <Grid container>
+          <MainPage />
+        </Grid>
       </Grid>
       <Grid item>
         <Footer logo={logo_mini}/>
