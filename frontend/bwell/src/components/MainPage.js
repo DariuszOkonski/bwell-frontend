@@ -13,8 +13,8 @@ const MainPage = () => {
                 <Grid item xs={12} md={4}>
                     <MainCard 
                     image={EatWellLogo} 
-                    menuTitle="eatWell" 
-                    description="Nutrition Recipes - repository & search BMI Calculator / Fat, Carbs, Protein demand Diet plan" />
+                    menuTitle={"eatWell"} 
+                    description={"Nutrition Recipes - repository & search BMI Calculator / Fat, Carbs, Protein demand Diet plan"} />
                 </Grid>
                 <Grid item xs={12} md={4}>
                 <MainCard image="https://via.placeholder.com/150" menuTitle="fitWell" />

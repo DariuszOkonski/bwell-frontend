@@ -19,19 +19,26 @@ const useStyles = makeStyles({
     },
     cardImage: {
       position: 'relative',
-      borderRadius: '50%'
+      borderRadius: '50%',
+      gridRow: '1 / 3'
     },
     checkButton: {
       justifyContent: 'flex-end'
     },
-    cardHeader: {
-      display: 'flex',
-      flexDirection: 'row'
-    },
     overlap: {
-      marginLeft: '-8%',
+      marginLeft: '-15%',
       zIndex: '2',
-      width: '100%'
+      textAlign: 'start'
+    },
+    gridPositioning: {
+      display: 'grid',
+      gridTemplateColumns: '200px 1fr',
+      gridTemplateRows: '30% 1fr'
+    },
+    cardDescription: {
+      gridColumn: '2',
+      gridRow: '2',
+      textAlign: 'justify'
     }
   });
 
@@ -39,22 +46,22 @@ const MainCard = (props) => {
     const classes = useStyles();
 
     return (
+      <>
         <Card className={classes.root} variant="outlined">
-      <CardContent>
-        <Box component="div" className={classes.cardHeader}>
+      <CardContent className={classes.gridPositioning}>
         <img src={props.image} className={classes.cardImage} />
         <Typography variant="h3" component="h2" className={classes.overlap}>
           {props.menuTitle}
         </Typography>
-        <Typography variant="body2" component="span">
+        <Typography variant="body2" className={classes.cardDescription}>
           {props.description}
         </Typography>
-        </Box>
       </CardContent>
       <CardActions className={classes.checkButton}>
         <Button size="small">#CheckButton</Button>
       </CardActions>
     </Card>
+    </>
     )
 }
 
