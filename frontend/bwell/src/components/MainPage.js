@@ -3,13 +3,14 @@ import big_logo from "../assets/logo_large.png";
 import { Grid } from "@material-ui/core";
 import MainCard from "./MainCard"
 import EatWellLogo from "../assets/menu_eatwell.png"
+import FitWellLogo from "../assets/menu_fitwell.png"
+import RestWellLogo from "../assets/menu_restwell.png"
+import ThinkWellLogo from "../assets/menu_thinkwell.png"
 
 const useStyles = makeStyles({
-    spaceAround: {
-        justifyContent: 'center'
-    },
-    mainCardsContainer: {
-        
+    justifyCenter: {
+        justifyContent: 'center',
+        marginTop: '1em'
     },
     logo: {
         height: '10em'
@@ -22,27 +23,36 @@ const MainPage = () => {
 
     return (
 
-        <Grid container className={classes.spaceAround}>
+        <Grid container className={classes.justifyCenter}>
             <Grid item>
-            <img src={big_logo} className={classes.logo} />
+                <img src={big_logo} className={classes.logo} />
             </Grid>
-            <Grid item container direction={'row'} className={classes.spaceAround} spacing={2} xs={12}>
-                <Grid item xs={12} md={4}>
-                    <MainCard 
-                    image={EatWellLogo} 
-                    menuTitle={"eatWell"} 
-                    description={"Nutrition Recipes - repository & search BMI Calculator / Fat, Carbs, Protein demand Diet plan"} />
+            <Grid item container direction={'row'} className={classes.justifyCenter} spacing={2} xs={12}>
+                <Grid item xs={12} md={6} lg={4}>
+                    <MainCard
+                        image={EatWellLogo}
+                        menuTitle={"eatWell"}
+                        description={"Nutrition Recipes - repository & search BMI Calculator / Fat, Carbs, Protein demand Diet plan"} />
                 </Grid>
-                <Grid item xs={12} md={4}>
-                <MainCard image="https://via.placeholder.com/150" menuTitle="fitWell" />
+                <Grid item xs={12} md={6} lg={4}>
+                    <MainCard
+                        image={FitWellLogo}
+                        menuTitle={"fitWell"}
+                        description={"Nutrition Recipes - repository & search BMI Calculator / Fat, Carbs, Protein demand Diet plan"} />
                 </Grid>
             </Grid>
-            <Grid item container direction={'row'} className={classes.spaceAround}>
-                <Grid item xs={12} md={4}>
-                    <MainCard />
+            <Grid item container direction={'row'} className={classes.justifyCenter} spacing={2} xs={12}>
+                <Grid item xs={12} md={6} lg={4}>
+                    <MainCard
+                        image={RestWellLogo}
+                        menuTitle={"restWell"}
+                        description={"Relax ideas repository"} />
                 </Grid>
-                <Grid item xs={12} md={4}>
-                    <MainCard />
+                <Grid item xs={12} md={6} lg={4}>
+                    <MainCard
+                        image={ThinkWellLogo}
+                        menuTitle={"thinkWell"}
+                        description={"Self-improvement ideas repository"} />
                 </Grid>
             </Grid>
         </Grid>
