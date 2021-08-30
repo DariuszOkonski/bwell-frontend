@@ -21,7 +21,7 @@ const styles = {
     backgroundImage: `url(${background_img})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-
+    overflow: 'auto'
   },
 
   paperContainer: {
