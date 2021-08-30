@@ -1,13 +1,12 @@
 import './App.css';
+import { Switch, Route } from "react-router-dom";
 import Header from './components/Header';
 import Footer from './components/Footer';
 import '@fontsource/lato';
 import logo from './assets/logo_large.png'
 import background_img from './assets/background_image2.png'
 import logo_mini from './assets/logo_footer.png'
-import { Paper } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import { height } from '@material-ui/system';
 import MainPage from './components/MainPage';
 
 const styles = {
@@ -37,7 +36,29 @@ function App() {
       </Grid>
       <Grid item style={styles.bodyContainer}>
         <Grid container>
+        <Switch>
+          <Route exact path="/">
           <MainPage />
+          </Route>
+          <Route path="/register">
+          Register
+          </Route>
+          <Route path="/login">
+          Login
+          </Route>
+          <Route path="/eatWell">
+          eatWell
+          </Route>
+          <Route path="/fitWell">
+          fitWell
+          </Route>
+          <Route path="/restWell">
+          restWell
+          </Route>
+          <Route path="/thinkWell">
+          thinkWell
+          </Route>
+        </Switch>
         </Grid>
       </Grid>
       <Grid item>

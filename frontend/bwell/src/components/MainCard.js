@@ -1,13 +1,12 @@
 import { makeStyles } from '@material-ui/core/styles';
+import {Link} from "react-router-dom";
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import zIndex from '@material-ui/core/styles/zIndex';
 import AssignmentReturnedIcon from '@material-ui/icons/AssignmentReturned';
-import { SportsRugbySharp } from '@material-ui/icons';
 
 const useStyles = makeStyles({
   root: {
@@ -72,7 +71,7 @@ const MainCard = (props) => {
           </Typography>
         </CardContent>
         <CardActions className={classes.checkButton}>
-          <Button variant="outlined" endIcon={<AssignmentReturnedIcon />} className={classes.checkButton}>Check</Button>
+          <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />} className={classes.checkButton}>Check</Button>
         </CardActions>
       </Card>
     </>

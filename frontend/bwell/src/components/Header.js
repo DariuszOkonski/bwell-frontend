@@ -5,6 +5,7 @@ import PersonAdd from '@material-ui/icons/PersonAdd';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core';
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -21,13 +22,13 @@ return (
         <Toolbar>
             <Grid container className="spacebetween">
                 <Grid item>
-                    <img src={props.logo} />
+                    <Link to="/"><img src={props.logo} /></Link>
                 </Grid>
                 <Grid item>
-                    <Button color="inherit" className={classes.button} startIcon={<HowToRegIcon />}>
+                    <Button component={Link} to="/login" color="inherit" className={classes.button} startIcon={<HowToRegIcon />}>
                         Login
                     </Button>
-                    <Button color="inherit" className={classes.button} startIcon={<PersonAdd />}>
+                    <Button component={Link} to="/register" color="inherit" className={classes.button} startIcon={<PersonAdd />}>
                         Register
                     </Button>
                 </Grid>

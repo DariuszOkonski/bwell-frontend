@@ -32,13 +32,15 @@ const MainPage = () => {
                     <MainCard
                         image={EatWellLogo}
                         menuTitle={"eatWell"}
-                        description={"Nutrition Recipes - repository & search BMI Calculator / Fat, Carbs, Protein demand Diet plan"} />
+                        description={"Nutrition Recipes - repository & search BMI Calculator / Fat, Carbs, Protein demand Diet plan"}
+                        linkTo="/eatWell" />
                 </Grid>
                 <Grid item xs={12} md={6} lg={4}>
                     <MainCard
                         image={FitWellLogo}
                         menuTitle={"fitWell"}
-                        description={"Nutrition Recipes - repository & search BMI Calculator / Fat, Carbs, Protein demand Diet plan"} />
+                        description={"Nutrition Recipes - repository & search BMI Calculator / Fat, Carbs, Protein demand Diet plan"}
+                        linkTo="/fitWell" />
                 </Grid>
             </Grid>
             <Grid item container direction={'row'} className={classes.justifyCenter} spacing={2} xs={12}>
@@ -46,13 +48,15 @@ const MainPage = () => {
                     <MainCard
                         image={RestWellLogo}
                         menuTitle={"restWell"}
-                        description={"Relax ideas repository"} />
+                        description={"Relax ideas repository"}
+                        linkTo="/restWell" />
                 </Grid>
                 <Grid item xs={12} md={6} lg={4}>
                     <MainCard
                         image={ThinkWellLogo}
                         menuTitle={"thinkWell"}
-                        description={"Self-improvement ideas repository"} />
+                        description={"Self-improvement ideas repository"}
+                        linkTo="/thinkWell" />
                 </Grid>
             </Grid>
         </Grid>
