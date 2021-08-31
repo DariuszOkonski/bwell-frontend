@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 import { Switch, Route } from "react-router-dom";
 import Header from './components/Header';
@@ -30,10 +31,28 @@ const styles = {
 }
 
 function App() {
+  const [openMenu, setChangeMenu] = React.useState(false);
+
+  const handelOpenMenu = () => {
+    setChangeMenu(true);
+    console.log('open menu: ', openMenu)
+  }
+
+  const handleCloseMenu = () => {
+    setChangeMenu(false)
+    console.log('close menu: ', openMenu)
+  }
+
+
   return (
     <Grid container direction={'column'} style={styles.mainContainer}>
       <Grid item>
-        <Header logo={logo} />
+        <Header 
+          logo={logo} 
+          handelOpenMenu={handelOpenMenu}
+          handleCloseMenu={handleCloseMenu}
+          openMenu={openMenu}
+        />
       </Grid>
       <Grid item style={styles.bodyContainer}>
         <Grid container>
@@ -48,7 +67,10 @@ function App() {
           Login
           </Route>
           <Route path="/eatWell">
-            <EatWellPage />
+            <EatWellPage 
+              openMenu={openMenu} 
+              handleCloseMenu={handleCloseMenu}
+            />
           </Route>
           <Route path="/fitWell">
           fitWell

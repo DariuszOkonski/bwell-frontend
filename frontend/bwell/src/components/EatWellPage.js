@@ -3,10 +3,13 @@ import PersistentDrawerLeft from './Menu'
 import { Grid } from '@material-ui/core'
 
 
-const EatWellPage = () => {
+const EatWellPage = (props) => {
     return (
         <Grid container>
-            <PersistentDrawerLeft />
+            <PersistentDrawerLeft 
+                openMenu={props.openMenu} 
+                handleCloseMenu={props.handleCloseMenu}
+            />
         </Grid>
     )
 }
