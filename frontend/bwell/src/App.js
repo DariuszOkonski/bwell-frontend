@@ -8,6 +8,7 @@ import background_img from './assets/background_image2.png'
 import logo_mini from './assets/logo_footer.png'
 import Grid from '@material-ui/core/Grid';
 import MainPage from './components/MainPage';
+import EatWellPage from './components/EatWellPage';
 
 const styles = {
   mainContainer: {
@@ -47,7 +48,7 @@ function App() {
           Login
           </Route>
           <Route path="/eatWell">
-          eatWell
+            <EatWellPage />
           </Route>
           <Route path="/fitWell">
           fitWell

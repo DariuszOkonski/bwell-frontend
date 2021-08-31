@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
 const Header = (props) => {
 
 const classes = useStyles();
@@ -22,6 +23,7 @@ return (
         <Toolbar>
             <Grid container className="spacebetween">
                 <Grid item>
+                <Button onClick={open ? handleDrawerClose : handleDrawerOpen}>OPEN/CLOSE</Button>
                     <Link to="/"><img src={props.logo} /></Link>
                 </Grid>
                 <Grid item>
