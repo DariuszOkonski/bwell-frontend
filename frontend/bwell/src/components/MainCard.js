@@ -9,73 +9,126 @@ import Box from '@material-ui/core/Box';
 import AssignmentReturnedIcon from '@material-ui/icons/AssignmentReturned';
 
 const useStyles = makeStyles({
-  root: {
-    minWidth: 275,
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  cardImage: {
+  card: {
     position: 'relative',
-    borderRadius: '50%',
-    gridRow: '1 / 3'
+    border: '2px solid #E3E4E5',
+    backgroundColor: '#FFFFFF',
+    padding: '1rem',
+    borderRadius: '1rem',
+    overflow: 'hidden'
   },
-  checkButton: {
-    justifyContent: 'flex-end',
-    color: '#FF934F',
+  img: {
+    position: 'relative',
+    top: '0',
+    left: '0',
+    minWidth: '50px',
+    maxWidth: '150px',
+    zIndex: 1
   },
-  overlap: {
-    marginLeft: '-15%',
-    zIndex: '2',
-    textAlign: 'start',
-    gridColumn: '2',
-    gridRow: '1'
+  headerContainer: {
+    position: 'absolute',
+    top: '-25px',
+    left: '90px',
+    padding: '1rem',
+    paddingTop: '3rem',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    zIndex: 10,
+    width: '100%',
+    borderBottomLeftRadius: '4rem'
   },
-  gridPositioning: {
-    display: 'grid',
-    gridTemplateColumns: '200px 1fr',
-    gridTemplateRows: '40% 1fr'
-  },
-  cardDescription: {
-    gridColumn: '2',
-    gridRow: '2',
-    textAlign: 'justify'
-  },
-  fadedBackground: {
-    backgroundColor: 'rgba(255, 255, 255, 0.80)',
-    borderRadius: '0px 0px 0px 10%',
-    padding: '0.5em'
+  header: {
+    fontSize: '36px',
+    color: '#595959',
+    margin: '0',
+    padding: '0',
+    paddingLeft: '0.5rem'
   }
-});
+})
 
 const MainCard = (props) => {
   const classes = useStyles();
 
-  return (
-    <>
-      <Card className={classes.root} variant="outlined">
-        <CardContent className={classes.gridPositioning}>
-          <img src={props.image} className={classes.cardImage} />
-          <Box className={classes.overlap}>
-            <Box className={classes.fadedBackground}>
-              <Typography variant="h3" component="h2">
-                {props.menuTitle}
-              </Typography>
-            </Box>
-          </Box>
-          <Typography variant="body2" className={classes.cardDescription}>
-            {props.description}
-          </Typography>
-        </CardContent>
-        <CardActions className={classes.checkButton}>
-          <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />} className={classes.checkButton}>Check</Button>
-        </CardActions>
-      </Card>
-    </>
-  )
-}
+  return (  
+    <div className={classes.card}>
+      <img src={props.image} className={classes.img} />
 
-export default MainCard
+      <div className={classes.headerContainer}>
+        <h2 className={classes.header}>{props.menuTitle}</h2>
+      </div>
+    </div>
+  );
+}
+ 
+export default MainCard;
+
+// const useStyles = makeStyles({
+//   root: {
+//     minWidth: 275,
+//   },
+//   title: {
+//     fontSize: 14,
+//   },
+//   pos: {
+//     marginBottom: 12,
+//   },
+//   cardImage: {
+//     position: 'relative',
+//     borderRadius: '50%',
+//     gridRow: '1 / 3'
+//   },
+//   checkButton: {
+//     justifyContent: 'flex-end',
+//     color: '#FF934F',
+//   },
+//   overlap: {
+//     marginLeft: '-15%',
+//     zIndex: '2',
+//     textAlign: 'start',
+//     gridColumn: '2',
+//     gridRow: '1'
+//   },
+//   gridPositioning: {
+//     display: 'grid',
+//     gridTemplateColumns: '200px 1fr',
+//     gridTemplateRows: '40% 1fr'
+//   },
+//   cardDescription: {
+//     gridColumn: '2',
+//     gridRow: '2',
+//     textAlign: 'justify'
+//   },
+//   fadedBackground: {
+//     backgroundColor: 'rgba(255, 255, 255, 0.80)',
+//     borderRadius: '0px 0px 0px 10%',
+//     padding: '0.5em'
+//   }
+// });
+
+// const MainCard = (props) => {
+//   const classes = useStyles();
+
+//   return (
+//     <>
+//       <Card className={classes.root} variant="outlined">
+//         <CardContent className={classes.gridPositioning}>
+//           <img src={props.image} className={classes.cardImage} />
+//           <Box className={classes.overlap}>
+//             <Box className={classes.fadedBackground}>
+//               <Typography variant="h3" component="h2">
+//                 {props.menuTitle}
+//               </Typography>
+//             </Box>
+//           </Box>
+//           <Typography variant="body2" className={classes.cardDescription}>
+//             {props.description}
+//           </Typography>
+//         </CardContent>
+//         <CardActions className={classes.checkButton}>
+//           <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />} className={classes.checkButton}>Check</Button>
+//         </CardActions>
+//       </Card>
+//     </>
+//   )
+// }
+
+// export default MainCard

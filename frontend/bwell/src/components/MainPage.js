@@ -36,27 +36,27 @@ const MainPage = () => {
                         linkTo="/eatWell" />
                 </Grid>
                 <Grid item xs={12} md={6} lg={4}>
-                    <MainCard
+                    {/* <MainCard
                         image={FitWellLogo}
                         menuTitle={"fitWell"}
                         description={"Nutrition Recipes - repository & search BMI Calculator / Fat, Carbs, Protein demand Diet plan"}
-                        linkTo="/fitWell" />
+                        linkTo="/fitWell" /> */}
                 </Grid>
             </Grid>
             <Grid item container direction={'row'} className={classes.justifyCenter} spacing={2} xs={12}>
                 <Grid item xs={12} md={6} lg={4}>
-                    <MainCard
+                    {/* <MainCard
                         image={RestWellLogo}
                         menuTitle={"restWell"}
                         description={"Relax ideas repository"}
-                        linkTo="/restWell" />
+                        linkTo="/restWell" /> */}
                 </Grid>
                 <Grid item xs={12} md={6} lg={4}>
-                    <MainCard
+                    {/* <MainCard
                         image={ThinkWellLogo}
                         menuTitle={"thinkWell"}
                         description={"Self-improvement ideas repository"}
-                        linkTo="/thinkWell" />
+                        linkTo="/thinkWell" /> */}
                 </Grid>
             </Grid>
         </Grid>
