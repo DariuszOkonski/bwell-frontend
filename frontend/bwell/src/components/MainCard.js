@@ -42,6 +42,17 @@ const useStyles = makeStyles({
     margin: '0',
     padding: '0',
     paddingLeft: '0.5rem'
+  },
+  description: {
+    position: 'absolute',
+    top: '80px',
+    left: '170px',
+    width: '60%',
+    fontSize: '1rem',
+    color: '#6B778C',
+    zIndex: 11,
+    padding: '0',
+    margin: '0',
   }
 })
 
@@ -55,6 +66,10 @@ const MainCard = (props) => {
       <div className={classes.headerContainer}>
         <h2 className={classes.header}>{props.menuTitle}</h2>
       </div>
+
+      <p className={classes.description}>{props.description}</p>
+
+      <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />}>Check</Button>
     </div>
   );
 }
