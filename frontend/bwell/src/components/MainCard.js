@@ -53,6 +53,11 @@ const useStyles = makeStyles({
     zIndex: 11,
     padding: '0',
     margin: '0',
+  },
+  button: {
+    position: 'absolute',
+    bottom: '1rem',
+    right: '1rem'
   }
 })
 
@@ -69,7 +74,9 @@ const MainCard = (props) => {
 
       <p className={classes.description}>{props.description}</p>
 
-      <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />}>Check</Button>
+      <Button component={Link} to={props.linkTo} className={classes.button} variant="outlined" endIcon={<AssignmentReturnedIcon />}>
+        Check
+      </Button>
     </div>
   );
 }
