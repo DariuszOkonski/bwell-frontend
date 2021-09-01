@@ -1,15 +1,15 @@
 import React from 'react';
-import './App.css';
+import '../styles/App.css';
 import { Switch, Route } from "react-router-dom";
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Header from './Header';
+import Footer from './Footer';
 import '@fontsource/lato';
-import logo from './assets/logo_large.png'
-import background_img from './assets/background_image2.png'
-import logo_mini from './assets/logo_footer.png'
+import logo from '../assets/logo_large.png'
+import background_img from '../assets/background_image2.png'
+import logo_mini from '../assets/logo_footer.png'
 import Grid from '@material-ui/core/Grid';
-import MainPage from './components/MainPage';
-import EatWellPage from './components/EatWellPage';
+import MainPage from './MainPage';
+import EatWellPage from './EatWellPage';
 
 const styles = {
   mainContainer: {
