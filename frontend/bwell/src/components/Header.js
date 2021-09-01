@@ -6,8 +6,13 @@ import HowToRegIcon from '@material-ui/icons/HowToReg';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core';
 import { Link } from "react-router-dom";
+import { Block } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
+    logo: {
+        display: 'block',
+        width: '117px',
+    },
     button: {
         margin: theme.spacing(1),
     },
@@ -23,8 +28,8 @@ return (
         <Toolbar>
             <Grid container className="spacebetween">
                 <Grid item>
-                <Button onClick={props.openMenu ? props.handleCloseMenu : props.handelOpenMenu}>OPEN/CLOSE</Button>
-                    <Link to="/"><img src={props.logo} /></Link>
+                {/* <Button onClick={props.openMenu ? props.handleCloseMenu : props.handelOpenMenu}>OPEN/CLOSE</Button> */}
+                    <Link to="/"><img className={classes.logo} src={props.logo} /></Link>
                 </Grid>
                 <Grid item>
                     <Button component={Link} to="/login" color="inherit" className={classes.button} startIcon={<HowToRegIcon />}>
