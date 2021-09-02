@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import AssignmentReturnedIcon from '@material-ui/icons/AssignmentReturned';
 import CustomButton from './CustomButton';
-import { colors } from '../utilities/utilities';
+import { colors, viewportSize } from '../utilities/utilities';
 
 const useStyles = makeStyles({
   card: {
@@ -25,7 +25,10 @@ const useStyles = makeStyles({
     left: '0',
     minWidth: '50px',
     maxWidth: '150px',
-    zIndex: 1
+    zIndex: 1,
+    [`@media (max-width: ${viewportSize.mobileL})`]: {
+      maxWidth: '110px'
+    }
   },
   headerContainer: {
     position: 'absolute',
@@ -43,7 +46,10 @@ const useStyles = makeStyles({
     color: colors.textPrimary,
     margin: '0',
     padding: '0',
-    paddingLeft: '0.5rem'
+    paddingLeft: '0.5rem',
+    [`@media (max-width: ${viewportSize.mobileL})`] : {
+      fontSize: '1.5rem'
+    }
   },
   description: {
     position: 'absolute',
@@ -54,7 +60,13 @@ const useStyles = makeStyles({
     color: colors.textSecondary,
     zIndex: 11,
     padding: '0',
-    margin: '0',
+    margin: '0.2rem',
+    [`@media (max-width: ${viewportSize.mobileL})`] :{
+      top: '60px',
+      left: '140px',
+      fontSize: '0.8rem',
+      margin: '0',
+    }
   }
 })
 

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import AssignmentReturnedIcon from '@material-ui/icons/AssignmentReturned';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import { colors } from '../utilities/utilities';
+import { colors, viewportSize } from '../utilities/utilities';
 
 const useStyles = makeStyles({
     button: {
@@ -18,6 +18,10 @@ const useStyles = makeStyles({
         borderRadius: '2rem',
         color: colors.white,
         padding: '0.2rem 0.6rem',
+        fontSize: '1rem',
+        [`@media (max-width: ${viewportSize.mobileL})`] : {
+            fontSize: '0.6rem'
+        }
     }
 })
 
