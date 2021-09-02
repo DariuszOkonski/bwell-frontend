@@ -82,21 +82,21 @@ const useStyles = makeStyles((theme) => ({
 export default function PersistentDrawerLeft(props) {
   const classes = useStyles();
   const theme = useTheme();
-  // const [open, setOpen] = React.useState(props.openMenu);
+  const [open, setOpen] = React.useState(false);
 
-  // const handleDrawerOpen = () => {
-  //   setOpen(true);
-  // };
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
 
-  // const handleDrawerClose = () => {
-  //   setOpen(false);
-  //   console.log('open: ', open)
-  // };
+  const handleDrawerClose = () => {
+    setOpen(false);
+    console.log('open: ', open)
+  };
 
-  // useEffect(() => {
-  //   setOpen(props.openMenu)
-  //   console.log('open: ', open)
-  // })
+  useEffect(() => {
+    setOpen(false)
+    console.log('open: ', open)
+  })
 
   return (
       <>

@@ -31,17 +31,17 @@ const styles = {
 }
 
 function App() {
-  const [openMenu, setChangeMenu] = React.useState(false);
+  // const [openMenu, setChangeMenu] = React.useState(false);
 
-  const handelOpenMenu = () => {
-    setChangeMenu(true);
-    console.log('open menu: ', openMenu)
-  }
+  // const handelOpenMenu = () => {
+  //   setChangeMenu(true);
+  //   console.log('open menu: ', openMenu)
+  // }
 
-  const handleCloseMenu = () => {
-    setChangeMenu(false)
-    console.log('close menu: ', openMenu)
-  }
+  // const handleCloseMenu = () => {
+  //   setChangeMenu(false)
+  //   console.log('close menu: ', openMenu)
+  // }
 
 
   return (
@@ -49,9 +49,9 @@ function App() {
       <Grid item>
         <Header 
           logo={logo} 
-          handelOpenMenu={handelOpenMenu}
-          handleCloseMenu={handleCloseMenu}
-          openMenu={openMenu}
+          // handelOpenMenu={handelOpenMenu}
+          // handleCloseMenu={handleCloseMenu}
+          // openMenu={openMenu}
         />
       </Grid>
       <Grid item style={styles.bodyContainer}>
@@ -68,8 +68,8 @@ function App() {
           </Route>
           <Route path="/eatWell">
             <EatWellPage 
-              openMenu={openMenu} 
-              handleCloseMenu={handleCloseMenu}
+              // openMenu={openMenu} 
+              // handleCloseMenu={handleCloseMenu}
             />
           </Route>
           <Route path="/fitWell">

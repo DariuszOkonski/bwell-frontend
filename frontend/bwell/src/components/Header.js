@@ -9,12 +9,21 @@ import { Link } from "react-router-dom";
 import { Block } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
+    container: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+    },
     logo: {
         display: 'block',
-        width: '117px',
+        width: '4rem',
+    },
+    buttonsContainer: {
     },
     button: {
-        margin: theme.spacing(1),
+        margin: '0',
+        fontSize: '0.6rem'
     },
 }));
 
@@ -26,20 +35,17 @@ return (
 
     <AppBar position="static" className="header">
         <Toolbar>
-            <Grid container className="spacebetween">
-                <Grid item>
-                {/* <Button onClick={props.openMenu ? props.handleCloseMenu : props.handelOpenMenu}>OPEN/CLOSE</Button> */}
+            <div className={classes.container}>
                     <Link to="/"><img className={classes.logo} src={props.logo} /></Link>
-                </Grid>
-                <Grid item>
+                <div className={classes.buttonsContainer}>
                     <Button component={Link} to="/login" color="inherit" className={classes.button} startIcon={<HowToRegIcon />}>
                         Login
                     </Button>
                     <Button component={Link} to="/register" color="inherit" className={classes.button} startIcon={<PersonAdd />}>
                         Register
                     </Button>
-                </Grid>
-            </Grid>
+                </div>
+            </div>
         </Toolbar>
     </AppBar>
 )

@@ -7,8 +7,8 @@ const EatWellPage = (props) => {
     return (
         <Grid container>
             <PersistentDrawerLeft 
-                openMenu={props.openMenu} 
-                handleCloseMenu={props.handleCloseMenu}
+                // openMenu={props.openMenu} 
+                // handleCloseMenu={props.handleCloseMenu}
             />
         </Grid>
     )

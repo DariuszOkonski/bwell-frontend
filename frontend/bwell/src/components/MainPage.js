@@ -16,7 +16,7 @@ const useStyles = makeStyles({
     logo: {
         height: '3rem',
         [`@media (min-width: ${viewportSize.mobileS})`]: {
-            height: '5rem'
+            height: '4rem'
         },
         [`@media (min-width: ${viewportSize.tablet})`]: {
             height: '6rem'
