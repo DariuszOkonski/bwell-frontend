@@ -6,14 +6,24 @@ import EatWellLogo from "../assets/menu_eatwell.png"
 import FitWellLogo from "../assets/menu_fitwell.png"
 import RestWellLogo from "../assets/menu_restwell.png"
 import ThinkWellLogo from "../assets/menu_thinkwell.png"
+import { viewportSize } from "../utilities/utilities";
 
 const useStyles = makeStyles({
     justifyCenter: {
         justifyContent: 'center',
-        marginTop: '1em'
+        marginTop: '1rem'
     },
     logo: {
-        height: '10em'
+        height: '3rem',
+        [`@media (min-width: ${viewportSize.mobileS})`]: {
+            height: '5rem'
+        },
+        [`@media (min-width: ${viewportSize.tablet})`]: {
+            height: '6rem'
+        },
+        [`@media (min-width: ${viewportSize.laptop})`]: {
+            height: '8rem'
+        }
     }
 })
 

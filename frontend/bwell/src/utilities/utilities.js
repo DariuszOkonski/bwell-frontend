@@ -7,4 +7,13 @@ const colors = {
     textSecondary: '#6B778C'
 }
 
-export { colors }
+const viewportSize = {
+    mobileS: '320px',
+    mobileM: '375px',
+    mobileL: '425px',
+    tablet: '768px',
+    laptop: '1024px',
+    laptopL: '1440px'
+}
+
+export { colors, viewportSize }
