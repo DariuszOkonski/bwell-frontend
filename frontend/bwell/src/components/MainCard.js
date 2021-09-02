@@ -7,12 +7,14 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import AssignmentReturnedIcon from '@material-ui/icons/AssignmentReturned';
+import CustomButton from './CustomButton';
+import { colors } from '../utilities/utilities';
 
 const useStyles = makeStyles({
   card: {
     position: 'relative',
-    border: '2px solid #E3E4E5',
-    backgroundColor: '#FFFFFF',
+    border: `2px solid ${colors.borderPrimary}`,
+    backgroundColor: colors.white,
     padding: '1rem',
     borderRadius: '1rem',
     overflow: 'hidden'
@@ -38,7 +40,7 @@ const useStyles = makeStyles({
   },
   header: {
     fontSize: '36px',
-    color: '#595959',
+    color: colors.textPrimary,
     margin: '0',
     padding: '0',
     paddingLeft: '0.5rem'
@@ -49,15 +51,10 @@ const useStyles = makeStyles({
     left: '170px',
     width: '60%',
     fontSize: '1rem',
-    color: '#6B778C',
+    color: colors.textSecondary,
     zIndex: 11,
     padding: '0',
     margin: '0',
-  },
-  button: {
-    position: 'absolute',
-    bottom: '1rem',
-    right: '1rem'
   }
 })
 
@@ -74,9 +71,11 @@ const MainCard = (props) => {
 
       <p className={classes.description}>{props.description}</p>
 
-      <Button component={Link} to={props.linkTo} className={classes.button} variant="outlined" endIcon={<AssignmentReturnedIcon />}>
+      <CustomButton linkTo={props.linkTo} text="check"/>
+
+      {/* <Button component={Link} to={props.linkTo} className={classes.button} variant="outlined" endIcon={<AssignmentReturnedIcon />}>
         Check
-      </Button>
+      </Button> */}
     </div>
   );
 }
