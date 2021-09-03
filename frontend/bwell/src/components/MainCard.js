@@ -57,6 +57,7 @@ const useStyles = makeStyles({
     left: '170px',
     width: '60%',
     fontSize: '1rem',
+    whiteSpace: 'pre-wrap',
     color: colors.textSecondary,
     zIndex: 11,
     padding: '0',

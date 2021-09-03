@@ -42,14 +42,14 @@ const MainPage = () => {
                     <MainCard
                         image={EatWellLogo}
                         menuTitle={"eatWell"}
-                        description={"Nutrition Recipes - repository & search BMI Calculator / Fat, Carbs, Protein demand Diet plan"}
+                        description={"Nutrition Recipes - repository & search \nBMI Calculator / Fat, Carbs, Protein demand \nDiet plan"}
                         linkTo="/eatWell" />
                 </Grid>
                 <Grid item xs={12} md={6} lg={4}>
                     <MainCard
                         image={FitWellLogo}
                         menuTitle={"fitWell"}
-                        description={"Nutrition Recipes - repository & search BMI Calculator / Fat, Carbs, Protein demand Diet plan"}
+                        description={"Fitness exercises repository \nwith WHERE, WHEN and EQUIPMENT"}
                         linkTo="/fitWell" />
                 </Grid>
             </Grid>
