@@ -4,7 +4,8 @@ const colors = {
     buttonPrimaryHover: '#FC6D13',
     borderPrimary: '#E3E4E5',
     textPrimary: '#595959',
-    textSecondary: '#6B778C'
+    textSecondary: '#6B778C',
+    green: '#4FB477'
 }
 
 const viewportSize = {

@@ -13,6 +13,7 @@ const useStyles = makeStyles({
         justifyContent: 'center',
         marginTop: '1rem'
     },
+    //this could call theme viewportSize breakpoints
     logo: {
         height: '3rem',
         [`@media (min-width: ${viewportSize.mobileS})`]: {

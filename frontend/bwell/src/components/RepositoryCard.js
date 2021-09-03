@@ -1,14 +1,12 @@
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Link} from "react-router-dom";
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
+import { Link } from "react-router-dom";
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
 import AssignmentReturnedIcon from '@material-ui/icons/AssignmentReturned';
-import CustomButton from './CustomButton';
 import { colors, viewportSize } from '../utilities/utilities';
+import { Grid } from '@material-ui/core';
+import PropTypes from "prop-types";
 
 const useStyles = makeStyles({
   card: {
@@ -19,16 +17,11 @@ const useStyles = makeStyles({
     borderRadius: '1rem',
     overflow: 'hidden'
   },
-  img: {
+  cardIcon: {
+    fontSize: 70,
     position: 'relative',
-    top: '0',
-    left: '0',
-    minWidth: '50px',
-    maxWidth: '150px',
-    zIndex: 1,
-    [`@media (max-width: ${viewportSize.mobileL})`]: {
-      maxWidth: '110px'
-    }
+    marginRight: '1em',
+    color: colors.green,
   },
   headerContainer: {
     position: 'absolute',
@@ -47,49 +40,70 @@ const useStyles = makeStyles({
     margin: '0',
     padding: '0',
     paddingLeft: '0.5rem',
-    [`@media (max-width: ${viewportSize.mobileL})`] : {
+    [`@media (max-width: ${viewportSize.mobileL})`]: {
       fontSize: '1.5rem'
     }
   },
+  inline: {
+    display: 'inline'
+  },
   description: {
-    position: 'absolute',
-    top: '80px',
-    left: '170px',
-    width: '60%',
     fontSize: '1rem',
     color: colors.textSecondary,
     zIndex: 11,
     padding: '0',
     margin: '0.2rem',
-    [`@media (max-width: ${viewportSize.mobileL})`] :{
+    [`@media (max-width: ${viewportSize.mobileL})`]: {
       top: '60px',
       left: '140px',
       fontSize: '0.8rem',
       margin: '0',
     }
+  },
+  checkButton: {
+    alignSelf: 'flex-end',
+    color: '#FF934F',
+    border: 'none',
+    backgroundColor: colors.buttonPrimary,
+    '&:hover': {
+      backgroundColor: colors.buttonPrimaryHover,
+    },
+    borderRadius: '2rem',
+    color: colors.white,
+    padding: '0.2rem 0.6rem',
+    fontSize: '1rem',
+    [`@media (max-width: ${viewportSize.mobileL})`]: {
+      fontSize: '0.6rem'
+    },
+    marginRight: '0.5rem',
+  },
+  buttonContainer: {
+    justifyContent: 'flex-end'
   }
 })
 
 const RepositoryCard = (props) => {
   const classes = useStyles();
+  const CardIcon = props.cardIcon;
 
-  return (  
-    <div className={classes.card}>
-      <img src={props.image} className={classes.img} />
-
-      <div className={classes.headerContainer}>
-        <h2 className={classes.header}>{props.menuTitle}</h2>
-      </div>
-
-      <p className={classes.description}>{props.description}</p>
-
-      <CustomButton linkTo={props.linkTo} text="check"/>
-
-      {/* <Button component={Link} to={props.linkTo} className={classes.button} variant="outlined" endIcon={<AssignmentReturnedIcon />}>
-        Check
-      </Button> */}
-    </div>
+  return (
+    <Grid container className={classes.card}>
+      <Grid item>
+        <CardIcon className={classes.cardIcon} spacing={2} />
+        <Typography variant="h4" className={classes.inline}>{props.title}</Typography>
+      </Grid>
+      <Grid item>
+        <p className={classes.description}>{props.description}</p>
+      </Grid>
+      <Grid item container spacing={2} className={classes.buttonContainer} spacing={1}>
+        <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />} className={classes.checkButton} text="check">Check</Button>
+      </Grid>
+    </Grid>
   );
 }
- 
+
+RepositoryCard.propTypes = {
+  cardIcon: PropTypes.elementType
+};
+
 export default RepositoryCard;

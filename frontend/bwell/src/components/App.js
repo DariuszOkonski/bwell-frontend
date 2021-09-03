@@ -10,6 +10,9 @@ import logo_mini from '../assets/logo_footer.png'
 import Grid from '@material-ui/core/Grid';
 import MainPage from './MainPage';
 import EatWellPage from './EatWellPage';
+import FitWellPage from './FitWellPage';
+import RestWellPage from './RestWellPage';
+import ThinkWellPage from './ThinkWellPage';
 
 const styles = {
   mainContainer: {
@@ -47,45 +50,45 @@ function App() {
   return (
     <Grid container direction={'column'} style={styles.mainContainer}>
       <Grid item>
-        <Header 
-          logo={logo} 
-          // handelOpenMenu={handelOpenMenu}
-          // handleCloseMenu={handleCloseMenu}
-          // openMenu={openMenu}
+        <Header
+          logo={logo}
+        // handelOpenMenu={handelOpenMenu}
+        // handleCloseMenu={handleCloseMenu}
+        // openMenu={openMenu}
         />
       </Grid>
       <Grid item style={styles.bodyContainer}>
         <Grid container>
-        <Switch>
-          <Route exact path="/">
-          <MainPage />
-          </Route>
-          <Route path="/register">
-          Register
-          </Route>
-          <Route path="/login">
-          Login
-          </Route>
-          <Route path="/eatWell">
-            <EatWellPage 
+          <Switch>
+            <Route exact path="/">
+              <MainPage />
+            </Route>
+            <Route path="/register">
+              Register
+            </Route>
+            <Route path="/login">
+              Login
+            </Route>
+            <Route path="/eatWell">
+              <EatWellPage
               // openMenu={openMenu} 
               // handleCloseMenu={handleCloseMenu}
-            />
-          </Route>
-          <Route path="/fitWell">
-          fitWell
-          </Route>
-          <Route path="/restWell">
-          restWell
-          </Route>
-          <Route path="/thinkWell">
-          thinkWell
-          </Route>
-        </Switch>
+              />
+            </Route>
+            <Route path="/fitWell">
+              <FitWellPage />
+            </Route>
+            <Route path="/restWell">
+              <RestWellPage />
+            </Route>
+            <Route path="/thinkWell">
+              <ThinkWellPage />
+            </Route>
+          </Switch>
         </Grid>
       </Grid>
       <Grid item>
-        <Footer logo={logo_mini}/>
+        <Footer logo={logo_mini} />
       </Grid>
     </Grid>
   );
