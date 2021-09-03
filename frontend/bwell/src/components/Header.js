@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core';
 import { Link } from "react-router-dom";
 import { Block } from '@material-ui/icons';
+import { viewportSize, colors } from '../utilities/utilities';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -15,15 +16,24 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         width: '100%',
     },
+    header: {
+        backgroundColor: `${colors.topNavPrimary}`
+    }, 
     logo: {
         display: 'block',
         width: '4rem',
+        [`@media(min-width: ${viewportSize.mobileL})`] : {
+            width: '6rem'
+        }
     },
     buttonsContainer: {
     },
     button: {
         margin: '0',
-        fontSize: '0.6rem'
+        fontSize: '0.6rem',
+        [`@media(min-width: ${viewportSize.mobileL})`]: {
+            fontSize: '1rem'
+        }
     },
 }));
 
@@ -33,17 +43,19 @@ const Header = (props) => {
 const classes = useStyles();
 return (
 
-    <AppBar position="static" className="header">
+    <AppBar position="static" className={classes.header}>
         <Toolbar>
             <div className={classes.container}>
                     <Link to="/"><img className={classes.logo} src={props.logo} /></Link>
                 <div className={classes.buttonsContainer}>
+                    
                     <Button component={Link} to="/login" color="inherit" className={classes.button} startIcon={<HowToRegIcon />}>
                         Login
                     </Button>
                     <Button component={Link} to="/register" color="inherit" className={classes.button} startIcon={<PersonAdd />}>
                         Register
                     </Button>
+                    
                 </div>
             </div>
         </Toolbar>
