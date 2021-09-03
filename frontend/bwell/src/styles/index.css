@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -6,5 +8,5 @@
 
 body {
   font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Lato', sans-serif;
 }
