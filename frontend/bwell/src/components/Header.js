@@ -6,6 +6,7 @@ import HowToRegIcon from '@material-ui/icons/HowToReg';
 import { makeStyles } from '@material-ui/core';
 import { Link } from "react-router-dom";
 import { viewportSize, colors } from '../utilities/utilities';
+import SwipeableTemporaryDrawer from './SwipeableTemporaryDrawer';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -26,6 +27,11 @@ const useStyles = makeStyles((theme) => ({
     },
     buttonsContainer: {
     },
+    hamburgerMenu: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    }, 
     button: {
         margin: '0',
         fontSize: '0.6rem',
@@ -44,7 +50,12 @@ return (
     <AppBar position="static" className={classes.header}>
         <Toolbar>
             <div className={classes.container}>
+                
+                <div className={classes.hamburgerMenu}>
                     <Link to="/"><img className={classes.logo} src={props.logo} alt="logo"/></Link>
+                    <SwipeableTemporaryDrawer />                    
+                </div>
+                
                 <div className={classes.buttonsContainer}>
                     
                     <Button component={Link} to="/login" color="inherit" className={classes.button} startIcon={<HowToRegIcon />}>

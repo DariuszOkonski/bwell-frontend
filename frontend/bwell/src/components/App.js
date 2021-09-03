@@ -47,24 +47,19 @@ function App() {
   return (
     <Grid container direction={'column'} style={styles.mainContainer}>
       <Grid item>
-        <Header 
-          logo={logo} 
-          // handelOpenMenu={handelOpenMenu}
-          // handleCloseMenu={handleCloseMenu}
-          // openMenu={openMenu}
-        />
+        <Header logo={logo} />
       </Grid>
       <Grid item style={styles.bodyContainer}>
         <Grid container>
         <Switch>
           <Route exact path="/">
-          <MainPage />
+            <MainPage />
           </Route>
           <Route path="/register">
-          Register
+            Register
           </Route>
           <Route path="/login">
-          Login
+            Login
           </Route>
           <Route path="/eatWell">
             <EatWellPage 

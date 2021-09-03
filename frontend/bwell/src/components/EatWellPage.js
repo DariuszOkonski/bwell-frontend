@@ -6,10 +6,12 @@ import { Grid } from '@material-ui/core'
 const EatWellPage = (props) => {
     return (
         <Grid container>
-            <PersistentDrawerLeft 
+            <h2>EatWell</h2>
+
+            {/* <PersistentDrawerLeft 
                 // openMenu={props.openMenu} 
                 // handleCloseMenu={props.handleCloseMenu}
-            />
+            /> */}
         </Grid>
     )
 }
