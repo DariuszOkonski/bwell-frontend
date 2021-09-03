@@ -3,10 +3,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import PersonAdd from '@material-ui/icons/PersonAdd';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
-import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core';
 import { Link } from "react-router-dom";
-import { Block } from '@material-ui/icons';
 import { viewportSize, colors } from '../utilities/utilities';
 
 const useStyles = makeStyles((theme) => ({
@@ -46,7 +44,7 @@ return (
     <AppBar position="static" className={classes.header}>
         <Toolbar>
             <div className={classes.container}>
-                    <Link to="/"><img className={classes.logo} src={props.logo} /></Link>
+                    <Link to="/"><img className={classes.logo} src={props.logo} alt="logo"/></Link>
                 <div className={classes.buttonsContainer}>
                     
                     <Button component={Link} to="/login" color="inherit" className={classes.button} startIcon={<HowToRegIcon />}>
@@ -55,7 +53,7 @@ return (
                     <Button component={Link} to="/register" color="inherit" className={classes.button} startIcon={<PersonAdd />}>
                         Register
                     </Button>
-                    
+
                 </div>
             </div>
         </Toolbar>

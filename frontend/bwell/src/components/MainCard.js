@@ -1,12 +1,4 @@
 import { makeStyles } from '@material-ui/core/styles';
-import {Link} from "react-router-dom";
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import AssignmentReturnedIcon from '@material-ui/icons/AssignmentReturned';
 import CustomButton from './CustomButton';
 import { colors, viewportSize } from '../utilities/utilities';
 
@@ -75,7 +67,7 @@ const MainCard = (props) => {
 
   return (  
     <div className={classes.card}>
-      <img src={props.image} className={classes.img} />
+      <img src={props.image} className={classes.img} alt="card_image"/>
 
       <div className={classes.headerContainer}>
         <h2 className={classes.header}>{props.menuTitle}</h2>
