@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     fontSize: 70,
     position: 'relative',
     marginRight: '1em',
-    color: colors.green,
+    color: colors.cardIconPrimary,
   },
   headerContainer: {
     position: 'absolute',
