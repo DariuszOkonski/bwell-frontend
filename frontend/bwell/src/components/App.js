@@ -1,5 +1,4 @@
 import React from 'react';
-import '../styles/App.css';
 import { Switch, Route } from "react-router-dom";
 import Header from './Header';
 import Footer from './Footer';
@@ -17,7 +16,8 @@ import ThinkWellPage from './ThinkWellPage';
 const styles = {
   mainContainer: {
     height: '100vh',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    backgroundColor: 'red'
   },
 
   bodyContainer: {
@@ -50,27 +50,22 @@ function App() {
   return (
     <Grid container direction={'column'} style={styles.mainContainer}>
       <Grid item>
-        <Header
-          logo={logo}
-        // handelOpenMenu={handelOpenMenu}
-        // handleCloseMenu={handleCloseMenu}
-        // openMenu={openMenu}
-        />
+        <Header logo={logo} />
       </Grid>
       <Grid item style={styles.bodyContainer}>
         <Grid container>
-          <Switch>
-            <Route exact path="/">
-              <MainPage />
-            </Route>
-            <Route path="/register">
-              Register
-            </Route>
-            <Route path="/login">
-              Login
-            </Route>
-            <Route path="/eatWell">
-              <EatWellPage
+        <Switch>
+          <Route exact path="/">
+            <MainPage />
+          </Route>
+          <Route path="/register">
+            Register
+          </Route>
+          <Route path="/login">
+            Login
+          </Route>
+          <Route path="/eatWell">
+            <EatWellPage 
               // openMenu={openMenu} 
               // handleCloseMenu={handleCloseMenu}
               />

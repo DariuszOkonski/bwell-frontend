@@ -1,4 +1,4 @@
-import { makeStyles, Paper } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import big_logo from "../assets/logo_large.png";
 import { Grid } from "@material-ui/core";
 import MainCard from "./MainCard"
@@ -36,7 +36,7 @@ const MainPage = () => {
 
         <Grid container className={classes.justifyCenter}>
             <Grid item>
-                <img src={big_logo} className={classes.logo} />
+                <img src={big_logo} className={classes.logo} alt="logo" />
             </Grid>
             <Grid item container direction={'row'} className={classes.justifyCenter} spacing={2} xs={12}>
                 <Grid item xs={12} md={6} lg={4}>

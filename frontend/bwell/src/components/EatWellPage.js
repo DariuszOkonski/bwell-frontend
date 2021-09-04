@@ -22,10 +22,12 @@ const EatWellPage = (props) => {
     return (
         <>
         <Grid container>
-            <PersistentDrawerLeft 
+            <h2>EatWell</h2>
+
+            {/* <PersistentDrawerLeft 
                 // openMenu={props.openMenu} 
                 // handleCloseMenu={props.handleCloseMenu}
-            />
+            /> */}
         </Grid>
         <Grid container spacing={2} xs={12} className={classes.categoriesBar}>
             <Grid item xs={12} md={10}>

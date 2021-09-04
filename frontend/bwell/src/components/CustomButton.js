@@ -11,6 +11,7 @@ const useStyles = makeStyles({
         right: '0.5rem',
         bottom: '0.5rem',
         border: 'none',
+        textTransform: 'capitalize',
         backgroundColor: colors.buttonPrimary,
         '&:hover': {
             backgroundColor: colors.buttonPrimaryHover,
