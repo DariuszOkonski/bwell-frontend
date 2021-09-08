@@ -14,6 +14,7 @@ const useStyles = makeStyles({
     border: `2px solid ${colors.borderPrimary}`,
     backgroundColor: colors.white,
     padding: '1rem',
+    margin: '0',
     borderRadius: '1rem',
     overflow: 'hidden'
   },

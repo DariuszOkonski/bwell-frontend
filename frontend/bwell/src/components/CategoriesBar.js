@@ -31,13 +31,14 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2),
     },
     options: {
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
     },
     separateTitle: {
         justifyContent: 'space-between',
         alignItems: 'center',
     },
     responsiveFont: {
+        color: 'red',   
         [theme.breakpoints.up('xs')]: {
             fontSize: '2rem',
         },
@@ -58,7 +59,7 @@ const CategoriesBar = (props) => {
         <Box className={classes.card} xs={12} md={10} lg={8}>
             <Grid container className={classes.separateTitle} >
                 <Grid item xs={12} md={5} lg={4}>
-                    <Typography variant="h4" className={classes.responsiveFont}>{props.location}</Typography>
+                    <Typography variant="h3" className={classes.responsiveFont}>{props.location}</Typography>
                 </Grid>
                 <Grid item container className={classes.options} xs={12} md={7}>
                     <Grid item xs={12} md={4}>

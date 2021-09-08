@@ -22,10 +22,18 @@ const styles = {
 
   bodyContainer: {
     flex: 1,
+    
+    display: 'flex',
+    justifyContent: 'center',
+
     backgroundImage: `url(${background_img})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     overflow: 'auto'
+  },
+
+  pageContainer: {
+    justifyContent: 'center'
   },
 
   paperContainer: {
@@ -34,16 +42,7 @@ const styles = {
 }
 
 function App() {
-  // const [openMenu, setChangeMenu] = React.useState(false);
 
-  // const handelOpenMenu = () => {
-  //   setChangeMenu(true);
-  //   console.log('open menu: ', openMenu)
-  // }
-
-  // const handleCloseMenu = () => {
-  //   setChangeMenu(false)
-  //   console.log('close menu: ', openMenu)
   // }
 
 
@@ -53,33 +52,33 @@ function App() {
         <Header logo={logo} />
       </Grid>
       <Grid item style={styles.bodyContainer}>
-        <Grid container>
-        <Switch>
-          <Route exact path="/">
-            <MainPage />
-          </Route>
-          <Route path="/register">
-            Register
-          </Route>
-          <Route path="/login">
-            Login
-          </Route>
-          <Route path="/eatWell">
-            <EatWellPage 
-              // openMenu={openMenu} 
-              // handleCloseMenu={handleCloseMenu}
-              />
+        <Grid container style={styles.pageContainer} >
+          <Switch>
+            <Route exact path="/">
+              <MainPage />
             </Route>
-            <Route path="/fitWell">
-              <FitWellPage />
+            <Route path="/register">
+              Register
             </Route>
-            <Route path="/restWell">
-              <RestWellPage />
+            <Route path="/login">
+              Login
             </Route>
-            <Route path="/thinkWell">
-              <ThinkWellPage />
-            </Route>
-          </Switch>
+            <Route path="/eatWell">
+              <EatWellPage 
+                // openMenu={openMenu} 
+                // handleCloseMenu={handleCloseMenu}
+                />
+              </Route>
+              <Route path="/fitWell">
+                <FitWellPage />
+              </Route>
+              <Route path="/restWell">
+                <RestWellPage />
+              </Route>
+              <Route path="/thinkWell">
+                <ThinkWellPage />
+              </Route>
+            </Switch>
         </Grid>
       </Grid>
       <Grid item>
