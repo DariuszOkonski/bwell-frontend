@@ -24,18 +24,12 @@ const RestWellPage = (props) => {
 
     return (
         <>
-            <Grid container>
-                <PersistentDrawerLeft
-                // openMenu={props.openMenu} 
-                // handleCloseMenu={props.handleCloseMenu}
-                />
-            </Grid>
             <Grid container spacing={2} xs={12} className={classes.categoriesBar}>
                 <Grid item xs={12} md={8}>
                     <CategoriesBar location="restWell/Repositories" />
                 </Grid>
                 <Grid item className={classes.cards} xs={12} md={8}>
-                    <Grid container xs={12} spacing={2} className={classes.cards}>
+                    <Grid container xs={12} spacing={0} className={classes.cards}>
                         <Grid item xs={12} md={6}>
                             <RepositoryCard title="Relax idea" cardIcon={WeekendOutlinedIcon} linkTo="" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
                         </Grid>
