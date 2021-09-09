@@ -11,7 +11,9 @@ import { viewportSize } from "../utilities/utilities";
 const useStyles = makeStyles({
     justifyCenter: {
         justifyContent: 'center',
-        marginTop: '1rem'
+        alignItems: 'center',
+        maxWidth: viewportSize.laptop,
+        margin: '0 auto'
     },
     //this could call theme viewportSize breakpoints
     logo: {
@@ -25,6 +27,11 @@ const useStyles = makeStyles({
         [`@media (min-width: ${viewportSize.laptop})`]: {
             height: '8rem'
         }
+    },
+    gridItem: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
 
@@ -32,45 +39,85 @@ const MainPage = () => {
 
     const classes = useStyles();
 
-    return (
+    
 
-        <Grid container className={classes.justifyCenter}>
-            <Grid item>
+    return (
+        <>
+            <div>
                 <img src={big_logo} className={classes.logo} alt="logo" />
+            </div>
+
+            <Grid container >
+                <Grid item container direction={'row'} className={classes.justifyCenter} spacing={0} xs={12}>
+                    <Grid item className={classes.gridItem} xs={12} md={6}>
+                        <MainCard
+                            image={EatWellLogo}
+                            menuTitle={"eatWell"}
+                            description={"Nutrition Recipes - repository & search \nBMI Calculator / Fat, Carbs, Protein demand \nDiet plan"}
+                            linkTo="/eatWell" />
+                    </Grid>
+                    <Grid item className={classes.gridItem} xs={12} md={6}>
+                       <MainCard
+                            image={FitWellLogo}
+                            menuTitle={"fitWell"}
+                            description={"Fitness exercises repository \nwith WHERE, WHEN and EQUIPMENT"}
+                            linkTo="/fitWell" />
+                    </Grid>
+                    <Grid item className={classes.gridItem} xs={12} md={6}>
+                        <MainCard
+                                image={RestWellLogo}
+                                menuTitle={"restWell"}
+                                description={"Relax ideas repository"}
+                                linkTo="/restWell" />
+                    </Grid>
+                    <Grid item className={classes.gridItem} xs={12} md={6}>
+                        <MainCard
+                                image={ThinkWellLogo}
+                                menuTitle={"thinkWell"}
+                                description={"Self-improvement ideas repository"}
+                                linkTo="/thinkWell" />
+                    </Grid>
+                </Grid>
             </Grid>
-            <Grid item container direction={'row'} className={classes.justifyCenter} spacing={2} xs={12}>
-                <Grid item xs={12} md={6} lg={4}>
-                    <MainCard
-                        image={EatWellLogo}
-                        menuTitle={"eatWell"}
-                        description={"Nutrition Recipes - repository & search \nBMI Calculator / Fat, Carbs, Protein demand \nDiet plan"}
-                        linkTo="/eatWell" />
+
+
+            {/* <Grid container className={classes.justifyCenter}>
+                
+                <Grid item container direction={'row'} className={classes.justifyCenter} spacing={2} xs={12}>
+                    <Grid item xs={12} md={6} lg={4}>
+                        <MainCard
+                            image={EatWellLogo}
+                            menuTitle={"eatWell"}
+                            description={"Nutrition Recipes - repository & search \nBMI Calculator / Fat, Carbs, Protein demand \nDiet plan"}
+                            linkTo="/eatWell" />
+                    </Grid>
+                    <Grid item xs={12} md={6} lg={4}>
+                        <MainCard
+                            image={FitWellLogo}
+                            menuTitle={"fitWell"}
+                            description={"Fitness exercises repository \nwith WHERE, WHEN and EQUIPMENT"}
+                            linkTo="/fitWell" />
+                    </Grid>
                 </Grid>
-                <Grid item xs={12} md={6} lg={4}>
-                    <MainCard
-                        image={FitWellLogo}
-                        menuTitle={"fitWell"}
-                        description={"Fitness exercises repository \nwith WHERE, WHEN and EQUIPMENT"}
-                        linkTo="/fitWell" />
+            
+                <Grid item container direction={'row'} className={classes.justifyCenter} spacing={2} xs={12}>
+                    <Grid item xs={12} md={6} lg={4}>
+                        <MainCard
+                            image={RestWellLogo}
+                            menuTitle={"restWell"}
+                            description={"Relax ideas repository"}
+                            linkTo="/restWell" />
+                    </Grid>
+                    <Grid item xs={12} md={6} lg={4}>
+                        <MainCard
+                            image={ThinkWellLogo}
+                            menuTitle={"thinkWell"}
+                            description={"Self-improvement ideas repository"}
+                            linkTo="/thinkWell" />
+                    </Grid>
                 </Grid>
-            </Grid>
-            <Grid item container direction={'row'} className={classes.justifyCenter} spacing={2} xs={12}>
-                <Grid item xs={12} md={6} lg={4}>
-                    <MainCard
-                        image={RestWellLogo}
-                        menuTitle={"restWell"}
-                        description={"Relax ideas repository"}
-                        linkTo="/restWell" />
-                </Grid>
-                <Grid item xs={12} md={6} lg={4}>
-                    <MainCard
-                        image={ThinkWellLogo}
-                        menuTitle={"thinkWell"}
-                        description={"Self-improvement ideas repository"}
-                        linkTo="/thinkWell" />
-                </Grid>
-            </Grid>
-        </Grid>
+            </Grid> */}
+        </>
 
     )
 }

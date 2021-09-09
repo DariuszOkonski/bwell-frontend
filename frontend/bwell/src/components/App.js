@@ -16,8 +16,8 @@ import ThinkWellPage from './ThinkWellPage';
 const styles = {
   mainContainer: {
     height: '100vh',
-    justifyContent: 'space-between',
-    backgroundColor: 'red'
+    // justifyContent: 'space-between',
+    // backgroundColor: 'red'
   },
 
   bodyContainer: {
@@ -25,6 +25,7 @@ const styles = {
     
     display: 'flex',
     justifyContent: 'center',
+    alignItems: 'flex-start',
 
     backgroundImage: `url(${background_img})`,
     backgroundSize: 'cover',
@@ -77,6 +78,9 @@ function App() {
               </Route>
               <Route path="/thinkWell">
                 <ThinkWellPage />
+              </Route>
+              <Route >
+                Error Page 404
               </Route>
             </Switch>
         </Grid>

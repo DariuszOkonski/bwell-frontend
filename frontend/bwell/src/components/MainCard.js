@@ -12,7 +12,8 @@ const useStyles = makeStyles({
     backgroundColor: colors.white,
     padding: '1rem',
     borderRadius: '1rem',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    width: '100%'
   },
   img: {
     position: 'relative',
