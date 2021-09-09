@@ -7,6 +7,8 @@ import AssignmentReturnedIcon from '@material-ui/icons/AssignmentReturned';
 import { colors, viewportSize } from '../utilities/utilities';
 import { Grid } from '@material-ui/core';
 import PropTypes from "prop-types";
+import { Divider } from '@material-ui/core/Divider';
+import CustomButton from './CustomButton';
 
 const useStyles = makeStyles({
   card: {
@@ -19,67 +21,61 @@ const useStyles = makeStyles({
     overflow: 'hidden'
   },
   cardIcon: {
-    fontSize: 70,
+    fontSize: '4rem',
     position: 'relative',
-    marginRight: '1em',
+    marginRight: '1rem',
     color: colors.cardIconPrimary,
-  },
-  headerContainer: {
-    position: 'absolute',
-    top: '-25px',
-    left: '90px',
-    padding: '1rem',
-    paddingTop: '3rem',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    zIndex: 10,
-    width: '100%',
-    borderBottomLeftRadius: '4rem'
-  },
-  header: {
-    fontSize: '36px',
-    color: colors.textPrimary,
-    margin: '0',
-    padding: '0',
-    paddingLeft: '0.5rem',
-    [`@media (max-width: ${viewportSize.mobileL})`]: {
-      fontSize: '1.5rem'
+    [`@media (max-width: ${viewportSize.mobileL})`] : {
+      fontSize: '2.5rem'
     }
   },
+  headerContainer: {
+    display: 'flex',
+    justifyContent: 'flex-start',
+    alignItems: 'center'
+  },
+  // header: {
+  //   fontSize: '36px',
+  //   color: colors.textPrimary,
+  //   margin: '0',
+  //   padding: '0',
+  //   paddingLeft: '0.5rem',
+  //   [`@media (max-width: ${viewportSize.mobileL})`]: {
+  //     fontSize: '1.5rem'
+  //   }
+  // },
   inline: {
-    display: 'inline'
+    fontSize: '1.5rem',
+    color: colors.textPrimary
   },
   description: {
     fontSize: '1rem',
     color: colors.textSecondary,
-    zIndex: 11,
-    padding: '0',
-    margin: '0.2rem',
-    [`@media (max-width: ${viewportSize.mobileL})`]: {
-      top: '60px',
-      left: '140px',
-      fontSize: '0.8rem',
-      margin: '0',
-    }
+    padding: '0.2rem',
   },
-  checkButton: {
-    alignSelf: 'flex-end',
-    color: '#FF934F',
-    border: 'none',
-    backgroundColor: colors.buttonPrimary,
-    '&:hover': {
-      backgroundColor: colors.buttonPrimaryHover,
-    },
-    borderRadius: '2rem',
-    color: colors.white,
-    padding: '0.2rem 0.6rem',
-    fontSize: '1rem',
-    [`@media (max-width: ${viewportSize.mobileL})`]: {
-      fontSize: '0.6rem'
-    },
-    marginRight: '0.5rem',
-  },
+  // checkButton: {
+  //   alignSelf: 'flex-end',
+  //   color: '#FF934F',
+  //   border: 'none',
+  //   backgroundColor: colors.buttonPrimary,
+  //   '&:hover': {
+  //     backgroundColor: colors.buttonPrimaryHover,
+  //   },
+  //   borderRadius: '2rem',
+  //   color: colors.white,
+  //   padding: '0.2rem 0.6rem',
+  //   fontSize: '1rem',
+  //   [`@media (max-width: ${viewportSize.mobileL})`]: {
+  //     fontSize: '0.6rem'
+  //   },
+  //   marginRight: '0.5rem',
+  // },
   buttonContainer: {
-    justifyContent: 'flex-end'
+    position: 'relative',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    marginTop: '0.5rem  '
   }
 })
 
@@ -88,18 +84,18 @@ const RepositoryCard = (props) => {
   const CardIcon = props.cardIcon;
 
   return (
-    <Grid container className={classes.card}>
-      <Grid item>
+    <div className={classes.card}>
+      <div className={classes.headerContainer}>
         <CardIcon className={classes.cardIcon} spacing={2} />
         <Typography variant="h4" className={classes.inline}>{props.title}</Typography>
-      </Grid>
-      <Grid item>
-        <p className={classes.description}>{props.description}</p>
-      </Grid>
-      <Grid item container spacing={2} className={classes.buttonContainer} spacing={1}>
-        <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />} className={classes.checkButton} text="check">Check</Button>
-      </Grid>
-    </Grid>
+      </div>
+
+      <p className={classes.description}>{props.description}</p>
+
+      <div className={classes.buttonContainer}>
+        <CustomButton linkTo={props.linkTo} text="check" isAbsolute={false}/>
+      </div>
+    </div>
   );
 }
 

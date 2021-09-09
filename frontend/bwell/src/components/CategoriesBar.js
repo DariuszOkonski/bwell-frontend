@@ -18,12 +18,12 @@ const useStyles = makeStyles((theme) => ({
         position: 'relative',
         border: `2px solid ${colors.borderPrimary}`,
         backgroundColor: colors.white,
-        padding: '1rem',
+        padding: '0.5rem',
         borderRadius: '1rem',
         overflow: 'hidden',
     },
     formControl: {
-        margin: theme.spacing(1),
+        margin: 0,
         minWidth: 120,
         width: '100%'
     },
@@ -38,15 +38,15 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     },
     responsiveFont: {
-        color: 'red',   
+        color: colors.textPrimary,
         [theme.breakpoints.up('xs')]: {
-            fontSize: '2rem',
+            fontSize: '1.4rem',
         },
         [theme.breakpoints.up('md')]: {
-            fontSize: '2.2rem',
+            fontSize: '1.6rem',
         },
         [theme.breakpoints.up('lg')]: {
-            fontSize: '2.6rem',
+            fontSize: '2rem',
         },
     }
 
@@ -59,7 +59,7 @@ const CategoriesBar = (props) => {
         <Box className={classes.card} xs={12} md={10} lg={8}>
             <Grid container className={classes.separateTitle} >
                 <Grid item xs={12} md={5} lg={4}>
-                    <Typography variant="h3" className={classes.responsiveFont}>{props.location}</Typography>
+                    <Typography variant="h2" className={classes.responsiveFont}>{props.location}</Typography>
                 </Grid>
                 <Grid item container className={classes.options} xs={12} md={7}>
                     <Grid item xs={12} md={4}>
