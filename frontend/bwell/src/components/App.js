@@ -12,6 +12,8 @@ import EatWellPage from './EatWellPage';
 import FitWellPage from './FitWellPage';
 import RestWellPage from './RestWellPage';
 import ThinkWellPage from './ThinkWellPage';
+import RepositoryIdeaPage from './RepositoryIdeaPage';
+import { useRouteMatch } from 'react-router-dom';
 
 const styles = {
   mainContainer: {
@@ -34,18 +36,6 @@ const styles = {
 }
 
 function App() {
-  // const [openMenu, setChangeMenu] = React.useState(false);
-
-  // const handelOpenMenu = () => {
-  //   setChangeMenu(true);
-  //   console.log('open menu: ', openMenu)
-  // }
-
-  // const handleCloseMenu = () => {
-  //   setChangeMenu(false)
-  //   console.log('close menu: ', openMenu)
-  // }
-
 
   return (
     <Grid container direction={'column'} style={styles.mainContainer}>
@@ -54,18 +44,18 @@ function App() {
       </Grid>
       <Grid item style={styles.bodyContainer}>
         <Grid container>
-        <Switch>
-          <Route exact path="/">
-            <MainPage />
-          </Route>
-          <Route path="/register">
-            Register
-          </Route>
-          <Route path="/login">
-            Login
-          </Route>
-          <Route path="/eatWell">
-            <EatWellPage 
+          <Switch>
+            <Route exact path="/">
+              <MainPage />
+            </Route>
+            <Route path="/register">
+              Register
+            </Route>
+            <Route path="/login">
+              Login
+            </Route>
+            <Route path="/eatWell">
+              <EatWellPage
               // openMenu={openMenu} 
               // handleCloseMenu={handleCloseMenu}
               />
@@ -73,8 +63,11 @@ function App() {
             <Route path="/fitWell">
               <FitWellPage />
             </Route>
-            <Route path="/restWell">
+            <Route exact path="/restWell">
               <RestWellPage />
+            </Route>
+            <Route path="/restWell/:id">
+              <RepositoryIdeaPage />
             </Route>
             <Route path="/thinkWell">
               <ThinkWellPage />
