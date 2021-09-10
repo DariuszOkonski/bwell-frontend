@@ -13,6 +13,7 @@ import FitWellPage from './fitwell/FitWellPage';
 import RestWellPage from './restwell/RestWellPage';
 import ThinkWellPage from './thinkwell/ThinkWellPage';
 import { makeStyles } from '@material-ui/core';
+import Recipe from './eatwell/Recipe';
 
 
 const useStylesPages = makeStyles({
@@ -74,23 +75,26 @@ function App() {
             <Route exact path="/">
               <MainPage />
             </Route>
-            <Route path="/register">
+            <Route exact path="/register">
               Register
             </Route>
-            <Route path="/login">
+            <Route exact path="/login">
               Login
             </Route>
-            <Route path="/eatWell">
+            <Route exact path="/eatWell">
               <EatWellPage useStylesPages={useStylesPages} />
               </Route>
-              <Route path="/fitWell">
+              <Route exact path="/fitWell">
                 <FitWellPage useStylesPages={useStylesPages} />
               </Route>
-              <Route path="/restWell">
+              <Route exact path="/restWell">
                 <RestWellPage useStylesPages={useStylesPages} />
               </Route>
-              <Route path="/thinkWell">
+              <Route exact path="/thinkWell">
                 <ThinkWellPage useStylesPages={useStylesPages} />
+              </Route>
+              <Route exact path="/eatWell/recipe/1">
+                <Recipe />
               </Route>
               <Route >
                 Error Page 404
