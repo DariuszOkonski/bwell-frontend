@@ -5,22 +5,23 @@ import CategoriesBar from './CategoriesBar'
 import RepositoryCard from './RepositoryCard';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 
-const useStyles = makeStyles((theme) => ({
-    categoriesBar: {
-        justifyContent: "center",
-        marginTop: "1rem"
-    },
-    spacearound: {
-        justifyItems: 'space-around'
-    },
-    cards: {
-        justifyContent: 'center'
-    }
-}));
+// const useStyles = makeStyles((theme) => ({
+//     categoriesBar: {
+//         justifyContent: "center",
+//         marginTop: "1rem"
+//     },
+//     spacearound: {
+//         justifyItems: 'space-around'
+//     },
+//     cards: {
+//         justifyContent: 'center',
+//         margin: 0
+//     }
+// }));
 
 
 const FitWellPage = (props) => {
-    const classes = useStyles();
+    const classes = props.useStylesPages();
 
     return (
         <>
@@ -29,7 +30,7 @@ const FitWellPage = (props) => {
                     <CategoriesBar location="fitWell/Repositories" />
                 </Grid>
                 <Grid item className={classes.cards} xs={12} md={8}>
-                    <Grid container xs={12} spacing={0} className={classes.cards}>
+                    <Grid container xs={12} spacing={2} className={classes.cards}>
                         <Grid item xs={12} md={6}>
                             <RepositoryCard title="Activity" cardIcon={DirectionsBikeIcon} linkTo="" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
                         </Grid>

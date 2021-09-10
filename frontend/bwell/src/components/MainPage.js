@@ -8,6 +8,7 @@ import RestWellLogo from "../assets/menu_restwell.png"
 import ThinkWellLogo from "../assets/menu_thinkwell.png"
 import { viewportSize } from "../utilities/utilities";
 
+
 const useStyles = makeStyles({
     justifyCenter: {
         justifyContent: 'center',
@@ -48,7 +49,7 @@ const MainPage = () => {
             </div>
 
             <Grid container >
-                <Grid item container direction={'row'} className={classes.justifyCenter} spacing={0} xs={12}>
+                <Grid item container direction={'row'} className={classes.justifyCenter} spacing={2} xs={12}>
                     <Grid item className={classes.gridItem} xs={12} md={6}>
                         <MainCard
                             image={EatWellLogo}

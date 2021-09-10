@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
         padding: '0.5rem',
         borderRadius: '1rem',
         overflow: 'hidden',
+        margin: '0 0.4rem'
     },
     formControl: {
         margin: 0,

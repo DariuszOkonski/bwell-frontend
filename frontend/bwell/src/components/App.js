@@ -12,6 +12,22 @@ import EatWellPage from './EatWellPage';
 import FitWellPage from './FitWellPage';
 import RestWellPage from './RestWellPage';
 import ThinkWellPage from './ThinkWellPage';
+import { makeStyles } from '@material-ui/core';
+
+
+const useStylesPages = makeStyles({
+  categoriesBar: {
+      justifyContent: "center",
+      marginTop: "1rem"
+  },
+  spacearound: {
+      justifyItems: 'space-around'
+  },
+  cards: {
+      justifyContent: 'center',
+      margin: '0'
+  }
+})
 
 const styles = {
   mainContainer: {
@@ -65,19 +81,16 @@ function App() {
               Login
             </Route>
             <Route path="/eatWell">
-              <EatWellPage 
-                // openMenu={openMenu} 
-                // handleCloseMenu={handleCloseMenu}
-                />
+              <EatWellPage useStylesPages={useStylesPages} />
               </Route>
               <Route path="/fitWell">
-                <FitWellPage />
+                <FitWellPage useStylesPages={useStylesPages} />
               </Route>
               <Route path="/restWell">
-                <RestWellPage />
+                <RestWellPage useStylesPages={useStylesPages} />
               </Route>
               <Route path="/thinkWell">
-                <ThinkWellPage />
+                <ThinkWellPage useStylesPages={useStylesPages} />
               </Route>
               <Route >
                 Error Page 404
