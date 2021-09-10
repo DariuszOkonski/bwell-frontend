@@ -1,8 +1,7 @@
 import React from 'react'
-import PersistentDrawerLeft from './Menu'
 import { Grid, makeStyles } from '@material-ui/core'
-import CategoriesBar from './CategoriesBar'
-import RepositoryCard from './RepositoryCard';
+import CategoriesBar from '../reuseable/CategoriesBar'
+import RepositoryCard from '../reuseable/RepositoryCard';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 
 // const useStyles = makeStyles((theme) => ({

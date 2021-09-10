@@ -1,12 +1,12 @@
 import { makeStyles } from "@material-ui/core";
-import big_logo from "../assets/logo_large.png";
+import big_logo from "../../assets/logo_large.png";
 import { Grid } from "@material-ui/core";
 import MainCard from "./MainCard"
-import EatWellLogo from "../assets/menu_eatwell.png"
-import FitWellLogo from "../assets/menu_fitwell.png"
-import RestWellLogo from "../assets/menu_restwell.png"
-import ThinkWellLogo from "../assets/menu_thinkwell.png"
-import { viewportSize } from "../utilities/utilities";
+import EatWellLogo from "../../assets/menu_eatwell.png"
+import FitWellLogo from "../../assets/menu_fitwell.png"
+import RestWellLogo from "../../assets/menu_restwell.png"
+import ThinkWellLogo from "../../assets/menu_thinkwell.png"
+import { viewportSize } from "../../utilities/utilities";
 
 
 const useStyles = makeStyles({

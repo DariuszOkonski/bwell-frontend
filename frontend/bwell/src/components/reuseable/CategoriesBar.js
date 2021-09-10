@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import AssignmentReturnedIcon from '@material-ui/icons/AssignmentReturned';
 import CustomButton from './CustomButton';
-import { colors, viewportSize } from '../utilities/utilities';
+import { colors, viewportSize } from '../../utilities/utilities';
 import { Grid, responsiveFontSizes } from '@material-ui/core';
 import { Theme } from '@material-ui/core';
 import { FormControl, InputLabel, Select } from '@material-ui/core';

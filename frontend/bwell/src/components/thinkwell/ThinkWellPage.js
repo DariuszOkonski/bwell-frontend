@@ -1,8 +1,7 @@
 import React from 'react'
-import PersistentDrawerLeft from './Menu'
 import { Grid, makeStyles } from '@material-ui/core'
-import CategoriesBar from './CategoriesBar'
-import RepositoryCard from './RepositoryCard';
+import CategoriesBar from '../reuseable/CategoriesBar'
+import RepositoryCard from '../reuseable/RepositoryCard';
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 
 // const useStyles = makeStyles((theme) => ({
@@ -19,7 +18,7 @@ import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 //     }
 // }));
 
-
+    
 const ThinkWellPage = (props) => {
     const classes = props.useStylesPages();
 

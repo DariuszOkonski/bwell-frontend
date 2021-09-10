@@ -1,17 +1,17 @@
 import React from 'react';
 import { Switch, Route } from "react-router-dom";
-import Header from './Header';
-import Footer from './Footer';
+import Header from './generic/Header';
+import Footer from './generic/Footer';
 import '@fontsource/lato';
 import logo from '../assets/logo_large.png'
 import background_img from '../assets/background_image2.png'
 import logo_mini from '../assets/logo_footer.png'
 import Grid from '@material-ui/core/Grid';
-import MainPage from './MainPage';
-import EatWellPage from './EatWellPage';
-import FitWellPage from './FitWellPage';
-import RestWellPage from './RestWellPage';
-import ThinkWellPage from './ThinkWellPage';
+import MainPage from './mainpage/MainPage';
+import EatWellPage from './eatwell/EatWellPage';
+import FitWellPage from './fitwell/FitWellPage';
+import RestWellPage from './restwell/RestWellPage';
+import ThinkWellPage from './thinkwell/ThinkWellPage';
 import { makeStyles } from '@material-ui/core';
 
 

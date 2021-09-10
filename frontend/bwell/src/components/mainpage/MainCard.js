@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
-import CustomButton from './CustomButton';
-import { colors, viewportSize } from '../utilities/utilities';
+import CustomButton from '../reuseable/CustomButton';
+import { colors, viewportSize } from '../../utilities/utilities';
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { AssignmentReturnedIcon } from '@material-ui/icons/AssignmentReturned';
