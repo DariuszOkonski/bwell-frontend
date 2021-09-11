@@ -7,7 +7,7 @@ import { ThumbUpOutlined } from '@material-ui/icons';
 import { useParams } from 'react-router';
 import RepositoryTopBar from './RepositoryTopBar';
 import RepositoryDetailsCard from './RepositoryDetailsCard';
-import WeekendOutlinedIcon from '@material-ui/icons/WeekendOutlined';
+import { WeekendOutlinedIcon } from '@material-ui/icons/WeekendOutlined';
 
 const useStyles = makeStyles((theme) => ({
     categoriesBar: {
@@ -21,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center'
     }
 }));
-
 
 const RepositoryIdeaPage = (props) => {
 
@@ -39,13 +38,13 @@ const RepositoryIdeaPage = (props) => {
             </Grid>
             <Grid container spacing={2} xs={12} className={classes.categoriesBar}>
                 <Grid item xs={12} md={8}>
-                    <RepositoryTopBar text={"restWell/Relax idea " + id} />
+                    <RepositoryTopBar text={props.repositoryType + "/idea " + id} />
 
                 </Grid>
                 <Grid item className={classes.cards} xs={12} md={8}>
                     <Grid container xs={12} spacing={2} className={classes.cards}>
                         <Grid item xs={12} md={8}>
-                            <RepositoryDetailsCard title="Recipe" cardIcon={WeekendOutlinedIcon} linkTo="" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
+                            <RepositoryDetailsCard title="Idea" cardIcon={props.repositoryType} linkTo="" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
                         </Grid>
                     </Grid>
                 </Grid>

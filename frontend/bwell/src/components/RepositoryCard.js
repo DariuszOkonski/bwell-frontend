@@ -61,6 +61,7 @@ const useStyles = makeStyles({
     }
   },
   checkButton: {
+    textTransform: 'none',
     alignSelf: 'flex-end',
     color: '#FF934F',
     border: 'none',

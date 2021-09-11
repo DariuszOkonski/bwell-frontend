@@ -67,10 +67,13 @@ function App() {
               <RestWellPage />
             </Route>
             <Route path="/restWell/:id">
-              <RepositoryIdeaPage />
+              <RepositoryIdeaPage repositoryType='restWell' />
             </Route>
-            <Route path="/thinkWell">
+            <Route exact path="/thinkWell">
               <ThinkWellPage />
+            </Route>
+            <Route path="/thinkWell/:id">
+              <RepositoryIdeaPage repositoryType='thinkWell' />
             </Route>
           </Switch>
         </Grid>
