@@ -6,15 +6,12 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import AssignmentReturnedIcon from '@material-ui/icons/AssignmentReturned';
 import { colors, viewportSize } from '../utilities/utilities';
-import { Grid, Paper } from '@material-ui/core';
-import PropTypes from "prop-types";
-import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import { Grid } from '@material-ui/core';
 import ArrowBack from '@material-ui/icons/ArrowBack';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import WeekendOutlinedIcon from '@material-ui/icons/WeekendOutlined';
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
-import { SvgIcon } from '@material-ui/core';
 
 
 
@@ -69,7 +66,6 @@ const useStyles = makeStyles({
   checkButton: {
     alignSelf: 'flex-end',
     textTransform: 'none',
-    color: '#FF934F',
     border: 'none',
     minWidth: '200px',
     backgroundColor: colors.buttonPrimary,
@@ -102,6 +98,8 @@ const RepositoryDetailsCard = (props) => {
         return <WeekendOutlinedIcon/>;
       case 'thinkWell':
         return LightbulbIcon;
+      default:
+        return 'none'
     }
   };
   const history = useHistory()

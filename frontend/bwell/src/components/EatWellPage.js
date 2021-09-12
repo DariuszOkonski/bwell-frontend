@@ -1,5 +1,4 @@
 import React from 'react'
-import PersistentDrawerLeft from './Menu'
 import { Grid, makeStyles } from '@material-ui/core'
 import CategoriesBar from './CategoriesBar'
 import RepositoryCard from './RepositoryCard';

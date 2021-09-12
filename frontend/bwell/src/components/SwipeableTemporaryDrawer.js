@@ -14,7 +14,7 @@ import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import WeekendOutlinedIcon from '@material-ui/icons/WeekendOutlined';
 import logo from '../assets/logo_large.png';
-import { viewportSize, colors } from '../utilities/utilities';
+import { viewportSize } from '../utilities/utilities';
 import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({

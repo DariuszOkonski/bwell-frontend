@@ -34,7 +34,7 @@ const Footer = (props) => {
         <AppBar position="static" className={classes.footer}>
             <Toolbar className={classes.toollbar}>
                 <div className={classes.logorights}>
-                    <img src={props.logo} alt="logo"/>
+                    <img src={props.logo} alt="logo" />
                     <Typography className={classes.typography}>&copy; 2021 All Rights Reserved</Typography>
                 </div>
                 <div>

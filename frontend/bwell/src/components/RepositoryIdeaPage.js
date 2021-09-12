@@ -1,13 +1,8 @@
 import React from 'react'
-import PersistentDrawerLeft from './Menu'
 import { Grid, makeStyles } from '@material-ui/core'
-import CategoriesBar from './CategoriesBar'
-import RepositoryCard from './RepositoryCard';
-import { ThumbUpOutlined } from '@material-ui/icons';
 import { useParams } from 'react-router';
 import RepositoryTopBar from './RepositoryTopBar';
 import RepositoryDetailsCard from './RepositoryDetailsCard';
-import { WeekendOutlinedIcon } from '@material-ui/icons/WeekendOutlined';
 
 const useStyles = makeStyles((theme) => ({
     categoriesBar: {

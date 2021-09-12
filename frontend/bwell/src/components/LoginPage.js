@@ -6,7 +6,6 @@ import { Grid, makeStyles, Button, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { colors, viewportSize } from '../utilities/utilities';
-import { Icon } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 
 
@@ -40,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     checkButton: {
         alignSelf: 'flex-end',
         textTransform: 'none',
-        color: '#FF934F',
         border: 'none',
         minWidth: '200px',
         backgroundColor: colors.buttonPrimary,
@@ -81,10 +79,6 @@ const LoginPage = (props) => {
 
     const classes = useStyles();
 
-    const LoginIcon = <PersonAdd />;
-    const RegisterIcon = <HowToRegIcon />;
-
-    const CardIcon = props.register ? LoginIcon : RegisterIcon;
     const module = props.register ? 'Register' : 'Login';
 
     const history = useHistory()
