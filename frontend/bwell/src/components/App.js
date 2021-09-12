@@ -14,6 +14,7 @@ import RestWellPage from './RestWellPage';
 import ThinkWellPage from './ThinkWellPage';
 import RepositoryIdeaPage from './RepositoryIdeaPage';
 import { useRouteMatch } from 'react-router-dom';
+import LoginPage from './LoginPage';
 
 const styles = {
   mainContainer: {
@@ -49,10 +50,10 @@ function App() {
               <MainPage />
             </Route>
             <Route path="/register">
-              Register
+              <LoginPage register={true} />
             </Route>
             <Route path="/login">
-              Login
+              <LoginPage register={false} />
             </Route>
             <Route path="/eatWell">
               <EatWellPage
