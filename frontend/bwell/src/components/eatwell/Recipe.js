@@ -1,24 +1,34 @@
 import React from 'react';
 import SimpleBreadcrumbs from '../reuseable/SimpleBreadcrumbs';
 import { makeStyles } from '@material-ui/core';
-import {viewportSize} from '../../utilities/utilities'
+import {colors, viewportSize} from '../../utilities/utilities'
+import { EntryHeader } from '../reuseable/EntryHeader';
 
 const useStyles = makeStyles({
     container: {
         width: '100%',
-        maxWidth: viewportSize.laptop,
-        margin: '0.5rem'
+        maxWidth: viewportSize.tablet,
+        margin: '0.5rem',
+        marginTop: '1rem',
+    },
+    entryContainer: {
+        width: '100%',
+        borderRadius: '1rem',
+        border: `1px solid ${colors.borderPrimary}`,
+        padding: '1rem',
+        backgroundColor: `${colors.white}`,
+        marginTop: '1rem'
     }
 })
 
-const Recipe = () => {
+const Recipe = (props) => {
     const classes = useStyles();
     return ( 
         <div className={classes.container}>
             <SimpleBreadcrumbs />
-
-            <h1>Recipie</h1>
-            <h2>Hello world</h2>
+            <div className={classes.entryContainer}>
+                <EntryHeader/>
+            </div>
         </div>
      );
 }

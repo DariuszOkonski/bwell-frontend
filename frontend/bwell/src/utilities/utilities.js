@@ -7,7 +7,9 @@ const colors = {
     textSecondary: '#6B778C',
     cardIconPrimary: '#4FB477',
     topNavPrimary: '#595959',
-    footerPrimary: '#595959'
+    footerPrimary: '#595959',
+    handUp: '#4fb477',
+    handDown: '#ed4f4f',
 }
 
 const viewportSize = {

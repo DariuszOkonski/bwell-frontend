@@ -31,7 +31,7 @@ const EatWellPage = (props) => {
             <Grid item className={classes.cards} xs={12} md={8}>
                 <Grid container xs={12} spacing={2} className={classes.cards}>
                     <Grid item xs={12} md={6}>
-                        <RepositoryCard title="Recipe" cardIcon={ThumbUpOutlined} linkTo="" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore" />
+                        <RepositoryCard title="Recipe" cardIcon={ThumbUpOutlined} linkTo="/eatWell/recipe/1" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore" />
                     </Grid>
                     <Grid item xs={12} md={6}>
                         <RepositoryCard title="Recipe" cardIcon={ThumbUpOutlined} linkTo="" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut" />
