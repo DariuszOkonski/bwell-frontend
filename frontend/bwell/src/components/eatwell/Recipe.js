@@ -1,8 +1,11 @@
 import React from 'react';
 import SimpleBreadcrumbs from '../reuseable/SimpleBreadcrumbs';
+import EventNoteIcon from '@material-ui/icons/EventNote';
 import { makeStyles } from '@material-ui/core';
 import {colors, viewportSize} from '../../utilities/utilities'
 import { EntryHeader } from '../reuseable/EntryHeader';
+import CustomButton from '../reuseable/CustomButton';
+import { EntryContentPart } from '../reuseable/EntryContentPart';
 
 const useStyles = makeStyles({
     container: {
@@ -18,6 +21,11 @@ const useStyles = makeStyles({
         padding: '1rem',
         backgroundColor: `${colors.white}`,
         marginTop: '1rem'
+    },
+    buttonContainer: {
+        display: "flex",
+        justifyContent: "flex-end",
+        marginBottom: "0.25rem"
     }
 })
 
@@ -27,7 +35,11 @@ const Recipe = (props) => {
         <div className={classes.container}>
             <SimpleBreadcrumbs />
             <div className={classes.entryContainer}>
+                <div className={classes.buttonContainer} >
+                    <CustomButton linkTo="" text="Add to plan" isAbsolute={false} icon={<EventNoteIcon/>}/>
+                </div>
                 <EntryHeader/>
+                <EntryContentPart header="Ingredients" text="asdfasdf"/>
             </div>
         </div>
      );

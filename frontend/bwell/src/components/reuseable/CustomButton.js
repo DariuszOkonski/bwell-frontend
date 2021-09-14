@@ -41,7 +41,7 @@ const useStyles = makeStyles({
     }
 })
 
-const CustomButton = ({linkTo, text, isAbsolute = true}) => {
+const CustomButton = ({linkTo, text, icon=<AssignmentReturnedIcon />, isAbsolute = true}) => {
     const classes = useStyles();
 
     return (  
@@ -49,7 +49,7 @@ const CustomButton = ({linkTo, text, isAbsolute = true}) => {
             component={Link} 
             to={linkTo} 
             variant="outlined" 
-            endIcon={<AssignmentReturnedIcon />}
+            endIcon={icon}
             className={isAbsolute ? classes.button : classes.buttonNotAbsolute}
         >
             {text}
