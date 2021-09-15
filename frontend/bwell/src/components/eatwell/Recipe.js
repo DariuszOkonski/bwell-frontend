@@ -6,6 +6,9 @@ import {colors, viewportSize} from '../../utilities/utilities'
 import { EntryHeader } from '../reuseable/EntryHeader';
 import CustomButton from '../reuseable/CustomButton';
 import { EntryContentPart } from '../reuseable/EntryContentPart';
+import { EntryFooter } from '../reuseable/EntryFooter';
+import RestaurantIcon from '@material-ui/icons/Restaurant';
+import { EntryContainer } from '../reuseable/EntryContainer';
 
 const useStyles = makeStyles({
     container: {
@@ -13,14 +16,6 @@ const useStyles = makeStyles({
         maxWidth: viewportSize.tablet,
         margin: '0.5rem',
         marginTop: '1rem',
-    },
-    entryContainer: {
-        width: '100%',
-        borderRadius: '1rem',
-        border: `1px solid ${colors.borderPrimary}`,
-        padding: '1rem',
-        backgroundColor: `${colors.white}`,
-        marginTop: '1rem'
     },
     buttonContainer: {
         display: "flex",
@@ -34,13 +29,16 @@ const Recipe = (props) => {
     return ( 
         <div className={classes.container}>
             <SimpleBreadcrumbs />
-            <div className={classes.entryContainer}>
+            <EntryContainer>
                 <div className={classes.buttonContainer} >
                     <CustomButton linkTo="" text="Add to plan" isAbsolute={false} icon={<EventNoteIcon/>}/>
                 </div>
                 <EntryHeader/>
-                <EntryContentPart header="Ingredients" text="asdfasdf"/>
-            </div>
+                <EntryContentPart header="Ingredients" text={[["mąka", "1 łyżka"], ["woda", "1 szklanka"],]}/>
+                <EntryContentPart header="Description" text='How do you use Lorem Ipsum in VS code?
+A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type "lorem ipsum" and select to insert either a line or paragraph.'/>
+                <EntryFooter/>
+            </EntryContainer>
         </div>
      );
 }

@@ -12,7 +12,8 @@ const useStyles = makeStyles({
     container: {
         display: 'flex',
         justifyContent: 'flex-start',
-        alignItems: 'center'
+        alignItems: 'center',
+        margin: '0.8rem 0'
     },
     title: {
         flexGrow: "1",
@@ -21,7 +22,7 @@ const useStyles = makeStyles({
         [`@media (min-width: ${viewportSize.mobileL})`] : {
             fontSize: '1.625rem'
           },
-        fontWeight: "300"
+        fontWeight: "400"
     },
     icon: {
         fontSize: "3rem",
