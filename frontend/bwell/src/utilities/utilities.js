@@ -21,4 +21,17 @@ const viewportSize = {
     laptopL: '1440px'
 }
 
-export { colors, viewportSize }
+const endpoints = {
+    main: "/",
+    register: "/register",
+    login: "/login",
+    eatwell: "/eatwell",
+    fitwell: "/fitwell",
+    restwell: "/restwell",
+    thinkwell: "/thinkwell",
+    eatwell_recipe: "/eatwell/recipe/1",
+    fitwell_activity: "/fitwell/activity/1",
+    
+}
+
+export { colors, viewportSize, endpoints }

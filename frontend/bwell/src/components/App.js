@@ -14,6 +14,8 @@ import RestWellPage from './restwell/RestWellPage';
 import ThinkWellPage from './thinkwell/ThinkWellPage';
 import { makeStyles } from '@material-ui/core';
 import Recipe from './eatwell/Recipe';
+import Activity from './fitwell/Activity';
+import { endpoints } from '../utilities/utilities';
 
 
 const useStylesPages = makeStyles({
@@ -72,29 +74,32 @@ function App() {
       <Grid item style={styles.bodyContainer}>
         <Grid container style={styles.pageContainer} >
           <Switch>
-            <Route exact path="/">
+            <Route exact path={endpoints.main}>
               <MainPage />
             </Route>
-            <Route exact path="/register">
+            <Route exact path={endpoints.register}>
               Register
             </Route>
-            <Route exact path="/login">
+            <Route exact path={endpoints.login}>
               Login
             </Route>
-            <Route exact path="/eatWell">
+            <Route exact path={endpoints.eatwell}>
               <EatWellPage useStylesPages={useStylesPages} />
               </Route>
-              <Route exact path="/fitWell">
+              <Route exact path={endpoints.fitwell}>
                 <FitWellPage useStylesPages={useStylesPages} />
               </Route>
-              <Route exact path="/restWell">
+              <Route exact path={endpoints.restwell}>
                 <RestWellPage useStylesPages={useStylesPages} />
               </Route>
-              <Route exact path="/thinkWell">
+              <Route exact path={endpoints.thinkwell}>
                 <ThinkWellPage useStylesPages={useStylesPages} />
               </Route>
-              <Route exact path="/eatWell/recipe/1">
+              <Route exact path={endpoints.eatwell_recipe}>
                 <Recipe />
+              </Route>
+              <Route exact path={endpoints.fitwell_activity}>
+                <Activity />
               </Route>
               <Route >
                 Error Page 404

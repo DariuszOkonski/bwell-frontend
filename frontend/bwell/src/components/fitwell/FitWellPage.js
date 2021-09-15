@@ -3,6 +3,7 @@ import { Grid, makeStyles } from '@material-ui/core'
 import CategoriesBar from '../reuseable/CategoriesBar'
 import RepositoryCard from '../reuseable/RepositoryCard';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
+import { endpoints } from '../../utilities/utilities';
 
 // const useStyles = makeStyles((theme) => ({
 //     categoriesBar: {
@@ -31,7 +32,7 @@ const FitWellPage = (props) => {
                 <Grid item className={classes.cards} xs={12} md={8}>
                     <Grid container xs={12} spacing={2} className={classes.cards}>
                         <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Activity" cardIcon={DirectionsBikeIcon} linkTo="" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
+                            <RepositoryCard title="Activity" cardIcon={DirectionsBikeIcon} linkTo={endpoints.fitwell_activity} description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
                         </Grid>
                         <Grid item xs={12} md={6}>
                             <RepositoryCard title="Activity" cardIcon={DirectionsBikeIcon} linkTo="" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />

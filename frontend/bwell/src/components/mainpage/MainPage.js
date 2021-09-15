@@ -6,7 +6,7 @@ import EatWellLogo from "../../assets/menu_eatwell.png"
 import FitWellLogo from "../../assets/menu_fitwell.png"
 import RestWellLogo from "../../assets/menu_restwell.png"
 import ThinkWellLogo from "../../assets/menu_thinkwell.png"
-import { viewportSize } from "../../utilities/utilities";
+import { endpoints, viewportSize } from "../../utilities/utilities";
 
 
 const useStyles = makeStyles({
@@ -55,28 +55,28 @@ const MainPage = () => {
                             image={EatWellLogo}
                             menuTitle={"eatWell"}
                             description={"Nutrition Recipes - repository & search \nBMI Calculator / Fat, Carbs, Protein demand \nDiet plan"}
-                            linkTo="/eatWell" />
+                            linkTo={endpoints.eatwell} />
                     </Grid>
                     <Grid item className={classes.gridItem} xs={12} md={6}>
                        <MainCard
                             image={FitWellLogo}
                             menuTitle={"fitWell"}
                             description={"Fitness exercises repository \nwith WHERE, WHEN and EQUIPMENT"}
-                            linkTo="/fitWell" />
+                            linkTo={endpoints.fitwell} />
                     </Grid>
                     <Grid item className={classes.gridItem} xs={12} md={6}>
                         <MainCard
                                 image={RestWellLogo}
                                 menuTitle={"restWell"}
                                 description={"Relax ideas repository"}
-                                linkTo="/restWell" />
+                                linkTo={endpoints.restwell} />
                     </Grid>
                     <Grid item className={classes.gridItem} xs={12} md={6}>
                         <MainCard
                                 image={ThinkWellLogo}
                                 menuTitle={"thinkWell"}
                                 description={"Self-improvement ideas repository"}
-                                linkTo="/thinkWell" />
+                                linkTo={endpoints.thinkwell} />
                     </Grid>
                 </Grid>
             </Grid>
