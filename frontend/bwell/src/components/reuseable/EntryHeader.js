@@ -4,9 +4,12 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
-import { makeStyles } from '@material-ui/styles';
+import { makeStyles, ThemeProvider } from '@material-ui/styles';
 import { colors, viewportSize } from '../../utilities/utilities';
 import { ThumbUpOutlined } from '@material-ui/icons';
+import { Divider } from '@material-ui/core/Divider';
+import { useTheme } from '@material-ui/core';
+
 
 const useStyles = makeStyles({
     container: {
@@ -25,11 +28,15 @@ const useStyles = makeStyles({
         fontWeight: "400"
     },
     icon: {
-        fontSize: "3rem",
+        width: "3rem",
         marginRight: "1rem",
         color: `${colors.cardIconPrimary}`,
+        '& svg' : {
+            width: '100%', 
+            height: '100%'
+        },
         [`@media (min-width: ${viewportSize.tablet})`] : {
-            fontSize: '6rem'
+            width: '6rem'
           }
     },
     ratingContainer: {
@@ -64,12 +71,15 @@ const useStyles = makeStyles({
     }
 })
 
-export const EntryHeader = () => {
+export const EntryHeader = ({header = "todo", icon=<RestaurantIcon />}) => {
     const classes = useStyles();
     return (
-        <div className={classes.container}>
-            <RestaurantIcon className={classes.icon}/>
-            <h3 className={classes.title}>Recipe 1 REcipe re</h3>
+        <div className={classes.container}>            
+            <div className={classes.icon}>
+                {icon}
+            </div>
+
+            <h3 className={classes.title}>{header}</h3>
             <div className={classes.ratingContainer}>
                 <div className={classes.rating}>
                     <ThumbUpOutlinedIcon className={classes.handUp}/>
