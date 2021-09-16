@@ -14,6 +14,7 @@ import RestWellPage from './RestWellPage';
 import ThinkWellPage from './ThinkWellPage';
 import RepositoryIdeaPage from './RepositoryIdeaPage';
 import LoginPage from './LoginPage';
+import FavouritesPage from './FavouritesPage';
 
 const styles = {
   mainContainer: {
@@ -74,6 +75,9 @@ function App() {
             </Route>
             <Route path="/thinkWell/:id">
               <RepositoryIdeaPage repositoryType='thinkWell' />
+            </Route>
+            <Route path="/favourites">
+              <FavouritesPage />
             </Route>
           </Switch>
         </Grid>
