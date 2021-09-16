@@ -83,18 +83,22 @@ function App() {
             <Route exact path={endpoints.login}>
               Login
             </Route>
-            <Route exact path={endpoints.eatwell}>
-              <EatWellPage useStylesPages={useStylesPages} />
-              </Route>
-              <Route exact path={endpoints.fitwell}>
-                <FitWellPage useStylesPages={useStylesPages} />
-              </Route>
-              <Route exact path={endpoints.restwell}>
-                <RestWellPage useStylesPages={useStylesPages} />
-              </Route>
-              <Route exact path={endpoints.thinkwell}>
-                <ThinkWellPage useStylesPages={useStylesPages} />
-              </Route>
+            <Route exact path={endpoints.eatwell} component={
+              (props) => <EatWellPage useStylesPages={useStylesPages} {...props}/>} />
+              
+            
+            <Route exact path={endpoints.fitwell} component={
+              (props) => <FitWellPage useStylesPages={useStylesPages} {...props} />} />
+                
+        
+            <Route exact path={endpoints.restwell} component={
+              (props) => <RestWellPage useStylesPages={useStylesPages} {...props}/>} />
+                
+              
+            <Route exact path={endpoints.thinkwell} component={
+              (props) => <ThinkWellPage useStylesPages={useStylesPages} {...props}/> }/>
+                
+              
               <Route exact path={endpoints.eatwell_recipe}>
                 <Recipe />
               </Route>

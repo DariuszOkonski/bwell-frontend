@@ -56,6 +56,9 @@ const useStyles = makeStyles((theme) => ({
 const CategoriesBar = (props) => {
     const classes = useStyles();
 
+    console.log("categories bar")
+    console.log(props.match)
+
     return (
         <Box className={classes.card} xs={12} md={10} lg={8}>
             <Grid container className={classes.separateTitle} >
