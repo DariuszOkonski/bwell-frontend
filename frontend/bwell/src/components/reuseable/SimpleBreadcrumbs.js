@@ -1,14 +1,15 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Link from '@material-ui/core/Link';
+// import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core';
 import { Block } from '@material-ui/icons';
-import { colors } from '../../utilities/utilities';
+import { colors, endpoints } from '../../utilities/utilities';
+import { Link } from 'react-router-dom';
 
 function handleClick(event) {
   event.preventDefault();
-  alert('You clicked a breadcrumb.');
+  window.location.href = "/eatwell";
 }
 
 const useStyles = makeStyles({
@@ -20,25 +21,28 @@ const useStyles = makeStyles({
         padding: '1rem',
     },
     linkColor: {
-        color: colors.textSecondary
+        color: colors.textSecondary,
+        cursor: 'pointer'
     },
     linkPrimaryColor: {
         color: colors.textPrimary
     }
 })
 
-export default function SimpleBreadcrumbs() {
+export default function SimpleBreadcrumbs({path, header}) {
     const classes = useStyles();
+
+    const pathArray = path.split('/');
+    console.log(pathArray)
 
     return (
         <Breadcrumbs aria-label="breadcrumb" className={classes.container}>
-            <Link color="inherit" className={classes.linkColor} href="/" onClick={handleClick}>
-                Material-UI
+            <Typography color="textPrimary" className={classes.linkPrimaryColor}></Typography>
+            <Link color="inherit" className={classes.linkColor} to={endpoints.eatwell} >
+                 {pathArray[1]}
             </Link>
-            <Link color="inherit" className={classes.linkColor} href="/getting-started/installation/" onClick={handleClick}>
-                Core
-            </Link>
-            <Typography color="textPrimary" className={classes.linkPrimaryColor}>Breadcrumb</Typography>
+            <Typography color="textPrimary" className={classes.linkPrimaryColor}>{pathArray[2]}</Typography>
+            <Typography color="textPrimary" className={classes.linkPrimaryColor}>{header}</Typography>
         </Breadcrumbs>
     );
 }

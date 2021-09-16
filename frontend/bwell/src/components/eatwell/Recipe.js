@@ -22,19 +22,24 @@ const useStyles = makeStyles({
     }
 })
 
-
+const singleRecipe = {
+    header: 'chicken brew'
+}
 
 const Recipe = (props) => {
     const classes = useStyles();
+
+    const {match} = props;
+
     return ( 
         <EntryPageContainer>
-            <SimpleBreadcrumbs />
+            <SimpleBreadcrumbs path={match.path} header={singleRecipe.header} />
             <EntryContainer>
                 <div className={classes.buttonContainer} >
                     <CustomButton linkTo="" text="Add to plan" isAbsolute={false} icon={<EventNoteIcon/>}/>
                 </div>
                 <EntryHeader 
-                    header="hello world"
+                    header={singleRecipe.header}
                     icon={<ThumbUpOutlinedIcon />}
                 />
                 
