@@ -12,6 +12,7 @@ import { colors, viewportSize } from '../../utilities/utilities';
 import { Grid, responsiveFontSizes } from '@material-ui/core';
 import { Theme } from '@material-ui/core';
 import { FormControl, InputLabel, Select } from '@material-ui/core';
+import SimpleBreadcrumbs from './SimpleBreadcrumbs';
 
 const useStyles = makeStyles((theme) => ({
     card: {
@@ -40,15 +41,8 @@ const useStyles = makeStyles((theme) => ({
     },
     responsiveFont: {
         color: colors.textPrimary,
-        [theme.breakpoints.up('xs')]: {
-            fontSize: '1.4rem',
-        },
-        [theme.breakpoints.up('md')]: {
-            fontSize: '1.6rem',
-        },
-        [theme.breakpoints.up('lg')]: {
-            fontSize: '2rem',
-        },
+        fontSize: '1rem',
+        padding: '1rem'
     }
 
 }))
@@ -56,14 +50,18 @@ const useStyles = makeStyles((theme) => ({
 const CategoriesBar = (props) => {
     const classes = useStyles();
 
-    console.log("categories bar")
-    console.log(props.match)
+    // console.log("categories bar")
+    // console.log(props)
+    console.log(props.location)
+
+    const locationPath = props.location.split('/');
+    console.log(locationPath)
 
     return (
         <Box className={classes.card} xs={12} md={10} lg={8}>
             <Grid container className={classes.separateTitle} >
                 <Grid item xs={12} md={5} lg={4}>
-                    <Typography variant="h2" className={classes.responsiveFont}>{props.location}</Typography>
+                    <Typography variant="p" className={classes.responsiveFont}>/ {locationPath[1]}</Typography>
                 </Grid>
                 <Grid item container className={classes.options} xs={12} md={7}>
                     <Grid item xs={12} md={4}>

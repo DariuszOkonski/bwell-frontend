@@ -22,14 +22,16 @@ const useStyles = makeStyles({
     },
     linkColor: {
         color: colors.textSecondary,
-        cursor: 'pointer'
+        cursor: 'pointer',
+        fontFamily: 'Lato'
     },
     linkPrimaryColor: {
-        color: colors.textPrimary
+        color: colors.textPrimary,
+        fontFamily: 'Lato'
     }
 })
 
-export default function SimpleBreadcrumbs({path, header}) {
+export default function SimpleBreadcrumbs({path, header = ""}) {
     const classes = useStyles();
 
     const pathArray = path.split('/');
