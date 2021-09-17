@@ -2,7 +2,19 @@ const fakeRecipies = [
     {
         id: 1, 
         title: 'recipies 1', 
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"},
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",     
+        
+        content: [
+            {
+                header: "Ingredients",
+                text: [["mąka", "1 łyżka"], ["woda", "1 szklanka"],]
+            },
+            {
+                header: "Description",
+                text: "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
+            }
+        ]
+    },
     {
         id: 2, 
         title: 'recipies 12', 

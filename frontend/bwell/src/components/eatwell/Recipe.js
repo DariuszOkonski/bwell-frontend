@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import SimpleBreadcrumbs from '../reuseable/SimpleBreadcrumbs';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import { makeStyles } from '@material-ui/core';
@@ -12,6 +12,7 @@ import { EntryContainer } from '../reuseable/EntryContainer';
 import EntryPageContainer from './../reuseable/EntryPageContainer';
 import { AssignmentReturnedIcon } from '@material-ui/icons/AssignmentReturned';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
+import { fake_getRecipe } from '../../fakeRepositories/fakeRecipies';
 
 const useStyles = makeStyles({
   
@@ -28,8 +29,16 @@ const singleRecipe = {
 
 const Recipe = (props) => {
     const classes = useStyles();
+    const [recipe, setRecipe] = useState({})
+
+
+    console.log("Recipe")
 
     const {match} = props;
+
+    useEffect(() => {
+        setRecipe(fake_getRecipe(Number(props.match.params.id)))
+    },[])
 
     return ( 
         <EntryPageContainer>
@@ -44,9 +53,12 @@ const Recipe = (props) => {
                 />
                 
                 <EntryContentPart header="Ingredients" text={[["mąka", "1 łyżka"], ["woda", "1 szklanka"],]}/>
+
                 <EntryContentPart header="Description" text='How do you use Lorem Ipsum in VS code?
 A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type "lorem ipsum" and select to insert either a line or paragraph.'/>
+                
                 <EntryFooter/>
+
             </EntryContainer>
         </EntryPageContainer>
      );
