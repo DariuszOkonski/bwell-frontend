@@ -29,7 +29,7 @@ const endpoints = {
     fitwell: "/fitwell",
     restwell: "/restwell",
     thinkwell: "/thinkwell",
-    eatwell_recipe: "/eatwell/recipe/1",
+    eatwell_recipe: "/eatwell/recipe/",
     fitwell_activity: "/fitwell/activity/1",
     
 }

@@ -93,7 +93,12 @@ const RepositoryCard = (props) => {
       <p className={classes.description}>{props.description}</p>
 
       <div className={classes.buttonContainer}>
-        <CustomButton linkTo={props.linkTo} text="check" isAbsolute={false}/>
+        <CustomButton 
+            linkTo={props.linkTo} 
+            text="check" 
+            isAbsolute={false}
+        />
+        
       </div>
     </div>
   );

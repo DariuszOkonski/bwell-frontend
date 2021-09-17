@@ -99,7 +99,7 @@ function App() {
               (props) => <ThinkWellPage useStylesPages={useStylesPages} {...props}/> }/>
                 
               
-            <Route exact path={endpoints.eatwell_recipe} component={
+            <Route exact path={`${endpoints.eatwell_recipe}:id`} component={
               (props) => <Recipe {...props}/>} />
                 
 
