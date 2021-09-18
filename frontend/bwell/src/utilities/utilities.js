@@ -9,7 +9,9 @@ const colors = {
     topNavPrimary: '#595959',
     footerPrimary: '#595959',
     thumbUp: '#4FB477',
-    thumbDown: '#ED4F4F'
+    thumbDown: '#ED4F4F',
+    handUp: '#4fb477',
+    handDown: '#ed4f4f',
 }
 
 const viewportSize = {
@@ -21,4 +23,20 @@ const viewportSize = {
     laptopL: '1440px'
 }
 
-export { colors, viewportSize }
+const endpoints = {
+    main: "/",
+    register: "/register",
+    login: "/login",
+    eatwell: "/eatwell",
+    fitwell: "/fitwell",
+    restwell: "/restwell/",
+    thinkwell: "/thinkwell/",
+    eatwell_recipe: "/eatwell/recipe/",
+    fitwell_activity: "/fitwell/activity/1",
+    // restwell_idea: "/restwell/",
+    // thinkwell_idea: "/thinkwell/",
+    favourites: "/favourites",
+    
+}
+
+export { colors, viewportSize, endpoints }

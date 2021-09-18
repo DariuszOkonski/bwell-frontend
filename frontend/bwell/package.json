@@ -2,6 +2,7 @@
   "name": "bwell",
   "version": "0.1.0",
   "private": true,
+  "main": "src/index.js",
   "dependencies": {
     "@fontsource/lato": "^4.5.0",
     "@fortawesome/react-fontawesome": "^0.1.15",
@@ -14,7 +15,7 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.1",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^4.0.3",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

@@ -5,7 +5,7 @@ import PersonAdd from '@material-ui/icons/PersonAdd';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import { makeStyles } from '@material-ui/core';
 import { Link } from "react-router-dom";
-import { viewportSize, colors } from '../utilities/utilities';
+import { viewportSize, colors } from '../../utilities/utilities';
 import SwipeableTemporaryDrawer from './SwipeableTemporaryDrawer';
 
 const useStyles = makeStyles((theme) => ({

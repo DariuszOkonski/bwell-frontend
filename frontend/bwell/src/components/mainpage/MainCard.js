@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
-import CustomButton from './CustomButton';
-import { colors, viewportSize } from '../utilities/utilities';
+import CustomButton from '../reuseable/CustomButton';
+import { colors, viewportSize } from '../../utilities/utilities';
+import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { AssignmentReturnedIcon } from '@material-ui/icons/AssignmentReturned';
 
 const useStyles = makeStyles({
   card: {
@@ -9,7 +12,8 @@ const useStyles = makeStyles({
     backgroundColor: colors.white,
     padding: '1rem',
     borderRadius: '1rem',
-    overflow: 'hidden'
+    overflow: 'hidden',
+    width: '100%'
   },
   img: {
     position: 'relative',
@@ -77,6 +81,7 @@ const MainCard = (props) => {
       <p className={classes.description}>{props.description}</p>
 
       <CustomButton linkTo={props.linkTo} text="check"/>
+
 
       {/* <Button component={Link} to={props.linkTo} className={classes.button} variant="outlined" endIcon={<AssignmentReturnedIcon />}>
         Check

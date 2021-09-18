@@ -1,38 +1,34 @@
 import React from 'react'
-import PersistentDrawerLeft from './Menu'
 import { Grid, makeStyles } from '@material-ui/core'
-import CategoriesBar from './CategoriesBar'
-import RepositoryCard from './RepositoryCard';
+import CategoriesBar from '../reuseable/CategoriesBar'
+import RepositoryCard from '../reuseable/RepositoryCard';
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 
-const useStyles = makeStyles((theme) => ({
-    categoriesBar: {
-        justifyContent: "center",
-        marginTop: "1rem"
-    },
-    spacearound: {
-        justifyItems: 'space-around'
-    },
-    cards: {
-        justifyContent: 'center'
-    }
-}));
+// const useStyles = makeStyles((theme) => ({
+//     categoriesBar: {
+//         justifyContent: "center",
+//         marginTop: "1rem"
+//     },
+//     spacearound: {
+//         justifyItems: 'space-around'
+//     },
+//     cards: {
+//         justifyContent: 'center',
+//         margin: 0
+//     }
+// }));
 
-
+    
 const ThinkWellPage = (props) => {
-    const classes = useStyles();
+    const classes = props.useStylesPages();
+
+    const {match} = props;
 
     return (
         <>
-            <Grid container>
-                <PersistentDrawerLeft
-                // openMenu={props.openMenu} 
-                // handleCloseMenu={props.handleCloseMenu}
-                />
-            </Grid>
             <Grid container spacing={2} xs={12} className={classes.categoriesBar}>
                 <Grid item xs={12} md={8}>
-                    <CategoriesBar location="thinkWell/Repositories" />
+                    <CategoriesBar location={match.path} />
                 </Grid>
                 <Grid item className={classes.cards} xs={12} md={8}>
                     <Grid container xs={12} spacing={2} className={classes.cards}>
