@@ -1,9 +1,5 @@
 import React from 'react'
-import PersistentDrawerLeft from './Menu'
 import { Grid, makeStyles } from '@material-ui/core'
-import CategoriesBar from './CategoriesBar'
-import RepositoryCard from './RepositoryCard';
-import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import FavouritesExpandableCard from './FavouritesExpandableCard';
 import WeekendOutlinedIcon from '@material-ui/icons/WeekendOutlined';
 

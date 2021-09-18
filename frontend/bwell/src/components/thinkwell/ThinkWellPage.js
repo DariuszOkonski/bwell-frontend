@@ -1,6 +1,6 @@
 import React from 'react'
-import { Grid, makeStyles } from '@material-ui/core'
-import CategoriesBar from '../reuseable/CategoriesBar'
+import { Grid, makeStyles } from '@material-ui/core';
+import CategoriesBar from '../reuseable/CategoriesBar';
 import RepositoryCard from '../reuseable/RepositoryCard';
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 

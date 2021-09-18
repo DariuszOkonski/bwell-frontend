@@ -1,22 +1,24 @@
 import React from 'react';
 import { Switch, Route } from "react-router-dom";
-import Header from './generic/Header';
-import Footer from './generic/Footer';
+import Header from './components/generic/Header';
+import Footer from './components/generic/Footer';
 import '@fontsource/lato';
-import logo from '../assets/logo_large.png'
-import background_img from '../assets/background_image2.png'
-import logo_mini from '../assets/logo_footer.png'
+import logo from './assets/logo_large.png'
+import background_img from './assets/background_image2.png'
+import logo_mini from './assets/logo_footer.png'
 import Grid from '@material-ui/core/Grid';
-import MainPage from './mainpage/MainPage';
-import EatWellPage from './eatwell/EatWellPage';
-import FitWellPage from './fitwell/FitWellPage';
-import RestWellPage from './restwell/RestWellPage';
-import ThinkWellPage from './thinkwell/ThinkWellPage';
+import MainPage from './components/mainpage/MainPage';
+import EatWellPage from './components/eatwell/EatWellPage';
+import FitWellPage from './components/fitwell/FitWellPage';
+import RestWellPage from './components/restwell/RestWellPage';
+import ThinkWellPage from './components/thinkwell/ThinkWellPage';
 import { makeStyles } from '@material-ui/core';
-import Recipe from './eatwell/Recipe';
-import Activity from './fitwell/Activity';
-import { endpoints } from '../utilities/utilities';
-
+import Recipe from './components/eatwell/Recipe';
+import Activity from './components/fitwell/Activity';
+import { endpoints } from './utilities/utilities';
+import LoginPage from './components/LoginPage';
+import RepositoryIdeaPage from './components/RepositoryIdeaPage';
+import FavouritesPage from './components/FavouritesPage';
 
 const useStylesPages = makeStyles({
   categoriesBar: {
@@ -53,13 +55,15 @@ const useStylesPages = makeStyles({
 
 function App() {
 
+  const classes = useStylesPages();
+
     return (
-      <Grid container direction={'column'} style={styles.mainContainer}>
+      <Grid container direction={'column'} className={classes.mainContainer}>
         <Grid item>
           <Header logo={logo} />
         </Grid>
-        <Grid item style={styles.bodyContainer}>
-          <Grid container style={styles.pageContainer} >
+        <Grid item className={classes.bodyContainer}>
+          <Grid container className={classes.pageContainer}>
             <Switch>
               <Route exact path={endpoints.main}>
                 <MainPage />
