@@ -6,21 +6,6 @@ import { ThumbUpOutlined } from '@material-ui/icons';
 import { endpoints } from '../../utilities/utilities';
 import { fake_getAllRecipesShorts } from '../../fakeRepositories/fakeRecipies';
 
-// const fakeRecipies = [
-//     {
-//         id: 1, 
-//         title: 'recipies 1', 
-//         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"},
-//     {
-//         id: 2, 
-//         title: 'recipies 12', 
-//         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, rem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore"},
-//     {
-//         id: 3, 
-//         title: 'recipies 13', 
-//         description: "Lorem ipsum dolor sit amet, rem ipsum dolor sit amet, consectetur adipiscing elitrem ipsum dolor sit amet, consectetur adipiscing elit consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore"},
-// ]
-
 
 const EatWellPage = (props) => {
 

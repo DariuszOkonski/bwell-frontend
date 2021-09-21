@@ -32,7 +32,8 @@ const Recipe = (props) => {
     const [recipe, setRecipe] = useState({})
 
 
-    console.log("Recipe")
+    console.log("Recipe ==============")
+    console.log(recipe)
 
     const {match} = props;
 
@@ -50,6 +51,7 @@ const Recipe = (props) => {
                 <EntryHeader 
                     header={singleRecipe.header}
                     icon={<ThumbUpOutlinedIcon />}
+                    rating={recipe.rating}
                 />
                 
                 <EntryContentPart header="Ingredients" text={[["mąka", "1 łyżka"], ["woda", "1 szklanka"],]}/>
@@ -63,5 +65,5 @@ A tiny VS Code extension made up of a few commands that generate and insert lore
         </EntryPageContainer>
      );
 }
- 
+
 export default Recipe;

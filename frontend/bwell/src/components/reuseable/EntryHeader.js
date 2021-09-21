@@ -71,8 +71,11 @@ const useStyles = makeStyles({
     }
 })
 
-export const EntryHeader = ({header = "todo", icon=<RestaurantIcon />}) => {
+export const EntryHeader = ({header = "todo", icon=<RestaurantIcon />, rating}) => {
     const classes = useStyles();
+
+    console.log('rating ====================')
+    console.log(rating)
     return (
         <div className={classes.container}>            
             <div className={classes.icon}>
@@ -83,13 +86,20 @@ export const EntryHeader = ({header = "todo", icon=<RestaurantIcon />}) => {
             <div className={classes.ratingContainer}>
                 <div className={classes.rating}>
                     <ThumbUpOutlinedIcon className={classes.handUp}/>
-                    <span className={classes.ratingCount}>12</span>
+                    <span className={classes.ratingCount}>{rating.up}</span>
                 </div>
                 <div className={classes.rating}>
                     <ThumbDownOutlinedIcon className={classes.handDown}/>
-                    <span className={classes.ratingCount}>3</span>
+                    <span className={classes.ratingCount}>{rating.down}</span>
                 </div>
             </div>
         </div>
     )
+}
+
+EntryHeader.defaultProps = {
+    rating: {
+        up: 0,
+        down: 0
+    }
 }

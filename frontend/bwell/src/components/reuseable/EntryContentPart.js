@@ -24,13 +24,13 @@ const useStyles = makeStyles({
     }
 })
 
+// TODO => install UUID package and replace Math.random
 export const EntryContentPart = ({header, text}) => {
-    console.log(typeof text)
     const classes = useStyles()
 
     const inputData = (typeof text === 'object') ? (
         <ul className={classes.list}>
-                {text.map(item => <li>{item.join(" - ")}</li>)}
+                {text.map(item => <li key={Math.random()}>{item.join(" - ")}</li>)}
         </ul>
     ) : (
         <p>
