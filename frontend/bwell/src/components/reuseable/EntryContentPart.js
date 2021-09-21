@@ -48,3 +48,9 @@ export const EntryContentPart = ({header, text}) => {
         </div>
     )
 }
+
+
+EntryContentPart.defaultProps = {
+    header: "",
+    text: [],
+}
