@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import SimpleBreadcrumbs from '../reuseable/SimpleBreadcrumbs';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import { makeStyles } from '@material-ui/core';
-import {colors, viewportSize} from '../../utilities/utilities'
 import { EntryHeader } from '../reuseable/EntryHeader';
 import CustomButton from '../reuseable/CustomButton';
 import { EntryContentPart } from '../reuseable/EntryContentPart';
@@ -15,7 +14,6 @@ import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import { fake_getRecipe } from '../../fakeRepositories/fakeRecipies';
 
 const useStyles = makeStyles({
-  
     buttonContainer: {
         display: "flex",
         justifyContent: "flex-end",
@@ -29,6 +27,7 @@ const Recipe = (props) => {
     const [recipe, setRecipe] = useState(null)
 
     const {match} = props;
+    console.log(match, "match")
 
     useEffect(() => {
         // setRecipe(fake_getRecipe(Number(props.match.params.id)))
@@ -56,7 +55,7 @@ const Recipe = (props) => {
                 </div>
                 <EntryHeader 
                     header={recipe.title}
-                    icon={<ThumbUpOutlinedIcon />}
+                    icon={<RestaurantIcon />}
                     rating={recipe.rating}
                 />
 

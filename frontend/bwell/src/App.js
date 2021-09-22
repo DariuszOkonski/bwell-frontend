@@ -94,7 +94,7 @@ function App() {
                 (props) => <Recipe {...props} />} />
 
 
-              <Route exact path={endpoints.fitwell_activity}>
+              <Route exact path={`${endpoints.fitwell_activity}:id`}>
                 <Activity />
               </Route>
               <Route path={`${endpoints.restwell}:id`}>

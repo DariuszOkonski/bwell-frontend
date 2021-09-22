@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Grid, makeStyles } from '@material-ui/core'
 import CategoriesBar from '../reuseable/CategoriesBar'
 import RepositoryCard from '../reuseable/RepositoryCard';
-import { ThumbUpOutlined } from '@material-ui/icons';
+import RestaurantIcon from '@material-ui/icons/Restaurant';
 import { endpoints } from '../../utilities/utilities';
 import { fake_getAllRecipesShorts } from '../../fakeRepositories/fakeRecipies';
 
@@ -15,8 +15,20 @@ const EatWellPage = (props) => {
     const {match} = props;
 
     useEffect(() => {
-        setRecipes(fake_getAllRecipesShorts())
+        const getRecipes = async () => {
+            const recipesFromServer = await fetchRecipes()
+            setRecipes(recipesFromServer)
+        }
+        getRecipes()
     },[]);
+
+    const fetchRecipes = async () => {
+        const response = await fetch('http://localhost:3001/recipes/')
+        const data = await response.json()
+
+        return data 
+    }
+
 
     return (
         <Grid container spacing={2} xs={12} className={classes.categoriesBar}>
@@ -31,7 +43,7 @@ const EatWellPage = (props) => {
                             <Grid key={recipe.id} item xs={12} md={6}>
                                 <RepositoryCard 
                                     title={recipe.title} 
-                                    cardIcon={ThumbUpOutlined} 
+                                    cardIcon={RestaurantIcon} 
                                     linkTo={`${endpoints.eatwell_recipe}${recipe.id}`} 
                                     description={recipe.description} 
                                 />

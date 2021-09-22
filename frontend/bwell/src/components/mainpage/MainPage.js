@@ -81,43 +81,6 @@ const MainPage = () => {
                 </Grid>
             </Grid>
 
-
-            {/* <Grid container className={classes.justifyCenter}>
-                
-                <Grid item container direction={'row'} className={classes.justifyCenter} spacing={2} xs={12}>
-                    <Grid item xs={12} md={6} lg={4}>
-                        <MainCard
-                            image={EatWellLogo}
-                            menuTitle={"eatWell"}
-                            description={"Nutrition Recipes - repository & search \nBMI Calculator / Fat, Carbs, Protein demand \nDiet plan"}
-                            linkTo="/eatWell" />
-                    </Grid>
-                    <Grid item xs={12} md={6} lg={4}>
-                        <MainCard
-                            image={FitWellLogo}
-                            menuTitle={"fitWell"}
-                            description={"Fitness exercises repository \nwith WHERE, WHEN and EQUIPMENT"}
-                            linkTo="/fitWell" />
-                    </Grid>
-                </Grid>
-            
-                <Grid item container direction={'row'} className={classes.justifyCenter} spacing={2} xs={12}>
-                    <Grid item xs={12} md={6} lg={4}>
-                        <MainCard
-                            image={RestWellLogo}
-                            menuTitle={"restWell"}
-                            description={"Relax ideas repository"}
-                            linkTo="/restWell" />
-                    </Grid>
-                    <Grid item xs={12} md={6} lg={4}>
-                        <MainCard
-                            image={ThinkWellLogo}
-                            menuTitle={"thinkWell"}
-                            description={"Self-improvement ideas repository"}
-                            linkTo="/thinkWell" />
-                    </Grid>
-                </Grid>
-            </Grid> */}
         </>
 
     )

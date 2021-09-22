@@ -17,12 +17,9 @@ const useStyles = makeStyles({
 })
 export const EntryFooter = () => {
     const {path, url} = useRouteMatch();
-    console.log(path, url)
-    console.log(useRouteMatch());
 
     const getBackToLink = () => {
         const splitted = url.split("/")
-        console.log(splitted)
         return splitted[1]
     }
     
