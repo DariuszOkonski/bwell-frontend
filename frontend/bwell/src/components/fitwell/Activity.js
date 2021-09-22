@@ -36,7 +36,7 @@ const Activity = () => {
     
     return ( 
         activity && <EntryPageContainer>
-            <SimpleBreadcrumbs path={path} header="Activity 1" />
+            <SimpleBreadcrumbs path={path} header={activity.title} />
 
             <EntryContainer>
                 <EntryHeader 

@@ -31,6 +31,7 @@ export default function SimpleBreadcrumbs({path, header = ""}) {
     const classes = useStyles();
     const pathArray = path.split('/');
     
+    console.log(path)
     return (
         <Breadcrumbs aria-label="breadcrumb" className={classes.container}>
             <Typography color="textPrimary" className={classes.linkPrimaryColor}></Typography>
