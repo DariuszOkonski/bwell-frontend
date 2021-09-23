@@ -13,6 +13,7 @@ const ENTRY_ID_INDEX = 3
 const Activity = () => {
     const {path, url} = useRouteMatch();
     const [activity, setActivity] = useState(null)
+    
     const url_parts = url.split("/")
     console.log(path, url, " <== paths!!!")
     console.log(url_parts, " <== paths!!!")

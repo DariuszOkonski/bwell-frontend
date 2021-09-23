@@ -31,7 +31,6 @@ export default function SimpleBreadcrumbs({path, header = ""}) {
     const classes = useStyles();
     const pathArray = path.split('/');
     
-    console.log(path)
     return (
         <Breadcrumbs aria-label="breadcrumb" className={classes.container}>
             <Typography color="textPrimary" className={classes.linkPrimaryColor}></Typography>
@@ -39,7 +38,8 @@ export default function SimpleBreadcrumbs({path, header = ""}) {
                  {pathArray[MODULE_INDEX]}
             </Link>
             <Typography color="textPrimary" className={classes.linkPrimaryColor}>{pathArray[ENTRY_INDEX]}</Typography>
-            <Typography color="textPrimary" className={classes.linkPrimaryColor}>{header}</Typography>
+            {
+                header && <Typography color="textPrimary" className={classes.linkPrimaryColor}>{header}</Typography>}
         </Breadcrumbs>
     );
 }

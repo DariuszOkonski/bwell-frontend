@@ -1,24 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Grid, makeStyles } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import CategoriesBar from '../reuseable/CategoriesBar'
 import RepositoryCard from '../reuseable/RepositoryCard';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import { endpoints } from '../../utilities/utilities';
-
-// const useStyles = makeStyles((theme) => ({
-//     categoriesBar: {
-//         justifyContent: "center",
-//         marginTop: "1rem"
-//     },
-//     spacearound: {
-//         justifyItems: 'space-around'
-//     },
-//     cards: {
-//         justifyContent: 'center',
-//         margin: 0
-//     }
-// }));
-
 
 const FitWellPage = (props) => {
     const classes = props.useStylesPages();
@@ -61,25 +46,7 @@ const FitWellPage = (props) => {
                                 />
                             </Grid>
                         ))
-                    }
-                        {/* <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Activity" cardIcon={DirectionsBikeIcon} linkTo={endpoints.fitwell_activity} description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Activity" cardIcon={DirectionsBikeIcon} linkTo="" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Activity" cardIcon={DirectionsBikeIcon} linkTo="" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Activity" cardIcon={DirectionsBikeIcon} linkTo="" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Activity" cardIcon={DirectionsBikeIcon} linkTo="" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Activity" cardIcon={DirectionsBikeIcon} linkTo="" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid> */}
+                    }                        
                     </Grid>
                 </Grid>
             </Grid>

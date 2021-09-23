@@ -19,6 +19,7 @@ import { endpoints } from './utilities/utilities';
 import LoginPage from './components/LoginPage';
 import RepositoryIdeaPage from './components/RepositoryIdeaPage';
 import FavouritesPage from './components/FavouritesPage';
+import Calculator from './components/eatwell/Calculator';
 
 const useStylesPages = makeStyles({
   categoriesBar: {
@@ -77,6 +78,11 @@ function App() {
               <Route exact path={endpoints.eatwell} render={
                 (props) => <EatWellPage useStylesPages={useStylesPages} {...props} />} />
 
+              <Route exact path={`${endpoints.eatwell_recipe}:id`} render={
+                (props) => <Recipe {...props} />} />
+
+              <Route exact path={endpoints.eatwell_calculator} render={
+                (props) => <Calculator useStylesPages={useStylesPages} />} />
 
               <Route exact path={endpoints.fitwell} render={
                 (props) => <FitWellPage useStylesPages={useStylesPages} {...props} />} />
@@ -90,9 +96,9 @@ function App() {
                 (props) => <ThinkWellPage useStylesPages={useStylesPages} {...props} />} />
 
 
-              <Route exact path={`${endpoints.eatwell_recipe}:id`} render={
-                (props) => <Recipe {...props} />} />
 
+
+              
 
               <Route exact path={`${endpoints.fitwell_activity}:id`}>
                 <Activity />
