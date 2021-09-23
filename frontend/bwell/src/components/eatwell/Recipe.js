@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import SimpleBreadcrumbs from '../reuseable/SimpleBreadcrumbs';
 import EventNoteIcon from '@material-ui/icons/EventNote';
 import { makeStyles } from '@material-ui/core';
-import {colors, viewportSize} from '../../utilities/utilities'
 import { EntryHeader } from '../reuseable/EntryHeader';
 import CustomButton from '../reuseable/CustomButton';
 import { EntryContentPart } from '../reuseable/EntryContentPart';
@@ -10,12 +9,8 @@ import { EntryFooter } from '../reuseable/EntryFooter';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import { EntryContainer } from '../reuseable/EntryContainer';
 import EntryPageContainer from './../reuseable/EntryPageContainer';
-import { AssignmentReturnedIcon } from '@material-ui/icons/AssignmentReturned';
-import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
-import { fake_getRecipe } from '../../fakeRepositories/fakeRecipies';
 
 const useStyles = makeStyles({
-  
     buttonContainer: {
         display: "flex",
         justifyContent: "flex-end",
@@ -36,7 +31,6 @@ const Recipe = (props) => {
             const recipeFromServer = await fetchRecipe()
             setRecipe(recipeFromServer)
         }
-        console.log(recipe, " recipe !")
         getRecipe()
     },[])
 
@@ -56,7 +50,7 @@ const Recipe = (props) => {
                 </div>
                 <EntryHeader 
                     header={recipe.title}
-                    icon={<ThumbUpOutlinedIcon />}
+                    icon={<RestaurantIcon />}
                     rating={recipe.rating}
                 />
 

@@ -1,7 +1,5 @@
 import React from 'react'
 import RestaurantIcon from '@material-ui/icons/Restaurant';
-import ThumbUpIcon from '@material-ui/icons/ThumbUp';
-import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
 import { makeStyles, ThemeProvider } from '@material-ui/styles';

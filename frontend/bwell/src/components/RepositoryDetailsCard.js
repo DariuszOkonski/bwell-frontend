@@ -110,6 +110,7 @@ const RepositoryDetailsCard = (props) => {
 
   return (
     <Grid container className={classes.card} spacing={3}>
+      {/* Can be replaced with EntryHeader */}
       <Grid item container spacing={2} className={classes.header}>
         <Grid item>
           <span className={classes.cardDescriptionIcon}>
@@ -121,11 +122,13 @@ const RepositoryDetailsCard = (props) => {
           <ThumbUpOutlinedIcon className={classes.thumbUp} /><ThumbDownOutlinedIcon className={classes.thumbDown} />
         </Grid>
       </Grid>
+      {/* Check EntryContentPart */}
       <Grid item className={classes.descriptionOutlined}>
 
         <p className={classes.description}>{props.description}</p>
 
       </Grid>
+      {/* Can be replaced with EntryFooter */}
       <Grid item className={classes.descriptionOutlined}>
         <p className={classes.description}>{props.description}</p>
       </Grid>
@@ -136,9 +139,11 @@ const RepositoryDetailsCard = (props) => {
     </Grid>
   );
 }
+// Zmiana 132-134 na entry EntryFooter 
 
 // RepositoryDetailsCard.propTypes = {
 //   cardIcon: PropTypes.string
 // };
+// 
 
 export default RepositoryDetailsCard;

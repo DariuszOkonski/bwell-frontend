@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { EntryContainer } from '../reuseable/EntryContainer';
 import { EntryContentPart } from '../reuseable/EntryContentPart';
 import { EntryFooter } from '../reuseable/EntryFooter';
@@ -6,35 +6,50 @@ import { EntryHeader } from '../reuseable/EntryHeader';
 import EntryPageContainer from '../reuseable/EntryPageContainer';
 import SimpleBreadcrumbs from '../reuseable/SimpleBreadcrumbs';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
+import { useRouteMatch } from 'react-router';
+
+const ENTRY_ID_INDEX = 3
 
 const Activity = () => {
+    const {path, url} = useRouteMatch();
+    const [activity, setActivity] = useState(null)
+    
+    const url_parts = url.split("/")
+    console.log(path, url, " <== paths!!!")
+    console.log(url_parts, " <== paths!!!")
+    
+    useEffect(() => {
+        // setRecipe(fake_getRecipe(Number(props.match.params.id)))
+        const getActivity = async () => {
+            const ActivityFromServer = await fetchActivity()
+            setActivity(ActivityFromServer)
+        }
+        console.log(activity, " Activity !")
+        getActivity()
+    },[])
+
+    const fetchActivity = async () => {
+        const response = await fetch(`http://localhost:3001/activities/${Number(url_parts[ENTRY_ID_INDEX])}`)
+        const data = await response.json()
+
+        return data 
+    }
+    
     return ( 
-        <EntryPageContainer>
-            <SimpleBreadcrumbs />
+        activity && <EntryPageContainer>
+            <SimpleBreadcrumbs path={path} header={activity.title} />
 
             <EntryContainer>
                 <EntryHeader 
-                    header="Activity 1" 
+                    header={activity.title} 
                     icon={<DirectionsBikeIcon />}
+                    rating={activity.rating}
                 />
-
-                <EntryContentPart 
-                    header="Warm up" 
-                    text="How do you use Lorem Ipsum in VS code?
-                    A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type lorem ipsum and select to insert either a line or paragraph."
-                />
-
-                <EntryContentPart 
-                    header="Warm up" 
-                    text="How do you use Lorem Ipsum in VS code?
-                    A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type lorem ipsum and select to insert either a line or paragraph."
-                />
-
-                <EntryContentPart 
-                    header="Warm up" 
-                    text="How do you use Lorem Ipsum in VS code?
-                    A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type lorem ipsum and select to insert either a line or paragraph."
-                />
+                {
+                    activity.content.map(part => {
+                        return <EntryContentPart header={part.header} text={part.text} key={Math.random()}/>
+                    })
+                }
 
                 <EntryFooter />
             </EntryContainer>

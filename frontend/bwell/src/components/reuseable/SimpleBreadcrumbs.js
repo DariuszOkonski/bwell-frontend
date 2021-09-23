@@ -1,16 +1,12 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-// import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core';
-import { Block } from '@material-ui/icons';
-import { colors, endpoints } from '../../utilities/utilities';
+import { colors } from '../../utilities/utilities';
 import { Link } from 'react-router-dom';
 
-function handleClick(event) {
-  event.preventDefault();
-  window.location.href = "/eatwell";
-}
+const MODULE_INDEX = 1
+const ENTRY_INDEX = 2
 
 const useStyles = makeStyles({
     container: {
@@ -33,18 +29,17 @@ const useStyles = makeStyles({
 
 export default function SimpleBreadcrumbs({path, header = ""}) {
     const classes = useStyles();
-
     const pathArray = path.split('/');
-    console.log(pathArray)
-
+    
     return (
         <Breadcrumbs aria-label="breadcrumb" className={classes.container}>
             <Typography color="textPrimary" className={classes.linkPrimaryColor}></Typography>
-            <Link color="inherit" className={classes.linkColor} to={endpoints.eatwell} >
-                 {pathArray[1]}
+            <Link color="inherit" className={classes.linkColor} to={`/${pathArray[MODULE_INDEX]}`} >
+                 {pathArray[MODULE_INDEX]}
             </Link>
-            <Typography color="textPrimary" className={classes.linkPrimaryColor}>{pathArray[2]}</Typography>
-            <Typography color="textPrimary" className={classes.linkPrimaryColor}>{header}</Typography>
+            <Typography color="textPrimary" className={classes.linkPrimaryColor}>{pathArray[ENTRY_INDEX]}</Typography>
+            {
+                header && <Typography color="textPrimary" className={classes.linkPrimaryColor}>{header}</Typography>}
         </Breadcrumbs>
     );
 }

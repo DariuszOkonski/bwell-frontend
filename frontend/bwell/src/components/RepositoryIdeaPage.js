@@ -32,6 +32,7 @@ const RepositoryIdeaPage = (props) => {
         /> */}
             </Grid>
             <Grid container spacing={2} xs={12} className={classes.categoriesBar}>
+                {/* SimpleBreadCrumbs to use */}
                 <Grid item xs={12} md={8}>
                     <RepositoryTopBar text={props.repositoryType + "/idea " + id} />
 
