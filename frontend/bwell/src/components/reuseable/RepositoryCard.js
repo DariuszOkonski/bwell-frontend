@@ -1,13 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Link } from "react-router-dom";
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import AssignmentReturnedIcon from '@material-ui/icons/AssignmentReturned';
 import { colors, viewportSize } from '../../utilities/utilities';
-import { Grid } from '@material-ui/core';
 import PropTypes from "prop-types";
-import { Divider } from '@material-ui/core/Divider';
 import CustomButton from './CustomButton';
 
 const useStyles = makeStyles({
@@ -34,16 +29,6 @@ const useStyles = makeStyles({
     justifyContent: 'flex-start',
     alignItems: 'center'
   },
-  // header: {
-  //   fontSize: '36px',
-  //   color: colors.textPrimary,
-  //   margin: '0',
-  //   padding: '0',
-  //   paddingLeft: '0.5rem',
-  //   [`@media (max-width: ${viewportSize.mobileL})`]: {
-  //     fontSize: '1.5rem'
-  //   }
-  // },
   inline: {
     fontSize: '1.5rem',
     color: colors.textPrimary
@@ -53,23 +38,6 @@ const useStyles = makeStyles({
     color: colors.textSecondary,
     padding: '0.2rem',
   },
-  // checkButton: {
-  //   alignSelf: 'flex-end',
-  //   color: '#FF934F',
-  //   border: 'none',
-  //   backgroundColor: colors.buttonPrimary,
-  //   '&:hover': {
-  //     backgroundColor: colors.buttonPrimaryHover,
-  //   },
-  //   borderRadius: '2rem',
-  //   color: colors.white,
-  //   padding: '0.2rem 0.6rem',
-  //   fontSize: '1rem',
-  //   [`@media (max-width: ${viewportSize.mobileL})`]: {
-  //     fontSize: '0.6rem'
-  //   },
-  //   marginRight: '0.5rem',
-  // },
   buttonContainer: {
     position: 'relative',
     display: 'flex',

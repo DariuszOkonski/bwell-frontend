@@ -9,9 +9,6 @@ import { EntryFooter } from '../reuseable/EntryFooter';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import { EntryContainer } from '../reuseable/EntryContainer';
 import EntryPageContainer from './../reuseable/EntryPageContainer';
-import { AssignmentReturnedIcon } from '@material-ui/icons/AssignmentReturned';
-import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
-import { fake_getRecipe } from '../../fakeRepositories/fakeRecipies';
 
 const useStyles = makeStyles({
     buttonContainer: {
@@ -27,7 +24,6 @@ const Recipe = (props) => {
     const [recipe, setRecipe] = useState(null)
 
     const {match} = props;
-    console.log(match, "match")
 
     useEffect(() => {
         // setRecipe(fake_getRecipe(Number(props.match.params.id)))
@@ -35,7 +31,6 @@ const Recipe = (props) => {
             const recipeFromServer = await fetchRecipe()
             setRecipe(recipeFromServer)
         }
-        console.log(recipe, " recipe !")
         getRecipe()
     },[])
 
