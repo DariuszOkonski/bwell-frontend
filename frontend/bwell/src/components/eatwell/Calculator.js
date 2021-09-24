@@ -5,6 +5,7 @@ import SimpleBreadcrumbs from './../reuseable/SimpleBreadcrumbs';
 import { makeStyles } from '@material-ui/core';
 import { colors } from '../../utilities/utilities';
 import DietStatistics from './DietStatistics';
+import CalculatorForm from './CalculatorForm';
 
 const Calculator = (props) => {
     const {path, url} = useRouteMatch();
@@ -38,7 +39,9 @@ const Calculator = (props) => {
                         </div>                        
                     </Grid>
                     <Grid item xs={12} md={6} >
-                        <div className={innerClasses.singleCard}>bbb</div>
+                        <div className={innerClasses.singleCard}>
+                            <CalculatorForm />
+                        </div>
                     </Grid>
                     
                 </Grid>
