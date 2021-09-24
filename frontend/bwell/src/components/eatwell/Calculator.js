@@ -10,12 +10,12 @@ const Calculator = (props) => {
     const {path, url} = useRouteMatch();
     const classes = props.useStylesPages();
 
-    const useStyle = makeStyles({
-        container: {
+    const useStyle = makeStyles({        
+        singleCard: {
+            margin: '0.5rem',
+            padding: '1rem',
             border: `2px solid ${colors.borderPrimary}`,
-            backgroundColor: colors.white,
-            padding: '2rem',
-            margin: '0',
+            backgroundColor: colors.white,        
             borderRadius: '1rem',
         }
     })
@@ -23,29 +23,27 @@ const Calculator = (props) => {
 
     const innerClasses = useStyle();
 
-    // TODO - problems with spacing in grid between cards
 
     return (
-        <>
-            <Grid container spacing={2} xs={12} className={classes.categoriesBar}>
-                <Grid item xs={12} md={8}>
-                    <SimpleBreadcrumbs path={path} header="" />
-                </Grid>
-                <Grid item spacing={2} className={classes.cards} xs={12} md={8}>
-                    <Grid container xs={12} spacing={2} className={classes.cards}>
-                        
-                        <Grid className={innerClasses.container} item xs={12} md={6}>
-                            <DietStatistics />
-                        </Grid>
-
-                        <Grid className={innerClasses.container} item xs={12} md={6}>
-                            <div style={{backgroundColor: 'green'}}>Div 2</div>
-                        </Grid>               
-
+        <Grid container xs={12} className={classes.categoriesBar}>
+            <Grid item xs={12} md={8} style={{marginBottom: '0.5rem'}}>
+                <SimpleBreadcrumbs path={path} header="" style={{padding: '15rem'}} isCalculator={true} />
+            </Grid>
+            <Grid item className={classes.cards} xs={12} md={8}>                
+                <Grid container xs={12} className={classes.cards}>
+                    
+                    <Grid item xs={12} md={6} >
+                        <div className={innerClasses.singleCard}>
+                            <DietStatistics/>
+                        </div>                        
                     </Grid>
+                    <Grid item xs={12} md={6} >
+                        <div className={innerClasses.singleCard}>bbb</div>
+                    </Grid>
+                    
                 </Grid>
             </Grid>
-        </>
+        </Grid>
     )
 }
 
