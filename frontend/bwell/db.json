@@ -24,7 +24,9 @@
 ## TO CONSULT 
 
 // every ingriednts list for Recipe separate table? nonsense?
-
+// 1-pole w postgresie jako json
+// 2-hybryda z mongodb dla przepisów
+// 3-relacyjnie
 "ingredients_lists": {
     "id": 0,
     "list": [
