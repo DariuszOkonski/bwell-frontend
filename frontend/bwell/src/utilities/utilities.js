@@ -37,6 +37,9 @@ const endpoints = {
     // restwell_idea: "/restwell/",
     // thinkwell_idea: "/thinkwell/",
     favourites: "/favourites",
+    APIhost: "http://localhost:3001/",
+    APIrestWell: "restWell",
+    APIthinkWell: "thinkWell",
     
 }
 

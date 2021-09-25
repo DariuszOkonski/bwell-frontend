@@ -45,10 +45,6 @@ const useStyles = makeStyles((theme) => ({
 const CategoriesBar = (props) => {
     const classes = useStyles();
 
-    // console.log("categories bar")
-    // console.log(props)
-    console.log(props.location)
-
     const locationPath = props.location.split('/');
     console.log(locationPath)
 

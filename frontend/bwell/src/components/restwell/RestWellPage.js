@@ -3,26 +3,32 @@ import { Grid, makeStyles } from '@material-ui/core'
 import CategoriesBar from '../reuseable/CategoriesBar'
 import RepositoryCard from '../reuseable/RepositoryCard';
 import WeekendOutlinedIcon from '@material-ui/icons/WeekendOutlined';
-
-// const useStyles = makeStyles((theme) => ({
-//     categoriesBar: {
-//         justifyContent: "center",
-//         marginTop: "1rem"
-//     },
-//     spacearound: {
-//         justifyItems: 'space-around'
-//     },
-//     cards: {
-//         justifyContent: 'center',
-//         margin: 0
-//     }
-// }));
-
+import { endpoints } from '../../utilities/utilities';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const RestWellPage = (props) => {
     const classes = props.useStylesPages();
 
     const {match} = props;
+
+    const [ideas, setIdeas] = useState([]);
+    const APIurl = endpoints.APIhost + endpoints.APIrestWell;
+
+    useEffect(() => {
+        const getIdeas = async () => {
+            const ideasFromServer = await fetchIdeas()
+            setIdeas(ideasFromServer)
+        }
+        getIdeas()
+    },[]);
+
+    const fetchIdeas = async () => {
+        const response = await fetch(APIurl)
+        const data = await response.json()
+
+        return data 
+    }
 
     return (
         <>
@@ -32,24 +38,14 @@ const RestWellPage = (props) => {
                 </Grid>
                 <Grid item className={classes.cards} xs={12} md={8}>
                     <Grid container spacing={2} className={classes.cards}>
+                        { ideas && ideas.map(idea => {
+                            return (
                         <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Relax idea" cardIcon={WeekendOutlinedIcon} linkTo="/restWell/1" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
+                            <RepositoryCard title={idea.title} cardIcon={WeekendOutlinedIcon} linkTo={"/restWell/" + idea.id} description={idea.description} />
                         </Grid>
-                        <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Relax idea" cardIcon={WeekendOutlinedIcon} linkTo="/restWell/2" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Relax idea" cardIcon={WeekendOutlinedIcon} linkTo="/restWell/3" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Relax idea" cardIcon={WeekendOutlinedIcon} linkTo="/restWell/4" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Relax idea" cardIcon={WeekendOutlinedIcon} linkTo="/restWell/5" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Relax idea" cardIcon={WeekendOutlinedIcon} linkTo="/restWell/6" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
+                            )
+                        })
+                        }
                     </Grid>
                 </Grid>
             </Grid>
