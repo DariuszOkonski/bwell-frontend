@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
-
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import { colors, viewportSize } from '../../utilities/utilities';
 class CalculatorForm extends Component {
     state ={
         gender: '',
@@ -31,77 +32,145 @@ class CalculatorForm extends Component {
         })
     }
 
+    styles = {
+        container: {
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexDirection: "row",
+
+            [`@media (max-width: ${viewportSize.mobileL})`] : {
+                flexDirection: 'column'
+              }
+        },
+        iconContainer: {
+            alignSelf: 'flex-start',            
+        },
+        icon: {
+            fontSize: '6rem',
+            color: colors.thumbUp
+        },
+        formContainer: {
+            width: '100%'
+        },
+        formHeader: {
+            fontSize: '1.5rem',
+            color: colors.textPrimary,
+            textAlign: 'center',
+            fontWeight: '400'
+        },
+        label: {
+            position: 'relative',
+            display: 'block',
+            height: '2rem',
+            margin: '0.6rem 0'
+        },
+        inputIcon: {
+            position: 'absolute',
+            top: '5px',
+            left: '5px',
+            zIndex: '2',
+            color: colors.buttonPrimary
+        },
+        input: {
+            position: 'absolute',
+            top: '0',
+            left: '0',
+            padding: '0.4rem',
+            paddingRight: '0',
+            paddingLeft: '30px',
+            zIndex: '1',
+            width: '100%',
+            borderRadius: '0.5rem',
+            border: `1px solid ${colors.textSecondary}`,
+            color: colors.textPrimary,
+        }
+    }
+
     render() { 
         return (
+            <div style={this.styles.container}>
+                
+                <div style={this.styles.iconContainer}>
+                    <PostAddIcon style={this.styles.icon} />
+                </div>
+                
+                <div style={this.styles.formContainer}>
+                    <h2 style={this.styles.formHeader}>Create New Plan</h2>
+                    <form style={{margin: '0 auto'}} onSubmit={this.handleSubmit}>
+                        <div >
+                            <label style={this.styles.label}>
+                                <RestaurantIcon style={this.styles.inputIcon} />
+                                <input 
+                                    style={this.styles.input}
+                                    type="text"
+                                    name="gender"
+                                    placeholder="gender"
+                                    value={this.state.gender}
+                                    onChange={this.handleOnChange}
+                                />
+                            </label>
+                        </div>
 
-            <div>
-                <h2>CalculatorForm</h2>
-                <form onSubmit={this.handleSubmit}>
-                    <div>
-                    <label>
-                        <RestaurantIcon />
-                        <input 
-                            type="text"
-                            name="gender"
-                            placeholder="gender"
-                            value={this.state.gender}
-                            onChange={this.handleOnChange}
-                        />
-                    </label>
-                    </div>
+                        <div>
+                            <label style={this.styles.label}>
+                                <RestaurantIcon style={this.styles.inputIcon}    />
+                                <input
+                                    style={this.styles.input} 
+                                    type="number"
+                                    name="age"
+                                    placeholder="age"
+                                    value={this.state.age}
+                                    onChange={this.handleOnChange}
+                                />
+                            </label>
+                        </div>
 
-                    <div>
-                    <label>
-                        <RestaurantIcon />
-                        <input 
-                            type="number"
-                            name="age"
-                            placeholder="age"
-                            value={this.state.age}
-                            onChange={this.handleOnChange}
-                        />
-                    </label>
-                    </div>
+                        <div>
+                            <label style={this.styles.label}>
+                                <RestaurantIcon style={this.styles.inputIcon}    />
+                                <input
+                                    style={this.styles.input} 
+                                    type="number"
+                                    name="height"
+                                    placeholder="height"
+                                    value={this.state.height}
+                                    onChange={this.handleOnChange}
+                                    />
+                            </label>
+                        </div>
 
-                    <div>
-                    <label>
-                        <RestaurantIcon />
-                        <input 
-                            type="number"
-                            name="height"
-                            placeholder="height"
-                            value={this.state.height}
-                            onChange={this.handleOnChange}
-                            />
-                    </label>
-                    </div>
+                        <div>
+                            <label style={this.styles.label}>
+                                <RestaurantIcon style={this.styles.inputIcon}    />
+                                <input
+                                    style={this.styles.input} 
+                                    type="number"
+                                    name="weight"
+                                    placeholder="weight"
+                                    value={this.state.weight}
+                                    onChange={this.handleOnChange}
+                                    />
+                            </label>
+                        </div>
 
-                    <div>
-                    <label>
-                        <RestaurantIcon />
-                        <input 
-                            type="number"
-                            name="weight"
-                            placeholder="weight"
-                            value={this.state.weight}
-                            onChange={this.handleOnChange}
-                            />
-                    </label>
-                    </div>
-
-                    <div>
-                    <label>
-                        <RestaurantIcon />
-                        <select name="activity" onChange={this.handleOnChange}>
-                            <option value="high">high</option>
-                            <option value="medium">medium</option>
-                            <option value="low">low</option>
-                        </select>
-                    </label>
+                        <div>
+                            <label style={this.styles.label}>
+                                <RestaurantIcon style={this.styles.inputIcon}    />
+                                <select 
+                                    style={this.styles.input}
+                                    name="activity" onChange={this.handleOnChange}
+                                >
+                                    <option value="high">high</option>
+                                    <option value="medium">medium</option>
+                                    <option value="low">low</option>
+                                </select>
+                            </label>
                     </div>
                     
                     <input type="submit" value="calculate" />
                 </form>
+            </div>
             </div>
         )
     }
