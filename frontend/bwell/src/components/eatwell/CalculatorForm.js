@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import { colors, viewportSize } from '../../utilities/utilities';
+
 class CalculatorForm extends Component {
     state ={
         gender: '',
@@ -39,9 +40,9 @@ class CalculatorForm extends Component {
             alignItems: 'center',
             flexDirection: "row",
 
-            [`@media (max-width: ${viewportSize.mobileL})`] : {
-                flexDirection: 'column'
-              }
+                // [`@media (max-width: ${viewportSize.mobileL})`] : {
+                //     flexDirection: 'column'
+                //   }
         },
         iconContainer: {
             alignSelf: 'flex-start',            
@@ -57,7 +58,8 @@ class CalculatorForm extends Component {
             fontSize: '1.5rem',
             color: colors.textPrimary,
             textAlign: 'center',
-            fontWeight: '400'
+            fontWeight: '400',
+            marginBottom: '1rem '
         },
         label: {
             position: 'relative',
@@ -84,6 +86,28 @@ class CalculatorForm extends Component {
             borderRadius: '0.5rem',
             border: `1px solid ${colors.textSecondary}`,
             color: colors.textPrimary,
+        },
+        button: {
+            border: 'none',
+            cursor: 'pointer',
+            textTransform: 'capitalize',
+            backgroundColor: colors.buttonPrimary,
+            borderRadius: '2rem',
+            color: colors.white,
+            padding: '0.2rem 0.6rem',
+            fontSize: '1rem',
+            marginTop: '0.6rem'
+            // "&:hover": {
+            //     backgroundColor:'red',
+            // }
+
+            // '&:hover': {
+            //     // backgroundColor: colors.buttonPrimaryHover,
+            //     backgroundColor: 'red'
+            // },
+            // [`@media (max-width: ${viewportSize.mobileL})`] : {
+            //     fontSize: '0.8rem'
+            // }
         }
     }
 
@@ -166,9 +190,9 @@ class CalculatorForm extends Component {
                                     <option value="low">low</option>
                                 </select>
                             </label>
-                    </div>
+                    </div>          
                     
-                    <input type="submit" value="calculate" />
+                    <button style={this.styles.button} type="submit">calculate</button>
                 </form>
             </div>
             </div>
