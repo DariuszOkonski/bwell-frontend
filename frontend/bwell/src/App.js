@@ -20,6 +20,7 @@ import LoginPage from './components/LoginPage';
 import RepositoryIdeaPage from './components/RepositoryIdeaPage';
 import FavouritesPage from './components/FavouritesPage';
 import Calculator from './components/eatwell/Calculator';
+import AddEntry from './components/user/AddEntry';
 
 const useStylesPages = makeStyles({
   categoriesBar: {
@@ -112,6 +113,12 @@ function App() {
               <Route path={endpoints.favourites}>
                 <FavouritesPage />
               </Route>
+
+
+              <Route exact path={endpoints.addEntry} >
+                <AddEntry/>
+              </Route>
+              
               <Route >
                 Error Page 404
               </Route>

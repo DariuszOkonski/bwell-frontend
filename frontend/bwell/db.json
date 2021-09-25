@@ -22,6 +22,9 @@
     "ingredient_list": 0,
 }
 ## TO CONSULT 
+
+// every ingriednts list for Recipe separate table? nonsense?
+
 "ingredients_lists": {
     "id": 0,
     "list": [

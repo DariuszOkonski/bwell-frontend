@@ -37,6 +37,7 @@ const endpoints = {
     // restwell_idea: "/restwell/",
     // thinkwell_idea: "/thinkwell/",
     favourites: "/favourites",
+    addEntry: "/addentry"
     
 }
 
