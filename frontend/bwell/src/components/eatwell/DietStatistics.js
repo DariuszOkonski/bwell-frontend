@@ -1,17 +1,22 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core';
 import { AccessibilityNew } from '@material-ui/icons';
-import { colors } from '../../utilities/utilities';
+import { colors, viewportSize } from '../../utilities/utilities';
 
 const DietStatistics = () => {
     const useStyles = makeStyles({
         container: {
-            display: 'flex'
+            display: 'flex',
+            [`@media (max-width: ${viewportSize.mobileL})`] : {
+                flexDirection: 'column'
+              }
         },
         iconContainer: {
             display: 'flex',
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            
+            
         },
         icon: {
             fontSize: '6rem',

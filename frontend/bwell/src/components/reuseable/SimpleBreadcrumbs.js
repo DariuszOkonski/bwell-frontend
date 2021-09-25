@@ -27,12 +27,12 @@ const useStyles = makeStyles({
     }
 })
 
-export default function SimpleBreadcrumbs({path, header = ""}) {
+export default function SimpleBreadcrumbs({path, header = "", isCalculator = false}) {
     const classes = useStyles();
     const pathArray = path.split('/');
     
     return (
-        <Breadcrumbs aria-label="breadcrumb" className={classes.container}>
+        <Breadcrumbs aria-label="breadcrumb" className={classes.container} style={{margin: `${!isCalculator ? '0' : '0 0.5rem' }` }}>
             <Typography color="textPrimary" className={classes.linkPrimaryColor}></Typography>
             <Link color="inherit" className={classes.linkColor} to={`/${pathArray[MODULE_INDEX]}`} >
                  {pathArray[MODULE_INDEX]}

@@ -40,6 +40,7 @@ const endpoints = {
     APIhost: "http://localhost:3001/",
     APIrestWell: "restWell",
     APIthinkWell: "thinkWell",
+    addEntry: "/addentry"
     
 }
 
