@@ -39,7 +39,7 @@ const AddEntry = () => {
             <div className={classes.content}>
 
                 <div className={classes.part}>
-                    <AddEntryForm/>
+                    <AddEntryForm />
                 </div>
                 <div className={classes.part}>
                     <AddEntryForm/>
