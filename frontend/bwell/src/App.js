@@ -20,7 +20,7 @@ import LoginPage from './components/LoginPage';
 import RepositoryIdeaPage from './components/RepositoryIdeaPage';
 import FavouritesPage from './components/FavouritesPage';
 import Calculator from './components/eatwell/Calculator';
-import AddEntry from './components/user/AddEntry';
+import AddEntry from './components/entrycreator/AddEntry';
 
 const useStylesPages = makeStyles({
   categoriesBar: {

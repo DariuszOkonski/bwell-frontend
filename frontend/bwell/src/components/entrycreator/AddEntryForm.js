@@ -4,8 +4,8 @@ import { EntryContainer } from '../reuseable/EntryContainer'
 import { viewportSize, colors } from '../../utilities/utilities'
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import EventButton from '../reuseable/EventButton'
-import { EntryHeader } from '../reuseable/EntryHeader'
 import { EventNote } from '@material-ui/icons';
+import TextAreaInput from './inputareas/TextAreaInput';
 
 
 const AddEntryForm = () => {
@@ -84,6 +84,10 @@ const AddEntryForm = () => {
                     <EventButton text="Add text" callback={() => console.log("new text cnt")} isAbsolute={false}/>
                     <EventButton icon={<EventNote/>} text="Add list" callback={() => console.log("new list cnt")} isAbsolute={false}/>
             </div>
+            <div>
+                <TextAreaInput/>
+            </div>
+
         </EntryContainer>
     )
 }
