@@ -7,11 +7,11 @@ const TextAreaInput = () => {
     
     const useStyles = makeStyles({
         container: {
-            
+            marginBottom: '1rem'
         }, 
         stylingInput: {
                 border: `1px solid ${colors.borderPrimary}`,
-                borderRadius: "0.2rem",
+                borderRadius: "0.4rem",
                 width: '100%',
                 padding: "0.4rem",
                 color: `${colors.textPrimary}`,
@@ -28,7 +28,7 @@ const TextAreaInput = () => {
 
     const classes = useStyles()
     return (
-        <div className="container">
+        <div className={classes.container}>
             <input className={classes.stylingInput} type="text" placeholder="Text header"/>
             <textarea className={classes.stylingInput + " " + classes.textArea} placeholder="Your content"/>
         </div>

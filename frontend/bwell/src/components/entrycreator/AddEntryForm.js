@@ -6,6 +6,7 @@ import RestaurantIcon from '@material-ui/icons/Restaurant';
 import EventButton from '../reuseable/EventButton'
 import { EventNote } from '@material-ui/icons';
 import TextAreaInput from './inputareas/TextAreaInput';
+import IngredientsList from './inputareas/IngredientsList';
 
 
 const AddEntryForm = () => {
@@ -22,14 +23,14 @@ const AddEntryForm = () => {
         },
         select: {
             border: `1px solid ${colors.borderPrimary}`,
-            borderRadius: "0.2rem",
+            borderRadius: "0.4rem",
             padding: "0.2rem",
             color: `${colors.textSecondary}`,
             fontSize: '1.2rem'
         },
         titleInput: {
             border: `1px solid ${colors.borderPrimary}`,
-            borderRadius: "0.2rem",
+            borderRadius: "0.4rem",
             padding: "0.4rem",
             color: `${colors.textPrimary}`,
         },
@@ -84,8 +85,16 @@ const AddEntryForm = () => {
                     <EventButton text="Add text" callback={() => console.log("new text cnt")} isAbsolute={false}/>
                     <EventButton icon={<EventNote/>} text="Add list" callback={() => console.log("new list cnt")} isAbsolute={false}/>
             </div>
+
+            <IngredientsList />
+
+
             <div>
                 <TextAreaInput/>
+            </div>
+            <div className={classes.buttonContainer}>
+                    <EventButton text="Back" callback={() => console.log("back")} isAbsolute={false}/>
+                    <EventButton icon={<EventNote/>} text="Add to favorite" callback={() => console.log("add to favorite")} isAbsolute={false}/>
             </div>
 
         </EntryContainer>

@@ -12,13 +12,16 @@ const AddEntry = () => {
             display: 'flex',
             flexDirection: "column",
             // margin: '0 auto',
-            [`@media (min-width: ${viewportSize.mobileL})`] : {
+            [`@media (min-width: ${viewportSize.tabletS})`] : {
                 flexDirection: "row",
             },
         },
         part: {
             width: '95%',
             [`@media (min-width: ${viewportSize.mobileL})`] : {
+                width: '97%',
+            },
+            [`@media (min-width: ${viewportSize.tabletS})`] : {
                 width: '100%',
             },
             margin: '0.5rem 0.5rem',
