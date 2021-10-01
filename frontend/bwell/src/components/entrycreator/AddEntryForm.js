@@ -9,7 +9,7 @@ import TextAreaInput from './inputareas/TextAreaInput';
 import IngredientsList from './inputareas/IngredientsList';
 
 
-const AddEntryForm = () => {
+const AddEntryForm = ({ingredients, handleDeleteItem, handleEditItem, handleAddItem}) => {
     const useStyles = makeStyles({
         headerContainer: {
             display: 'flex',
@@ -55,7 +55,7 @@ const AddEntryForm = () => {
             justifyContent: "space-evenly"
         }
     })
-    
+
     const classes = useStyles()
     return (
         <EntryContainer>
@@ -86,7 +86,12 @@ const AddEntryForm = () => {
                     <EventButton icon={<EventNote/>} text="Add list" callback={() => console.log("new list cnt")} isAbsolute={false}/>
             </div>
 
-            <IngredientsList />
+            <IngredientsList 
+                ingredients={ingredients} 
+                handleDeleteItem={handleDeleteItem}
+                handleEditItem={handleEditItem}
+                handleAddItem={handleAddItem}
+            />
 
 
             <div>

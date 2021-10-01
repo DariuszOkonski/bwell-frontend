@@ -3,10 +3,9 @@ import { makeStyles } from '@material-ui/core';
 import { colors } from '../../../utilities/utilities';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
-const IngredientItem = ({id, ingredient, quantity, measure, callback}) => {
+const IngredientItem = (props) => {
     
-    const [localIngredient, setIngredient] = useState(ingredient)
-    const [localQuantity, setQuantity] = useState(quantity)
+    
     const useStyles = makeStyles({
         container: {
             margin: '0.5rem 0',
@@ -32,44 +31,65 @@ const IngredientItem = ({id, ingredient, quantity, measure, callback}) => {
         }
     })
     const classes = useStyles();
-    const handleIngredient = evt => {
+    
+    const [ingredient, setIngredient] = useState(props.ingredient);
+    const [quantity, setQuantity] = useState(props.quantity);
+    const [measure, setMeasure] = useState(props.measure)    
+
+    const handleDeleteItem = () => {
+        props.handleDeleteItem(props.id)
+    }    
+
+    const handleChangeIngredient = (evt) => {
         setIngredient(evt.target.value)
-        // callback(localIngredient, id)
-        console.log("local ing ",localIngredient)
     }
 
-    const handleQuantity = evt => {
+    const handleChangeQuantity = (evt) => {
         setQuantity(evt.target.value)
-        console.log("local q ", localQuantity)
+    }
+
+    const handleChangeMeasure = (evt) => {
+        setMeasure(evt.target.value);
     }
 
     useEffect(() => {
-        callback(localIngredient, localQuantity, id)
-    }, [localIngredient, localQuantity])
+        props.handleEditItem({
+            id: props.id, 
+            ingredient, 
+            quantity, 
+            measure
+        })
+        
+    }, [ingredient, quantity, measure])
+
     return (
         <div className={classes.container}>
             <input 
                 className={classes.item} 
                 type="text" 
                 placeholder="ingredient" 
-                value={localIngredient} 
-                onChange={handleIngredient}
+                value={ingredient}
+                onChange={handleChangeIngredient}
             />
             <input 
                 className={classes.item} 
                 type="number" 
-                value={quantity} 
-                value={localQuantity} 
-                onChange={handleQuantity}
+                value={quantity}
+                onChange={handleChangeQuantity}
             />
 
-            <select className={classes.item + " " + classes.unit} value={measure}>
+            <select 
+                className={classes.item + " " + classes.unit} 
+                value={measure}
+                onChange={handleChangeMeasure}
+            >
                 <option value="unit">unit</option>
                 <option value="kg">kg</option>
                 <option value="g">g</option>
+                <option value="stone">stone</option>
             </select>               
 
-            <button className={classes.buttonDelete}>
+            <button className={classes.buttonDelete} onClick={handleDeleteItem}>
                 <DeleteOutlineIcon />
             </button>
         </div>
