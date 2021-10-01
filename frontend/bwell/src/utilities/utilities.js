@@ -34,6 +34,7 @@ const endpoints = {
     thinkwell: "/thinkwell/",
     eatwell_recipe: "/eatwell/recipe/",
     eatwell_calculator: "/eatwell/calculator",
+    eatwell_dietplan: "/eatwell/dietplan",
     fitwell_activity: "/fitwell/activity/",
     // restwell_idea: "/restwell/",
     // thinkwell_idea: "/thinkwell/",

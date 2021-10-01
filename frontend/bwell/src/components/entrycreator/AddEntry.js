@@ -35,7 +35,7 @@ const AddEntry = () => {
     })
 
     const [ingredients, setIngredients] = useState([
-        {id: uuidv4(), ingredient: "", quantity: 0, measure: "unit"},
+        {id: uuidv4(), ingredient: "", quantity: 0, measure: ""},
         // {id: uuidv4(), ingredient: "egg2", quantity: 2, measure: "kg"},
         // {id: uuidv4(), ingredient: "egg3", quantity: 3, measure: "g"},
         // {id: uuidv4(), ingredient: "onion", quantity: 1, measure: "g"},
