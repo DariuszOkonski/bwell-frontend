@@ -87,7 +87,7 @@ const AddEntry = () => {
 
                     {/* TODO - new component */}
                     <h3>{title}</h3>
-                    <ul style={{backgroundColor: 'yellow', padding: '2rem'}}>
+                    <ul style={{backgroundColor: 'white', padding: '2rem'}}>
                         {
                             ingredients.map(item => 
                                 <li key={item.id}>
