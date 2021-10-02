@@ -8,8 +8,8 @@ import { endpoints } from '../../utilities/utilities';
 import { Link } from 'react-router-dom';
 
 
-export default function AccordionMenu(props) {
-  console.log(props)
+export default function AccordionMenu({toggleDrawer, anchor}) {
+  
     return (
     <div>
       <Accordion>
@@ -21,12 +21,30 @@ export default function AccordionMenu(props) {
           <Typography>eatWell</Typography>
         </AccordionSummary>
         <AccordionDetails >
-            <div onKeyDown={() => props.toggleDrawer(props.anchor, false)} onClick={() => props.toggleDrawer(props.anchor, false)}  >
-                <Link to={endpoints.eatwell}>repository</Link>
-            </div>
-            <Link to={endpoints.eatwell_calculator}>calculator</Link>
-            <Link to={endpoints.eatwell_dietplan}>diet plan</Link>
-            <Link to={endpoints.addEntry}>Add recipe</Link>
+            <ul>
+              <li>
+                <Link 
+                to={endpoints.eatwell} 
+                onClick={toggleDrawer(anchor, false)}
+              >repository</Link>
+              </li>
+              <li>
+              <Link 
+            onClick={toggleDrawer(anchor, false)}
+            to={endpoints.eatwell_calculator}>calculator</Link>
+              </li>
+              <li>
+              <Link 
+            onClick={toggleDrawer(anchor, false)}
+            to={endpoints.eatwell_dietplan}>diet plan</Link>
+              </li>
+              <li>
+              <Link 
+            onClick={toggleDrawer(anchor, false)}
+            to={endpoints.addEntry}>Add recipe</Link>
+              </li>
+            </ul>           
+
         </AccordionDetails>
       </Accordion>
       <Accordion>
@@ -38,8 +56,12 @@ export default function AccordionMenu(props) {
           <Typography>fitWell</Typography>
         </AccordionSummary>
         <AccordionDetails>
-            <Link to={endpoints.fitwell}>repository</Link>
-            <Link to={endpoints.addEntry}>Add activity</Link>
+            <Link 
+            onClick={toggleDrawer(anchor, false)}
+            to={endpoints.fitwell}>repository</Link>
+            <Link 
+            onClick={toggleDrawer(anchor, false)}
+            to={endpoints.addEntry}>Add activity</Link>
         </AccordionDetails>
       </Accordion>
 
@@ -53,8 +75,12 @@ export default function AccordionMenu(props) {
           <Typography>restWell</Typography>
         </AccordionSummary>
         <AccordionDetails>
-            <Link to={endpoints.restwell}>repository</Link>
-            <Link to={endpoints.addEntry}>Add activity</Link>
+            <Link 
+            onClick={toggleDrawer(anchor, false)}
+            to={endpoints.restwell}>repository</Link>
+            <Link 
+            onClick={toggleDrawer(anchor, false)}
+            to={endpoints.addEntry}>Add activity</Link>
         </AccordionDetails>
       </Accordion>
       
@@ -67,8 +93,12 @@ export default function AccordionMenu(props) {
           <Typography>thinkWell</Typography>
         </AccordionSummary>
         <AccordionDetails>
-            <Link to={endpoints.thinkwell}>repository</Link>
-            <Link to={endpoints.addEntry}>Add activity</Link>
+            <Link 
+            onClick={toggleDrawer(anchor, false)}
+            to={endpoints.thinkwell}>repository</Link>
+            <Link 
+            onClick={toggleDrawer(anchor, false)}
+            to={endpoints.addEntry}>Add activity</Link>
         </AccordionDetails>
       </Accordion>
 

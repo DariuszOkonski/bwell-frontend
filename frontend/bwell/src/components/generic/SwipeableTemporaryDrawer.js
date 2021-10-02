@@ -52,7 +52,6 @@ export default function SwipeableTemporaryDrawer() {
   };
 
   const list = (anchor) => (
-    <div>
       <div
         className={clsx(classes.list, {
           [classes.fullList]: anchor === 'top' || anchor === 'bottom',
@@ -85,9 +84,8 @@ export default function SwipeableTemporaryDrawer() {
         </List> */}
         
       </div>
-      <AccordionMenu toggleDrawer={toggleDrawer} anchor={anchor}/>
+      
 
-    </div>
   );
 
   return (
@@ -98,6 +96,7 @@ export default function SwipeableTemporaryDrawer() {
             {/* {anchor} */}
             <MenuIcon style={{ color: 'white', fontSize: '2rem' }} />
           </Button>
+          
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}
@@ -105,7 +104,12 @@ export default function SwipeableTemporaryDrawer() {
             onOpen={toggleDrawer(anchor, true)}
           >
             {list(anchor)}
+
+
+            <AccordionMenu toggleDrawer={toggleDrawer} anchor={anchor}/>
           </SwipeableDrawer>
+
+
         </React.Fragment>
       ))}
     </div>
