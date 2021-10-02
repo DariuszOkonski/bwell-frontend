@@ -24,24 +24,27 @@ export default function AccordionMenu({toggleDrawer, anchor}) {
             <ul>
               <li>
                 <Link 
-                to={endpoints.eatwell} 
-                onClick={toggleDrawer(anchor, false)}
-              >repository</Link>
+                  to={endpoints.eatwell} 
+                  onClick={toggleDrawer(anchor, false)}
+                >repository</Link>
               </li>
               <li>
               <Link 
-            onClick={toggleDrawer(anchor, false)}
-            to={endpoints.eatwell_calculator}>calculator</Link>
+                  onClick={toggleDrawer(anchor, false)}
+                  to={endpoints.eatwell_calculator}
+                >calculator</Link>
               </li>
               <li>
-              <Link 
-            onClick={toggleDrawer(anchor, false)}
-            to={endpoints.eatwell_dietplan}>diet plan</Link>
+                <Link 
+                  onClick={toggleDrawer(anchor, false)}
+                  to={endpoints.eatwell_dietplan}
+                >diet plan</Link>
               </li>
               <li>
-              <Link 
-            onClick={toggleDrawer(anchor, false)}
-            to={endpoints.addEntry}>Add recipe</Link>
+                <Link 
+                  onClick={toggleDrawer(anchor, false)}
+                  to={endpoints.addEntry}
+                >add recipe</Link>
               </li>
             </ul>           
 
@@ -56,12 +59,20 @@ export default function AccordionMenu({toggleDrawer, anchor}) {
           <Typography>fitWell</Typography>
         </AccordionSummary>
         <AccordionDetails>
-            <Link 
-            onClick={toggleDrawer(anchor, false)}
-            to={endpoints.fitwell}>repository</Link>
-            <Link 
-            onClick={toggleDrawer(anchor, false)}
-            to={endpoints.addEntry}>Add activity</Link>
+            <ul>
+              <li>
+                <Link 
+                    onClick={toggleDrawer(anchor, false)}
+                    to={endpoints.fitwell}
+                >repository</Link>
+              </li>
+              <li>
+                <Link 
+                    onClick={toggleDrawer(anchor, false)}
+                    to={endpoints.addEntry}
+                >add activity</Link>
+              </li>
+            </ul>            
         </AccordionDetails>
       </Accordion>
 
@@ -75,12 +86,20 @@ export default function AccordionMenu({toggleDrawer, anchor}) {
           <Typography>restWell</Typography>
         </AccordionSummary>
         <AccordionDetails>
-            <Link 
-            onClick={toggleDrawer(anchor, false)}
-            to={endpoints.restwell}>repository</Link>
-            <Link 
-            onClick={toggleDrawer(anchor, false)}
-            to={endpoints.addEntry}>Add activity</Link>
+            <ul>
+              <li>
+                <Link 
+                    onClick={toggleDrawer(anchor, false)}
+                    to={endpoints.restwell}
+                >repository</Link>    
+              </li>
+              <li>
+                <Link 
+                    onClick={toggleDrawer(anchor, false)}
+                    to={endpoints.addEntry}
+                >add activity</Link>
+              </li>
+            </ul>           
         </AccordionDetails>
       </Accordion>
       
@@ -93,12 +112,23 @@ export default function AccordionMenu({toggleDrawer, anchor}) {
           <Typography>thinkWell</Typography>
         </AccordionSummary>
         <AccordionDetails>
-            <Link 
-            onClick={toggleDrawer(anchor, false)}
-            to={endpoints.thinkwell}>repository</Link>
-            <Link 
-            onClick={toggleDrawer(anchor, false)}
-            to={endpoints.addEntry}>Add activity</Link>
+            <ul>
+              <li>
+                <Link 
+                    onClick={toggleDrawer(anchor, false)}
+                    to={endpoints.thinkwell}
+                >repository</Link>
+              </li>
+              <li>
+                <Link 
+                    onClick={toggleDrawer(anchor, false)}
+                    to={endpoints.addEntry}
+                >add activity</Link>
+              </li>
+            </ul>
+
+            
+            
         </AccordionDetails>
       </Accordion>
 
