@@ -43,7 +43,7 @@ const AddEntry = () => {
 
     const [fitt, setFitt] = useState([])
 
-    const [title, setTitle] = useState('hello')
+    const [title, setTitle] = useState('entry title')
 
     const handleDeleteItem = (id) => {
         setIngredients(ingredients.filter(item => item.id !== id));
