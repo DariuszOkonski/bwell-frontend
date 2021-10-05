@@ -1,32 +1,36 @@
 import React from 'react'
-import { Grid, makeStyles } from '@material-ui/core'
 import { useParams, useRouteMatch } from 'react-router';
-import RepositoryDetailsCard from './RepositoryDetailsCard';
 import SimpleBreadcrumbs from './reuseable/SimpleBreadcrumbs';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { EntryContainer } from './reuseable/EntryContainer';
+import { EntryContentPart } from './reuseable/EntryContentPart';
+import { EntryFooter } from './reuseable/EntryFooter';
+import { EntryHeader } from './reuseable/EntryHeader';
+import EntryPageContainer from './reuseable/EntryPageContainer';
 import { endpoints } from '../utilities/utilities';
+import WeekendOutlinedIcon from '@material-ui/icons/WeekendOutlined';
+import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 
-const useStyles = makeStyles((theme) => ({
-    categoriesBar: {
-        justifyContent: "center",
-        marginTop: "1rem"
-    },
-    spacearound: {
-        justifyItems: 'space-around'
-    },
-    cards: {
-        justifyContent: 'center'
-    }
-}));
 
 const RepositoryIdeaPage = (props) => {
 
-    const [ideas, setIdeas] = useState([]);
+    const [ideas, setIdeas] = useState(null);
     let APIurl = "";
 
     if (props.repositoryType === 'restWell') APIurl = endpoints.APIhost + endpoints.APIrestWell;
     if (props.repositoryType === 'thinkWell') APIurl = endpoints.APIhost + endpoints.APIthinkWell;
+
+    const CardIcon = () => {
+        switch(props.repositoryType){
+          case 'restWell':
+            return <WeekendOutlinedIcon/>;
+          case 'thinkWell':
+            return <EmojiObjectsOutlinedIcon />;
+          default:
+            return 'none'
+        }
+      }
 
     useEffect(() => {
         const getIdeas = async () => {
@@ -45,26 +49,27 @@ const RepositoryIdeaPage = (props) => {
         return data 
     }
 
-    const classes = useStyles();
     const {url} = useRouteMatch();
 
     return (
-        <>
-            <Grid container spacing={2} xs={12} className={classes.categoriesBar}>
-                <Grid item xs={12} md={8}>
-                <SimpleBreadcrumbs path={url} header={ideas.title} />
-                </Grid>
-                <Grid item className={classes.cards} xs={12} md={8}>
-                    <Grid container xs={12} spacing={2} className={classes.cards}>
-                        { ideas &&
-                        <Grid item xs={12} md={8}>
-                            <RepositoryDetailsCard title={ideas.title} cardIcon={props.repositoryType} linkTo="" description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
-                        }
-                    </Grid>
-                </Grid>
-            </Grid>
-        </>
+        ideas &&
+        <EntryPageContainer>
+            <SimpleBreadcrumbs path={url} header={ideas.title} />
+            <EntryContainer>
+                <EntryHeader 
+                    header={ideas.title} 
+                    icon={<CardIcon />}
+                    rating={ideas.rating}
+                />
+                {
+                    ideas.content.map(part => {
+                        return <EntryContentPart header={part.header} text={part.text} key={Math.random()}/>
+                    })
+                }
+
+                <EntryFooter />
+            </EntryContainer>
+        </EntryPageContainer>
     )
 }
 
