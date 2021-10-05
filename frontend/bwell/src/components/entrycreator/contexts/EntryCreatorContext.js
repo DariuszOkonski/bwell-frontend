@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 } from 'uuid';
+
 
 
 export const EntryCreatorContext = createContext();
@@ -7,6 +8,10 @@ export const EntryCreatorContext = createContext();
 const EntryCreatorContextProvider = (props) => {
   const [title, setTitle] = useState("")
   const [module, setModule] = useState("fitWell")
+  const [textAreas, setTextAreas] = useState([
+    {id: v4(), header: '', text: ''},
+    {id: v4(), header: '', text: ''},
+  ])
 
   const [listsContent, setListContent] = useState({
     ingredientsList: [
@@ -18,6 +23,26 @@ const EntryCreatorContextProvider = (props) => {
 })
 
 
+  const addTextArea = (id, header, text) => {
+    const localTextArea = [...textAreas, {id, header, text}];
+    setTextAreas(localTextArea);
+  }
+
+  const removeTextArea = (id) => {
+    setTextAreas(textAreas.filter(item => item.id !== id));
+  }
+
+  const editTextArea = (newItem) => {
+    const localTextAreas = [...textAreas];
+    const newLocalTextAreas = localTextAreas.map(item => {
+      if(item.id === newItem.id) {
+        return newItem;
+      }
+      return item
+    });
+
+    setTextAreas(newLocalTextAreas);
+  }
 
   const addIngredient = (id, ingredient, quantity, measure) => {
     const localIngredient = {id, ingredient, quantity, measure}
@@ -46,13 +71,18 @@ const EntryCreatorContextProvider = (props) => {
     <EntryCreatorContext.Provider value={{
         title,
         module,
+        textAreas,
         customLists: listsContent.customLists, 
         ingredients: listsContent.ingredientsList,
         setTitle,
         setModule,
         addIngredient,
         removeIngredient,
-        editIngredient  }}>
+        editIngredient,
+        editTextArea,
+        removeTextArea,
+        addTextArea
+      }}>
       {props.children}
     </EntryCreatorContext.Provider>
   );

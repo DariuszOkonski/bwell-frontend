@@ -59,21 +59,11 @@ const Recipe = (props) => {
                         return <EntryContentPart header={part.header} text={part.text} key={Math.random()}/>
                     })
                 }
-{/*                 
-                <EntryContentPart header="Ingredients" text={[["mąka", "1 łyżka"], ["woda", "1 szklanka"],]}/>
-
-                <EntryContentPart header="Description" text='How do you use Lorem Ipsum in VS code?
-A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type "lorem ipsum" and select to insert either a line or paragraph.'/>
-                 */}
                 <EntryFooter/>
 
             </EntryContainer>
         </EntryPageContainer>
      );
 }
-// TODO 1. UUID dla mapped components 
-// 2. breadcrumbs w activity 
-// 3. change fake_api from JS to JSON_server 
-// 4. Further views: calculator, dietplan, add recipe, error page
 
 export default Recipe;

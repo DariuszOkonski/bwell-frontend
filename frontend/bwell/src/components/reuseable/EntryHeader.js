@@ -72,8 +72,6 @@ const useStyles = makeStyles({
 export const EntryHeader = ({header = "todo", icon=<RestaurantIcon />, rating}) => {
     const classes = useStyles();
 
-    console.log('rating ====================')
-    console.log(rating)
     return (
         <div className={classes.container}>            
             <div className={classes.icon}>

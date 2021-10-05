@@ -5,8 +5,8 @@ import { viewportSize } from '../../utilities/utilities'
 import EntryPageContainer from '../reuseable/EntryPageContainer'
 import SimpleBreadcrumbs from '../reuseable/SimpleBreadcrumbs'
 import AddEntryForm from './AddEntryForm'
-import { v4 as uuidv4 } from 'uuid';
 import EntryCreatorContextProvider, { EntryCreatorContext }  from './contexts/EntryCreatorContext'
+import EntryPreview from './EntryPreview'
 
 const AddEntry = () => {
     const useStyles = makeStyles({
@@ -53,7 +53,7 @@ const AddEntry = () => {
                 <div className={classes.part}>
 
                     {/* TODO - new component */}
-                    <h3>{title}</h3>
+                    {/* <h3>{title}</h3>
                     <ul style={{backgroundColor: 'white', padding: '2rem'}}>
                         {
                             ingredients.map(item => 
@@ -61,8 +61,9 @@ const AddEntry = () => {
                                     {item.ingredient} - {item.quantity} - {item.measure}
                                 </li>)
                         }
-                    </ul>
+                    </ul> */}
 
+                    <EntryPreview />
 
                 </div>
             </div>

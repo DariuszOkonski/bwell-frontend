@@ -1,3 +1,9 @@
+import RestaurantIcon from '@material-ui/icons/Restaurant';
+import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
+import WeekendOutlinedIcon from '@material-ui/icons/WeekendOutlined';
+import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
+
+
 const colors = {
     white: '#FFF',
     buttonPrimary: '#FF934F',
@@ -46,4 +52,23 @@ const endpoints = {
     
 }
 
-export { colors, viewportSize, endpoints }
+const modules = {
+    eatWell: {
+        name: 'eatWell',
+        icon: <RestaurantIcon />
+    },
+    fitWell: {
+        name: 'fitWell',
+        icon: <DirectionsBikeIcon />
+    },
+    restWell: {
+        name: 'restWell',
+        icon: <WeekendOutlinedIcon />
+    },
+    thinkWell: {
+        name: 'thinkWell',
+        icon: <EmojiObjectsOutlinedIcon />
+    },
+}
+
+export { colors, viewportSize, endpoints, modules }
