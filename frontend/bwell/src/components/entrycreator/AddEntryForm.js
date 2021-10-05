@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core'
-import React from 'react'
+import React, { useContext } from 'react'
 import { EntryContainer } from '../reuseable/EntryContainer'
 import { viewportSize, colors } from '../../utilities/utilities'
 import RestaurantIcon from '@material-ui/icons/Restaurant';
@@ -7,9 +7,10 @@ import EventButton from '../reuseable/EventButton'
 import { EventNote } from '@material-ui/icons';
 import TextAreaInput from './inputareas/TextAreaInput';
 import IngredientsList from './inputareas/IngredientsList';
+import { EntryCreatorContext }  from './contexts/EntryCreatorContext'
 
 
-const AddEntryForm = ({ingredients, handleDeleteItem, handleEditItem, handleAddItem}) => {
+const AddEntryForm = () => {
     const useStyles = makeStyles({
         headerContainer: {
             display: 'flex',
@@ -56,13 +57,16 @@ const AddEntryForm = ({ingredients, handleDeleteItem, handleEditItem, handleAddI
         }
     })
 
+    const { title, setTitle, module, setModule } = useContext(EntryCreatorContext)
+    const handleTitleChange = (e) => setTitle(e.target.value)
+    const handleModuleChange = (e) => setModule(e.target.value)
     const classes = useStyles()
     return (
         <EntryContainer>
             <div className={classes.moduleDropdown}>
                 <label >
                     <select 
-                        className={classes.select}
+                        className={classes.select} value={module} onChange={handleModuleChange}
                     >
                         <option className={classes.option} value="eatWell">eatWell</option>
                         <option className={classes.option} value="fitWell">fitWell</option>
@@ -78,7 +82,8 @@ const AddEntryForm = ({ingredients, handleDeleteItem, handleEditItem, handleAddI
                 </div>
 
                 <div className={classes.titleDiv}>
-                    <input className={classes.titleInput} type="text" placeholder="title" value="Entry title"/>
+                    <input className={classes.titleInput} type="text" placeholder="title" value={title}
+                    onChange={handleTitleChange}/>
                 </div>
             </div>
             <div className={classes.buttonContainer}>
@@ -86,12 +91,7 @@ const AddEntryForm = ({ingredients, handleDeleteItem, handleEditItem, handleAddI
                     <EventButton icon={<EventNote/>} text="Add list" callback={() => console.log("new list cnt")} isAbsolute={false}/>
             </div>
 
-            <IngredientsList 
-                ingredients={ingredients} 
-                handleDeleteItem={handleDeleteItem}
-                handleEditItem={handleEditItem}
-                handleAddItem={handleAddItem}
-            />
+            <IngredientsList />
 
 
             <div>

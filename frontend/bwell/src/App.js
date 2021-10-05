@@ -21,6 +21,7 @@ import RepositoryIdeaPage from './components/RepositoryIdeaPage';
 import FavouritesPage from './components/FavouritesPage';
 import Calculator from './components/eatwell/Calculator';
 import AddEntry from './components/entrycreator/AddEntry';
+import EntryCreatorContextProvider from './components/entrycreator/contexts/EntryCreatorContext';
 
 const useStylesPages = makeStyles({
   categoriesBar: {
@@ -116,7 +117,10 @@ function App() {
 
 
               <Route exact path={endpoints.addEntry} >
-                <AddEntry/>
+                <EntryCreatorContextProvider>
+                  <AddEntry/>
+                </EntryCreatorContextProvider>           
+                
               </Route>
               
               <Route >

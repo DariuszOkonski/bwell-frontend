@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core';
 import { colors } from '../../../utilities/utilities';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import { EntryCreatorContext } from '../contexts/EntryCreatorContext';
 
 const IngredientItem = (props) => {
     
@@ -31,13 +32,13 @@ const IngredientItem = (props) => {
         }
     })
     const classes = useStyles();
-    
+    const { removeIngredient, editIngredient } = useContext(EntryCreatorContext)
     const [ingredient, setIngredient] = useState(props.ingredient);
     const [quantity, setQuantity] = useState(props.quantity);
     const [measure, setMeasure] = useState(props.measure)    
 
     const handleDeleteItem = () => {
-        props.handleDeleteItem(props.id)
+        removeIngredient(props.id)
     }    
 
     const handleChangeIngredient = (evt) => {
@@ -53,7 +54,7 @@ const IngredientItem = (props) => {
     }
 
     useEffect(() => {
-        props.handleEditItem({
+        editIngredient({
             id: props.id, 
             ingredient, 
             quantity, 

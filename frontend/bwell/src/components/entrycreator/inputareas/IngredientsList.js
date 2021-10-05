@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import EventButton from '../../reuseable/EventButton'
 import IngredientItem from './IngredientItem'
 import { makeStyles } from '@material-ui/core';
 import { colors } from '../../../utilities/utilities';
+import { EntryCreatorContext } from '../contexts/EntryCreatorContext';
+import { v4 } from 'uuid';
 
-const IngredientsList = ({ ingredients, handleDeleteItem, handleEditItem, handleAddItem }) => {    
+const IngredientsList = () => {    
 
     const useStyles = makeStyles({
         container: {
@@ -18,20 +20,27 @@ const IngredientsList = ({ ingredients, handleDeleteItem, handleEditItem, handle
             fontWeight: '400'
         },
         buttonContainer: {
+            marginTop: "0.5rem",
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center'
         }
     })
 
+
     const classes = useStyles();    
+    const {ingredients, addIngredient } = useContext(EntryCreatorContext)    
     
     const showIngredients = ingredients.map(
         (item) => <IngredientItem 
             {...item} 
-            handleDeleteItem={handleDeleteItem}
-            handleEditItem={handleEditItem}
         />)
+
+        
+
+    const handleAddItem = (e) => {
+        addIngredient(v4(), "", 0, "unit");
+    }
 
     return (
         <div className={classes.container}>
