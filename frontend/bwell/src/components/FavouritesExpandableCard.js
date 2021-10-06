@@ -106,11 +106,16 @@ const FavouritesExpandableCard = ((props) => {
     useEffect(() => {
 
         const fetchIdeas = async () => {
-            console.log(APIurl);
-            const response = await fetch(endpoints.APIhost + APIurl)
-            const data = await response.json()
 
-            return data
+            let favouritesEntries = [];
+
+            for (let id of props.favourites) {
+                const response = await fetch(endpoints.APIhost + APIurl + '/' + id)
+                const data = await response.json()
+                favouritesEntries.push(data);
+            }
+
+            return favouritesEntries
         }
 
         const getIdeas = async () => {
@@ -119,49 +124,42 @@ const FavouritesExpandableCard = ((props) => {
         }
         getIdeas()
 
-        console.log(ideas);
-
-    },[APIurl, ideas]);
-
-    //given I have ids [1,2,3] for favourites in props.favourites. need to retrieve each from API and show title and URL to details
-    // ?id=1
+    }, [APIurl, props.favourites]);
 
     return (
-        ideas && ideas.map((ideaId) => {
-            return (
-            <Card className={classes.root} >
+        ideas &&
+        <Card className={classes.root} >
+            <CardContent>
+                <CardIcon className={classes.cardIcon} spacing={2} />
+                <Typography variant="h2" className={classes.header} component="h1">
+                    {props.title}
+                </Typography>
+                <IconButton
+                    className={clsx(classes.expand, {
+                        [classes.expandOpen]: expanded,
+                    })}
+                    onClick={handleExpandClick}
+                    aria-expanded={expanded}
+                    aria-label="show more"
+                >
+                    <ExpandMoreIcon />
+                </IconButton>
+            </CardContent>
+
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    <CardIcon className={classes.cardIcon} spacing={2} />
-                    <Typography variant="h2" className={classes.header} component="h1">
-                        {props.title}
-                    </Typography>
-                    <IconButton
-                        className={clsx(classes.expand, {
-                            [classes.expandOpen]: expanded,
-                        })}
-                        onClick={handleExpandClick}
-                        aria-expanded={expanded}
-                        aria-label="show more"
-                    >
-                        <ExpandMoreIcon />
-                    </IconButton>
+                    {
+                        ideas.map((ideaElement) => {
+                            return <FavouritesListElement idea={ideaElement} />;
+                        })
+                    }
                 </CardContent>
-
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                    <CardContent>
-                        <FavouritesListElement />
-                    </CardContent>
-                    <CardContent>
-                        <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />} className={classes.checkButton} text="check">Remove</Button>
-                        <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />} className={classes.checkButton} text="check">Back</Button>
-                    </CardContent>
-                </Collapse>
-            </Card >
-            )
-        }
-
-        )
-
+                <CardContent>
+                    <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />} className={classes.checkButton} text="check">Remove</Button>
+                    <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />} className={classes.checkButton} text="check">Back</Button>
+                </CardContent>
+            </Collapse>
+        </Card >
     );
 });
 

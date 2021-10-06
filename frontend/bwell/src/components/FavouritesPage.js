@@ -25,41 +25,41 @@ const FavouritesPage = (props) => {
 
     const APIurl = endpoints.APIhost + endpoints.APIusers;
 
-    const [favourites, setFavourites] = useState(null);
+    const [userData, setUserData] = useState(null);
 
     useEffect(() => {
 
         const fetchFavourites = async () => {
-            const response = await fetch(`${APIurl}${loggedUser}/${endpoints.APIuserFavourites}`)
+            const response = await fetch(`${APIurl}${loggedUser}`)
             const data = await response.json()
     
             return data 
         }
 
         const getIdeas = async () => {
-            const ideasFromServer = await fetchFavourites()
-            setFavourites(ideasFromServer)
+            const userData = await fetchFavourites()
+            setUserData(userData)
         }
         getIdeas()
     },[APIurl, loggedUser]);
 
     return (
-        favourites &&
+        userData &&
         <>
             <Grid container spacing={2} xs={12} className={classes.categoriesBar}>
                 <Grid item className={classes.cards} xs={12} md={8}>
                     <Grid container xs={12} spacing={2} className={classes.cards}>
                         <Grid item xs={12} md={6}>
-                            <FavouritesExpandableCard cardIcon={WeekendOutlinedIcon} title="eatWell favourites" type="eatWell" favourites={favourites.recipes} />
+                            <FavouritesExpandableCard cardIcon={WeekendOutlinedIcon} title="eatWell favourites" type="eatWell" favourites={userData.favourites.recipes} />
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <FavouritesExpandableCard cardIcon={WeekendOutlinedIcon} title="restWell favourites" type="restWell" favourites={favourites.activities} />
+                            <FavouritesExpandableCard cardIcon={WeekendOutlinedIcon} title="restWell favourites" type="restWell" favourites={userData.favourites.activities} />
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <FavouritesExpandableCard cardIcon={WeekendOutlinedIcon} title="thinkWell favourites" type="thinkWell" favourites={favourites.ideas} />
+                            <FavouritesExpandableCard cardIcon={WeekendOutlinedIcon} title="thinkWell favourites" type="thinkWell" favourites={userData.favourites.ideas} />
                         </Grid>
                         <Grid item xs={12} md={6}>
-                            <FavouritesExpandableCard cardIcon={WeekendOutlinedIcon} title="fitWell favourites" type="fitWell" favourites={favourites.excercises} />
+                            <FavouritesExpandableCard cardIcon={WeekendOutlinedIcon} title="fitWell favourites" type="fitWell" favourites={userData.favourites.exercises} />
                         </Grid>
                     </Grid>
                 </Grid>
