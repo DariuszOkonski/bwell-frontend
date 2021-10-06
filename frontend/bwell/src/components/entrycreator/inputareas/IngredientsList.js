@@ -6,7 +6,7 @@ import { colors } from '../../../utilities/utilities';
 import { EntryCreatorContext } from '../contexts/EntryCreatorContext';
 import { v4 } from 'uuid';
 
-const IngredientsList = () => {    
+const IngredientsList = ({listId}) => {    
 
     const useStyles = makeStyles({
         container: {
@@ -15,9 +15,12 @@ const IngredientsList = () => {
         header: {
             border: `1px solid ${colors.borderPrimary}`,
             borderRadius: "0.4rem",
-            padding: "0.2rem",
+            display: "block",
+            padding: "0.3rem",
+            width: '100%',
             color: `${colors.textPrimary}`,
-            fontWeight: '400'
+            fontWeight: '500',
+            fontSize: "1rem"
         },
         buttonContainer: {
             marginTop: "0.5rem",
@@ -29,22 +32,29 @@ const IngredientsList = () => {
 
 
     const classes = useStyles();    
-    const {ingredients, addIngredient } = useContext(EntryCreatorContext)    
+    // const {ingredients, addIngredient } = useContext(EntryCreatorContext)    
+    const { ingredientsLists, addIngredient, editIngredientsListTitle } = useContext(EntryCreatorContext)    
     
-    const showIngredients = ingredients.map(
+    const [currentList] = ingredientsLists.filter(list => list.id === listId)
+    
+    const showIngredients = currentList.ingredients && currentList.ingredients.map(
         (item) => <IngredientItem 
-            {...item} 
-        />)
+            {...item} listId={listId} key={item.id}
+        />);
 
         
 
     const handleAddItem = (e) => {
-        addIngredient(v4(), "", 0, "unit");
+        addIngredient(v4(), "", 0, "unit", listId);
+    }
+
+    const handleChangeTitle = (e) => {
+        editIngredientsListTitle(e.target.value, listId)
     }
 
     return (
         <div className={classes.container}>
-            <h3 className={classes.header}>Ingredients list</h3>
+            <input className={classes.header} value={currentList.header} placeholder="Ingredients title" onChange={handleChangeTitle}/>
 
             {showIngredients}
 

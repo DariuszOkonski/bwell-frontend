@@ -38,7 +38,7 @@ const IngredientItem = (props) => {
     const [measure, setMeasure] = useState(props.measure)    
 
     const handleDeleteItem = () => {
-        removeIngredient(props.id)
+        removeIngredient(props.id, props.listId)
     }    
 
     const handleChangeIngredient = (evt) => {
@@ -59,7 +59,7 @@ const IngredientItem = (props) => {
             ingredient, 
             quantity, 
             measure
-        })
+        }, props.listId)
         
     }, [ingredient, quantity, measure])
 

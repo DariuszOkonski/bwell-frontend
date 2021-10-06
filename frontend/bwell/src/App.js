@@ -15,7 +15,7 @@ import ThinkWellPage from './components/thinkwell/ThinkWellPage';
 import { makeStyles } from '@material-ui/core';
 import Recipe from './components/eatwell/Recipe';
 import Activity from './components/fitwell/Activity';
-import { endpoints } from './utilities/utilities';
+import { endpoints, modules } from './utilities/utilities';
 import LoginPage from './components/LoginPage';
 import RepositoryIdeaPage from './components/RepositoryIdeaPage';
 import FavouritesPage from './components/FavouritesPage';
@@ -105,10 +105,10 @@ function App() {
               <Route exact path={`${endpoints.fitwell_activity}:id`}>
                 <Activity />
               </Route>
-              <Route path={`${endpoints.restwell}:id`}>
+              <Route path={`${endpoints.restwell_idea}:id`}>
                 <RepositoryIdeaPage repositoryType='restWell' />
               </Route>
-              <Route path={`${endpoints.thinkwell}:id`}>
+              <Route path={`${endpoints.thinkwell_idea}:id`}>
                 <RepositoryIdeaPage repositoryType='thinkWell' />
               </Route>
               <Route path={endpoints.favourites}>
@@ -116,7 +116,12 @@ function App() {
               </Route>
 
 
-              <Route exact path={endpoints.addEntry} >
+              <Route path={[
+                `/${modules.eatWell.name}/addEntry`,
+                `/${modules.fitWell.name}/addEntry`,
+                `/${modules.thinkWell.name}/addEntry`,
+                `/${modules.restWell.name}/addEntry`,
+                ]} >
                 <EntryCreatorContextProvider>
                   <AddEntry/>
                 </EntryCreatorContextProvider>           

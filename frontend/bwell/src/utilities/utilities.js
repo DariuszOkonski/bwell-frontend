@@ -2,6 +2,8 @@ import RestaurantIcon from '@material-ui/icons/Restaurant';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import WeekendOutlinedIcon from '@material-ui/icons/WeekendOutlined';
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
+import TextAreaInput from '../components/entrycreator/inputareas/TextAreaInput';
+import IngredientsList from '../components/entrycreator/inputareas/IngredientsList';
 
 
 const colors = {
@@ -36,19 +38,19 @@ const endpoints = {
     login: "/login",
     eatwell: "/eatwell",
     fitwell: "/fitwell",
-    restwell: "/restwell/",
-    thinkwell: "/thinkwell/",
+    restwell: "/restwell",
+    thinkwell: "/thinkwell",
     eatwell_recipe: "/eatwell/recipe/",
     eatwell_calculator: "/eatwell/calculator",
     eatwell_dietplan: "/eatwell/dietplan",
     fitwell_activity: "/fitwell/activity/",
-    // restwell_idea: "/restwell/",
-    // thinkwell_idea: "/thinkwell/",
+    restwell_idea: "/restwell/idea/",
+    thinkwell_idea: "/thinkwell/exercise/",
     favourites: "/favourites",
     APIhost: "http://localhost:3001/",
     APIrestWell: "restWell",
     APIthinkWell: "thinkWell",
-    addEntry: "/addentry"
+    addEntry: (moduleUrl) => moduleUrl + "/addEntry"
     
 }
 
@@ -71,4 +73,10 @@ const modules = {
     },
 }
 
-export { colors, viewportSize, endpoints, modules }
+const contentTypes = {
+    textArea: "text_area",
+    ingredientsList: "ingredients_list",
+    customList: "custom_list"
+}
+
+export { colors, viewportSize, endpoints, modules, contentTypes }

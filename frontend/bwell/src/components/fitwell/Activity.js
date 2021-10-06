@@ -15,8 +15,6 @@ const Activity = () => {
     const [activity, setActivity] = useState(null)
     
     const url_parts = url.split("/")
-    console.log(path, url, " <== paths!!!")
-    console.log(url_parts, " <== paths!!!")
     
     useEffect(() => {
         // setRecipe(fake_getRecipe(Number(props.match.params.id)))

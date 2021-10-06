@@ -62,7 +62,7 @@ export default function AccordionMenu({toggleDrawer, anchor}) {
                 <Link
                   className={classes.a} 
                   onClick={toggleDrawer(anchor, false)}
-                  to={endpoints.addEntry}
+                  to={endpoints.addEntry(endpoints.eatwell)}
                 >add recipe</Link>
               </li>
             </ul>           
@@ -90,7 +90,7 @@ export default function AccordionMenu({toggleDrawer, anchor}) {
                 <Link
                   className={classes.a} 
                     onClick={toggleDrawer(anchor, false)}
-                    to={endpoints.addEntry}
+                    to={endpoints.addEntry(endpoints.fitwell)}
                 >add activity</Link>
               </li>
             </ul>            
@@ -119,7 +119,7 @@ export default function AccordionMenu({toggleDrawer, anchor}) {
                 <Link
                   className={classes.a} 
                     onClick={toggleDrawer(anchor, false)}
-                    to={endpoints.addEntry}
+                    to={endpoints.addEntry(endpoints.restwell)}
                 >add activity</Link>
               </li>
             </ul>           
@@ -147,8 +147,8 @@ export default function AccordionMenu({toggleDrawer, anchor}) {
                 <Link
                   className={classes.a} 
                     onClick={toggleDrawer(anchor, false)}
-                    to={endpoints.addEntry}
-                >add activity</Link>
+                    to={endpoints.addEntry(endpoints.thinkwell)}
+                replace >add activity</Link>
               </li>
             </ul>
 

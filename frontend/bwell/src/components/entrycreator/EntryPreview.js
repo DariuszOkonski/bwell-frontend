@@ -10,7 +10,7 @@ import RestaurantIcon from '@material-ui/icons/Restaurant';
 import { EntryContainer } from '../reuseable/EntryContainer';
 import EntryPageContainer from './../reuseable/EntryPageContainer';
 import { EntryCreatorContext } from './contexts/EntryCreatorContext';
-import { modules } from '../../utilities/utilities';
+import { contentTypes, modules } from '../../utilities/utilities';
 
 const useStyles = makeStyles({
     buttonContainer: {
@@ -20,15 +20,15 @@ const useStyles = makeStyles({
     }
 })
 
-const getIcon = (module) => {
-    switch (module) {
-        case modules.eatWell.name:
+export const getIcon = (module) => {
+    switch (module.toLowerCase()) {
+        case modules.eatWell.name.toLowerCase():
             return modules.eatWell.icon
-        case modules.fitWell.name:
+        case modules.fitWell.name.toLowerCase():
             return modules.fitWell.icon
-        case modules.thinkWell.name:
+        case modules.thinkWell.name.toLowerCase():
             return modules.thinkWell.icon
-        case modules.restWell.name:
+        case modules.restWell.name.toLowerCase():
             return modules.restWell.icon
     }
 }
@@ -38,9 +38,32 @@ const getIcon = (module) => {
 const EntryPreview = () => {
     const classes = useStyles();
         
-    const {title, module, customList, ingredients, } = useContext(EntryCreatorContext)
+    const {title, module, ingredientsLists, textAreas } = useContext(EntryCreatorContext)
 
+    const [content, setContent] = useState([])
+    
+    const getCurrentContent = () => {
+        const content = [...ingredientsLists, ...textAreas]
+        content.sort((a, b) => a.order - b.order)
 
+        return content;
+    }
+
+    useEffect(() => {
+        setContent(getCurrentContent())
+    }, [ingredientsLists, textAreas])
+
+    const serviceComponentChoice = () => {
+        return content.map(part => {
+            if (part.type == contentTypes.textArea) {
+                return <EntryContentPart header={part.header} text={part.text} key={part.id}/>
+            } else if (part.type == contentTypes.ingredientsList){
+                return <EntryContentPart header={part.header} text={part.ingredients.map(ingData => [ingData.ingredient, ingData.quantity, ingData.measure])} key={part.id}/>
+            } else if (part.type == contentTypes.customList) {
+                return <EntryContentPart header={part.header} text={part.listContent} key={part.id}/>
+            }
+        })
+    }
 
     return ( 
         <EntryPageContainer>
@@ -50,12 +73,16 @@ const EntryPreview = () => {
                     icon={getIcon(module)}
                 />
 
+                {
+                    serviceComponentChoice()
+                }
+
                 {/* {
                      recipe.content.map(part => {
                         return <EntryContentPart header={part.header} text={part.text} key={Math.random()}/>
                     })
                 } */}
-                <EntryFooter/>
+                <EntryFooter disabled={true}/>
 
             </EntryContainer>
         </EntryPageContainer>

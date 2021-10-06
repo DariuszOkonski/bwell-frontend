@@ -28,9 +28,11 @@ const useStyles = makeStyles({
 export const EntryContentPart = ({header, text}) => {
     const classes = useStyles()
 
-    const inputData = (typeof text === 'object') ? (
+    const inputData = text && (typeof text === 'object') ? (
         <ul className={classes.list}>
-                {text.map(item => <li key={Math.random()}>{item.join(" - ")}</li>)}
+                {text.map(item => {
+                return <li key={Math.random()}>{item[0] != "" ? item.join(" - ") : "[ blank ]"}</li>
+            })}
         </ul>
     ) : (
         <p>
@@ -40,10 +42,10 @@ export const EntryContentPart = ({header, text}) => {
     return (
         <div className={classes.container}>
             <h4>
-                {header}:
+                {header != "" ? header : "Your header"}:
             </h4>
             <article className={classes.content} >
-                {inputData}
+                {inputData != "" ? inputData : "Your content"}
             </article>
         </div>
     )

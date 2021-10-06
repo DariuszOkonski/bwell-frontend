@@ -1,91 +1,145 @@
-import React, { createContext, useState } from 'react';
-import { v4 } from 'uuid';
+import React, {
+    createContext,
+    useEffect,
+    useState
+} from 'react';
+import { useRouteMatch } from 'react-router';
+import {
+    v4
+} from 'uuid';
+import { contentTypes } from '../../../utilities/utilities';
 
-
+import { useHistory } from 'react-router-dom';
 
 export const EntryCreatorContext = createContext();
 
 const EntryCreatorContextProvider = (props) => {
-  const [title, setTitle] = useState("")
-  const [module, setModule] = useState("fitWell")
-  const [textAreas, setTextAreas] = useState([
-    {id: v4(), header: '', text: ''},
-    {id: v4(), header: '', text: ''},
-  ])
+    const {path} = useRouteMatch();
 
-  const [listsContent, setListContent] = useState({
-    ingredientsList: [
-        // {id: uuidv4(), ingredient: "", quantity: 0, measure: ""}
-    ],
-    customLists: [
+    const [title, setTitle] = useState("")
+    const [module, setModule] = useState(path.split("/")[1])
+    const [textAreas, setTextAreas] = useState([])
+    const [ingredientsLists, setIngredientsLists] = useState([
+        // {id:0, header: "", ingredients: [], order: 0}
+    ])
+    const [generalLists, setGeneralLists] = useState([
+        // {id, header, content, order}
+    ])
 
-    ]
-})
+    useEffect(() => {
+        setModule(path.split("/")[1])
+    }, [path])
+
+    const nextOrder = () => textAreas.length + ingredientsLists.length
+
+    const addTextArea = (id, header, text) => {
+        const localTextArea = [...textAreas, {
+            id,
+            header,
+            text,
+            order: nextOrder(),
+            type: contentTypes.textArea
+        }];
+        setTextAreas(localTextArea);
+    }
+
+    const removeTextArea = (id) => {
+        setTextAreas(textAreas.filter(item => item.id !== id));
+    }
+
+    const editTextArea = (newItem) => {
+        const localTextAreas = [...textAreas];
+        const newLocalTextAreas = localTextAreas.map(item => item.id === newItem.id ? {...item, ...newItem} : item);
+        setTextAreas(newLocalTextAreas);
+    }
 
 
-  const addTextArea = (id, header, text) => {
-    const localTextArea = [...textAreas, {id, header, text}];
-    setTextAreas(localTextArea);
-  }
+    const addIngredientsList = (id) => {
 
-  const removeTextArea = (id) => {
-    setTextAreas(textAreas.filter(item => item.id !== id));
-  }
+        setIngredientsLists([...ingredientsLists, {
+            id,
+            header: "",
+            ingredients: [{
+                id: v4(),
+                ingredient: "",
+                quantity: 0,
+                measure: "g"
+            }],
+            order: nextOrder(),
+            type: contentTypes.ingredientsList
+        }])
+    }
 
-  const editTextArea = (newItem) => {
-    const localTextAreas = [...textAreas];
-    const newLocalTextAreas = localTextAreas.map(item => {
-      if(item.id === newItem.id) {
-        return newItem;
-      }
-      return item
-    });
+    const editIngredientsListTitle = (newTitle, listId) => {
+        const updatedIngredientsList = ingredientsLists.map(item => {
+            if (item.id === listId) {
+                item.header = newTitle
+            }
+            return item
+        });
+        setIngredientsLists(updatedIngredientsList);
+    }
 
-    setTextAreas(newLocalTextAreas);
-  }
 
-  const addIngredient = (id, ingredient, quantity, measure) => {
-    const localIngredient = {id, ingredient, quantity, measure}
-    const ingredientsList = [...listsContent.ingredientsList, localIngredient]
-
-    setListContent({...listsContent, ingredientsList});
-  };
-  const removeIngredient = (id) => {
-    const ingredientsList = listsContent.ingredientsList.filter(ingredient => ingredient.id !== id)
-    setListContent({...listsContent, ingredientsList});
-  }
-
-  const editIngredient = (newItem) => {
-    const localIngredients = [...listsContent.ingredientsList];
-    const newLocalIngredients = localIngredients.map(item => {
-        if(item.id === newItem.id) {
-            return newItem
+    const addIngredient = (id, ingredient, quantity, measure, listId) => {
+        const localIngredient = {
+            id,
+            ingredient,
+            quantity,
+            measure
         }
-        return item
-    })
-    setListContent({...listsContent, ingredientsList: newLocalIngredients});
+        const updatedLists = ingredientsLists.map(list => {
+            if (list.id === listId) {
+                const localState = list.ingredients
+                list.ingredients = [...localState, localIngredient]
+            }
+            return list
+        });
+        setIngredientsLists(updatedLists)
+    };
+
+    const removeIngredient = (id, listId) => {
+        const updatedLists = ingredientsLists.map(list => {
+            if (list.id === listId) {
+                list.ingredients = list.ingredients.filter(ingredient => ingredient.id !== id)
+            }
+            return list
+        });
+        setIngredientsLists(updatedLists)
+    }
+
+    const editIngredient = (newItem, listId) => {
+        const updatedLists = ingredientsLists.map(list => {
+            if (list.id === listId) {
+                const localIngredients = list.ingredients.map(ingredient => ingredient.id === newItem.id ? newItem : ingredient)
+                list.ingredients = localIngredients;
+            }
+            return list
+        });
+        setIngredientsLists(updatedLists)
+    }
+
+    return ( <EntryCreatorContext.Provider value = {
+            {
+                title,
+                module,
+                textAreas,
+                ingredientsLists,
+                // customLists: listsContent.customLists,
+                setTitle,
+                setModule,
+                addIngredient,
+                removeIngredient,
+                editIngredient,
+                addTextArea,
+                editTextArea,
+                removeTextArea,
+                addIngredientsList,
+                editIngredientsListTitle,
+            }}> {
+            props.children
+        } </EntryCreatorContext.Provider>
+    );
 }
 
-
-  return (
-    <EntryCreatorContext.Provider value={{
-        title,
-        module,
-        textAreas,
-        customLists: listsContent.customLists, 
-        ingredients: listsContent.ingredientsList,
-        setTitle,
-        setModule,
-        addIngredient,
-        removeIngredient,
-        editIngredient,
-        editTextArea,
-        removeTextArea,
-        addTextArea
-      }}>
-      {props.children}
-    </EntryCreatorContext.Provider>
-  );
-}
- 
 export default EntryCreatorContextProvider;

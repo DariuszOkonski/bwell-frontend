@@ -1,16 +1,21 @@
 import { makeStyles } from '@material-ui/core'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { EntryContainer } from '../reuseable/EntryContainer'
-import { viewportSize, colors } from '../../utilities/utilities'
+import { viewportSize, colors, contentTypes, modules } from '../../utilities/utilities'
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import EventButton from '../reuseable/EventButton'
 import { EventNote } from '@material-ui/icons';
 import TextAreaInput from './inputareas/TextAreaInput';
 import IngredientsList from './inputareas/IngredientsList';
 import { EntryCreatorContext }  from './contexts/EntryCreatorContext'
+import { v4 } from 'uuid';
+import { getIcon } from './EntryPreview';
+import CustomButton from '../reuseable/CustomButton';
+import { useHistory, useRouteMatch } from 'react-router';
 
 
-const AddEntryForm = () => {
+
+const AddEntryForm = ({initModule}) => {
     const useStyles = makeStyles({
         headerContainer: {
             display: 'flex',
@@ -54,31 +59,68 @@ const AddEntryForm = () => {
         buttonContainer: {
             display: "flex",
             justifyContent: "space-evenly"
+        },
+        emptyContent: {
+            display: "flex",
+            justifyContent: "space-evenly",
+            padding: "3rem 0",
+            margin: "1rem",
+            border: `1px solid ${colors.borderPrimary}`,
+            borderRadius: "0.4rem",
+            fontWeight: 400
         }
     })
 
-    const { title, setTitle, module, setModule } = useContext(EntryCreatorContext)
-    const handleTitleChange = (e) => setTitle(e.target.value)
-    const handleModuleChange = (e) => setModule(e.target.value)
+    const {path} = useRouteMatch();
+
+
+    const { title, setTitle, module, setModule, addIngredientsList, addTextArea, ingredientsLists, textAreas } = useContext(EntryCreatorContext)
+    // setModule(url.split("/")[1]);
+    
+    let history = useHistory();
+    
     const classes = useStyles()
+    
+    const [content, setContent] = useState([])
+    
+    const [moduleObj, setModuleObj] = useState({module: path.split("/")[1], icon: getIcon(path.split("/")[1])})
+
+    const changeModule = (newModule) => {
+        history.push(`/${newModule}/addentry`)
+        setModuleObj({module: newModule, icon: getIcon(newModule)})
+        setModule(newModule)
+    }
+    
+    const getContentListInOrder = () => {
+        const content = [...ingredientsLists, ...textAreas]
+        content.sort((a, b) => a.order - b.order)
+
+        return content;
+    }
+    
+    const handleModuleChange = (e) => changeModule(e.target.value)
+    const handleTitleChange = (e) => setTitle(e.target.value)
+    useEffect(() => {
+        setContent(getContentListInOrder())
+    }, [ingredientsLists, textAreas, moduleObj])
+
     return (
-        <EntryContainer>
+        <EntryContainer key={moduleObj.module}>
             <div className={classes.moduleDropdown}>
                 <label >
                     <select 
                         className={classes.select} value={module} onChange={handleModuleChange}
                     >
-                        <option className={classes.option} value="eatWell">eatWell</option>
-                        <option className={classes.option} value="fitWell">fitWell</option>
-                        <option className={classes.option} value="restWell">restWell</option>
-                        <option className={classes.option} value="thinkWell">thinkWell</option>
+                        <option className={classes.option} value={modules.eatWell.name}>eatWell</option>
+                        <option className={classes.option} value={modules.fitWell.name}>fitWell</option>
+                        <option className={classes.option} value={modules.restWell.name}>restWell</option>
+                        <option className={classes.option} value={modules.thinkWell.name}>thinkWell</option>
                     </select>
                 </label>
             </div>
             <div className={classes.headerContainer}>
                 <div className={classes.icon}>
-
-                    <RestaurantIcon/>
+                    {getIcon(module)}
                 </div>
 
                 <div className={classes.titleDiv}>
@@ -87,19 +129,27 @@ const AddEntryForm = () => {
                 </div>
             </div>
             <div className={classes.buttonContainer}>
-                    <EventButton text="Add text" callback={() => console.log("new text cnt")} isAbsolute={false}/>
-                    <EventButton icon={<EventNote/>} text="Add list" callback={() => console.log("new list cnt")} isAbsolute={false}/>
+                    <EventButton text="Add text" callback={() => addTextArea(v4(), "", "")} isAbsolute={false}/>
+                    <EventButton icon={<EventNote/>} text="Add list" callback={() => addIngredientsList(v4())} isAbsolute={false}/>
             </div>
 
-            <IngredientsList />
-
-
-            <div>
-                <TextAreaInput/>
-            </div>
+            {content.length > 0 ? content.map(content => {
+                switch (content.type) {
+                    case contentTypes.ingredientsList:
+                        return <IngredientsList key={content.id} listId={content.id}/>
+                    case contentTypes.textArea:
+                        return <TextAreaInput id={content.id} key={content.id}/>
+                }
+            }) : 
+            (
+                <div className={classes.emptyContent}>
+                    <p>Insert some data</p>
+                </div>
+            )}
+        
             <div className={classes.buttonContainer}>
-                    <EventButton text="Back" callback={() => console.log("back")} isAbsolute={false}/>
-                    <EventButton icon={<EventNote/>} text="Add to favorite" callback={() => console.log("add to favorite")} isAbsolute={false}/>
+                    <CustomButton text="Back" linkTo="/" isAbsolute={false}/>
+                    <EventButton icon={<EventNote/>} text="Add entry" callback={() => console.log("submit")} isAbsolute={false}/>
             </div>
 
         </EntryContainer>
