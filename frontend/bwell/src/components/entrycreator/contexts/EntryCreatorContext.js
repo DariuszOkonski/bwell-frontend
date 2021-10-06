@@ -20,7 +20,7 @@ const EntryCreatorContextProvider = (props) => {
     const [module, setModule] = useState(path.split("/")[1])
     const [textAreas, setTextAreas] = useState([])
     const [ingredientsLists, setIngredientsLists] = useState([
-        // {id:0, header: "", ingredients: [], order: 0}
+        // {id:0, header: "", ingredients: [], order: 0, type: contentTypes.ingredients_list}
     ])
     const [generalLists, setGeneralLists] = useState([
         // {id, header, content, order}
