@@ -13,23 +13,23 @@ const RestWellPage = (props) => {
     const {match} = props;
 
     const [ideas, setIdeas] = useState([]);
-    // const APIurl = endpoints.APIhost + endpoints.APIrestWell;
-    const APIurl = "http://localhost:3001/ideas/";
+    const APIurl = endpoints.APIhost + endpoints.APIrestWell;
 
     useEffect(() => {
+
+        const fetchIdeas = async () => {
+            const response = await fetch(APIurl)
+            const data = await response.json()
+    
+            return data 
+        }
+
         const getIdeas = async () => {
             const ideasFromServer = await fetchIdeas()
             setIdeas(ideasFromServer)
         }
         getIdeas()
-    },[]);
-
-    const fetchIdeas = async () => {
-        const response = await fetch(APIurl)
-        const data = await response.json()
-
-        return data 
-    }
+    },[APIurl]);
 
     return (
         <>
