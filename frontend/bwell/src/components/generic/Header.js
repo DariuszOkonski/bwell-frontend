@@ -5,8 +5,9 @@ import PersonAdd from '@material-ui/icons/PersonAdd';
 import HowToRegIcon from '@material-ui/icons/HowToReg';
 import { makeStyles } from '@material-ui/core';
 import { Link } from "react-router-dom";
-import { viewportSize, colors } from '../../utilities/utilities';
+import { viewportSize, colors, endpoints } from '../../utilities/utilities';
 import SwipeableTemporaryDrawer from './SwipeableTemporaryDrawer';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -43,7 +44,6 @@ const useStyles = makeStyles((theme) => ({
 
     
 const Header = (props) => {
-
 const classes = useStyles();
 return (
 
@@ -57,11 +57,14 @@ return (
                 </div>
                 
                 <div className={classes.buttonsContainer}>
-                    
-                    <Button component={Link} to="/login" color="inherit" className={classes.button} startIcon={<HowToRegIcon />}>
+                    <Button component={Link} to={endpoints.favourites} color="inherit" className={classes.button} startIcon={<FavoriteBorderIcon />}>
+                        Favourites
+                    </Button>
+
+                    <Button component={Link} to={endpoints.login} color="inherit" className={classes.button} startIcon={<HowToRegIcon />}>
                         Login
                     </Button>
-                    <Button component={Link} to="/register" color="inherit" className={classes.button} startIcon={<PersonAdd />}>
+                    <Button component={Link} to={endpoints.register} color="inherit" className={classes.button} startIcon={<PersonAdd />}>
                         Register
                     </Button>
 
