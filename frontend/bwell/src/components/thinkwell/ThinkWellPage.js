@@ -9,8 +9,8 @@ import { useState, useEffect } from 'react';
 
 const ThinkWellPage = (props) => {
 
-    const [ideas, setIdeas] = useState(null);
-    let APIurl = endpoints.APIhost + endpoints.APIthinkWell;
+    const [excercises, setExcercises] = useState(null);
+    let API = endpoints.APIhost + endpoints.APIthinkWell;
 
     const classes = props.useStylesPages();
 
@@ -18,23 +18,23 @@ const ThinkWellPage = (props) => {
 
     useEffect(() => {
 
-        const fetchIdeas = async () => {
-            const response = await fetch(APIurl)
+        const fetchExcercises = async () => {
+            const response = await fetch(API)
             const data = await response.json()
-
-            return data
+    
+            return data 
         }
 
-
-        const getIdeas = async () => {
-            const ideasFromServer = await fetchIdeas()
-            setIdeas(ideasFromServer)
+        const getExcercises = async () => {
+            const excercisesFromServer = await fetchExcercises()
+            setExcercises(excercisesFromServer)
         }
-        getIdeas()
-    }, [APIurl]);
+        getExcercises()
+    },[API]);
+
 
     return (
-        ideas &&
+        excercises &&
         <>
             <Grid container spacing={2} xs={12} className={classes.categoriesBar}>
                 <Grid item xs={12} md={8}>
@@ -42,12 +42,15 @@ const ThinkWellPage = (props) => {
                 </Grid>
                 <Grid item className={classes.cards} xs={12} md={8}>
                     <Grid container xs={12} spacing={2} className={classes.cards}>
-                        {ideas.map((idea) => {
-                            return (
-                                <Grid item xs={12} md={6}>
-                                    <RepositoryCard title={idea.title} cardIcon={EmojiObjectsOutlinedIcon} linkTo={`${endpoints.thinkwell_idea}${idea.id}`} description={idea.description} />
-                                </Grid>)
-                        })}
+                        {
+                            excercises.map(excercise => {
+                                return(
+                                    <Grid item xs={12} md={6}>
+                                        <RepositoryCard title={excercise.title} cardIcon={EmojiObjectsOutlinedIcon} linkTo={`${endpoints.thinkwell_idea}${excercise.id}`} description={excercise.description} />
+                                    </Grid>
+                                )
+                            })
+                        }
                     </Grid>
                 </Grid>
             </Grid>
