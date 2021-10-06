@@ -22,48 +22,50 @@ const RepositoryIdeaPage = (props) => {
     if (props.repositoryType === 'thinkWell') APIurl = endpoints.APIhost + endpoints.APIthinkWell;
 
     const CardIcon = () => {
-        switch(props.repositoryType){
-          case 'restWell':
-            return <WeekendOutlinedIcon/>;
-          case 'thinkWell':
-            return <EmojiObjectsOutlinedIcon />;
-          default:
-            return 'none'
+        switch (props.repositoryType) {
+            case 'restWell':
+                return <WeekendOutlinedIcon />;
+            case 'thinkWell':
+                return <EmojiObjectsOutlinedIcon />;
+            default:
+                return 'none'
         }
-      }
+    }
+
+    let { id } = useParams();
 
     useEffect(() => {
+
+        const fetchIdeas = async () => {
+            const response = await fetch(APIurl + "/" + id)
+            const data = await response.json()
+
+            return data
+        }
+
+
         const getIdeas = async () => {
             const ideasFromServer = await fetchIdeas()
             setIdeas(ideasFromServer)
         }
         getIdeas()
-    },[]);
-    
-    let { id } = useParams();
+    }, [APIurl, id]);
 
-    const fetchIdeas = async () => {
-        const response = await fetch(APIurl + "/" + id)
-        const data = await response.json()
-
-        return data 
-    }
-
-    const {url} = useRouteMatch();
+    const { url } = useRouteMatch();
 
     return (
         ideas &&
         <EntryPageContainer>
             <SimpleBreadcrumbs path={url} header={ideas.title} />
             <EntryContainer>
-                <EntryHeader 
-                    header={ideas.title} 
+                <EntryHeader
+                    header={ideas.title}
                     icon={<CardIcon />}
                     rating={ideas.rating}
                 />
                 {
                     ideas.content.map(part => {
-                        return <EntryContentPart header={part.header} text={part.text} key={Math.random()}/>
+                        return <EntryContentPart header={part.header} text={part.text} key={Math.random()} />
                     })
                 }
 
