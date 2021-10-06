@@ -4,6 +4,7 @@ import IngredientItem from './IngredientItem'
 import { makeStyles } from '@material-ui/core';
 import { colors } from '../../../utilities/utilities';
 import { EntryCreatorContext } from '../contexts/EntryCreatorContext';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { v4 } from 'uuid';
 
 const IngredientsList = ({listId}) => {    
@@ -22,22 +23,33 @@ const IngredientsList = ({listId}) => {
             fontWeight: '500',
             fontSize: "1rem"
         },
+        headerContainer: {
+            display: 'flex'
+        },
         buttonContainer: {
             marginTop: "0.5rem",
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center'
+        },
+        buttonDelete: {
+            backgroundColor: colors.thumbDown,
+            border: 'none',
+            borderRadius: "0.4rem",
+            color: `${colors.white}`,
+            cursor: 'pointer',
+            marginLeft: '0.2rem'
         }
     })
 
 
     const classes = useStyles();    
     // const {ingredients, addIngredient } = useContext(EntryCreatorContext)    
-    const { ingredientsLists, addIngredient, editIngredientsListTitle } = useContext(EntryCreatorContext)    
+    const { ingredientsLists, addIngredient, editIngredientsListTitle, removeIngredientsList } = useContext(EntryCreatorContext)    
     
     const [currentList] = ingredientsLists.filter(list => list.id === listId)
     
-    const showIngredients = currentList.ingredients && currentList.ingredients.map(
+    const showIngredients = ( currentList && currentList.ingredients) && currentList.ingredients.map(
         (item) => <IngredientItem 
             {...item} listId={listId} key={item.id}
         />);
@@ -52,9 +64,18 @@ const IngredientsList = ({listId}) => {
         editIngredientsListTitle(e.target.value, listId)
     }
 
+    const handleRemoveIngredientsList = () => {
+        removeIngredientsList(listId);
+    }
+
     return (
-        <div className={classes.container}>
-            <input className={classes.header} value={currentList.header} placeholder="Ingredients title" onChange={handleChangeTitle}/>
+        currentList ? <div className={classes.container}>
+            <div className={classes.headerContainer}>
+                <input className={classes.header} value={currentList.header} placeholder="Ingredients title" onChange={handleChangeTitle}/>
+                <button className={classes.buttonDelete} onClick={handleRemoveIngredientsList}>
+                    <DeleteOutlineIcon />
+                </button>
+            </div>
 
             {showIngredients}
 
@@ -63,6 +84,8 @@ const IngredientsList = ({listId}) => {
             </div>
 
         </div>
+        :
+        <></>
     )
 }
 

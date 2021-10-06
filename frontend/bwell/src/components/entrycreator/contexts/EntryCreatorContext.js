@@ -70,6 +70,12 @@ const EntryCreatorContextProvider = (props) => {
         }])
     }
 
+    const removeIngredientsList = (id) => {
+        const localIngredinetsList = [...ingredientsLists];
+
+        setIngredientsLists(localIngredinetsList.filter(list => list.id !== id))
+    }
+
     const editIngredientsListTitle = (newTitle, listId) => {
         const updatedIngredientsList = ingredientsLists.map(item => {
             if (item.id === listId) {
@@ -136,6 +142,7 @@ const EntryCreatorContextProvider = (props) => {
                 removeTextArea,
                 addIngredientsList,
                 editIngredientsListTitle,
+                removeIngredientsList
             }}> {
             props.children
         } </EntryCreatorContext.Provider>
