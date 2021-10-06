@@ -46,7 +46,6 @@ const CategoriesBar = (props) => {
     const classes = useStyles();
 
     const locationPath = props.location.split('/');
-    console.log(locationPath)
 
     return (
         <Box className={classes.card} xs={12} md={10} lg={8}>

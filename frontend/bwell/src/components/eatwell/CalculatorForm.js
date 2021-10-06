@@ -22,7 +22,6 @@ class CalculatorForm extends Component {
         evt.preventDefault();
 
         // TODO sand date
-        console.log(this.state)
 
         this.setState({
             gender: '',

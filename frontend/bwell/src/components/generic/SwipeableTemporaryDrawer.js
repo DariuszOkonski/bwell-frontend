@@ -16,6 +16,7 @@ import WeekendOutlinedIcon from '@material-ui/icons/WeekendOutlined';
 import logo from '../../assets/logo_large.png';
 import { viewportSize, colors } from '../../utilities/utilities';
 import { Link } from 'react-router-dom';
+import AccordionMenu from './AccordionMenu';
 
 const useStyles = makeStyles({
   list: {
@@ -51,37 +52,40 @@ export default function SwipeableTemporaryDrawer() {
   };
 
   const list = (anchor) => (
-    <div
-      className={clsx(classes.list, {
-        [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-      })}
-      role="presentation"
-      onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
-      <List>
-        <img src={logo} className={classes.logo} />
-      </List>
-      <Divider />
-      <List>
-        <ListItem button key={'eatWell'} component={Link} to="/eatWell">
-          <ListItemIcon><ThumbUpOutlined /></ListItemIcon>
-          <ListItemText primary={'eatWell'} />
-        </ListItem>
-        <ListItem button key={'fitWell'} component={Link} to="/fitWell">
-          <ListItemIcon><DirectionsBikeIcon /></ListItemIcon>
-          <ListItemText primary={'fitWell'} />
-        </ListItem>
-        <ListItem button key={'thinkWell'} component={Link} to="/thinkWell">
-          <ListItemIcon><EmojiObjectsOutlinedIcon /></ListItemIcon>
-          <ListItemText primary={'thinkWell'} />
-        </ListItem>
-        <ListItem button key={'restWell'} component={Link} to="/restWell">
-          <ListItemIcon><WeekendOutlinedIcon /></ListItemIcon>
-          <ListItemText primary={'restWell'} />
-        </ListItem>
-      </List>
-    </div>
+      <div
+        className={clsx(classes.list, {
+          [classes.fullList]: anchor === 'top' || anchor === 'bottom',
+        })}
+        role="presentation"
+        onClick={toggleDrawer(anchor, false)}
+        onKeyDown={toggleDrawer(anchor, false)}
+      >
+        <List>
+          <img src={logo} className={classes.logo} />
+        </List>
+        <Divider />
+        {/* <List>
+          <ListItem button key={'eatWell'} component={Link} to="/eatWell">
+            <ListItemIcon><ThumbUpOutlined /></ListItemIcon>
+            <ListItemText primary={'eatWell'} />
+          </ListItem>
+          <ListItem button key={'fitWell'} component={Link} to="/fitWell">
+            <ListItemIcon><DirectionsBikeIcon /></ListItemIcon>
+            <ListItemText primary={'fitWell'} />
+          </ListItem>
+          <ListItem button key={'thinkWell'} component={Link} to="/thinkWell">
+            <ListItemIcon><EmojiObjectsOutlinedIcon /></ListItemIcon>
+            <ListItemText primary={'thinkWell'} />
+          </ListItem>
+          <ListItem button key={'restWell'} component={Link} to="/restWell">
+            <ListItemIcon><WeekendOutlinedIcon /></ListItemIcon>
+            <ListItemText primary={'restWell'} />
+          </ListItem>
+        </List> */}
+        
+      </div>
+      
+
   );
 
   return (
@@ -92,6 +96,7 @@ export default function SwipeableTemporaryDrawer() {
             {/* {anchor} */}
             <MenuIcon style={{ color: 'white', fontSize: '2rem' }} />
           </Button>
+          
           <SwipeableDrawer
             anchor={anchor}
             open={state[anchor]}
@@ -99,7 +104,12 @@ export default function SwipeableTemporaryDrawer() {
             onOpen={toggleDrawer(anchor, true)}
           >
             {list(anchor)}
+
+
+            <AccordionMenu toggleDrawer={toggleDrawer} anchor={anchor}/>
           </SwipeableDrawer>
+
+
         </React.Fragment>
       ))}
     </div>

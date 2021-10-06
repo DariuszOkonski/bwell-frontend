@@ -1,24 +1,32 @@
 import { ClickAwayListener, makeStyles } from '@material-ui/core'
 import { CallMissedSharp } from '@material-ui/icons'
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { useRouteMatch } from 'react-router'
 import { viewportSize } from '../../utilities/utilities'
 import EntryPageContainer from '../reuseable/EntryPageContainer'
 import SimpleBreadcrumbs from '../reuseable/SimpleBreadcrumbs'
 import AddEntryForm from './AddEntryForm'
+import EntryCreatorContextProvider, { EntryCreatorContext }  from './contexts/EntryCreatorContext'
+import EntryPreview from './EntryPreview'
 
 const AddEntry = () => {
+
+    const {path} = useRouteMatch()
     const useStyles = makeStyles({
         content: {
             display: 'flex',
             flexDirection: "column",
             // margin: '0 auto',
-            [`@media (min-width: ${viewportSize.mobileL})`] : {
+            [`@media (min-width: ${viewportSize.tabletS})`] : {
                 flexDirection: "row",
             },
         },
         part: {
             width: '95%',
             [`@media (min-width: ${viewportSize.mobileL})`] : {
+                width: '97%',
+            },
+            [`@media (min-width: ${viewportSize.tabletS})`] : {
                 width: '100%',
             },
             margin: '0.5rem 0.5rem',
@@ -30,11 +38,27 @@ const AddEntry = () => {
         }
     })
 
+    const { ingredientsLists, textAreas } = useContext(EntryCreatorContext)
+
+    const [content, setContent] = useState([])
+    
+    const getCurrentContent = () => {
+        const content = [...ingredientsLists, ...textAreas]
+        content.sort((a, b) => a.order - b.order)
+
+        return content;
+    }
+
+    useEffect(() => {
+        setContent(getCurrentContent())
+    }, [ingredientsLists, textAreas])
+
     const classes = useStyles()
     return (
+        
         <EntryPageContainer>
             <div className={classes.simpleBreadcrubmContainer}>
-                <SimpleBreadcrumbs path="/addentry"/>
+                <SimpleBreadcrumbs path={path}/>
             </div>
             <div className={classes.content}>
 
@@ -42,10 +66,12 @@ const AddEntry = () => {
                     <AddEntryForm/>
                 </div>
                 <div className={classes.part}>
-                    <AddEntryForm/>
+
+                    <EntryPreview />
+
                 </div>
             </div>
-        </EntryPageContainer>            
+        </EntryPageContainer>
     )
 }
 

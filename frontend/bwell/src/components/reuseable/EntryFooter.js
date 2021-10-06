@@ -15,7 +15,7 @@ const useStyles = makeStyles({
         margin: '0 0.5rem'
     }
 })
-export const EntryFooter = () => {
+export const EntryFooter = ({disabled=false}) => {
     const {path, url} = useRouteMatch();
 
     const getBackToLink = () => {
@@ -27,10 +27,10 @@ export const EntryFooter = () => {
     return (
         <div className={classes.buttonsContainer}>
             <div className={classes.button}>
-                <CustomButton text="Back" linkTo={`/${getBackToLink()}`} isAbsolute={false}/>
+                <CustomButton disabled={disabled} text="Back" linkTo={`/${getBackToLink()}`} isAbsolute={false}/>
             </div>
             <div className={classes.button}>
-                <CustomButton className={classes.button} text="Add to favourites" linkTo="" isAbsolute={false} icon={<FavoriteBorderIcon/>}/>
+                <CustomButton disabled={disabled} className={classes.button} text="Add to favourites" linkTo="" isAbsolute={false} icon={<FavoriteBorderIcon/>}/>
             </div>
         </div>
     )

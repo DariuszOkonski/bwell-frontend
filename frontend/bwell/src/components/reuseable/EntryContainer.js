@@ -5,6 +5,7 @@ import { colors } from '../../utilities/utilities'
 const useStyles = makeStyles({
     entryContainer: {
         width: '100%',
+        boxSizing: "border-box",
         borderRadius: '1rem',
         border: `1px solid ${colors.borderPrimary}`,
         padding: '1rem 2rem',

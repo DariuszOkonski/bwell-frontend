@@ -13,7 +13,8 @@ const RestWellPage = (props) => {
     const {match} = props;
 
     const [ideas, setIdeas] = useState([]);
-    const APIurl = endpoints.APIhost + endpoints.APIrestWell;
+    // const APIurl = endpoints.APIhost + endpoints.APIrestWell;
+    const APIurl = "http://localhost:3001/ideas/";
 
     useEffect(() => {
         const getIdeas = async () => {
@@ -41,7 +42,7 @@ const RestWellPage = (props) => {
                         { ideas && ideas.map(idea => {
                             return (
                         <Grid item xs={12} md={6}>
-                            <RepositoryCard title={idea.title} cardIcon={WeekendOutlinedIcon} linkTo={"/restWell/" + idea.id} description={idea.description} />
+                            <RepositoryCard title={idea.title} cardIcon={WeekendOutlinedIcon} linkTo={endpoints.restwell_idea + idea.id} description={idea.description} />
                         </Grid>
                             )
                         })

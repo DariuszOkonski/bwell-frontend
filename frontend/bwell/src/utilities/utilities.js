@@ -1,3 +1,11 @@
+import RestaurantIcon from '@material-ui/icons/Restaurant';
+import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
+import WeekendOutlinedIcon from '@material-ui/icons/WeekendOutlined';
+import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
+import TextAreaInput from '../components/entrycreator/inputareas/TextAreaInput';
+import IngredientsList from '../components/entrycreator/inputareas/IngredientsList';
+
+
 const colors = {
     white: '#FFF',
     buttonPrimary: '#FF934F',
@@ -18,6 +26,7 @@ const viewportSize = {
     mobileS: '320px',
     mobileM: '375px',
     mobileL: '425px',
+    tabletS: '690px',
     tablet: '768px',
     laptop: '1024px',
     laptopL: '1440px'
@@ -29,19 +38,45 @@ const endpoints = {
     login: "/login",
     eatwell: "/eatwell",
     fitwell: "/fitwell",
-    restwell: "/restwell/",
-    thinkwell: "/thinkwell/",
+    restwell: "/restwell",
+    thinkwell: "/thinkwell",
     eatwell_recipe: "/eatwell/recipe/",
     eatwell_calculator: "/eatwell/calculator",
+    eatwell_dietplan: "/eatwell/dietplan",
     fitwell_activity: "/fitwell/activity/",
-    // restwell_idea: "/restwell/",
-    // thinkwell_idea: "/thinkwell/",
+    restwell_idea: "/restwell/idea/",
+    thinkwell_idea: "/thinkwell/exercise/",
     favourites: "/favourites",
     APIhost: "http://localhost:3001/",
     APIrestWell: "restWell",
     APIthinkWell: "thinkWell",
-    addEntry: "/addentry"
+    addEntry: (moduleUrl) => moduleUrl + "/addEntry"
     
 }
 
-export { colors, viewportSize, endpoints }
+const modules = {
+    eatWell: {
+        name: 'eatWell',
+        icon: <RestaurantIcon />
+    },
+    fitWell: {
+        name: 'fitWell',
+        icon: <DirectionsBikeIcon />
+    },
+    restWell: {
+        name: 'restWell',
+        icon: <WeekendOutlinedIcon />
+    },
+    thinkWell: {
+        name: 'thinkWell',
+        icon: <EmojiObjectsOutlinedIcon />
+    },
+}
+
+const contentTypes = {
+    textArea: "text_area",
+    ingredientsList: "ingredients_list",
+    customList: "custom_list"
+}
+
+export { colors, viewportSize, endpoints, modules, contentTypes }
