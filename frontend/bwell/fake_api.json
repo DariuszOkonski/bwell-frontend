@@ -279,7 +279,7 @@
             {
                 "id": 2, 
                 "title": "Visualise", 
-                "description": "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",     
+                "description": "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",     
                 
                 "rating": {
                     "up": 14,
@@ -301,7 +301,7 @@
             {
                 "id": 3, 
                 "title": "Food for thought", 
-                "description": "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",     
+                "description": "3Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",     
                 
                 "rating": {
                     "up": 15,
@@ -323,7 +323,7 @@
             {
                 "id": 4, 
                 "title": "Puzzles", 
-                "description": "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",     
+                "description": "4Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",     
                 
                 "rating": {
                     "up": 15,

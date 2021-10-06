@@ -1,29 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Grid, makeStyles } from '@material-ui/core';
 import CategoriesBar from '../reuseable/CategoriesBar';
 import RepositoryCard from '../reuseable/RepositoryCard';
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import { endpoints } from '../../utilities/utilities';
 
-// const useStyles = makeStyles((theme) => ({
-//     categoriesBar: {
-//         justifyContent: "center",
-//         marginTop: "1rem"
-//     },
-//     spacearound: {
-//         justifyItems: 'space-around'
-//     },
-//     cards: {
-//         justifyContent: 'center',
-//         margin: 0
-//     }
-// }));
 
     
 const ThinkWellPage = (props) => {
+    const API = endpoints.APIhost + endpoints.APIthinkWell;
     const classes = props.useStylesPages();
 
+    const [excercises, setExcercises] = useState([])
+
     const {match} = props;
+
+    useEffect(() => {
+        const getExcercises = async () => {
+            const excercisesFromServer = await fetchExcercises()
+            setExcercises(excercisesFromServer)
+        }
+        getExcercises()
+    },[]);
+
+
+
+    const fetchExcercises = async () => {
+        const response = await fetch(API)
+        const data = await response.json()
+
+        return data 
+    }
 
     return (
         <>
@@ -33,24 +40,15 @@ const ThinkWellPage = (props) => {
                 </Grid>
                 <Grid item className={classes.cards} xs={12} md={8}>
                     <Grid container xs={12} spacing={2} className={classes.cards}>
-                        <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Relax idea" cardIcon={EmojiObjectsOutlinedIcon} linkTo={`${endpoints.thinkwell_idea}1`} description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Relax idea" cardIcon={EmojiObjectsOutlinedIcon} linkTo={`${endpoints.thinkwell_idea}2`} description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Relax idea" cardIcon={EmojiObjectsOutlinedIcon} linkTo={`${endpoints.thinkwell_idea}3`} description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Relax idea" cardIcon={EmojiObjectsOutlinedIcon} linkTo={`${endpoints.thinkwell_idea}4`} description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Relax idea" cardIcon={EmojiObjectsOutlinedIcon} linkTo={`${endpoints.thinkwell_idea}5`} description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
-                        <Grid item xs={12} md={6}>
-                            <RepositoryCard title="Relax idea" cardIcon={EmojiObjectsOutlinedIcon} linkTo={`${endpoints.thinkwell_idea}6`} description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex." />
-                        </Grid>
+                        {
+                            excercises.map(excercise => {
+                                return(
+                                    <Grid item xs={12} md={6}>
+                                        <RepositoryCard title={excercise.title} cardIcon={EmojiObjectsOutlinedIcon} linkTo={`${endpoints.thinkwell_idea}${excercise.id}`} description={excercise.description} />
+                                    </Grid>
+                                )
+                            })
+                        }
                     </Grid>
                 </Grid>
             </Grid>
