@@ -22,7 +22,7 @@ const EntryCreatorContextProvider = (props) => {
     const [ingredientsLists, setIngredientsLists] = useState([
         // {id:0, header: "", ingredients: [], order: 0, type: contentTypes.ingredients_list}
     ])
-    const [generalLists, setGeneralLists] = useState([
+    const [customLists, setCustomLists] = useState([
         // {id, header, content, order}
     ])
 
@@ -70,6 +70,20 @@ const EntryCreatorContextProvider = (props) => {
         }])
     }
 
+    const addCustomList = (id) => {
+        setCustomLists([...customLists, {
+            id,
+            header: "",
+            content: [{
+                id: v4(),
+                order: 0,                
+                value: ""
+            }],
+            order: nextOrder(),
+            type: contentTypes.customList
+        }])
+    }
+
     const removeIngredientsList = (id) => {
         const localIngredinetsList = [...ingredientsLists];
 
@@ -104,6 +118,24 @@ const EntryCreatorContextProvider = (props) => {
         setIngredientsLists(updatedLists)
     };
 
+    const addCustomListItem = (id, listId) => {
+        const localItem = {
+            id,
+            order: customLists.filter(list => list.id === listId)[0].length,
+            value: "" 
+        }
+
+        const updatedLists = customLists.map(list => {
+            if (list.id === listId) {
+                const localState = list.content
+                list.content = [...localState, localItem]
+            }
+            return list
+        });
+
+        setCustomLists(updatedLists);
+    }
+
     const removeIngredient = (id, listId) => {
         const updatedLists = ingredientsLists.map(list => {
             if (list.id === listId) {
@@ -125,13 +157,21 @@ const EntryCreatorContextProvider = (props) => {
         setIngredientsLists(updatedLists)
     }
 
+    const removeCustomCell = (id, listId, itemId) => {
+
+    }
+
+    const removeCustomItem = (id, listId) => {
+
+    }
+
     return ( <EntryCreatorContext.Provider value = {
             {
                 title,
                 module,
                 textAreas,
                 ingredientsLists,
-                // customLists: listsContent.customLists,
+                customLists,
                 setTitle,
                 setModule,
                 addIngredient,
@@ -142,7 +182,11 @@ const EntryCreatorContextProvider = (props) => {
                 removeTextArea,
                 addIngredientsList,
                 editIngredientsListTitle,
-                removeIngredientsList
+                removeIngredientsList,
+                addCustomList,
+                addCustomListItem,
+                removeCustomCell,
+                removeCustomItem
             }}> {
             props.children
         } </EntryCreatorContext.Provider>

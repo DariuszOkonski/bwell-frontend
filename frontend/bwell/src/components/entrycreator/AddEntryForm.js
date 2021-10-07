@@ -12,6 +12,7 @@ import { v4 } from 'uuid';
 import { getIcon } from './EntryPreview';
 import CustomButton from '../reuseable/CustomButton';
 import { useHistory, useRouteMatch } from 'react-router';
+import CustomList from './inputareas/CustomList';
 
 
 
@@ -74,7 +75,7 @@ const AddEntryForm = ({initModule}) => {
     const {path} = useRouteMatch();
 
 
-    const { title, setTitle, module, setModule, addIngredientsList, addTextArea, ingredientsLists, textAreas } = useContext(EntryCreatorContext)
+    const { title, setTitle, module, setModule, addIngredientsList, addCustomList, addTextArea, ingredientsLists, textAreas, customLists } = useContext(EntryCreatorContext)
     // setModule(url.split("/")[1]);
     
     let history = useHistory();
@@ -92,7 +93,7 @@ const AddEntryForm = ({initModule}) => {
     }
     
     const getContentListInOrder = () => {
-        const content = [...ingredientsLists, ...textAreas]
+        const content = [...ingredientsLists, ...textAreas, ...customLists]
         content.sort((a, b) => a.order - b.order)
 
         return content;
@@ -102,7 +103,7 @@ const AddEntryForm = ({initModule}) => {
     const handleTitleChange = (e) => setTitle(e.target.value)
     useEffect(() => {
         setContent(getContentListInOrder())
-    }, [ingredientsLists, textAreas, moduleObj])
+    }, [ingredientsLists, textAreas, moduleObj, customLists])
 
     return (
         <EntryContainer key={moduleObj.module}>
@@ -130,7 +131,8 @@ const AddEntryForm = ({initModule}) => {
             </div>
             <div className={classes.buttonContainer}>
                     <EventButton text="Add text" callback={() => addTextArea(v4(), "", "")} isAbsolute={false}/>
-                    <EventButton icon={<EventNote/>} text="Add list" callback={() => addIngredientsList(v4())} isAbsolute={false}/>
+                    <EventButton icon={<EventNote/>} text="Add custom list" callback={() => addCustomList(v4())} isAbsolute={false}/>
+                    <EventButton icon={<EventNote/>} text="Add ingredients list" callback={() => addIngredientsList(v4())} isAbsolute={false}/>
             </div>
 
             {content.length > 0 ? content.map(content => {
@@ -139,6 +141,8 @@ const AddEntryForm = ({initModule}) => {
                         return <IngredientsList key={content.id} listId={content.id}/>
                     case contentTypes.textArea:
                         return <TextAreaInput id={content.id} key={content.id}/>
+                    case contentTypes.customList:
+                        return <CustomList id={content.id} key={content.id} />
                 }
             }) : 
             (
