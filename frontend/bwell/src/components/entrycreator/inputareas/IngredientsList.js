@@ -42,32 +42,30 @@ const IngredientsList = ({listId}) => {
         }
     })
 
-
-    const classes = useStyles();    
+        const classes = useStyles();    
     // const {ingredients, addIngredient } = useContext(EntryCreatorContext)    
     const { ingredientsLists, addIngredient, editIngredientsListTitle, removeIngredientsList } = useContext(EntryCreatorContext)    
     
     const [currentList] = ingredientsLists.filter(list => list.id === listId)
+       
+    
+    const handleAddItem = (e) => {
+        addIngredient(v4(), "", 0, "unit", listId);
+    }
+    
+    const handleChangeTitle = (e) => {
+        editIngredientsListTitle(e.target.value, listId)
+    }
+    
+    const handleRemoveIngredientsList = () => {
+        removeIngredientsList(listId);
+    }
+
     
     const showIngredients = ( currentList && currentList.ingredients) && currentList.ingredients.map(
         (item) => <IngredientItem 
             {...item} listId={listId} key={item.id}
         />);
-
-        
-
-    const handleAddItem = (e) => {
-        addIngredient(v4(), "", 0, "unit", listId);
-    }
-
-    const handleChangeTitle = (e) => {
-        editIngredientsListTitle(e.target.value, listId)
-    }
-
-    const handleRemoveIngredientsList = () => {
-        removeIngredientsList(listId);
-    }
-
     return (
         currentList ? <div className={classes.container}>
             <div className={classes.headerContainer}>

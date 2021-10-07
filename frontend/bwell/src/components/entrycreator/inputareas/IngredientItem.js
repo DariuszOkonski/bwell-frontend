@@ -5,8 +5,6 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { EntryCreatorContext } from '../contexts/EntryCreatorContext';
 
 const IngredientItem = (props) => {
-    
-    
     const useStyles = makeStyles({
         container: {
             margin: '0.5rem 0',
@@ -33,9 +31,11 @@ const IngredientItem = (props) => {
     })
     const classes = useStyles();
     const { removeIngredient, editIngredient } = useContext(EntryCreatorContext)
+    
     const [ingredient, setIngredient] = useState(props.ingredient);
     const [quantity, setQuantity] = useState(props.quantity);
     const [measure, setMeasure] = useState(props.measure)    
+    const [isSubmit, setIsSubmit] = useState(false)
 
     const handleDeleteItem = () => {
         removeIngredient(props.id, props.listId)
@@ -53,15 +53,18 @@ const IngredientItem = (props) => {
         setMeasure(evt.target.value);
     }
 
-    useEffect(() => {
+    const handleFocusOut = () => {
         editIngredient({
             id: props.id, 
             ingredient, 
             quantity, 
             measure
         }, props.listId)
-        
-    }, [ingredient, quantity, measure])
+    } 
+
+    const handleSubmit = (e) => {        
+        setIsSubmit(!isSubmit)
+    }
 
     return (
         <div className={classes.container}>
@@ -71,18 +74,21 @@ const IngredientItem = (props) => {
                 placeholder="ingredient" 
                 value={ingredient}
                 onChange={handleChangeIngredient}
+                onBlur={handleFocusOut}
             />
             <input 
                 className={classes.item} 
                 type="number" 
                 value={quantity}
                 onChange={handleChangeQuantity}
+                onBlur={handleFocusOut}
             />
 
             <select 
                 className={classes.item + " " + classes.unit} 
                 value={measure}
                 onChange={handleChangeMeasure}
+                onBlur={handleFocusOut}
             >
                 <option value="unit">unit</option>
                 <option value="kg">kg</option>
