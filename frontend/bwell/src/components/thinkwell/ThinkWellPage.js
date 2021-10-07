@@ -1,38 +1,40 @@
-import React, { useEffect, useState } from 'react'
-import { Grid, makeStyles } from '@material-ui/core';
+import React from 'react'
+import { Grid } from '@material-ui/core';
 import CategoriesBar from '../reuseable/CategoriesBar';
 import RepositoryCard from '../reuseable/RepositoryCard';
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import { endpoints } from '../../utilities/utilities';
+import { useState, useEffect } from 'react';
 
 
-    
 const ThinkWellPage = (props) => {
-    const API = endpoints.APIhost + endpoints.APIthinkWell;
+
+    const [excercises, setExcercises] = useState(null);
+    let API = endpoints.APIhost + endpoints.APIthinkWell;
+
     const classes = props.useStylesPages();
 
-    const [excercises, setExcercises] = useState([])
-
-    const {match} = props;
+    const { match } = props;
 
     useEffect(() => {
+
+        const fetchExcercises = async () => {
+            const response = await fetch(API)
+            const data = await response.json()
+    
+            return data 
+        }
+
         const getExcercises = async () => {
             const excercisesFromServer = await fetchExcercises()
             setExcercises(excercisesFromServer)
         }
         getExcercises()
-    },[]);
+    },[API]);
 
-
-
-    const fetchExcercises = async () => {
-        const response = await fetch(API)
-        const data = await response.json()
-
-        return data 
-    }
 
     return (
+        excercises &&
         <>
             <Grid container spacing={2} xs={12} className={classes.categoriesBar}>
                 <Grid item xs={12} md={8}>
