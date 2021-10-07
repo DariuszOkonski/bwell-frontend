@@ -63,12 +63,16 @@ const TextAreaInput = ({id}) => {
             text,
         })
     }, [header, text])
+
+    const handleRemoveTextAreas = () => {
+        removeTextArea(id)
+    }
     return (
         <div className={classes.container}>
             <div className={classes.headerContainer}>
                 <input value={header} onChange={handleHeader} className={classes.stylingInput} type="text" placeholder="Text header"/>
 
-                <button className={classes.buttonDelete} onClick={() => console.log('hi')}>
+                <button className={classes.buttonDelete} onClick={handleRemoveTextAreas}>
                     <DeleteOutlineIcon />
                 </button>
             </div>
