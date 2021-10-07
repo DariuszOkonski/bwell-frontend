@@ -8,13 +8,14 @@ import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { colors, viewportSize } from '../utilities/utilities';
+import { colors, endpoints, viewportSize } from '../utilities/utilities';
 import PropTypes from "prop-types";
 import { Button } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import AssignmentReturnedIcon from '@material-ui/icons/AssignmentReturned';
 import FavouritesListElement from './FavouritesListElement';
-
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -81,8 +82,52 @@ const FavouritesExpandableCard = ((props) => {
         setExpanded(!expanded);
     };
 
-    return (
+    const [ideas, setIdeas] = useState(null);
 
+    let APIurl;
+
+    switch (props.type) {
+        case 'fitWell':
+            APIurl = endpoints.APIfitWell;
+            break;
+        case 'eatWell':
+            APIurl = endpoints.APIeatWell;
+            break;
+        case 'restWell':
+            APIurl = endpoints.APIrestWell;
+            break;
+        case 'thinkWell':
+            APIurl = endpoints.APIthinkWell;
+            break;
+        default:
+            APIurl = '';
+    }
+
+    useEffect(() => {
+
+        const fetchIdeas = async () => {
+
+            let favouritesEntries = [];
+
+            for (let id of props.favourites) {
+                const response = await fetch(endpoints.APIhost + APIurl + '/' + id)
+                const data = await response.json()
+                favouritesEntries.push(data);
+            }
+
+            return favouritesEntries
+        }
+
+        const getIdeas = async () => {
+            const ideasFromServer = await fetchIdeas()
+            setIdeas(ideasFromServer)
+        }
+        getIdeas()
+
+    }, [APIurl, props.favourites]);
+
+    return (
+        ideas &&
         <Card className={classes.root} >
             <CardContent>
                 <CardIcon className={classes.cardIcon} spacing={2} />
@@ -103,7 +148,11 @@ const FavouritesExpandableCard = ((props) => {
 
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    <FavouritesListElement />
+                    {
+                        ideas.map((ideaElement) => {
+                            return <FavouritesListElement idea={ideaElement} />;
+                        })
+                    }
                 </CardContent>
                 <CardContent>
                     <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />} className={classes.checkButton} text="check">Remove</Button>

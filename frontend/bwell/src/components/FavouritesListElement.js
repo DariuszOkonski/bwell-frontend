@@ -45,6 +45,8 @@ const FavouritesListElement = ((props) => {
     const classes = useStyles();
     const[expanded, setExpanded] = React.useState(false);
 
+    const favouriteEntry = props.idea;
+
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
@@ -53,7 +55,7 @@ const FavouritesListElement = ((props) => {
 
             <Card className={classes.root} >
                     <Typography variant="p" className={classes.header} component="p">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing eli.
+                    {favouriteEntry.title}
                     </Typography>
                     <IconButton
                         className={clsx(classes.expand, {
@@ -67,9 +69,7 @@ const FavouritesListElement = ((props) => {
                     </IconButton>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
                     <CardContent>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing eli.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing eli.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing eli.
+                    {favouriteEntry.description}
 
                     </CardContent>
                 </Collapse>
