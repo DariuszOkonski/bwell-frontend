@@ -38,12 +38,15 @@ export const getIcon = (module) => {
 const EntryPreview = () => {
     const classes = useStyles();
         
-    const {title, module, ingredientsLists, textAreas } = useContext(EntryCreatorContext)
+    const {title, module, ingredientsLists, textAreas, customLists } = useContext(EntryCreatorContext)
 
     const [content, setContent] = useState([])
+    const [isLive, setIsLive] = useState(true)
+    
     
     const getCurrentContent = () => {
-        const content = [...ingredientsLists, ...textAreas]
+        
+        const content = [...ingredientsLists, ...textAreas, ...customLists]
         content.sort((a, b) => a.order - b.order)
 
         return content;
@@ -51,16 +54,16 @@ const EntryPreview = () => {
 
     useEffect(() => {
         setContent(getCurrentContent())
-    }, [ingredientsLists, textAreas])
+    }, [ingredientsLists, textAreas, customLists])
 
     const serviceComponentChoice = () => {
         return content.map(part => {
             if (part.type == contentTypes.textArea) {
-                return <EntryContentPart header={part.header} text={part.text} key={part.id}/>
+                return <EntryContentPart type={part.type} header={part.header} text={part.text} key={part.id}/>
             } else if (part.type == contentTypes.ingredientsList){
-                return <EntryContentPart header={part.header} text={part.ingredients.map(ingData => [ingData.ingredient, ingData.quantity, ingData.measure])} key={part.id}/>
+                return <EntryContentPart type={part.type} header={part.header} text={part.ingredients.map(ingData => [ingData.ingredient, ingData.quantity, ingData.measure])} key={part.id}/>
             } else if (part.type == contentTypes.customList) {
-                return <EntryContentPart header={part.header} text={part.listContent} key={part.id}/>
+                return <EntryContentPart type={part.type} header={part.header} text={part.content} key={part.id}/>
             }
         })
     }
@@ -82,7 +85,8 @@ const EntryPreview = () => {
                         return <EntryContentPart header={part.header} text={part.text} key={Math.random()}/>
                     })
                 } */}
-                <EntryFooter disabled={true}/>
+                
+                <EntryFooter disabled={true} isLive callback={()=>setIsLive(isLive)}/>
 
             </EntryContainer>
         </EntryPageContainer>

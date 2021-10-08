@@ -130,9 +130,9 @@ const AddEntryForm = ({initModule}) => {
                 </div>
             </div>
             <div className={classes.buttonContainer}>
-                    <EventButton text="Add text" callback={() => addTextArea(v4(), "", "")} isAbsolute={false}/>
-                    <EventButton icon={<EventNote/>} text="Add custom list" callback={() => addCustomList(v4())} isAbsolute={false}/>
-                    <EventButton icon={<EventNote/>} text="Add ingredients list" callback={() => addIngredientsList(v4())} isAbsolute={false}/>
+                    <EventButton text="+ text" callback={() => addTextArea(v4(), "", "")} isAbsolute={false}/>
+                    <EventButton icon={<EventNote/>} text="+ custom list" callback={() => addCustomList(v4())} isAbsolute={false}/>
+                    <EventButton icon={<EventNote/>} text="+ ingredients list" callback={() => addIngredientsList(v4())} isAbsolute={false}/>
             </div>
 
             {content.length > 0 ? content.map(content => {
@@ -142,7 +142,7 @@ const AddEntryForm = ({initModule}) => {
                     case contentTypes.textArea:
                         return <TextAreaInput id={content.id} key={content.id}/>
                     case contentTypes.customList:
-                        return <CustomList id={content.id} key={content.id} />
+                        return <CustomList listId={content.id} key={content.id} />
                 }
             }) : 
             (

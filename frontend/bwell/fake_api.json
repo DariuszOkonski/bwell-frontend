@@ -11,6 +11,7 @@
             "content": [
                 {
                     "header": "Ingredients",
+                    "type": "ingredients_list",
                     "text": [
                         [
                             "flour",
@@ -28,7 +29,9 @@
                 },
                 {
                     "header": "Description",
+                    "type": "text_area",
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
+
                 }
             ]
         },
@@ -43,6 +46,8 @@
             "content": [
                 {
                     "header": "Ingredients",
+                    "type": "ingredients_list",
+
                     "text": [
                         [
                             "flour",
@@ -75,6 +80,8 @@
             "content": [
                 {
                     "header": "Ingredients",
+                    "type": "ingredients_list",
+
                     "text": [
                         [
                             "Chicken breast",
@@ -96,10 +103,14 @@
                 },
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph.How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 },
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph.How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 }
             ]
@@ -117,10 +128,14 @@
             "content": [
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 },
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 }
             ]
@@ -136,10 +151,14 @@
             "content": [
                 {
                     "header": "Description",
-                    "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
+                    "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph.",
+                    "type": "text_area"
+
                 },
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 }
             ]
@@ -155,10 +174,14 @@
             "content": [
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 },
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 }
             ]
@@ -174,10 +197,14 @@
             "content": [
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 },
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 }
             ]
@@ -195,10 +222,14 @@
             "content": [
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 },
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 }
             ]
@@ -214,10 +245,14 @@
             "content": [
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 },
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 }
             ]
@@ -233,10 +268,14 @@
             "content": [
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 },
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 }
             ]
@@ -252,10 +291,14 @@
             "content": [
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 },
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 }
             ]
@@ -273,10 +316,14 @@
             "content": [
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 },
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 }
             ]
@@ -292,10 +339,14 @@
             "content": [
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 },
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 }
             ]
@@ -303,6 +354,8 @@
         {
             "id": 3,
             "title": "Food for thought",
+                    "type": "text_area",
+
             "description": "3Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
             "rating": {
                 "up": 15,
@@ -311,10 +364,14 @@
             "content": [
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 },
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 }
             ]
@@ -330,10 +387,14 @@
             "content": [
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 },
                 {
                     "header": "Description",
+                    "type": "text_area",
+
                     "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
                 }
             ]

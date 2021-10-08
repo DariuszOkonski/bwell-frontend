@@ -53,32 +53,38 @@ const CustomList = ({listId}) => {
 
         const classes = useStyles();    
     // const {Customs, addCustomList } = useContext(EntryCreatorContext)    
-    const { customLists, addCustomListItem, editCustomsListTitle, removeCustomsList } = useContext(EntryCreatorContext)    
+    const { getCustomList, customLists, addCustomListItem, editCustomListTitle, removeCustomList } = useContext(EntryCreatorContext)    
     
-    const [currentList] = customLists.filter(list => list.id === listId)
-       
+    const [currentList, setCurrentList] = useState(getCustomList(listId))
+    const [title, setTitle] = useState(currentList && currentList.header)
     
     const handleAddItem = (e) => {
-        addCustomListItem(v4(), "", 0, "unit", listId);
+        addCustomListItem(v4(), listId);
+        setCurrentList(getCustomList(listId))
     }
+
+    const refreshList = () => setCurrentList(getCustomList(listId))
     
     const handleChangeTitle = (e) => {
-        editCustomsListTitle(e.target.value, listId)
+        editCustomListTitle(e.target.value, listId)
+        setCurrentList(getCustomList(listId))
     }
     
     const handleRemoveCustomsList = () => {
-        removeCustomsList(listId);
+        removeCustomList(listId);
+        setCurrentList(null)
+
     }
 
-    
-    const showCustoms = ( currentList && currentList.Customs) && currentList.Customs.map(
+    const showCustoms =  currentList && currentList.content && currentList.content.map(
         (item) => <CustomItem 
-            {...item} listId={listId} key={item.id}
+            listId={listId} itemId={item.id} key={item.id} handleAddItem={handleAddItem} refreshList={refreshList}
         />);
     return (
         currentList ? <div className={classes.container}>
             <div className={classes.headerContainer}>
-                <input className={classes.header} value={currentList.header} placeholder="Customs title" onChange={handleChangeTitle}/>
+                <input className={classes.header} value={title} placeholder="Customs title" onChange={(e) => setTitle(e.target.value)}
+                onBlur={handleChangeTitle}/>
                 <button className={classes.buttonDelete} onClick={handleRemoveCustomsList}>
                     <DeleteOutlineIcon />
                 </button>

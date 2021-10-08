@@ -48,7 +48,7 @@ const IngredientsList = ({listId}) => {
     
     const [currentList] = ingredientsLists.filter(list => list.id === listId)
        
-    
+    const [title, setTitle] = useState("")
     const handleAddItem = (e) => {
         addIngredient(v4(), "", 0, "unit", listId);
     }
@@ -69,7 +69,7 @@ const IngredientsList = ({listId}) => {
     return (
         currentList ? <div className={classes.container}>
             <div className={classes.headerContainer}>
-                <input className={classes.header} value={currentList.header} placeholder="Ingredients title" onChange={handleChangeTitle}/>
+                <input className={classes.header} value={title} placeholder="Ingredients title" onChange={(e) => setTitle(e.target.value)} onBlur={handleChangeTitle}/>
                 <button className={classes.buttonDelete} onClick={handleRemoveIngredientsList}>
                     <DeleteOutlineIcon />
                 </button>

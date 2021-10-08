@@ -9,7 +9,10 @@ import {
 } from 'uuid';
 import { contentTypes } from '../../../utilities/utilities';
 
-import { useHistory } from 'react-router-dom';
+const MAX_INGREDIENTS_LISTS_COUNT = 3
+const MAX_CUSTOM_LISTS_COUNT = 2
+const MAX_CUSTOM_LIST_ROWS_COUNT = 8
+const MAX_TEXT_AREAS_COUNT = 3
 
 export const EntryCreatorContext = createContext();
 
@@ -30,9 +33,10 @@ const EntryCreatorContextProvider = (props) => {
         setModule(path.split("/")[1])
     }, [path])
 
-    const nextOrder = () => textAreas.length + ingredientsLists.length
+    const nextOrder = () => textAreas.length + ingredientsLists.length + customLists.length
 
     const addTextArea = (id, header, text) => {
+        if (textAreas.length < MAX_TEXT_AREAS_COUNT){
         const localTextArea = [...textAreas, {
             id,
             header,
@@ -41,6 +45,7 @@ const EntryCreatorContextProvider = (props) => {
             type: contentTypes.textArea
         }];
         setTextAreas(localTextArea);
+    }
     }
 
     const removeTextArea = (id) => {
@@ -55,7 +60,9 @@ const EntryCreatorContextProvider = (props) => {
 
 
     const addIngredientsList = (id) => {
+        if (ingredientsLists.length < MAX_INGREDIENTS_LISTS_COUNT){
 
+        
         setIngredientsLists([...ingredientsLists, {
             id,
             header: "",
@@ -69,20 +76,8 @@ const EntryCreatorContextProvider = (props) => {
             type: contentTypes.ingredientsList
         }])
     }
-
-    const addCustomList = (id) => {
-        setCustomLists([...customLists, {
-            id,
-            header: "",
-            content: [{
-                id: v4(),
-                order: 0,                
-                value: ""
-            }],
-            order: nextOrder(),
-            type: contentTypes.customList
-        }])
     }
+
 
     const removeIngredientsList = (id) => {
         const localIngredinetsList = [...ingredientsLists];
@@ -118,34 +113,7 @@ const EntryCreatorContextProvider = (props) => {
         setIngredientsLists(updatedLists)
     };
 
-    const addCustomListItem = (id, listId) => {
-        const localItem = {
-            id,
-            order: customLists.filter(list => list.id === listId)[0].length,
-            value: "" 
-        }
-
-        const updatedLists = customLists.map(list => {
-            if (list.id === listId) {
-                const localState = list.content
-                list.content = [...localState, localItem]
-            }
-            return list
-        });
-
-        setCustomLists(updatedLists);
-    }
-
-    const removeIngredient = (id, listId) => {
-        const updatedLists = ingredientsLists.map(list => {
-            if (list.id === listId) {
-                list.ingredients = list.ingredients.filter(ingredient => ingredient.id !== id)
-            }
-            return list
-        });
-        setIngredientsLists(updatedLists)
-    }
-
+    
     const editIngredient = (newItem, listId) => {
         const updatedLists = ingredientsLists.map(list => {
             if (list.id === listId) {
@@ -157,14 +125,105 @@ const EntryCreatorContextProvider = (props) => {
         setIngredientsLists(updatedLists)
     }
 
-    const removeCustomCell = (id, listId, itemId) => {
 
+    
+    const removeIngredient = (id, listId) => {
+        const updatedLists = ingredientsLists.map(list => {
+            if (list.id === listId) {
+                list.ingredients = list.ingredients.filter(ingredient => ingredient.id !== id)
+            }
+            return list
+        });
+        setIngredientsLists(updatedLists)
     }
 
-    const removeCustomItem = (id, listId) => {
 
+    
+    const addCustomList = (id) => {
+        if (customLists.length < MAX_CUSTOM_LISTS_COUNT){
+        setCustomLists([...customLists, {
+            id,
+            header: "",
+            content: [{
+                id: v4(),
+                order: 0,                
+                cells: [{id: v4(), order: 0, value: ""}]
+            }],
+            order: nextOrder(),
+            type: contentTypes.customList
+        }])
+    }
     }
 
+    const getCustomList = (id) => {
+        return {...customLists.find(list => list.id === id)};
+    }
+
+    
+
+    const editCustomListTitle = (newTitle, id) => {
+        const updatedList = customLists.find(list => list.id === id);
+
+        updatedList.header = newTitle;
+       setCustomLists(customLists.map(list => list.id === id ? updatedList : list))
+    }
+
+
+
+    const addCustomListItem = (id, listId) => {
+        const customListRowsCount = getCustomList(listId).content.length
+        if (customListRowsCount < MAX_CUSTOM_LIST_ROWS_COUNT){
+            const localItem = {
+                id,
+                order: customListRowsCount,
+                cells: [{id: v4(), order: 0, value: ""}] 
+            }
+
+            const updatedLists = customLists.map(list => {
+                if (list.id === listId) {
+                    const localState = list.content
+                    list.content = [...localState, localItem]
+                }
+                return list
+            });
+            updatedLists.sort((list1, list2) => list1.order - list2.order)
+
+            setCustomLists(updatedLists);
+        }
+
+    }
+    
+    const editCustomItem = (newItem, listId) => {
+        const listWithGivenRow = getCustomList(listId)
+
+        const updatedList = listWithGivenRow.content.map(row => {
+            if (row.id === newItem.id) {
+                return newItem    
+            }
+            return row
+        });
+        listWithGivenRow.content = updatedList
+        const local = [...customLists.filter(list => list.id !== listId), listWithGivenRow]
+        local.sort((list1, list2) => list1.order - list2.order)
+
+        setCustomLists(local)
+    }
+
+
+    const removeCustomItem = (itemId, listId) => {
+        const listWithGivenRow = getCustomList(listId)
+        const updatedContent = listWithGivenRow.content.filter(row => row.id !== itemId)
+        updatedContent.sort((row1, row2) => row1.order - row2.order)
+        listWithGivenRow.content = updatedContent
+        setCustomLists(customLists.map(list => list.id === listId ? listWithGivenRow : list))
+        
+    }
+
+    const removeCustomList = (listId) => {
+        const local = customLists.filter(list => list.id !== listId)
+        local.sort((list1, list2) => list1.order - list2.order)
+        setCustomLists(local)
+    }
     return ( <EntryCreatorContext.Provider value = {
             {
                 title,
@@ -185,8 +244,11 @@ const EntryCreatorContextProvider = (props) => {
                 removeIngredientsList,
                 addCustomList,
                 addCustomListItem,
-                removeCustomCell,
-                removeCustomItem
+                editCustomItem,
+                editCustomListTitle,
+                removeCustomItem,
+                removeCustomList,
+                getCustomList
             }}> {
             props.children
         } </EntryCreatorContext.Provider>

@@ -56,7 +56,7 @@ const AddEntry = () => {
     const classes = useStyles()
     return (
         
-        <EntryPageContainer>
+        <EntryPageContainer size={viewportSize.laptop}>
             <div className={classes.simpleBreadcrubmContainer}>
                 <SimpleBreadcrumbs path={path}/>
             </div>

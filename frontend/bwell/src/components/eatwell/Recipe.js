@@ -9,6 +9,7 @@ import { EntryFooter } from '../reuseable/EntryFooter';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import { EntryContainer } from '../reuseable/EntryContainer';
 import EntryPageContainer from './../reuseable/EntryPageContainer';
+import { v4 } from 'uuid';
 
 const useStyles = makeStyles({
     buttonContainer: {
@@ -56,7 +57,7 @@ const Recipe = (props) => {
 
                 {
                      recipe.content.map(part => {
-                        return <EntryContentPart header={part.header} text={part.text} key={Math.random()}/>
+                        return <EntryContentPart header={part.header} text={part.text} key={v4()} type={part.type}/>
                     })
                 }
                 <EntryFooter/>

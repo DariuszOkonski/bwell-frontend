@@ -56,13 +56,13 @@ const TextAreaInput = ({id}) => {
     const { editTextArea, removeTextArea } = useContext(EntryCreatorContext)
     const classes = useStyles()
 
-    useEffect(() => {
+    const handleUpdate = () => {
         editTextArea({
             id,
             header,
             text,
         })
-    }, [header, text])
+    }
 
     const handleRemoveTextAreas = () => {
         removeTextArea(id)
@@ -70,13 +70,13 @@ const TextAreaInput = ({id}) => {
     return (
         <div className={classes.container}>
             <div className={classes.headerContainer}>
-                <input value={header} onChange={handleHeader} className={classes.stylingInput} type="text" placeholder="Text header"/>
+                <input value={header} onChange={handleHeader} onBlur={handleUpdate} className={classes.stylingInput} type="text" placeholder="Text header"/>
 
                 <button className={classes.buttonDelete} onClick={handleRemoveTextAreas}>
                     <DeleteOutlineIcon />
                 </button>
             </div>
-            <textarea value={text} onChange={handleText} className={classes.stylingInput + " " + classes.textArea} placeholder="Your content"/>
+            <textarea value={text} onChange={handleText} onBlur={handleUpdate} className={classes.stylingInput + " " + classes.textArea} placeholder="Your content"/>
         </div>
     )
 }

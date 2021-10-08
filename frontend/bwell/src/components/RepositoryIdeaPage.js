@@ -65,7 +65,7 @@ const RepositoryIdeaPage = (props) => {
                 />
                 {
                     ideas.content.map(part => {
-                        return <EntryContentPart header={part.header} text={part.text} key={Math.random()} />
+                        return <EntryContentPart type={part.type} header={part.header} text={part.text} key={Math.random()} />
                     })
                 }
 
