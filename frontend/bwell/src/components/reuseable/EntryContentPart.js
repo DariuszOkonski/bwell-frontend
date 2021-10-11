@@ -57,7 +57,7 @@ export const EntryContentPart = ({header, type, text}) => {
         if (type === contentTypes.ingredientsList)
             return <ul className={classes.list}>
                     {text.map(item => {
-                    return <li key={Math.random()}>{item[0] != "" ? `${item[0]} - ${item[1]} ${item[2]}` : "[ blank ]"}</li>
+                    return <li key={Math.random()}>{item.id ? `${item.ingredient} - ${item.quantity} ${item.measure} ` : item[0] != "" ? `${item[0]} - ${item[1]} ${item[2]}` : "[ blank ]"}</li>
                 })}
             </ul>
         else if (type === contentTypes.textArea)

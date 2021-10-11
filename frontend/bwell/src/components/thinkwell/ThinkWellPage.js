@@ -46,7 +46,7 @@ const ThinkWellPage = (props) => {
                             excercises.map(excercise => {
                                 return(
                                     <Grid item xs={12} md={6}>
-                                        <RepositoryCard title={excercise.title} cardIcon={EmojiObjectsOutlinedIcon} linkTo={`${endpoints.thinkwell_idea}${excercise.id}`} description={excercise.description} />
+                                        <RepositoryCard title={excercise.title} cardIcon={EmojiObjectsOutlinedIcon} linkTo={`${endpoints.thinkwell_idea}${excercise.id}`} description={excercise.description} key={excercise.id}/>
                                     </Grid>
                                 )
                             })

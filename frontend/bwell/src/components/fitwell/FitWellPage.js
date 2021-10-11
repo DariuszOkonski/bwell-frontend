@@ -4,6 +4,7 @@ import CategoriesBar from '../reuseable/CategoriesBar'
 import RepositoryCard from '../reuseable/RepositoryCard';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import { endpoints } from '../../utilities/utilities';
+import { fitWell } from '../../utilities/BackendRequests';
 
 const FitWellPage = (props) => {
     const classes = props.useStylesPages();
@@ -13,18 +14,11 @@ const FitWellPage = (props) => {
     
     useEffect(() => {
         const getActivities = async () => {
-            const recipesFromServer = await fetchActivities()
+            const recipesFromServer = await fitWell.fetchActivities()
             setActivities(recipesFromServer)
         }
         getActivities()
     },[]);
-
-    const fetchActivities = async () => {
-        const response = await fetch('http://localhost:3001/activities/')
-        const data = await response.json()
-
-        return data 
-    }
 
     return (
         <>

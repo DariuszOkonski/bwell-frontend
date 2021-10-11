@@ -10,6 +10,7 @@ import RestaurantIcon from '@material-ui/icons/Restaurant';
 import { EntryContainer } from '../reuseable/EntryContainer';
 import EntryPageContainer from './../reuseable/EntryPageContainer';
 import { v4 } from 'uuid';
+import { eatWell } from '../../utilities/BackendRequests';
 
 const useStyles = makeStyles({
     buttonContainer: {
@@ -29,18 +30,12 @@ const Recipe = (props) => {
     useEffect(() => {
         // setRecipe(fake_getRecipe(Number(props.match.params.id)))
         const getRecipe = async () => {
-            const recipeFromServer = await fetchRecipe()
+            const recipeFromServer = await eatWell.fetchRecipe(props.match.params.id)
             setRecipe(recipeFromServer)
         }
         getRecipe()
     },[])
 
-    const fetchRecipe = async () => {
-        const response = await fetch(`http://localhost:3001/recipes/${Number(props.match.params.id)}`)
-        const data = await response.json()
-
-        return data 
-    }
 
     return ( 
         recipe && <EntryPageContainer>
@@ -57,7 +52,7 @@ const Recipe = (props) => {
 
                 {
                      recipe.content.map(part => {
-                        return <EntryContentPart header={part.header} text={part.text} key={v4()} type={part.type}/>
+                        return <EntryContentPart header={part.header} text={part.text ? part.text : part.ingredients} key={v4()} type={part.type}/>
                     })
                 }
                 <EntryFooter/>

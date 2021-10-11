@@ -13,6 +13,7 @@ import { getIcon } from './EntryPreview';
 import CustomButton from '../reuseable/CustomButton';
 import { useHistory, useRouteMatch } from 'react-router';
 import CustomList from './inputareas/CustomList';
+import { postNewEntry } from '../../utilities/BackendRequests';
 
 
 
@@ -83,6 +84,9 @@ const AddEntryForm = ({initModule}) => {
     const classes = useStyles()
     
     const [content, setContent] = useState([])
+    const [descriptionId, setDescriptionId] = useState(0)
+
+
     
     const [moduleObj, setModuleObj] = useState({module: path.split("/")[1], icon: getIcon(path.split("/")[1])})
 
@@ -153,7 +157,9 @@ const AddEntryForm = ({initModule}) => {
         
             <div className={classes.buttonContainer}>
                     <CustomButton text="Back" linkTo="/" isAbsolute={false}/>
-                    <EventButton icon={<EventNote/>} text="Add entry" callback={() => console.log("submit")} isAbsolute={false}/>
+                    <EventButton icon={<EventNote/>} text="Add entry" callback={() => {
+                        const newEntry = postNewEntry(module, title, content, descriptionId)
+                        history.push(`/${module}`)}} isAbsolute={false}/>
             </div>
 
         </EntryContainer>

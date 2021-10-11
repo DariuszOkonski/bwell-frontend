@@ -55,7 +55,6 @@ const endpoints = {
     APIusers: "users/",
     APIuserFavourites: "favourites",
     addEntry: (moduleUrl) => moduleUrl + "/addEntry"
-    
 }
 
 const modules = {
@@ -77,10 +76,33 @@ const modules = {
     },
 }
 
+const moduleNameToApi = (module) => {
+    switch (module) {
+        case modules.eatWell.name:
+            return endpoints.APIeatWell
+            break;
+    
+        case modules.fitWell.name:
+            return endpoints.APIfitWell
+            break;
+    
+        case modules.thinkWell.name:
+            return endpoints.APIthinkWell
+            break;
+    
+        case modules.restWell.name:
+            return endpoints.APIrestWell
+            break;
+    
+        default:
+            break;
+    }
+}
+
 const contentTypes = {
     textArea: "text_area",
     ingredientsList: "ingredients_list",
     customList: "custom_list"
 }
 
-export { colors, viewportSize, endpoints, modules, contentTypes }
+export { colors, viewportSize, endpoints, modules, contentTypes, moduleNameToApi }

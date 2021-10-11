@@ -70,7 +70,11 @@ const EntryCreatorContextProvider = (props) => {
                 id: v4(),
                 ingredient: "",
                 quantity: 0,
-                measure: "g"
+                measure: "g",
+                possibleMeasures: ["unit",
+                                    "kg",
+                                    "g",
+                                    "stone"]
             }],
             order: nextOrder(),
             type: contentTypes.ingredientsList
@@ -101,7 +105,11 @@ const EntryCreatorContextProvider = (props) => {
             id,
             ingredient,
             quantity,
-            measure
+            measure,
+            possibleMeasures: ["unit",
+                                "kg",
+                                "g",
+                                "stone"]
         }
         const updatedLists = ingredientsLists.map(list => {
             if (list.id === listId) {
@@ -114,15 +122,23 @@ const EntryCreatorContextProvider = (props) => {
     };
 
     
-    const editIngredient = (newItem, listId) => {
+    const editIngredient = (newItem, listId, newId=null) => {
         const updatedLists = ingredientsLists.map(list => {
             if (list.id === listId) {
-                const localIngredients = list.ingredients.map(ingredient => ingredient.id === newItem.id ? newItem : ingredient)
+                const localIngredients = list.ingredients.map(ingredient => {
+                    if (ingredient.id === newItem.id){
+                        if (newId) {
+                            newItem.id = newId;
+                        }
+                        return newItem
+                    }  return ingredient
+                })
                 list.ingredients = localIngredients;
             }
             return list
         });
         setIngredientsLists(updatedLists)
+        console.log("updated ingredients lists => ", ingredientsLists)
     }
 
 

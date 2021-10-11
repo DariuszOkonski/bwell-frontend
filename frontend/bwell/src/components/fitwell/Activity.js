@@ -7,6 +7,7 @@ import EntryPageContainer from '../reuseable/EntryPageContainer';
 import SimpleBreadcrumbs from '../reuseable/SimpleBreadcrumbs';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import { useRouteMatch } from 'react-router';
+import { fitWell } from '../../utilities/BackendRequests';
 
 const ENTRY_ID_INDEX = 3
 
@@ -19,19 +20,19 @@ const Activity = () => {
     useEffect(() => {
         // setRecipe(fake_getRecipe(Number(props.match.params.id)))
         const getActivity = async () => {
-            const ActivityFromServer = await fetchActivity()
+            const ActivityFromServer = await fitWell.fetchActivity(url_parts[ENTRY_ID_INDEX])
             setActivity(ActivityFromServer)
         }
         console.log(activity, " Activity !")
         getActivity()
     },[])
 
-    const fetchActivity = async () => {
-        const response = await fetch(`http://localhost:3001/activities/${Number(url_parts[ENTRY_ID_INDEX])}`)
-        const data = await response.json()
+    // const fetchActivity = async () => {
+    //     const response = await fetch(`http://localhost:3001/activities/${Number(url_parts[ENTRY_ID_INDEX])}`)
+    //     const data = await response.json()
 
-        return data 
-    }
+    //     return data 
+    // }
     
     return ( 
         activity && <EntryPageContainer>
@@ -45,7 +46,7 @@ const Activity = () => {
                 />
                 {
                     activity.content.map(part => {
-                        return <EntryContentPart type={part.type} header={part.header} text={part.text} key={Math.random()}/>
+                        return <EntryContentPart type={part.type} header={part.header} text={part.text ? part.text : part.content} key={Math.random()}/>
                     })
                 }
 

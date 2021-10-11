@@ -1,8 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { makeStyles } from '@material-ui/core';
 import { colors } from '../../../utilities/utilities';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { EntryCreatorContext } from '../contexts/EntryCreatorContext';
+import { IngredientsHintsFetcher } from '../../eatwell/apiSpoonacular/IngredientHintsFetcher';
 
 const IngredientItem = (props) => {
     const useStyles = makeStyles({
@@ -12,14 +13,17 @@ const IngredientItem = (props) => {
             justifyContent: 'space-between'
         },
         item: {
-            width: '30%',
+            width:"50%",
             border: `1px solid ${colors.borderPrimary}`,
             borderRadius: "0.4rem",
-            padding: "0.2rem",
+            padding: "0.1rem",
             color: `${colors.textPrimary}`,
         },
         unit: {
             width: '20%'
+        },
+        count: {
+            width: "20%"
         },
         buttonDelete: {
             backgroundColor: colors.thumbDown,
@@ -27,15 +31,36 @@ const IngredientItem = (props) => {
             borderRadius: "0.4rem",
             color: `${colors.white}`,
             cursor: 'pointer'
+        },
+        hints: {
+            backgroundColor: colors.thumbUp
+        },
+        hint: {
+            border: `1px solid ${colors.borderPrimary}`,
+            borderRadius: "0.4rem",
+            padding: "0.2rem",
+            backgroundColor: colors.white,
+            color: `${colors.textPrimary}`,
+            zIndex: "5"
         }
     })
     const classes = useStyles();
+    const fetcher = new IngredientsHintsFetcher()
+    
     const { removeIngredient, editIngredient } = useContext(EntryCreatorContext)
     
+    const [id, setId] = useState(props.id)
     const [ingredient, setIngredient] = useState(props.ingredient);
     const [quantity, setQuantity] = useState(props.quantity);
     const [measure, setMeasure] = useState(props.measure)    
+    const [units, setUnits] = useState(props.possibleMeasures)
+    
     const [isSubmit, setIsSubmit] = useState(false)
+    
+    const [hints, setHints] = useState({
+        "results": [],
+        "isShowing": false
+    })
 
     const handleDeleteItem = () => {
         removeIngredient(props.id, props.listId)
@@ -53,48 +78,121 @@ const IngredientItem = (props) => {
         setMeasure(evt.target.value);
     }
 
-    const handleFocusOut = () => {
+    const handleLoadHintsFromApi = async (ev) => {
+        // loads results of querying the API with current state of ingredient text input
+        if (ingredient.length >= 3){
+            
+            if (fetcher.phrase !== ingredient){
+                fetcher.setPhrase(ingredient)
+                await fetcher.setHints()
+            }
+            setHints({isShowing:true, results: fetcher.hints.results})
+        }
+    }
+
+    const handleUpdateData = () => {
         editIngredient({
-            id: props.id, 
+            id, 
             ingredient, 
             quantity, 
-            measure
+            measure,
+            possibleMeasures: [...units]
         }, props.listId)
-    } 
+    }
+    const handleUpdateBasedOnApiHint = (ev) => {
+        
+        const chosenResult = hints.results.find(item => item.id == ev.target.value)
+        if (chosenResult) {
+            // instantiate local id variable to update the ingredient's internal id for id from API
+            const newId = chosenResult.id === id ? null : chosenResult.id       
+            
+            fetcher.setPhrase(chosenResult.name)
+            setIngredient(chosenResult.name)
+            setUnits([...chosenResult.possibleUnits])
+
+            const apiBasedIngredient = {
+                    id, 
+                    ingredient: chosenResult.name, 
+                    quantity, 
+                    measure,
+                    possibleMeasures: [...chosenResult.possibleUnits]
+            }
+            editIngredient(apiBasedIngredient, props.listId, newId)
+        }
+        setHints({...hints, isShowing:false})
+    }
 
     const handleSubmit = (e) => {        
         setIsSubmit(!isSubmit)
     }
+    
+
+    const ingredientTextInput = <input 
+                                    className={classes.item} 
+                                    type="text" 
+                                    placeholder="ingredient" 
+                                    value={ingredient}
+                                    onChange={handleChangeIngredient}
+                                    onBlur={handleLoadHintsFromApi}/>
+
+    const ingredientHintsSelect = <select
+                                    autoFocus 
+                                    value={ingredient}
+                                    className={classes.item + " " + classes.hints}
+                                    onChange={handleChangeIngredient}
+                                    onBlur={handleUpdateBasedOnApiHint}>
+                                        {hints.results.map(result => {
+                                            return (
+                                            <option
+                                                className={classes.hint}
+                                                key={result.id}
+                                                id={result.id}
+                                                value={result.id}
+                                            >
+                                                {result.name}
+                                            </option>);
+                                            })
+                                        }
+                                    </select>
+
+    const ingredientInput = 
+                        <>
+                            {hints.isShowing ? ingredientHintsSelect : ingredientTextInput}
+                        </>
+
+    const quantityInput = 
+                        <input 
+                            className={classes.item + " " + classes.count} 
+                            type="number" 
+                            value={quantity}
+                            onChange={handleChangeQuantity}
+                            onBlur={handleUpdateData}
+                        />
+
+    const unitsOptions = 
+                        <select 
+                            className={classes.item + " " + classes.unit} 
+                            value={measure}
+                            onChange={handleChangeMeasure}
+                            onBlur={handleUpdateData}>
+                            
+                            {
+                                units.map(
+                                    unit => <option key={unit} value={unit}>{unit}</option>
+                                    )
+                            }
+
+                        </select>    
+        
 
     return (
         <div className={classes.container}>
-            <input 
-                className={classes.item} 
-                type="text" 
-                placeholder="ingredient" 
-                value={ingredient}
-                onChange={handleChangeIngredient}
-                onBlur={handleFocusOut}
-            />
-            <input 
-                className={classes.item} 
-                type="number" 
-                value={quantity}
-                onChange={handleChangeQuantity}
-                onBlur={handleFocusOut}
-            />
+            
+            {ingredientInput}
+            
+            {quantityInput}
 
-            <select 
-                className={classes.item + " " + classes.unit} 
-                value={measure}
-                onChange={handleChangeMeasure}
-                onBlur={handleFocusOut}
-            >
-                <option value="unit">unit</option>
-                <option value="kg">kg</option>
-                <option value="g">g</option>
-                <option value="stone">stone</option>
-            </select>               
+            {unitsOptions}  
 
             <button className={classes.buttonDelete} onClick={handleDeleteItem}>
                 <DeleteOutlineIcon />

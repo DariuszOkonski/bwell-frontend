@@ -5,6 +5,7 @@ import RepositoryCard from '../reuseable/RepositoryCard';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import { endpoints } from '../../utilities/utilities';
 import { fake_getAllRecipesShorts } from '../../fakeRepositories/fakeRecipies';
+import { eatWell } from '../../utilities/BackendRequests';
 
 
 const EatWellPage = (props) => {
@@ -16,18 +17,11 @@ const EatWellPage = (props) => {
 
     useEffect(() => {
         const getRecipes = async () => {
-            const recipesFromServer = await fetchRecipes()
+            const recipesFromServer = await eatWell.fetchRecipes()
             setRecipes(recipesFromServer)
         }
         getRecipes()
-    },[]);
-
-    const fetchRecipes = async () => {
-        const response = await fetch('http://localhost:3001/recipes/')
-        const data = await response.json()
-
-        return data 
-    }
+    },[recipes]);
 
 
     return (
