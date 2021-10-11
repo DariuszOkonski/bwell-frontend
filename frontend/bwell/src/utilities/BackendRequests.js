@@ -42,7 +42,7 @@ const postNewEntry = async (module, title, content) => {
     console.log(module, title, content)
     const POST_URL = `${BASE_URL}${moduleNameToApi(module)}`
     if (!title || !content){
-        console.log("not accepting empty entries")
+        alert("Not accepting empty entries")
         return
     }
     const postedEntry = {
