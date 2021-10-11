@@ -38,20 +38,6 @@ const AddEntry = () => {
         }
     })
 
-    const { ingredientsLists, textAreas } = useContext(EntryCreatorContext)
-
-    const [content, setContent] = useState([])
-    
-    const getCurrentContent = () => {
-        const content = [...ingredientsLists, ...textAreas]
-        content.sort((a, b) => a.order - b.order)
-
-        return content;
-    }
-
-    useEffect(() => {
-        setContent(getCurrentContent())
-    }, [ingredientsLists, textAreas])
 
     const classes = useStyles()
     return (

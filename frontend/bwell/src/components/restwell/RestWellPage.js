@@ -29,7 +29,7 @@ const RestWellPage = (props) => {
             setIdeas(ideasFromServer)
         }
         getIdeas()
-    },[APIurl]);
+    },[ideas]);
 
     return (
         <>
