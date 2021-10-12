@@ -77,20 +77,20 @@ const modules = {
 }
 
 const moduleNameToApi = (module) => {
-    switch (module) {
-        case modules.eatWell.name:
+    switch (module.toLowerCase()) {
+        case modules.eatWell.name.toLowerCase():
             return endpoints.APIeatWell
             break;
     
-        case modules.fitWell.name:
+        case modules.fitWell.name.toLowerCase():
             return endpoints.APIfitWell
             break;
     
-        case modules.thinkWell.name:
+        case modules.thinkWell.name.toLowerCase():
             return endpoints.APIthinkWell
             break;
     
-        case modules.restWell.name:
+        case modules.restWell.name.toLowerCase():
             return endpoints.APIrestWell
             break;
     

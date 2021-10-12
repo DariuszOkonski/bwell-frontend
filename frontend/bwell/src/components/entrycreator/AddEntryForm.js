@@ -109,6 +109,15 @@ const AddEntryForm = ({initModule}) => {
         setContent(getContentListInOrder())
     }, [ingredientsLists, textAreas, moduleObj, customLists])
 
+    const handleSubmitAddEntry = () => {
+        if (!title || !content){
+            alert("Not accepting empty entries")
+            return;
+        }
+        postNewEntry(module, title, content, descriptionId)
+        history.push(history.push(`/${module}`))
+    }
+
     return (
         <EntryContainer key={moduleObj.module}>
             <div className={classes.moduleDropdown}>
@@ -157,9 +166,7 @@ const AddEntryForm = ({initModule}) => {
         
             <div className={classes.buttonContainer}>
                     <CustomButton text="Back" linkTo="/" isAbsolute={false}/>
-                    <EventButton icon={<EventNote/>} text="Add entry" callback={() => {
-                        const newEntry = postNewEntry(module, title, content, descriptionId)
-                        history.push(`/${module}`)}} isAbsolute={false}/>
+                    <EventButton icon={<EventNote/>} text="Add entry" callback={handleSubmitAddEntry} isAbsolute={false}/>
             </div>
 
         </EntryContainer>

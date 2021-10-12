@@ -46,14 +46,19 @@ const CustomItem = ({listId, itemId, refreshList, handleAddItem}) => {
         disabled: {
             backgroundColor: colors.borderPrimary,
             cursor: 'default'
+        },
+        checkbox: {
+            fontSize: "0.8rem"
         }
     })
     const classes = useStyles();
     const { removeCustomItem, editCustomItem, removeCustomCell, getCustomList } = useContext(EntryCreatorContext)
     const currentList = getCustomList(listId)
     const [customItem, setCustomItem] = useState(currentList && currentList.content.find(row => row.id === itemId));
+    const [isHeaderRow, setIsHeaderRow] = useState(false)
 
     const isItemFull = () => customItem.cells.length >= 4
+
     const handleDeleteItem = () => {
         removeCustomItem(itemId, listId)
         setCustomItem(null)
@@ -99,7 +104,8 @@ const CustomItem = ({listId, itemId, refreshList, handleAddItem}) => {
         const local = {
             id: itemId,
             order: customItem.order, 
-            cells: cells, 
+            cells: cells,
+            isHeaderRow 
             
         }
         editCustomItem(local, listId)
@@ -121,7 +127,7 @@ const CustomItem = ({listId, itemId, refreshList, handleAddItem}) => {
         )
 
     return (
-        customItem ? <div 
+        customItem ? <><div 
         className={classes.container}>
             {/* <input 
                 className={classes.item} 
@@ -132,7 +138,6 @@ const CustomItem = ({listId, itemId, refreshList, handleAddItem}) => {
                 onBlur={handleFocusOut}
             /> */}
             <div className={classes.row}>
-
             {
                 showCells
             }
@@ -144,9 +149,11 @@ const CustomItem = ({listId, itemId, refreshList, handleAddItem}) => {
             <button className={classes.buttonDelete} onClick={handleDeleteItem}>
                 <DeleteOutlineIcon />
             </button>
-        </div> :
-        <></>
+        </div>
+        {customItem.order == 0 && <div className={classes.checkbox}><label><input value={isHeaderRow} onChange={() => setIsHeaderRow(!isHeaderRow)} type="checkbox"/> mark first row as header</label></div>}</>
+        : <></>
     )
 }
+
 
 export default CustomItem

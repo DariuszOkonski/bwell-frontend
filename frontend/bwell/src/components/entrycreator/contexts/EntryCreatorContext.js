@@ -17,35 +17,44 @@ const MAX_TEXT_AREAS_COUNT = 3
 export const EntryCreatorContext = createContext();
 
 const EntryCreatorContextProvider = (props) => {
+
     const {path} = useRouteMatch();
-
-    const [title, setTitle] = useState("")
     const [module, setModule] = useState(path.split("/")[1])
-    const [textAreas, setTextAreas] = useState([])
-    const [ingredientsLists, setIngredientsLists] = useState([
-        // {id:0, header: "", ingredients: [], order: 0, type: contentTypes.ingredients_list}
-    ])
-    const [customLists, setCustomLists] = useState([
-        // {id, header, content, order}
-    ])
-
     useEffect(() => {
         setModule(path.split("/")[1])
     }, [path])
 
+    const [title, setTitle] = useState("")
+
+    const [textAreas, setTextAreas] = useState([
+        // { id: 0, "header": "Description", "type": "text_area", "text":"" }
+    ])
+    const [ingredientsLists, setIngredientsLists] = useState([
+        // { id:0, header: "", ingredients: [], order: 0, type: contentTypes.ingredients_list}
+    ])
+    const [customLists, setCustomLists] = useState([
+        // { id, header, content, order}
+    ])
+
     const nextOrder = () => textAreas.length + ingredientsLists.length + customLists.length
+
+
+
+
+    // Text areas
 
     const addTextArea = (id, header, text) => {
         if (textAreas.length < MAX_TEXT_AREAS_COUNT){
-        const localTextArea = [...textAreas, {
-            id,
-            header,
-            text,
-            order: nextOrder(),
-            type: contentTypes.textArea
-        }];
-        setTextAreas(localTextArea);
-    }
+            const emptyTextArea = {
+                id,
+                header,
+                text,
+                order: nextOrder(),
+                type: contentTypes.textArea
+            }
+            const localTextArea = [...textAreas, emptyTextArea];
+            setTextAreas(localTextArea);
+        }
     }
 
     const removeTextArea = (id) => {
@@ -59,26 +68,30 @@ const EntryCreatorContextProvider = (props) => {
     }
 
 
+
+    // Ingredients lists
+
     const addIngredientsList = (id) => {
         if (ingredientsLists.length < MAX_INGREDIENTS_LISTS_COUNT){
-
-        
-        setIngredientsLists([...ingredientsLists, {
-            id,
-            header: "",
-            ingredients: [{
-                id: v4(),
-                ingredient: "",
-                quantity: 0,
-                measure: "g",
-                possibleMeasures: ["unit",
-                                    "kg",
-                                    "g",
-                                    "stone"]
-            }],
-            order: nextOrder(),
-            type: contentTypes.ingredientsList
-        }])
+            const emptyIngredientList = {
+                id,
+                header: "",
+                ingredients: [
+                    {
+                    id: v4(),
+                    ingredient: "",
+                    quantity: 0,
+                    measure: "g",
+                    possibleMeasures: ["unit",
+                                        "kg",
+                                        "g",
+                                        "stone"]
+                    }
+                ],
+                order: nextOrder(),
+                type: contentTypes.ingredientsList
+            }
+            setIngredientsLists([...ingredientsLists, emptyIngredientList])
     }
     }
 
@@ -100,8 +113,10 @@ const EntryCreatorContextProvider = (props) => {
     }
 
 
+    // single ingredient
+
     const addIngredient = (id, ingredient, quantity, measure, listId) => {
-        const localIngredient = {
+        const emptyIngredient = {
             id,
             ingredient,
             quantity,
@@ -114,7 +129,7 @@ const EntryCreatorContextProvider = (props) => {
         const updatedLists = ingredientsLists.map(list => {
             if (list.id === listId) {
                 const localState = list.ingredients
-                list.ingredients = [...localState, localIngredient]
+                list.ingredients = [...localState, emptyIngredient]
             }
             return list
         });
@@ -155,28 +170,25 @@ const EntryCreatorContextProvider = (props) => {
 
 
     
+    // Custom lists
+
     const addCustomList = (id) => {
         if (customLists.length < MAX_CUSTOM_LISTS_COUNT){
-        setCustomLists([...customLists, {
-            id,
-            header: "",
-            content: [{
-                id: v4(),
-                order: 0,                
-                cells: [{id: v4(), order: 0, value: ""}]
-            }],
-            order: nextOrder(),
-            type: contentTypes.customList
-        }])
+            const newCustomList = {
+                id,
+                header: "",
+                content: [{
+                    id: v4(),
+                    order: 0,                
+                    cells: [{id: v4(), order: 0, value: ""}]
+                }],
+                order: nextOrder(),
+                type: contentTypes.customList
+            }
+            setCustomLists([...customLists, newCustomList])
     }
     }
-
-    const getCustomList = (id) => {
-        return {...customLists.find(list => list.id === id)};
-    }
-
     
-
     const editCustomListTitle = (newTitle, id) => {
         const updatedList = customLists.find(list => list.id === id);
 
@@ -184,12 +196,23 @@ const EntryCreatorContextProvider = (props) => {
        setCustomLists(customLists.map(list => list.id === id ? updatedList : list))
     }
 
+    const removeCustomList = (listId) => {
+        const local = customLists.filter(list => list.id !== listId)
+        local.sort((list1, list2) => list1.order - list2.order)
+        setCustomLists(local)
+    }
 
+    const getCustomList = (id) => {
+        return {...customLists.find(list => list.id === id)};
+    }
+
+
+    // custom list item
 
     const addCustomListItem = (id, listId) => {
         const customListRowsCount = getCustomList(listId).content.length
         if (customListRowsCount < MAX_CUSTOM_LIST_ROWS_COUNT){
-            const localItem = {
+            const emptyItem = {
                 id,
                 order: customListRowsCount,
                 cells: [{id: v4(), order: 0, value: ""}] 
@@ -198,7 +221,7 @@ const EntryCreatorContextProvider = (props) => {
             const updatedLists = customLists.map(list => {
                 if (list.id === listId) {
                     const localState = list.content
-                    list.content = [...localState, localItem]
+                    list.content = [...localState, emptyItem]
                 }
                 return list
             });
@@ -225,7 +248,6 @@ const EntryCreatorContextProvider = (props) => {
         setCustomLists(local)
     }
 
-
     const removeCustomItem = (itemId, listId) => {
         const listWithGivenRow = getCustomList(listId)
         const updatedContent = listWithGivenRow.content.filter(row => row.id !== itemId)
@@ -235,11 +257,8 @@ const EntryCreatorContextProvider = (props) => {
         
     }
 
-    const removeCustomList = (listId) => {
-        const local = customLists.filter(list => list.id !== listId)
-        local.sort((list1, list2) => list1.order - list2.order)
-        setCustomLists(local)
-    }
+    
+
     return ( <EntryCreatorContext.Provider value = {
             {
                 title,

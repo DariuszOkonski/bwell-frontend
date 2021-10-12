@@ -11,6 +11,7 @@ import { EntryContainer } from '../reuseable/EntryContainer';
 import EntryPageContainer from './../reuseable/EntryPageContainer';
 import { v4 } from 'uuid';
 import { eatWell } from '../../utilities/BackendRequests';
+import DeleteButton from '../reuseable/DeleteButton';
 
 const useStyles = makeStyles({
     buttonContainer: {
@@ -56,7 +57,7 @@ const Recipe = (props) => {
                     })
                 }
                 <EntryFooter/>
-
+                <DeleteButton entryId={recipe.id}/>
             </EntryContainer>
         </EntryPageContainer>
      );

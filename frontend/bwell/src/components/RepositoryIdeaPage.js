@@ -11,6 +11,7 @@ import EntryPageContainer from './reuseable/EntryPageContainer';
 import { endpoints } from '../utilities/utilities';
 import WeekendOutlinedIcon from '@material-ui/icons/WeekendOutlined';
 import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
+import DeleteButton from './reuseable/DeleteButton';
 
 
 const RepositoryIdeaPage = (props) => {
@@ -65,11 +66,12 @@ const RepositoryIdeaPage = (props) => {
                 />
                 {
                     ideas.content.map(part => {
-                        return <EntryContentPart type={part.type} header={part.header} text={part.text} key={part.id ? part.id : Math.random()} />
+                        return <EntryContentPart type={part.type} header={part.header} text={part.text ? part.text : part.content} key={part.id ? part.id : Math.random()} />
                     })
                 }
 
                 <EntryFooter />
+                <DeleteButton entryId={ideas.id}/>
             </EntryContainer>
         </EntryPageContainer>
     )

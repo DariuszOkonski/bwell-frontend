@@ -1,4 +1,3 @@
-import { useHistory } from "react-router"
 import { v4 } from "uuid"
 import { endpoints, moduleNameToApi } from "./utilities"
 
@@ -41,10 +40,7 @@ const fitWell = {
 const postNewEntry = async (module, title, content) => {
     console.log(module, title, content)
     const POST_URL = `${BASE_URL}${moduleNameToApi(module)}`
-    if (!title || !content){
-        alert("Not accepting empty entries")
-        return
-    }
+    
     const postedEntry = {
         id: v4(),
         title: title,
@@ -69,6 +65,25 @@ const postNewEntry = async (module, title, content) => {
     }    
 }
 
+const deleteEntry = async (module, id) => {
+    const DELETE_URL = `${BASE_URL}${moduleNameToApi(module)}/${id}`
+    console.log(DELETE_URL)
+    const settings = {
+        method: 'DELETE',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+    };
+    try {
+        const fetchResponse = await fetch(DELETE_URL, settings);
+        const data = await fetchResponse.json();
+        return data;
+    } catch (e) {
+        return e;
+    }    
+}
 
-export {eatWell, fitWell, postNewEntry}
+
+export {eatWell, fitWell, postNewEntry, deleteEntry}
 

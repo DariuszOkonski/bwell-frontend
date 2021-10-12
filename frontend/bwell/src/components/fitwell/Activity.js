@@ -8,6 +8,7 @@ import SimpleBreadcrumbs from '../reuseable/SimpleBreadcrumbs';
 import DirectionsBikeIcon from '@material-ui/icons/DirectionsBike';
 import { useRouteMatch } from 'react-router';
 import { fitWell } from '../../utilities/BackendRequests';
+import DeleteButton from '../reuseable/DeleteButton';
 
 const ENTRY_ID_INDEX = 3
 
@@ -51,6 +52,7 @@ const Activity = () => {
                 }
 
                 <EntryFooter />
+                <DeleteButton entryId={activity.id}/>
             </EntryContainer>
             
         </EntryPageContainer>
