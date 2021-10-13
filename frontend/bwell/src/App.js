@@ -22,6 +22,7 @@ import FavouritesPage from './components/FavouritesPage';
 import Calculator from './components/eatwell/Calculator';
 import AddEntry from './components/entrycreator/AddEntry';
 import EntryCreatorContextProvider from './components/entrycreator/contexts/EntryCreatorContext';
+import ErrorPage from './components/reuseable/ErrorPage';
 
 const useStylesPages = makeStyles({
   categoriesBar: {
@@ -129,7 +130,7 @@ function App() {
               </Route>
               
               <Route >
-                Error Page 404
+                <ErrorPage />
               </Route>
             </Switch>
           </Grid>
