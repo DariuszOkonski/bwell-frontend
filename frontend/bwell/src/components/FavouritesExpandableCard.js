@@ -150,13 +150,12 @@ const FavouritesExpandableCard = ((props) => {
                 <CardContent>
                     {
                         ideas.map((ideaElement) => {
-                            return <FavouritesListElement idea={ideaElement} />;
+                            return <FavouritesListElement idea={ideaElement} type={props.type} />;
                         })
                     }
                 </CardContent>
                 <CardContent>
-                    <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />} className={classes.checkButton} text="check">Remove</Button>
-                    <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />} className={classes.checkButton} text="check">Back</Button>
+                    {/* <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />} className={classes.checkButton} text="check">Back</Button> */}
                 </CardContent>
             </Collapse>
         </Card >
