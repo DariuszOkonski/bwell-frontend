@@ -85,5 +85,6 @@ const deleteEntry = async (module, id) => {
 }
 
 
+
 export {eatWell, fitWell, postNewEntry, deleteEntry}
 

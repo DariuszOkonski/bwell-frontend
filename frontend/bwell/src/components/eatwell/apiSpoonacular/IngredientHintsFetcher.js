@@ -1,6 +1,6 @@
 // TODO move API KEYS to backend and provide only for logged users 
-const API_KEY = '1eac70c6679646c495c10b490246131b';
-const API_KEY2 = '11e7a27c2c6c4d3abb6617b3c7521887';
+// const API_KEY = '1eac70c6679646c495c10b490246131b';
+// const API_KEY2 = '11e7a27c2c6c4d3abb6617b3c7521887';
 
 export class IngredientsHintsFetcher {
     
@@ -9,7 +9,7 @@ export class IngredientsHintsFetcher {
         this.hints = hints;
     }
     getURL(query) { 
-        return `https://api.spoonacular.com/food/ingredients/search?apiKey=${API_KEY2}&query=${query}&number=10&metaInformation=true`
+        return `http://localhost:8080/api/query?query=${query}`;
     }
     setPhrase(phrase) {
         this.phrase = phrase
@@ -23,10 +23,20 @@ export class IngredientsHintsFetcher {
         this.setResponse(recipeFromServer)
     }
     async fetchData() {
-        const response = await fetch(this.getURL(this.phrase))
-        const data = await response.json()
-        console.log("fetch")
-        console.log(this.phrase)
+        const url = this.getURL(this.phrase)
+        const response = await fetch(url)
+        // const response = await fetch(url, {
+        //     // credentials: 'same-origin',
+        //     headers: {
+        //         'Access-Control-Allow-Origin': "http://localhost:8080",
+        //         'Origin': "http://localhost:8080",
+        //         'Access-Control-Expose-Headers': '*',
+        //         'Content-Type': 'application/json',
+        //         'Access-Control-Request-Method': 'GET'
+        //       }
+        // })
+        // console.log(response);
+        const data = await response.json() 
         return data 
     }
 }

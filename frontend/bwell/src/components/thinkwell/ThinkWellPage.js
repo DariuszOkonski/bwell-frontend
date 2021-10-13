@@ -30,7 +30,7 @@ const ThinkWellPage = (props) => {
             setExcercises(excercisesFromServer)
         }
         getExcercises()
-    },[excercises]);
+    },[]);
 
 
     return (

@@ -129,14 +129,7 @@ const CustomItem = ({listId, itemId, refreshList, handleAddItem}) => {
     return (
         customItem ? <><div 
         className={classes.container}>
-            {/* <input 
-                className={classes.item} 
-                type="text" 
-                placeholder="CustomItem" 
-                value={customItem}
-                onChange={handleChangeCustomItem}
-                onBlur={handleFocusOut}
-            /> */}
+            
             <div className={classes.row}>
             {
                 showCells

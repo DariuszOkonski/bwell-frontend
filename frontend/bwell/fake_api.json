@@ -559,27 +559,6 @@
       ]
     },
     {
-      "id": 4,
-      "title": "Activity 4",
-      "description": "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-      "rating": {
-        "up": 15,
-        "down": 11
-      },
-      "content": [
-        {
-          "header": "Description",
-          "type": "text_area",
-          "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
-        },
-        {
-          "header": "Description",
-          "type": "text_area",
-          "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
-        }
-      ]
-    },
-    {
       "id": "1ba6e0e6-be00-4ded-b35b-3fe84f2a0fc5",
       "title": "Trening domatora",
       "description": "This training can be done without any equipment to improve you wellbeing and overall performance.",
@@ -667,133 +646,6 @@
           "type": "custom_list"
         }
       ]
-    },
-    {
-      "id": "8296154f-61cc-43bb-83c7-4d20c7de878b",
-      "title": "title",
-      "description": "No description",
-      "rating": {
-        "up": 0,
-        "down": 0
-      },
-      "content": [
-        {
-          "id": "b80c7fcb-3235-491f-9551-ca92a3743424",
-          "header": "",
-          "content": [
-            {
-              "id": "c49124aa-d70d-46d5-b91e-2fe072407400",
-              "order": 0,
-              "cells": [
-                {
-                  "id": "39dbc078-9c7a-40ed-b5bd-247ac58f5d54",
-                  "order": 0,
-                  "value": "asdf"
-                },
-                {
-                  "id": "f784adc0-e3a1-458f-8534-74934c7dcafc",
-                  "order": 1,
-                  "value": "asdf"
-                },
-                {
-                  "id": "9a4fd6e6-c0da-43e5-b51a-8053336e5178",
-                  "order": 2,
-                  "value": "asdf"
-                },
-                {
-                  "id": "239ff9be-c302-4a4e-b5be-763982bfa13e",
-                  "order": 3,
-                  "value": "asdfasdf"
-                }
-              ],
-              "isHeaderRow": true
-            },
-            {
-              "id": "400f0487-7610-459b-8587-a77def082e7f",
-              "order": 1,
-              "cells": [
-                {
-                  "id": "4df57050-7ef8-4ad3-8a4b-ac1769a13523",
-                  "order": 0,
-                  "value": "sdfa"
-                },
-                {
-                  "id": "8b74f71f-66e4-4e02-8d59-418ed706a82b",
-                  "order": 1,
-                  "value": "asdf"
-                },
-                {
-                  "id": "35d7b1f1-fbcd-431c-a358-5ef73deb897e",
-                  "order": 2,
-                  "value": "asdf"
-                },
-                {
-                  "id": "dec153db-ef1a-4ad9-883e-a019915f01c6",
-                  "order": 3,
-                  "value": "asdf"
-                }
-              ],
-              "isHeaderRow": false
-            },
-            {
-              "id": "1974693f-7e4f-48ef-bf59-792e62559850",
-              "order": 2,
-              "cells": [
-                {
-                  "id": "568717e5-d53e-463a-94b8-be7f007a6381",
-                  "order": 0,
-                  "value": "asdfasd"
-                },
-                {
-                  "id": "f3fc178d-1391-475f-95f7-00cc7cf706c1",
-                  "order": 1,
-                  "value": "asdfa"
-                },
-                {
-                  "id": "a628e953-7125-4792-9000-2f38f0cf5982",
-                  "order": 2,
-                  "value": "sdfasd"
-                },
-                {
-                  "id": "7ddc00ab-1048-4132-a752-a815ccacdf33",
-                  "order": 3,
-                  "value": "asdfa"
-                }
-              ],
-              "isHeaderRow": false
-            },
-            {
-              "id": "f8025bfd-53a3-4b5d-b912-c11ab2797988",
-              "order": 3,
-              "cells": [
-                {
-                  "id": "bfdcbd07-cf41-4663-839e-173b87ffbbdf",
-                  "order": 0,
-                  "value": "asdfa"
-                },
-                {
-                  "id": "800ece25-9984-40c8-852b-2356ee477403",
-                  "order": 1,
-                  "value": "asdf"
-                },
-                {
-                  "id": "64abcdbe-8674-41b7-8100-ff91a6700e45",
-                  "order": 2,
-                  "value": "asdfa"
-                },
-                {
-                  "id": "a880fffb-2a35-4228-ab90-89bc5c6664f8",
-                  "order": 3,
-                  "value": "asdfa"
-                }
-              ],
-              "isHeaderRow": false
-            }
-          ],
-          "order": 0,
-          "type": "custom_list"
-        }
-      ]
     }
   ],
   "ideas": [
@@ -803,27 +655,6 @@
       "description": "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
       "rating": {
         "up": 13,
-        "down": 11
-      },
-      "content": [
-        {
-          "header": "Description",
-          "type": "text_area",
-          "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
-        },
-        {
-          "header": "Description",
-          "type": "text_area",
-          "text": "How do you use Lorem Ipsum in VS code A tiny VS Code extension made up of a few commands that generate and insert lorem ipsum text into a text file. To use the extension, open the command palette (F1 or cmd/ctrl+shift+p, type and select to insert either a line or paragraph."
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "title": "Dream",
-      "description": "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
-      "rating": {
-        "up": 14,
         "down": 11
       },
       "content": [
@@ -908,6 +739,23 @@
           "id": "6faf25be-492f-43c9-ab5e-27a0286e4db4",
           "header": "Hyperventilation exercise set - repeat 3 times",
           "content": [
+            {
+              "id": "abd69635-a185-4b14-b454-9a7dc00f88",
+              "order": 0,
+              "cells": [
+                {
+                  "id": "b867f4cc-7252-44c0-a6a7-3284f4d058",
+                  "order": 0,
+                  "value": "Step"
+                },
+                {
+                  "id": "0d0048b4-50ad-466e-940f-6957555bd8",
+                  "order": 1,
+                  "value": "Additional info"
+                }
+              ],
+              "isHeaderRow": true
+            },
             {
               "id": "abd69635-a185-4b14-b454-9a7dc0ee0f88",
               "order": 0,

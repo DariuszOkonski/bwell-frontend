@@ -21,7 +21,7 @@ const EatWellPage = (props) => {
             setRecipes(recipesFromServer)
         }
         getRecipes()
-    },[recipes]);
+    },[]);
 
 
     return (
