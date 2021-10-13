@@ -25,17 +25,6 @@ export class IngredientsHintsFetcher {
     async fetchData() {
         const url = this.getURL(this.phrase)
         const response = await fetch(url)
-        // const response = await fetch(url, {
-        //     // credentials: 'same-origin',
-        //     headers: {
-        //         'Access-Control-Allow-Origin': "http://localhost:8080",
-        //         'Origin': "http://localhost:8080",
-        //         'Access-Control-Expose-Headers': '*',
-        //         'Content-Type': 'application/json',
-        //         'Access-Control-Request-Method': 'GET'
-        //       }
-        // })
-        // console.log(response);
         const data = await response.json() 
         return data 
     }
