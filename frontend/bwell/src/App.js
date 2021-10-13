@@ -23,6 +23,7 @@ import Calculator from './components/eatwell/Calculator';
 import AddEntry from './components/entrycreator/AddEntry';
 import EntryCreatorContextProvider from './components/entrycreator/contexts/EntryCreatorContext';
 import ErrorPage from './components/reuseable/ErrorPage';
+import DietPlanPage from './components/eatwell/dietplan/DietPlanPage';
 
 const useStylesPages = makeStyles({
   categoriesBar: {
@@ -86,6 +87,10 @@ function App() {
 
               <Route exact path={endpoints.eatwell_calculator} render={
                 (props) => <Calculator useStylesPages={useStylesPages} />} />
+
+
+              <Route exact path={endpoints.eatwell_dietplan} render={
+                (props) => <DietPlanPage useStylesPages={useStylesPages} />} />
 
               <Route exact path={endpoints.fitwell} render={
                 (props) => <FitWellPage useStylesPages={useStylesPages} {...props} />} />
