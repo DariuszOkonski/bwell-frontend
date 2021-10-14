@@ -2,7 +2,6 @@ import { makeStyles } from '@material-ui/core'
 import React, { useContext, useEffect, useState } from 'react'
 import { EntryContainer } from '../reuseable/EntryContainer'
 import { viewportSize, colors, contentTypes, modules } from '../../utilities/utilities'
-import RestaurantIcon from '@material-ui/icons/Restaurant';
 import EventButton from '../reuseable/EventButton'
 import { EventNote } from '@material-ui/icons';
 import TextAreaInput from './inputareas/TextAreaInput';

@@ -1,7 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import { eatWell } from '../../../utilities/BackendRequests';
-import { contentTypes } from '../../../utilities/utilities';
+import { contentTypes, viewportSize } from '../../../utilities/utilities';
 import { DietPlanContext } from './context/DietPlanContext';
+
+import { useRouteMatch } from 'react-router'
+import EntryPageContainer from '../../reuseable/EntryPageContainer'
+import SimpleBreadcrumbs from '../../reuseable/SimpleBreadcrumbs'
+import { makeStyles } from '@material-ui/core';
+import { EntryContainer } from '../../reuseable/EntryContainer';
+import SimpleAccordion from '../../reuseable/SimpleAccordion';
 
 const DietPlanPage = () => {
 
@@ -28,12 +35,63 @@ const DietPlanPage = () => {
         getRecipe()
     },[])
 
-    
+    const {path} = useRouteMatch()
+    const useStyles = makeStyles({
+        content: {
+            display: 'flex',
+            flexDirection: "column",
+            [`@media (min-width: ${viewportSize.laptop})`] : {
+                flexDirection: "row",
+            },
+        },
+        part: {
+            width: '95%',
+            [`@media (min-width: ${viewportSize.mobileL})`] : {
+                width: '97%',
+            },
+            [`@media (min-width: ${viewportSize.laptop})`] : {
+                width: '100%',
+            },
+            margin: '0.5rem 0.5rem',
+            // padding: '0.25rem'
+        },
+        simpleBreadcrubmContainer: {
+            padding: '0 0.5rem',
+            // width: '90%'
+        }
+    })
+
+
+    const classes = useStyles()
+
+
     return ( 
-        <div>
+        <EntryPageContainer size={viewportSize.laptop}>
             <div>{breakfast.header}</div>
-            <h2>DietPlanPage</h2>
-        </div>
+
+            <div className={classes.simpleBreadcrubmContainer}>
+                <SimpleBreadcrumbs path={path}/>
+            </div>
+            <div className={classes.content}>
+
+                <div className={classes.part}>
+                    <EntryContainer>
+                        <h2>Left column slkdfjklsjdf klsdfjl ksadflksjadf lsdjlfsfd laskf</h2>
+                        <h2>Left column</h2>
+                        <h2>Left column</h2>
+                        <h2>Left column</h2>
+                    </EntryContainer>
+                </div>
+                <div className={classes.part}>
+                    <EntryContainer>
+
+                        <SimpleAccordion />
+
+                    </EntryContainer>
+
+                </div>
+            </div>
+        </EntryPageContainer>        
      );
 }
  

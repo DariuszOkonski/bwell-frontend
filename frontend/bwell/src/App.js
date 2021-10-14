@@ -89,10 +89,7 @@ function App() {
               <Route exact path={endpoints.eatwell_calculator} render={
                 (props) => <Calculator useStylesPages={useStylesPages} />} />
 
-              <DietPlanContextProvider>
-                <Route exact path={endpoints.eatwell_dietplan} render={
-                  (props) => <DietPlanPage useStylesPages={useStylesPages} />} />
-              </DietPlanContextProvider>
+
               <Route exact path={endpoints.fitwell} render={
                 (props) => <FitWellPage useStylesPages={useStylesPages} {...props} />} />
 
@@ -135,6 +132,14 @@ function App() {
                 
               </Route>
               
+              <Route>
+                <DietPlanContextProvider>
+                  <DietPlanPage useStylesPages={useStylesPages} />
+                </DietPlanContextProvider>
+              </Route>
+            
+              
+
               <Route >
                 <ErrorPage />
               </Route>

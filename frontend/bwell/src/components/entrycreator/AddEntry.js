@@ -1,12 +1,10 @@
-import { ClickAwayListener, makeStyles } from '@material-ui/core'
-import { CallMissedSharp } from '@material-ui/icons'
-import React, { useContext, useEffect, useState } from 'react'
+import {  makeStyles } from '@material-ui/core'
+import React from 'react'
 import { useRouteMatch } from 'react-router'
 import { viewportSize } from '../../utilities/utilities'
 import EntryPageContainer from '../reuseable/EntryPageContainer'
 import SimpleBreadcrumbs from '../reuseable/SimpleBreadcrumbs'
 import AddEntryForm from './AddEntryForm'
-import EntryCreatorContextProvider, { EntryCreatorContext }  from './contexts/EntryCreatorContext'
 import EntryPreview from './EntryPreview'
 
 const AddEntry = () => {
@@ -49,6 +47,7 @@ const AddEntry = () => {
             <div className={classes.content}>
 
                 <div className={classes.part}>
+                    
                     <AddEntryForm/>
                 </div>
                 <div className={classes.part}>

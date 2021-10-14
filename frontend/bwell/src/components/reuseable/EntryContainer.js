@@ -8,7 +8,7 @@ const useStyles = makeStyles({
         boxSizing: "border-box",
         borderRadius: '1rem',
         border: `1px solid ${colors.borderPrimary}`,
-        padding: '1rem 2rem',
+        padding: '1rem 1rem',
         backgroundColor: `${colors.white}`,
         marginTop: '1rem'
     }
