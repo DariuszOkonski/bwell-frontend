@@ -9,13 +9,18 @@ import SimpleBreadcrumbs from '../../reuseable/SimpleBreadcrumbs'
 import { makeStyles } from '@material-ui/core';
 import { EntryContainer } from '../../reuseable/EntryContainer';
 import SimpleAccordion from '../../reuseable/SimpleAccordion';
+import IngredientsTable from './IngredientsTable';
 
 const DietPlanPage = () => {
 
     const { breakfast, setBreakfast, demand, lunch } = useContext(DietPlanContext);
-    
+    console.log("breakfast");
+    console.log(breakfast);
+
     const mock = async () => {
         const recipe = await eatWell.fetchRecipe("58512254-1150-4783-aa08-8b862e737f71")
+        console.log("recipe");
+        console.log(recipe)
         const ingrientsList = recipe.content
           .filter(entry => entry.type == contentTypes.ingredientsList)
           .reduce((previousValue, currentValue) => {
@@ -76,10 +81,9 @@ const DietPlanPage = () => {
 
                 <div className={classes.part}>
                     <EntryContainer>
-                        <h2>Left column slkdfjklsjdf klsdfjl ksadflksjadf lsdjlfsfd laskf</h2>
-                        <h2>Left column</h2>
-                        <h2>Left column</h2>
-                        <h2>Left column</h2>
+                        
+                        <IngredientsTable ingredients={breakfast.ingredients} />
+
                     </EntryContainer>
                 </div>
                 <div className={classes.part}>
