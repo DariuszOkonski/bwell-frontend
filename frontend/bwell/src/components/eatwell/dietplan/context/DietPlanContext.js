@@ -1,8 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import React from 'react'
+import { eatWell } from "../../../../utilities/BackendRequests";
+import { contentTypes } from "../../../../utilities/utilities";
 
 export const DietPlanContext = createContext();
-
-import React from 'react'
 
 const DietPlanContextProvider = (props) => {
     const [demand, setDemand] = useState({
@@ -12,6 +13,7 @@ const DietPlanContextProvider = (props) => {
         carbsPercentage: 45,
     })
 
+    
     const [breakfast, setBreakfast] = useState({});
     const [lunch, setLunch] = useState({
         id: 1,
@@ -94,9 +96,9 @@ const DietPlanContextProvider = (props) => {
     })
     const [dinner, setDinner] = useState({})
     const [supper, setSupper] = useState({})
-
+   
     return (
-        <DietPlanContext.Provider value={{}}>
+        <DietPlanContext.Provider value = { { breakfast, setBreakfast, demand, lunch } }>
             {props.children}
         </DietPlanContext.Provider>
     )
