@@ -43,7 +43,7 @@ export default function IngredientsTable({ingredients}) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {ingredients.map((row) => (
+          {ingredients && ingredients.map((row) => (
             <TableRow key={row.id}>
               {/* <TableCell component="th" scope="row">
                 {row.name}
