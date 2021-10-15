@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react';
 import { eatWell } from '../../../utilities/BackendRequests';
 import { contentTypes, viewportSize } from '../../../utilities/utilities';
 import { DietPlanContext } from './context/DietPlanContext';
-
 import { useRouteMatch } from 'react-router'
 import EntryPageContainer from '../../reuseable/EntryPageContainer'
 import SimpleBreadcrumbs from '../../reuseable/SimpleBreadcrumbs'
@@ -13,10 +12,10 @@ import IngredientsTable from './IngredientsTable';
 
 const DietPlanPage = () => {
 
-    const { breakfast, setBreakfast } = useContext(DietPlanContext);
+    const { breakfast, setBreakfast, setLunch, setSupper, setDinner } = useContext(DietPlanContext);
 
-    const mock = async () => {
-        const recipe = await eatWell.fetchRecipe("58512254-1150-4783-aa08-8b862e737f71")
+    const mock = async (id) => {
+        const recipe = await eatWell.fetchRecipe(id)
         const ingrientsList = recipe.content
           .filter(entry => entry.type === contentTypes.ingredientsList)
           .reduce((previousValue, currentValue) => {
@@ -29,8 +28,17 @@ const DietPlanPage = () => {
     useEffect(() => {
         // setRecipe(fake_getRecipe(Number(props.match.params.id)))
         const getRecipe = async () => {
-            const recipeFromServer = await mock()
+            let recipeFromServer = await mock("58512254-1150-4783-aa08-8b862e737f71")
             setBreakfast({...recipeFromServer})
+
+            recipeFromServer = await mock("e617a8a6-d9b5-4e90-916a-ae8e4898efff")
+            setLunch({...recipeFromServer})
+
+            recipeFromServer = await mock("bc0181e3-e1c0-4591-b072-c27829c7a66d")
+            setDinner({...recipeFromServer})
+
+            recipeFromServer = await mock("3")
+            setSupper({...recipeFromServer})
         }
         getRecipe()
         
@@ -80,14 +88,28 @@ const DietPlanPage = () => {
 
                 <div className={classes.part}>
                     <EntryContainer>
-                        
+                        {/* <h2>First page</h2>
+                        <h2>First page</h2>
+                        <h2>First page</h2>
+                        <h2>First page</h2>
+                        <h2>First page</h2>
+                        <h2>First page</h2>
+                        <h2>First page</h2> */}
                         <IngredientsTable ingredients={breakfast.ingredients} />
 
                     </EntryContainer>
                 </div>
                 <div className={classes.part}>
                     <EntryContainer>
-
+                        {/* <h2>Second page</h2>
+                        <h2>Second page</h2>
+                        <h2>Second page</h2>
+                        <h2>Second page</h2>
+                        <h2>Second page</h2>
+                        <h2>Second page</h2>
+                        <h2>Second page</h2>
+                        <h2>Second page</h2>
+                        <h2>Second page</h2> */}
                         <SimpleAccordion />
 
                     </EntryContainer>

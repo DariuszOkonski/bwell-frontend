@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleAccordion() {
   const classes = useStyles();
 
-  const { breakfast, setBreakfast, demand, lunch, dinner, supper } = useContext(DietPlanContext);
+  const { breakfast, lunch, dinner, supper } = useContext(DietPlanContext);
 
 
   return (
@@ -49,7 +49,7 @@ export default function SimpleAccordion() {
             aria-controls="panel1a-content"
             id="panel1a-header"
             >
-            <Typography ><strong>Lunch:</strong> {lunch.title}</Typography>
+            <Typography ><strong>Lunch:</strong> {lunch.header}</Typography>
             </AccordionSummary>
             <AccordionDetails>
             
@@ -64,7 +64,7 @@ export default function SimpleAccordion() {
             aria-controls="panel1a-content"
             id="panel1a-header"
             >
-            <Typography ><strong>Dinner:</strong> {dinner.title}</Typography>
+            <Typography ><strong>Dinner:</strong> {dinner.header}</Typography>
             </AccordionSummary>
             <AccordionDetails>
             
@@ -79,7 +79,7 @@ export default function SimpleAccordion() {
             aria-controls="panel1a-content"
             id="panel1a-header"
             >
-            <Typography ><strong>Supper:</strong> {supper.title}</Typography>
+            <Typography ><strong>Supper:</strong> {supper.header}</Typography>
             </AccordionSummary>
             <AccordionDetails>
             

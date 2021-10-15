@@ -13,18 +13,9 @@ const DietPlanContextProvider = (props) => {
 
     
     const [breakfast, setBreakfast] = useState({});
-    const [lunch, setLunch] = useState({
-        id: 1,
-        title: 'Scrumbled Eggs',
-    })
-    const [dinner, setDinner] = useState({
-      id: 1,
-      title: 'Dumblings',
-  })
-    const [supper, setSupper] = useState({
-      id: 1,
-      title: 'Ham & Cheese',
-  })
+    const [lunch, setLunch] = useState({})
+    const [dinner, setDinner] = useState({})
+    const [supper, setSupper] = useState({})
    
     return (
         <DietPlanContext.Provider value = { 
