@@ -29,7 +29,6 @@ const useStyles = makeStyles({
 export default function IngredientsTable({ingredients}) {
   const classes = useStyles();
 
-  console.log(ingredients);
 
   return (
     <TableContainer component={Paper}>

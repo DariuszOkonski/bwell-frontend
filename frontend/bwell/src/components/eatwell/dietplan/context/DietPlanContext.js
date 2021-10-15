@@ -17,88 +17,19 @@ const DietPlanContextProvider = (props) => {
     const [breakfast, setBreakfast] = useState({});
     const [lunch, setLunch] = useState({
         id: 1,
-        title: 'jajecznica',
-        ingredients: [
-            {
-                "id": 10219,"ingredient": "ground pork",
-                "quantity": "300",
-                "measure": "ounce",
-                "possibleMeasures": [
-                  "g",
-                  "ounce",
-                  "oz",
-                  "cup",
-                  "serving"
-                ]
-              },
-              {
-                "id": 11215,
-                "ingredient": "garlic",
-                "quantity": "2",
-                "measure": "unit",
-                "possibleMeasures": [
-                  "clove",
-                  "head",
-                  "piece",
-                  "g",
-                  "oz",
-                  "teaspoon",
-                  "cup",
-                  "serving",
-                  "tablespoon"
-                ]
-              },
-              {
-                "id": 20420,
-                "ingredient": "Pasta",
-                "quantity": "400",
-                "measure": "g",
-                "possibleMeasures": [
-                  "square",
-                  "package",
-                  "piece",
-                  "g",
-                  "bag",
-                  "ounce",
-                  "box",
-                  "sheet",
-                  "nest",
-                  "oz",
-                  "cup",
-                  "serving"
-                ]
-              }
-        ],
-        "nutrition": {
-            "nutrients": [
-              {
-                "title": "Carbohydrates",
-                "amount": 0.0,
-                "unit": "g"
-              },
-              {
-                "title": "Protein",
-                "amount": 21.23,
-                "unit": "g"
-              },
-              {
-                "title": "Calories",
-                "amount": 114.0,
-                "unit": "kcal"
-              },
-              {
-                "title": "Fat",
-                "amount": 2.59,
-                "unit": "g"
-              }
-            ]
-          }, 
+        title: 'Scrumbled Eggs',
     })
-    const [dinner, setDinner] = useState({})
-    const [supper, setSupper] = useState({})
+    const [dinner, setDinner] = useState({
+      id: 1,
+      title: 'Dumblings',
+  })
+    const [supper, setSupper] = useState({
+      id: 1,
+      title: 'Ham & Cheese',
+  })
    
     return (
-        <DietPlanContext.Provider value = { { breakfast, setBreakfast, demand, lunch } }>
+        <DietPlanContext.Provider value = { { breakfast, setBreakfast, demand, lunch, dinner, supper } }>
             {props.children}
         </DietPlanContext.Provider>
     )

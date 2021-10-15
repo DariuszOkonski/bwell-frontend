@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleAccordion() {
   const classes = useStyles();
 
-  const { breakfast, setBreakfast, demand, lunch } = useContext(DietPlanContext);
+  const { breakfast, setBreakfast, demand, lunch, dinner, supper } = useContext(DietPlanContext);
+
 
   return (
     // <div className={classes.root}>
@@ -33,7 +34,7 @@ export default function SimpleAccordion() {
             aria-controls="panel1a-content"
             id="panel1a-header"
             >
-            <Typography >Breakfast: {breakfast.header}</Typography>
+            <Typography ><strong>Breakfast:</strong> {breakfast.header}</Typography>
             </AccordionSummary>
             <AccordionDetails>
             
@@ -45,28 +46,48 @@ export default function SimpleAccordion() {
         <Accordion>
             <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel2a-content"
-            id="panel2a-header"
+            aria-controls="panel1a-content"
+            id="panel1a-header"
             >
-            <Typography >Accordion 2</Typography>
+            <Typography ><strong>Lunch:</strong> {lunch.title}</Typography>
             </AccordionSummary>
             <AccordionDetails>
-            <Typography>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-                sit amet blandit leo lobortis eget.
-            </Typography>
+            
+            <BasicTable />
+
             </AccordionDetails>
         </Accordion>
-        
-        <Accordion disabled>
+
+        <Accordion>
             <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel3a-content"
-            id="panel3a-header"
+            aria-controls="panel1a-content"
+            id="panel1a-header"
             >
-            <Typography >Disabled Accordion</Typography>
+            <Typography ><strong>Dinner:</strong> {dinner.title}</Typography>
             </AccordionSummary>
+            <AccordionDetails>
+            
+            <BasicTable />
+
+            </AccordionDetails>
         </Accordion>
+
+        <Accordion>
+            <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            >
+            <Typography ><strong>Supper:</strong> {supper.title}</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+            
+            <BasicTable />
+
+            </AccordionDetails>
+        </Accordion>
+      
       </EntryContainer>
     // </div>
   );

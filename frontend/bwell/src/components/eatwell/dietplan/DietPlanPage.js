@@ -3,7 +3,7 @@ import { eatWell } from '../../../utilities/BackendRequests';
 import { contentTypes, viewportSize } from '../../../utilities/utilities';
 import { DietPlanContext } from './context/DietPlanContext';
 
-import { useRouteMatch } from 'react-router'
+import { useHistory, useRouteMatch } from 'react-router'
 import EntryPageContainer from '../../reuseable/EntryPageContainer'
 import SimpleBreadcrumbs from '../../reuseable/SimpleBreadcrumbs'
 import { makeStyles } from '@material-ui/core';
@@ -14,13 +14,9 @@ import IngredientsTable from './IngredientsTable';
 const DietPlanPage = () => {
 
     const { breakfast, setBreakfast, demand, lunch } = useContext(DietPlanContext);
-    console.log("breakfast");
-    console.log(breakfast);
 
     const mock = async () => {
         const recipe = await eatWell.fetchRecipe("58512254-1150-4783-aa08-8b862e737f71")
-        console.log("recipe");
-        console.log(recipe)
         const ingrientsList = recipe.content
           .filter(entry => entry.type == contentTypes.ingredientsList)
           .reduce((previousValue, currentValue) => {
@@ -34,13 +30,17 @@ const DietPlanPage = () => {
         // setRecipe(fake_getRecipe(Number(props.match.params.id)))
         const getRecipe = async () => {
             const recipeFromServer = await mock()
-            console.log(recipeFromServer);
             setBreakfast({...recipeFromServer})
         }
         getRecipe()
     },[])
 
     const {path} = useRouteMatch()
+    
+    // TODO to remove
+    const fakePath = '/eatWell/dietplan';    
+    // console.log(path)
+
     const useStyles = makeStyles({
         content: {
             display: 'flex',
@@ -72,10 +72,8 @@ const DietPlanPage = () => {
 
     return ( 
         <EntryPageContainer size={viewportSize.laptop}>
-            <div>{breakfast.header}</div>
-
             <div className={classes.simpleBreadcrubmContainer}>
-                <SimpleBreadcrumbs path={path}/>
+                <SimpleBreadcrumbs path={fakePath}/>
             </div>
             <div className={classes.content}>
 
