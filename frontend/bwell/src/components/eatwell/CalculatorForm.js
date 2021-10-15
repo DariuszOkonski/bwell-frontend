@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import PostAddIcon from '@material-ui/icons/PostAdd';
-import { colors, viewportSize } from '../../utilities/utilities';
+import { colors } from '../../utilities/utilities';
 
 class CalculatorForm extends Component {
     state ={

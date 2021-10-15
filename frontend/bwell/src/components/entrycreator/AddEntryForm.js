@@ -75,7 +75,7 @@ const AddEntryForm = ({initModule}) => {
     const {path} = useRouteMatch();
 
 
-    const { title, setTitle, module, setModule, addIngredientsList, addCustomList, addTextArea, ingredientsLists, textAreas, customLists } = useContext(EntryCreatorContext)
+    const { title, setTitle, module, setModule, addIngredientsList, addCustomList, addTextArea, ingredientsLists, textAreas, customLists,  } = useContext(EntryCreatorContext)
     // setModule(url.split("/")[1]);
     
     let history = useHistory();
@@ -83,7 +83,8 @@ const AddEntryForm = ({initModule}) => {
     const classes = useStyles()
     
     const [content, setContent] = useState([])
-    const [descriptionId, setDescriptionId] = useState(0)
+
+    const [descriptionId, setDescriptionId] = useState(0, () => setDescriptionId(0))
 
 
     
@@ -106,6 +107,8 @@ const AddEntryForm = ({initModule}) => {
     const handleTitleChange = (e) => setTitle(e.target.value)
     useEffect(() => {
         setContent(getContentListInOrder())
+
+            // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [ingredientsLists, textAreas, moduleObj, customLists])
 
     const handleSubmitAddEntry = () => {

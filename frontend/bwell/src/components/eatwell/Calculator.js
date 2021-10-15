@@ -8,7 +8,7 @@ import DietStatistics from './DietStatistics';
 import CalculatorForm from './CalculatorForm';
 
 const Calculator = (props) => {
-    const {path, url} = useRouteMatch();
+    const {path} = useRouteMatch();
     const classes = props.useStylesPages();
 
     const useStyle = makeStyles({        

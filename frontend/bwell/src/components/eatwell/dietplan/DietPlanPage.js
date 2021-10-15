@@ -3,7 +3,7 @@ import { eatWell } from '../../../utilities/BackendRequests';
 import { contentTypes, viewportSize } from '../../../utilities/utilities';
 import { DietPlanContext } from './context/DietPlanContext';
 
-import { useHistory, useRouteMatch } from 'react-router'
+import { useRouteMatch } from 'react-router'
 import EntryPageContainer from '../../reuseable/EntryPageContainer'
 import SimpleBreadcrumbs from '../../reuseable/SimpleBreadcrumbs'
 import { makeStyles } from '@material-ui/core';
@@ -13,12 +13,12 @@ import IngredientsTable from './IngredientsTable';
 
 const DietPlanPage = () => {
 
-    const { breakfast, setBreakfast, demand, lunch } = useContext(DietPlanContext);
+    const { breakfast, setBreakfast } = useContext(DietPlanContext);
 
     const mock = async () => {
         const recipe = await eatWell.fetchRecipe("58512254-1150-4783-aa08-8b862e737f71")
         const ingrientsList = recipe.content
-          .filter(entry => entry.type == contentTypes.ingredientsList)
+          .filter(entry => entry.type === contentTypes.ingredientsList)
           .reduce((previousValue, currentValue) => {
               return [...previousValue.ingredients, ...currentValue.ingredients]
             })
@@ -33,13 +33,14 @@ const DietPlanPage = () => {
             setBreakfast({...recipeFromServer})
         }
         getRecipe()
+        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
-    const {path} = useRouteMatch()
-    
+    const {path} = useRouteMatch()    
     // TODO to remove
     const fakePath = '/eatWell/dietplan';    
-    // console.log(path)
+    console.log(path)
 
     const useStyles = makeStyles({
         content: {

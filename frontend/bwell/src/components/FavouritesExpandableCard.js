@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
@@ -30,13 +29,13 @@ const useStyles = makeStyles((theme) => ({
         textTransform: 'none',
         alignSelf: 'flex-end',
         color: '#FF934F',
+        // color: colors.white,
         border: 'none',
         backgroundColor: colors.buttonPrimary,
         '&:hover': {
             backgroundColor: colors.buttonPrimaryHover,
         },
         borderRadius: '2rem',
-        color: colors.white,
         padding: '0.2rem 0.6rem',
         fontSize: '1rem',
         [`@media (max-width: ${viewportSize.mobileL})`]: {

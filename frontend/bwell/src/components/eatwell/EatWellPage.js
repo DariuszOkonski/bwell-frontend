@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Grid, makeStyles } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import CategoriesBar from '../reuseable/CategoriesBar'
 import RepositoryCard from '../reuseable/RepositoryCard';
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import { endpoints } from '../../utilities/utilities';
-import { fake_getAllRecipesShorts } from '../../fakeRepositories/fakeRecipies';
 import { eatWell } from '../../utilities/BackendRequests';
 
 

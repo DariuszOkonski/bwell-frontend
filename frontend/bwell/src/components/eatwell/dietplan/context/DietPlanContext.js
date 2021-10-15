@@ -1,7 +1,5 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import React from 'react'
-import { eatWell } from "../../../../utilities/BackendRequests";
-import { contentTypes } from "../../../../utilities/utilities";
 
 export const DietPlanContext = createContext();
 
@@ -29,7 +27,14 @@ const DietPlanContextProvider = (props) => {
   })
    
     return (
-        <DietPlanContext.Provider value = { { breakfast, setBreakfast, demand, lunch, dinner, supper } }>
+        <DietPlanContext.Provider value = { 
+          { 
+            breakfast, setBreakfast, 
+            demand, setDemand,
+            lunch, setLunch, 
+            dinner, setDinner,
+            supper, setSupper 
+            } }>
             {props.children}
         </DietPlanContext.Provider>
     )

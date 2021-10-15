@@ -35,6 +35,8 @@ const Recipe = (props) => {
             setRecipe(recipeFromServer)
         }
         getRecipe()
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
 

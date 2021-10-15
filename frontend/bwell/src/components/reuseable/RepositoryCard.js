@@ -47,6 +47,9 @@ const useStyles = makeStyles({
   }
 })
 
+const sliceString = (str) => str.slice(0, 50) + '...';
+
+
 const RepositoryCard = (props) => {
   const classes = useStyles();
   const CardIcon = props.cardIcon;
@@ -58,7 +61,7 @@ const RepositoryCard = (props) => {
         <Typography variant="h4" className={classes.inline}>{props.title}</Typography>
       </div>
 
-      <p className={classes.description}>{props.description}</p>
+      <p className={classes.description}>{sliceString(props.description)}</p>
 
       <div className={classes.buttonContainer}>
         <CustomButton 
