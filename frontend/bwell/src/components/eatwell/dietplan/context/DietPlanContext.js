@@ -13,6 +13,7 @@ const DietPlanContextProvider = (props) => {
         carbsPercentage: 45,
     })
 
+    const [selectedMealIngredients, setSelectedMealIngredients] = useState([]);
     
     const [breakfast, setBreakfast] = useState({});
     const [lunch, setLunch] = useState({
@@ -96,9 +97,28 @@ const DietPlanContextProvider = (props) => {
     })
     const [dinner, setDinner] = useState({})
     const [supper, setSupper] = useState({})
-   
+    const [meals, setMeals] = useState({breakfast: {}, lunch: {}, dinner: {}, supper: {}})
+    
+    function* settersGenerator() {
+      yield setBreakfast;
+      yield setLunch;
+      yield setDinner;
+      yield setSupper;
+    }
+
+    useEffect(() => {
+      setMeals({breakfast, lunch, dinner, supper})
+    }, [breakfast, lunch, dinner, supper])
+
     return (
-        <DietPlanContext.Provider value = { { breakfast, setBreakfast, demand, lunch } }>
+        <DietPlanContext.Provider value = { { 
+          breakfast, setBreakfast,
+          lunch, setLunch, 
+          dinner, setDinner,
+          supper, setSupper,
+           selectedMealIngredients,  setSelectedMealIngredients,
+          meals, setMeals,  settersGenerator,
+          demand } }>
             {props.children}
         </DietPlanContext.Provider>
     )

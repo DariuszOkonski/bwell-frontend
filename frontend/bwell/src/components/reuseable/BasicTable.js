@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -24,7 +24,7 @@ const rows = [
   createData('Daily coverage (%)', 237, 9.0, 37, 4.3),  
 ];
 
-export default function BasicTable() {
+export default function BasicTable({meal}) {
   const classes = useStyles();
 
   return (
@@ -43,7 +43,7 @@ export default function BasicTable() {
           {rows.map((row) => (
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
-                {row.name}
+                {meal.header}
               </TableCell>
               <TableCell align="right">{row.calories}</TableCell>
               <TableCell align="right">{row.fat}</TableCell>

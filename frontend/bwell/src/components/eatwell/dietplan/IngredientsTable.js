@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,6 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { DietPlanContext } from './context/DietPlanContext';
 
 const useStyles = makeStyles({
   table: {
@@ -26,28 +27,23 @@ const useStyles = makeStyles({
 // //   createData('Daily coverage (%)', 237, 9.0, 37, 4.3),  
 // ];
 
-export default function IngredientsTable({ingredients}) {
+export default function IngredientsTable() {
   const classes = useStyles();
 
-  console.log(ingredients);
-
+  const { selectedMealIngredients } = useContext(DietPlanContext)
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell> </TableCell>
             <TableCell align="right">Name</TableCell>
             <TableCell align="right">Amount</TableCell>
             <TableCell align="right">Unit</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {ingredients.map((row) => (
+          {selectedMealIngredients && selectedMealIngredients.map((row) => (
             <TableRow key={row.id}>
-              {/* <TableCell component="th" scope="row">
-                {row.name}
-              </TableCell> */}
               <TableCell align="right">{row.ingredient}</TableCell>
               <TableCell align="right">{row.quantity}</TableCell>
               <TableCell align="right">{row.measure}</TableCell>
