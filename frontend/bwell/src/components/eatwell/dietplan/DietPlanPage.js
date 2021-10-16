@@ -15,7 +15,6 @@ const DietPlanPage = () => {
 
     
 
-    const {path} = useRouteMatch()
     const useStyles = makeStyles({
         content: {
             display: 'flex',
@@ -28,6 +27,7 @@ const DietPlanPage = () => {
             width: '95%',
             [`@media (min-width: ${viewportSize.mobileL})`] : {
                 width: '97%',
+                
             },
             [`@media (min-width: ${viewportSize.laptop})`] : {
                 width: '100%',
@@ -40,10 +40,11 @@ const DietPlanPage = () => {
             // width: '90%'
         }
     })
+    const {path} = useRouteMatch()
+    console.log(useRouteMatch(), "ASD!");
 
 
     const classes = useStyles()
-
 
     return ( 
         <EntryPageContainer size={viewportSize.laptop}>

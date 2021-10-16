@@ -132,7 +132,7 @@ function App() {
                 
               </Route>
               
-              <Route>
+              <Route path={`/${modules.eatWell.name}/dietplan`}>
                 <DietPlanContextProvider>
                   <DietPlanPage useStylesPages={useStylesPages} />
                 </DietPlanContextProvider>

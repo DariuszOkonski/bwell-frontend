@@ -14,6 +14,7 @@ const AddEntry = () => {
         content: {
             display: 'flex',
             flexDirection: "column",
+            // minHeight: "100vh",
             // margin: '0 auto',
             [`@media (min-width: ${viewportSize.tabletS})`] : {
                 flexDirection: "row",

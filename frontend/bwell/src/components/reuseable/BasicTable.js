@@ -43,7 +43,7 @@ export default function BasicTable({meal}) {
           {rows.map((row) => (
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">
-                {meal.header}
+                {row.name}
               </TableCell>
               <TableCell align="right">{row.calories}</TableCell>
               <TableCell align="right">{row.fat}</TableCell>

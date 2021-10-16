@@ -30,12 +30,15 @@ const useStyles = makeStyles((theme) => ({
   },
   unit: {
     paddingBottom: '0.5rem'
+  },
+  selected: {
+    backgroundColor: "yellow",
   }
 }));
 
 export default function SimpleAccordion() {
   const classes = useStyles();
-  const { meals, setMeals, settersGenerator, setSelectedMealIngredients } = useContext(DietPlanContext);
+  const { meals, setMeals, settersGenerator, selectedMeal, setSelectedMeal } = useContext(DietPlanContext);
   
   const mock = async (id) => {
       const recipe = await eatWell.fetchRecipe(id)
@@ -67,6 +70,9 @@ export default function SimpleAccordion() {
       }
       getRecipe()
   },[])
+  const showDetails = (key) => {
+    setSelectedMeal({name: key, ingredients: meals[key].ingredients})
+  }
 
   return (
     // <div className={classes.root}>
@@ -80,13 +86,13 @@ export default function SimpleAccordion() {
             aria-controls={`panel${meals[key]}a-content`}
             id={`panel${meals[key]}a-content`}
             >
-            <Typography >{key}: {meals[key].header} </Typography>
+            <Typography className={`${key === selectedMeal.name && classes.selected}`}>{key}: {meals[key].header} </Typography>
             </AccordionSummary>
             <AccordionDetails>
             <div className={classes.details}>
               <BasicTable meal={meals[key]}/>
               <div className={classes.btnContainer}>
-                <EventButton text="Details" isAbsolute={false} callback={() => setSelectedMealIngredients(meals[key].ingredients)}/>
+                <EventButton text="Details" isAbsolute={false} callback={()=>showDetails(key)}/>
               </div>            
             </div>            
 

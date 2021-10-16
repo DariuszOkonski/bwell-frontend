@@ -8,10 +8,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import { DietPlanContext } from './context/DietPlanContext';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles({
   table: {
     // minWidth: 650,
+    marginTop: "1rem",
     width: '100%'
   },
 });
@@ -30,9 +32,10 @@ const useStyles = makeStyles({
 export default function IngredientsTable() {
   const classes = useStyles();
 
-  const { selectedMealIngredients } = useContext(DietPlanContext)
+  const { selectedMeal } = useContext(DietPlanContext)
   return (
     <TableContainer component={Paper}>
+      <Typography>Currently selected ingredients</Typography>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -42,7 +45,7 @@ export default function IngredientsTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {selectedMealIngredients && selectedMealIngredients.map((row) => (
+          {selectedMeal && selectedMeal.ingredients && selectedMeal.ingredients.map((row) => (
             <TableRow key={row.id}>
               <TableCell align="right">{row.ingredient}</TableCell>
               <TableCell align="right">{row.quantity}</TableCell>
