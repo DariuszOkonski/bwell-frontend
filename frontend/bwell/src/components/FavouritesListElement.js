@@ -2,13 +2,17 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
+import { Link } from '@material-ui/core';
 import CardContent from '@material-ui/core/CardContent';
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { colors, viewportSize } from '../utilities/utilities';
+import { colors, viewportSize, endpoints } from '../utilities/utilities';
 import PropTypes from "prop-types";
+import AssignmentReturnedIcon from '@material-ui/icons/AssignmentReturned';
+import { Button } from '@material-ui/core';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -19,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
         padding: '1rem',
         borderRadius: '1rem',
         overflow: 'hidden',
+        margin: '0.5em'
     },
     expand: {
         transform: 'rotate(0deg)',
@@ -37,44 +42,82 @@ const useStyles = makeStyles((theme) => ({
             fontSize: '1.5rem'
         }
     },
+    checkButton: {
+        textTransform: 'none',
+        float: 'right',
+        // alignSelf: 'flex-end',
+        border: 'none',
+        backgroundColor: colors.buttonPrimary,
+        '&:hover': {
+            backgroundColor: colors.buttonPrimaryHover,
+        },
+        borderRadius: '2rem',
+        color: colors.white,
+        padding: '0.2rem 0.6rem',
+        fontSize: '1rem',
+        [`@media (max-width: ${viewportSize.mobileL})`]: {
+            fontSize: '0.6rem'
+        },
+        marginRight: '0.5rem',
+    },
 }));
 
 const FavouritesListElement = ((props) => {
 
     const classes = useStyles();
-    const[expanded, setExpanded] = React.useState(false);
+    const [expanded, setExpanded] = React.useState(false);
 
     const favouriteEntry = props.idea;
+
+    let respositoryURL;
+
+    switch (props.type) {
+        case 'fitWell':
+            respositoryURL = endpoints.fitwell_activity;
+            break;
+        case 'eatWell':
+            respositoryURL = endpoints.eatwell_recipe;
+            break;
+        case 'restWell':
+            respositoryURL = endpoints.restwell_idea;
+            break;
+        case 'thinkWell':
+            respositoryURL = endpoints.thinkwell_idea;
+            break;
+        default:
+            respositoryURL = '';
+    }
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
 
-        return (
+    return (
 
-            <Card className={classes.root} >
-                    <Typography variant="p" className={classes.header} component="p">
-                    {favouriteEntry.title}
-                    </Typography>
-                    <IconButton
-                        className={clsx(classes.expand, {
-                            [classes.expandOpen]: expanded,
-                        })}
-                        onClick={handleExpandClick}
-                        aria-expanded={expanded}
-                        aria-label="show more"
-                    >
-                        <ExpandMoreIcon />
-                    </IconButton>
-                <Collapse in={expanded} timeout="auto" unmountOnExit>
-                    <CardContent>
+        <Card className={classes.root} >
+            <Typography variant="p" className={classes.header} component="p">
+                <Link href={respositoryURL + favouriteEntry.id}>{favouriteEntry.title}</Link>
+            </Typography>
+            <IconButton
+                className={clsx(classes.expand, {
+                    [classes.expandOpen]: expanded,
+                })}
+                onClick={handleExpandClick}
+                aria-expanded={expanded}
+                aria-label="show more"
+            >
+                <ExpandMoreIcon />
+            </IconButton>
+            <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />} className={classes.checkButton} text="check">Remove</Button>
+            <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent>
                     {favouriteEntry.description}
 
-                    </CardContent>
-                </Collapse>
-            </Card >
-        );
-    } );
+                </CardContent>
+            </Collapse>
+        </Card >
+    );
+});
 
 FavouritesListElement.propTypes = {
     cardIcon: PropTypes.elementType
