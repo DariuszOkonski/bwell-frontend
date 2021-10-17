@@ -1,19 +1,18 @@
 import React, { useContext, useEffect } from 'react';
 import { eatWell } from '../../../utilities/BackendRequests';
-import { contentTypes, viewportSize } from '../../../utilities/utilities';
+import { colors, contentTypes, viewportSize } from '../../../utilities/utilities';
 import { DietPlanContext } from './context/DietPlanContext';
 
 import { useRouteMatch } from 'react-router'
 import EntryPageContainer from '../../reuseable/EntryPageContainer'
 import SimpleBreadcrumbs from '../../reuseable/SimpleBreadcrumbs'
-import { makeStyles } from '@material-ui/core';
+import { Grid, makeStyles } from '@material-ui/core';
 import { EntryContainer } from '../../reuseable/EntryContainer';
 import SimpleAccordion from '../../reuseable/SimpleAccordion';
 import IngredientsTable from './IngredientsTable';
 
 const DietPlanPage = () => {
 
-    
 
     const useStyles = makeStyles({
         content: {
@@ -22,6 +21,7 @@ const DietPlanPage = () => {
             [`@media (min-width: ${viewportSize.laptop})`] : {
                 flexDirection: "row",
             },
+            color: colors.textPrimary
         },
         part: {
             width: '95%',
@@ -62,13 +62,12 @@ const DietPlanPage = () => {
                     </EntryContainer>
                 </div>
                 <div className={classes.part}>
-
                         <SimpleAccordion />
 
 
                 </div>
             </div>
-        </EntryPageContainer>        
+        </EntryPageContainer>
      );
 }
  

@@ -35,7 +35,7 @@ export default function IngredientsTable() {
   const { selectedMeal } = useContext(DietPlanContext)
   return (
     <TableContainer component={Paper}>
-      <Typography>Currently selected ingredients</Typography>
+      
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
@@ -45,13 +45,13 @@ export default function IngredientsTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {selectedMeal && selectedMeal.ingredients && selectedMeal.ingredients.map((row) => (
+          {selectedMeal && selectedMeal.ingredients ? selectedMeal.ingredients.map((row) => (
             <TableRow key={row.id}>
               <TableCell align="right">{row.ingredient}</TableCell>
               <TableCell align="right">{row.quantity}</TableCell>
               <TableCell align="right">{row.measure}</TableCell>
             </TableRow>
-          ))}
+          )) : <Typography> Nothing selected </Typography>}
         </TableBody>
       </Table>
     </TableContainer>

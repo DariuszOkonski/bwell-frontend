@@ -8,35 +8,47 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { DietPlanContext } from '../eatwell/dietplan/context/DietPlanContext';
 import BasicTable from './BasicTable';
 import { EntryContainer } from './EntryContainer';
-import { contentTypes } from '../../utilities/utilities';
+import { colors, contentTypes } from '../../utilities/utilities';
 import { eatWell } from '../../utilities/BackendRequests';
 import EventButton from './EventButton';
 
+
+export default function SimpleAccordion() {
+  
 const useStyles = makeStyles((theme) => ({
   root: {
     // width: '1rem',
     marginTop: "1rem"
   },
   heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
+    border: `1px solid ${colors.borderPrimary}`,
+    borderRadius: "0.4rem",
+    display: "block",
+    padding: "0.3rem",
+    width: '100%',
+    color: `${colors.textPrimary}`,
+    fontWeight: '500',
+    fontSize: "1rem"
   },
   details: {
-    width: "100%",
+    // width: "100%",
+    display: "flex",
+    flexDirection: "column",
     textAlign: "right"
+  },
+  detailRoot: {
+    display: "block"
   },
   btnContainer: {
     marginTop: "0.5rem"
   },
   unit: {
-    paddingBottom: '0.5rem'
+    paddingBottom: '0.5rem',
   },
   selected: {
     backgroundColor: "yellow",
   }
 }));
-
-export default function SimpleAccordion() {
   const classes = useStyles();
   const { meals, setMeals, settersGenerator, selectedMeal, setSelectedMeal } = useContext(DietPlanContext);
   
@@ -78,17 +90,19 @@ export default function SimpleAccordion() {
     // <div className={classes.root}>
         <div className={classes.root}>
          {Object.keys(meals).map(key => meals[key] && 
-         
+
          <div className={classes.unit}>
-           <Accordion>
+           {/* <EntryContainer> */}
+
+           <Accordion >
             <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls={`panel${meals[key]}a-content`}
             id={`panel${meals[key]}a-content`}
             >
-            <Typography className={`${key === selectedMeal.name && classes.selected}`}>{key}: {meals[key].header} </Typography>
+            <h4 className={`${key === selectedMeal.name && classes.selected}`}>{key}: {meals[key].header} </h4>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails classes={{root: classes.detailRoot}}>
             <div className={classes.details}>
               <BasicTable meal={meals[key]}/>
               <div className={classes.btnContainer}>
@@ -98,7 +112,9 @@ export default function SimpleAccordion() {
 
             </AccordionDetails>
 
-        </Accordion>
+          </Accordion>
+          {/* </EntryContainer> */}
+
          </div>
          )}
       </div>

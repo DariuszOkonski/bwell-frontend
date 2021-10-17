@@ -64,7 +64,7 @@ const IngredientsList = ({listId}) => {
     
     const showIngredients = ( currentList && currentList.ingredients) && currentList.ingredients.map(
         (item) => <IngredientItem 
-            {...item} listId={listId} key={item.id}
+            {...item} listId={listId} key={item.id ? item.id : v4()} 
         />);
     return (
         currentList ? <div className={classes.container}>

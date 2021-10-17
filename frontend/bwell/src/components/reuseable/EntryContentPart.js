@@ -16,7 +16,7 @@ const useStyles = makeStyles({
         color: `${colors.textSecondary}`
     },
     tableContainer:{
-        // margin: "0 auto",
+        margin: "0 auto",
         minWidth: '60%',
         borderRadius: "0.4rem",
 
@@ -56,9 +56,10 @@ export const EntryContentPart = ({header, type, text}) => {
         if (type === contentTypes.ingredientsList)
             return <ul className={classes.list}>
                     {text.map(item => {
+                        console.log(item);
                     return <li key={Math.random()}>{
-                        item.id ? `${item.ingredient} - ${item.quantity} ${item.measure} ` : 
-                        item[0] != "" ? `${item[0]} - ${item[1]} ${item[2]}` : "[ blank ]"}</li>
+                        item.id && item.ingredient && item.quantity && item.measure ? `${item.ingredient} - ${item.quantity} ${item.measure} ` : 
+                        "[ yet empty ]"}</li>
                 })}
             </ul>
         else if (type === contentTypes.textArea)

@@ -11,6 +11,7 @@ import { v4 } from 'uuid';
 import { getIcon } from './EntryPreview';
 import CustomButton from '../reuseable/CustomButton';
 import { useHistory, useRouteMatch } from 'react-router';
+import AddIcon from '@material-ui/icons/Add';
 import CustomList from './inputareas/CustomList';
 import { postNewEntry } from '../../utilities/BackendRequests';
 
@@ -59,7 +60,8 @@ const AddEntryForm = ({initModule}) => {
         },
         buttonContainer: {
             display: "flex",
-            justifyContent: "space-evenly"
+            justifyContent: "space-evenly",
+            padding: "1rem"
         },
         emptyContent: {
             display: "flex",
@@ -142,9 +144,9 @@ const AddEntryForm = ({initModule}) => {
                 </div>
             </div>
             <div className={classes.buttonContainer}>
-                    <EventButton text="+ text" callback={() => addTextArea(v4(), "", "")} isAbsolute={false}/>
-                    <EventButton icon={<EventNote/>} text="+ custom list" callback={() => addCustomList(v4())} isAbsolute={false}/>
-                    <EventButton icon={<EventNote/>} text="+ ingredients list" callback={() => addIngredientsList(v4())} isAbsolute={false}/>
+                    <EventButton icon={<AddIcon/>} text="text" callback={() => addTextArea(v4(), "", "")} isAbsolute={false}/>
+                    <EventButton icon={<AddIcon/>} text="table" callback={() => addCustomList(v4())} isAbsolute={false}/>
+                    <EventButton icon={<AddIcon/>} text="recipe" callback={() => addIngredientsList(v4())} isAbsolute={false}/>
             </div>
 
             {content.length > 0 ? content.map(content => {
