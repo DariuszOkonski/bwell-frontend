@@ -58,7 +58,7 @@ export const EntryContentPart = ({header, type, text}) => {
                     {text.map(item => {
                         console.log(item);
                     return <li key={Math.random()}>{
-                        item.id && item.ingredient && item.quantity && item.measure ? `${item.ingredient} - ${item.quantity} ${item.measure} ` : 
+                        item.id && item.ingredient && item.quantity && typeof item.measure !== "object" ? `${item.ingredient} - ${item.quantity} ${item.measure} ` : 
                         "[ yet empty ]"}</li>
                 })}
             </ul>
