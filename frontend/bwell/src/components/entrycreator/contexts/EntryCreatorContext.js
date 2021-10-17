@@ -121,10 +121,10 @@ const EntryCreatorContextProvider = (props) => {
             ingredient,
             quantity,
             measure,
-            possibleMeasures: ["unit",
-                                "kg",
-                                "g",
-                                "stone"]
+            possibleMeasures: [{id: 3, name:"g"},
+            {id: 1, name:"ounce"},
+            {id: 2, name:"lbs"},
+            {id: 0, name:"ml"},]
         }
         const updatedLists = ingredientsLists.map(list => {
             if (list.id === listId) {

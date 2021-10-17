@@ -95,21 +95,25 @@ const useStyles = makeStyles((theme) => ({
            {/* <EntryContainer> */}
 
            <Accordion >
+            
             <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls={`panel${meals[key]}a-content`}
             id={`panel${meals[key]}a-content`}
             >
-            <h4 className={`${key === selectedMeal.name && classes.selected}`}>{key}: {meals[key].header} </h4>
+              <h4 className={`${key === selectedMeal.name && classes.selected}`}>{key}: {meals[key].header} </h4>
             </AccordionSummary>
+            
             <AccordionDetails classes={{root: classes.detailRoot}}>
-            <div className={classes.details}>
-              <BasicTable meal={meals[key]}/>
-              <div className={classes.btnContainer}>
-                <EventButton text="Details" isAbsolute={false} callback={()=>showDetails(key)}/>
+              <div className={classes.details}>
+              
+                <BasicTable meal={meals[key]}/>
+                  
+                <div className={classes.btnContainer}>
+                  <EventButton text="Details" isAbsolute={false} callback={()=>showDetails(key)}/>
+                </div>            
+              
               </div>            
-            </div>            
-
             </AccordionDetails>
 
           </Accordion>

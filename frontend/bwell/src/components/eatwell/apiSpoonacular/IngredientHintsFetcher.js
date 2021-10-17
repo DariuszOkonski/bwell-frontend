@@ -10,7 +10,7 @@ export class IngredientsHintsFetcher {
     }
     getURL(query) { 
         // return `http://localhost:8080/api/query?query=${query}`;
-        return `http://localhost/api/query?query=${query}`;
+        return `http://localhost/api/eatwell/ingredient/q?query=${query}`;
         // return `https://api.spoonacular.com/food/ingredients/search?apiKey=${API_KEY}&query=${query}&number=10&metaInformation=true`;
     }
     setPhrase(phrase) {

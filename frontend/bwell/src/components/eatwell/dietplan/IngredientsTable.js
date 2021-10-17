@@ -18,17 +18,6 @@ const useStyles = makeStyles({
   },
 });
 
-
-
-// function createData(id, ingredient, quantity, measure) {
-//   return { id, ingredient, quantity, measure};
-// }
-
-// const rows = [
-// //   createData('Amount', '159 kcal', '6.0 g', '24 g', '4.0 g'),
-// //   createData('Daily coverage (%)', 237, 9.0, 37, 4.3),  
-// ];
-
 export default function IngredientsTable() {
   const classes = useStyles();
 
@@ -39,7 +28,7 @@ export default function IngredientsTable() {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="right">Name</TableCell>
+            <TableCell align="right"><h3>Name</h3></TableCell>
             <TableCell align="right">Amount</TableCell>
             <TableCell align="right">Unit</TableCell>
           </TableRow>
@@ -51,7 +40,7 @@ export default function IngredientsTable() {
               <TableCell align="right">{row.quantity}</TableCell>
               <TableCell align="right">{row.measure}</TableCell>
             </TableRow>
-          )) : <Typography> Nothing selected </Typography>}
+          )) : <h4> Nothing selected </h4>}
         </TableBody>
       </Table>
     </TableContainer>
