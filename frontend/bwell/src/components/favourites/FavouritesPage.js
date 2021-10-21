@@ -3,7 +3,7 @@ import { Grid, makeStyles } from '@material-ui/core'
 import FavouritesExpandableCard from './FavouritesExpandableCard';
 import WeekendOutlinedIcon from '@material-ui/icons/WeekendOutlined';
 import { useEffect, useState } from 'react';
-import { endpoints } from '../utilities/utilities';
+import { endpoints } from '../../utilities/utilities';
 
 const useStyles = makeStyles((theme) => ({
     categoriesBar: {
