@@ -8,7 +8,7 @@ import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { colors, viewportSize, endpoints } from '../utilities/utilities';
+import { colors, viewportSize, endpoints } from '../../utilities/utilities';
 import PropTypes from "prop-types";
 import AssignmentReturnedIcon from '@material-ui/icons/AssignmentReturned';
 import { Button } from '@material-ui/core';

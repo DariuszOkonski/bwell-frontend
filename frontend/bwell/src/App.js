@@ -18,7 +18,7 @@ import Activity from './components/fitwell/Activity';
 import { endpoints, modules } from './utilities/utilities';
 import LoginPage from './components/LoginPage';
 import RepositoryIdeaPage from './components/RepositoryIdeaPage';
-import FavouritesPage from './components/FavouritesPage';
+import FavouritesPage from './components/favourites/FavouritesPage';
 import Calculator from './components/eatwell/Calculator';
 import AddEntry from './components/entrycreator/AddEntry';
 import EntryCreatorContextProvider from './components/entrycreator/contexts/EntryCreatorContext';
