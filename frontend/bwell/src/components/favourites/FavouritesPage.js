@@ -4,6 +4,8 @@ import FavouritesExpandableCard from './FavouritesExpandableCard';
 import WeekendOutlinedIcon from '@material-ui/icons/WeekendOutlined';
 import { useEffect, useState } from 'react';
 import { endpoints } from '../../utilities/utilities';
+import { favourites } from '../../utilities/BackendRequests';
+import UserService from '../../utilities/UserService';
 
 const useStyles = makeStyles((theme) => ({
     categoriesBar: {
@@ -21,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const FavouritesPage = (props) => {
     const classes = useStyles();
-    const loggedUser = 1;
+    const loggedUser = UserService();
 
     const APIurl = endpoints.APIhost + endpoints.APIusers;
 
@@ -30,10 +32,7 @@ const FavouritesPage = (props) => {
     useEffect(() => {
 
         const fetchFavourites = async () => {
-            const response = await fetch(`${APIurl}${loggedUser}`)
-            const data = await response.json()
-    
-            return data 
+            return await favourites.fetchUserData(loggedUser); 
         }
 
         const getIdeas = async () => {

@@ -2,8 +2,10 @@ import { makeStyles } from '@material-ui/styles';
 import React from 'react'
 import CustomButton from './CustomButton';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import { useRouteMatch } from 'react-router';
+import { Redirect, useHistory, useRouteMatch } from 'react-router';
 import EventButton from './EventButton';
+import { favourites } from '../../utilities/BackendRequests';
+import { endpoints } from '../../utilities/utilities';
 
 const useStyles = makeStyles({
     buttonsContainer: {
@@ -16,29 +18,46 @@ const useStyles = makeStyles({
         margin: '0 0.5rem'
     },
 })
-export const EntryFooter = ({disabled=false, callback=() => null, isLive=false}) => {
-    const {path, url} = useRouteMatch();
+export const EntryFooter = ({ disabled = false, callback = () => null, isLive = false, entryId, module }) => {
+    const { path, url } = useRouteMatch();
+    const history = useHistory();
 
     const getBackToLink = () => {
         const splitted = url.split("/")
         return splitted[1]
     }
 
+    const addToFavourites = () => {
+        favourites.addToFavouritesById(entryId, module);
+        
+        history.push('/favourites');
+    }
+
     const buttons = () => (
-        !disabled ? 
+        !disabled ?
             <>
                 <div className={classes.button}>
-                    <CustomButton disabled={disabled} text="Back" linkTo={`/${getBackToLink()}`} isAbsolute={false}/>
+                    <CustomButton disabled={disabled} text="Back" linkTo={`/${getBackToLink()}`} isAbsolute={false} />
                 </div>
                 <div className={classes.button}>
-                    <CustomButton disabled={disabled} className={classes.button} text="Add to favourites" linkTo="" isAbsolute={false} icon={<FavoriteBorderIcon/>}/>
+                    <CustomButton
+                        onClick={(event) => {
+                            event.preventDefault()
+                            addToFavourites()
+                        }}
+                        linkTo="#"
+                        disabled={disabled}
+                        className={classes.button}
+                        text="Add to favourites"
+                        isAbsolute={false}
+                        icon={<FavoriteBorderIcon />} />
                 </div>
             </> :
             <div>
-                <EventButton className={classes.button} text={isLive ? "Turn off live preview" : "Turn on live preview"} callback={callback} isAbsolute={false} icon={<FavoriteBorderIcon/>}/>
+                <EventButton className={classes.button} text={isLive ? "Turn off live preview" : "Turn on live preview"} callback={callback} isAbsolute={false} icon={<FavoriteBorderIcon />} />
             </div>
     )
-    
+
     const classes = useStyles();
     return (
         <div className={classes.buttonsContainer}>

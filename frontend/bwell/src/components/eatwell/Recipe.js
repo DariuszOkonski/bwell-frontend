@@ -58,7 +58,7 @@ const Recipe = (props) => {
                         return <EntryContentPart header={part.header} text={part.text ? part.text : part.ingredients} key={v4()} type={part.type}/>
                     })
                 }
-                <EntryFooter/>
+                <EntryFooter entryId={recipe.id} module="eatwell"/>
                 <DeleteButton entryId={recipe.id}/>
             </EntryContainer>
         </EntryPageContainer>
