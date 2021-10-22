@@ -11,10 +11,6 @@ export class IngredientsHintsFetcher {
         this.hints = hints;
     }
 
-    checkCommit() {
-        console.log('check commit')
-    }
-
     getURL(query) { 
         // return `http://localhost:8080/api/query?query=${query}`;
         return `${endpoints.eatwell_ingredient_query}${query}`;

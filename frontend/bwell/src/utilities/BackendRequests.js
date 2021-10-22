@@ -3,7 +3,7 @@ import { endpoints, moduleNameToApi } from "./utilities"
 
 const json_server = true
 const PORT = json_server ? "3001" : "8080"
-const BASE_URL = `http://localhost:${PORT}/`
+const BASE_URL = `http://localhost:${PORT}/api/v1`
 
 const eatWell = {
     fetchRecipes: async () => {
@@ -18,7 +18,20 @@ const eatWell = {
         const data = await response.json()
 
         return data 
+    },
+    fetchPostUserCalculatorData: async (calculatorData) => {
+        const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(calculatorData)
+        });
+        const data = await response.json();
+
+        return data
     }
+
 }
 
 const fitWell = {
