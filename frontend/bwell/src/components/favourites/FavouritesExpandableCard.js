@@ -12,6 +12,8 @@ import PropTypes from "prop-types";
 import FavouritesListElement from './FavouritesListElement';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import SvgIcon from '@material-ui/core/SvgIcon';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -72,7 +74,6 @@ const FavouritesExpandableCard = ((props) => {
 
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
-    const CardIcon = props.cardIcon;
 
     const handleExpandClick = () => {
         setExpanded(!expanded);
@@ -122,12 +123,14 @@ const FavouritesExpandableCard = ((props) => {
 
     }, [APIurl, props.favourites]);
 
+    const CardIcon = () => { return props.cardIcon };
+
     return (
         ideas &&
         <Card className={classes.root} >
             <CardContent>
-                <CardIcon className={classes.cardIcon} spacing={2} />
-                <Typography variant="h2" className={classes.header} component="h1">
+                <CardIcon className={classes.cardIcon} />
+                <Typography variant="h4" className={classes.header} component="h4">
                     {props.title}
                 </Typography>
                 <IconButton

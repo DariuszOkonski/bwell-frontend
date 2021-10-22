@@ -163,6 +163,53 @@ const favourites = {
             return error;
         }
     },
+    removeFromFavouritesById: async (id, type) => {
+        const loggedUser = UserService();
+
+        //GET JSON
+        const userData = await favourites.fetchUserData(loggedUser);
+
+        console.log('Actual data: ' + userData)
+        console.log(userData)
+
+        //REMOVE FROM SET
+        switch (type) {
+            case 'eatwell':
+                userData.favourites.recipes = userData.favourites.recipes.filter(entry => entry !== id);
+                break;
+            case 'fitwell':
+                userData.favourites.exercises = userData.favourites.exercises.filter(entry => entry !== id);
+                break;
+            case 'thinkwell':
+                userData.favourites.ideas = userData.favourites.ideas.filter(entry => entry !== id);
+                break;
+            case 'restwell':
+                userData.favourites.activities = userData.favourites.activities.filter(entry => entry !== id);
+                break;
+            default:
+        }
+
+        console.log('Modified data: ' + userData)
+
+        //SEND MODIFIED OBJECT
+        const POST_URL = `${BASE_URL}${endpoints.APIusers}${loggedUser}`;
+        const settings = {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userData)
+        };
+        try {
+            const response = await fetch(POST_URL, settings)
+            const data = await response.json()
+
+            return data;
+        } catch (error) {
+            return error;
+        }
+    },
 }
 
 

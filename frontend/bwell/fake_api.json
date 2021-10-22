@@ -858,24 +858,12 @@
     {
       "id": 1,
       "favourites": {
-        "recipes": [
-          1,
-          2,
-          3
-        ],
+        "recipes": [],
         "activities": [
-          1,
-          2,
-          3
+          1
         ],
-        "ideas": [
-          1,
-          2,
-          3
-        ],
+        "ideas": [],
         "exercises": [
-          1,
-          2,
           3
         ]
       }
