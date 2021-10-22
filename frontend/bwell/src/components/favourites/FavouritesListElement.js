@@ -12,6 +12,9 @@ import { colors, viewportSize, endpoints } from '../../utilities/utilities';
 import PropTypes from "prop-types";
 import AssignmentReturnedIcon from '@material-ui/icons/AssignmentReturned';
 import { Button } from '@material-ui/core';
+import { favourites } from '../../utilities/BackendRequests';
+import { useContext } from 'react';
+import { FavouritesContext } from './FavouritesPage';
 
 
 
@@ -69,6 +72,8 @@ const FavouritesListElement = ((props) => {
 
     const favouriteEntry = props.idea;
 
+    const passChangeUp = useContext(FavouritesContext);
+
     let respositoryURL;
 
     switch (props.type) {
@@ -92,6 +97,11 @@ const FavouritesListElement = ((props) => {
         setExpanded(!expanded);
     };
 
+    const removeFromFavourites = async (event) => {
+        await favourites.removeFromFavouritesById(favouriteEntry.id, props.type.toLowerCase());
+        passChangeUp(event);
+    }
+
     return (
 
         <Card className={classes.root} >
@@ -108,7 +118,17 @@ const FavouritesListElement = ((props) => {
             >
                 <ExpandMoreIcon />
             </IconButton>
-            <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<AssignmentReturnedIcon />} className={classes.checkButton} text="check">Remove</Button>
+            <Button
+                component={Link}
+                to="#"
+                onClick={(event) => {
+                    event.preventDefault();
+                    removeFromFavourites(event);
+                }}
+                variant="outlined"
+                endIcon={<AssignmentReturnedIcon />} 
+                className={classes.checkButton} 
+                text="check">Remove</Button>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     {favouriteEntry.description}

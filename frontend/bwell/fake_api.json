@@ -859,24 +859,15 @@
       "id": 1,
       "favourites": {
         "recipes": [
-          1,
-          2,
-          3
+          "e617a8a6-d9b5-4e90-916a-ae8e4898efff",
+          "bc0181e3-e1c0-4591-b072-c27829c7a66d"
         ],
-        "activities": [
-          1,
-          2,
-          3
-        ],
-        "ideas": [
-          1,
-          2,
-          3
-        ],
+        "activities": [],
+        "ideas": [],
         "exercises": [
           1,
           2,
-          3
+          "1ba6e0e6-be00-4ded-b35b-3fe84f2a0fc5"
         ]
       }
     }
