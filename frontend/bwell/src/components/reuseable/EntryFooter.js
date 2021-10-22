@@ -27,8 +27,8 @@ export const EntryFooter = ({ disabled = false, callback = () => null, isLive = 
         return splitted[1]
     }
 
-    const addToFavourites = () => {
-        favourites.addToFavouritesById(entryId, module);
+    const addToFavourites = async () => {
+        await favourites.addToFavouritesById(entryId, module);
         
         history.push('/favourites');
     }

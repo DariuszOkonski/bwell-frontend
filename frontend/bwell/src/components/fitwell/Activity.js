@@ -51,7 +51,7 @@ const Activity = () => {
                     })
                 }
 
-                <EntryFooter />
+                <EntryFooter entryId={activity.id} module="fitwell" />
                 <DeleteButton entryId={activity.id}/>
             </EntryContainer>
             

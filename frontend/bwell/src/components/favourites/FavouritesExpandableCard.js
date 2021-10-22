@@ -43,7 +43,10 @@ const useStyles = makeStyles((theme) => ({
         marginRight: '0.5rem',
     },
     cardIcon: {
-        fontSize: 70,
+        '& svg' : {
+            width: '3rem', 
+            height: '3rem'
+        },
         position: 'relative',
         marginRight: '0.5em',
         color: colors.cardIconPrimary,
@@ -123,13 +126,13 @@ const FavouritesExpandableCard = ((props) => {
 
     }, [APIurl, props.favourites]);
 
-    const CardIcon = () => { return props.cardIcon };
-
     return (
         ideas &&
         <Card className={classes.root} >
             <CardContent>
-                <CardIcon className={classes.cardIcon} />
+                <span className={classes.cardIcon}>
+                    {props.cardIcon}
+                </span>
                 <Typography variant="h4" className={classes.header} component="h4">
                     {props.title}
                 </Typography>
