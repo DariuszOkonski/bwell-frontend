@@ -6,7 +6,7 @@ import { eatWell } from '../../utilities/BackendRequests';
 
 class CalculatorForm extends Component {
     state ={
-        id: 0,
+        id: Math.floor(Math.random()*100),
         age: null,
         bodyMassInKg: null,
         heightInCm: null,
@@ -29,22 +29,6 @@ class CalculatorForm extends Component {
         evt.preventDefault();
 
         const resp = await eatWell.fetchPostUserCalculatorData(this.state)
-
-        console.log(resp);
-
-
-        // this.setState({
-        //     id: 0,
-        //     age: null,
-        //     bodyMassInKg: null,
-        //     heightInCm: null,
-        //     isMan: false,
-        //     activityRatio: null,
-        //     goal: 'KeepCurrent',
-        //     proteinPercentage: null,
-        //     fatPercentage: null,
-        //     carbohydratesPercentage: null,
-        // })
     }
 
     styles = {
@@ -53,10 +37,6 @@ class CalculatorForm extends Component {
             justifyContent: 'center',
             alignItems: 'center',
             flexDirection: "row",
-
-                // [`@media (max-width: ${viewportSize.mobileL})`] : {
-                //     flexDirection: 'column'
-                //   }
         },
         iconContainer: {
             alignSelf: 'flex-start',            
@@ -111,17 +91,6 @@ class CalculatorForm extends Component {
             padding: '0.2rem 0.6rem',
             fontSize: '1rem',
             marginTop: '0.6rem'
-            // "&:hover": {
-            //     backgroundColor:'red',
-            // }
-
-            // '&:hover': {
-            //     // backgroundColor: colors.buttonPrimaryHover,
-            //     backgroundColor: 'red'
-            // },
-            // [`@media (max-width: ${viewportSize.mobileL})`] : {
-            //     fontSize: '0.8rem'
-            // }
         }
     }
 
