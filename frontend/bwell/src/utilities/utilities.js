@@ -50,12 +50,12 @@ const endpoints = {
     thinkwell_idea: "/thinkwell/exercise/",
     favourites: "/favourites",
     APIhost: "http://localhost:3001/",
-    APIeatWell: "recipes",
-    APIfitWell: "activities",
-    APIrestWell: "ideas",
-    APIthinkWell: "exercises",
-    APIusers: "users/",
-    APIuserFavourites: "favourites",
+    APIeatWell: "/recipes",
+    APIfitWell: "/activities",
+    APIrestWell: "/ideas",
+    APIthinkWell: "/exercises",
+    APIusers: "/users/",
+    APIuserFavourites: "/favourites",
     addEntry: (moduleUrl) => moduleUrl + "/addEntry",
 }
 

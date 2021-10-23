@@ -1,5 +1,4 @@
-import { createContext, useState } from "react";
-import React from 'react'
+import React, { createContext, useState, useEffect } from "react";
 
 export const DietPlanContext = createContext();
 

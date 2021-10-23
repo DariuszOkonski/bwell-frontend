@@ -45,7 +45,7 @@ const DietPlanPage = () => {
     return ( 
         <EntryPageContainer size={viewportSize.laptop}>
             <div className={classes.simpleBreadcrubmContainer}>
-                <SimpleBreadcrumbs path={fakePath}/>
+                <SimpleBreadcrumbs path={path}/>
             </div>
             <div className={classes.content}>
 
