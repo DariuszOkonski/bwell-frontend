@@ -101,6 +101,8 @@ const deleteEntry = async (module, id) => {
 const favourites = {
     fetchUserData: async (loggedUser) => {
         const APIendpoint = `${BASE_URL}${endpoints.APIusers}${loggedUser}`;
+        console.log('api endpoint ===================')
+        console.log(APIendpoint)
         const response = await fetch(APIendpoint)
         const data = await response.json()
 

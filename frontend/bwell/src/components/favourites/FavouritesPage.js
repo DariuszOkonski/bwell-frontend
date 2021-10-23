@@ -43,6 +43,8 @@ const FavouritesPage = (props) => {
             setUserData(userData)
         }
         getIdeas()
+
+        
     },[APIurl, loggedUser, pageChangedEvent]);
 
     return (
