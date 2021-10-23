@@ -43,6 +43,8 @@ const endpoints = {
     eatwell_recipe: "/eatwell/recipe/",
     eatwell_calculator: "/eatwell/calculator",
     eatwell_dietplan: "/eatwell/dietplan",
+    // TODO - rething endpoint
+    eatwell_ingredient_query: "http://localhost/api/v1/eatwell/ingredient/q?query=",
     fitwell_activity: "/fitwell/activity/",
     restwell_idea: "/restwell/idea/",
     thinkwell_idea: "/thinkwell/exercise/",
@@ -54,7 +56,7 @@ const endpoints = {
     APIthinkWell: "exercises",
     APIusers: "users/",
     APIuserFavourites: "favourites",
-    addEntry: (moduleUrl) => moduleUrl + "/addEntry"
+    addEntry: (moduleUrl) => moduleUrl + "/addEntry",
 }
 
 const modules = {

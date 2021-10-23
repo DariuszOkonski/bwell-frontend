@@ -61,7 +61,7 @@ const EntryPreview = () => {
             if (part.type == contentTypes.textArea) {
                 return <EntryContentPart type={part.type} header={part.header} text={part.text} key={part.id}/>
             } else if (part.type == contentTypes.ingredientsList){
-                return <EntryContentPart type={part.type} header={part.header} text={part.ingredients.map(ingData => [ingData.ingredient, ingData.quantity, ingData.measure])} key={part.id}/>
+                return <EntryContentPart type={part.type} header={part.header} text={part.ingredients.map(ingData => ingData)} key={part.id}/>
             } else if (part.type == contentTypes.customList) {
                 return <EntryContentPart type={part.type} header={part.header} text={part.content} key={part.id}/>
             }
