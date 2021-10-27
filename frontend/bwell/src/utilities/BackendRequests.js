@@ -2,7 +2,7 @@ import { v4 } from "uuid"
 import UserService from "./UserService"
 import { endpoints, moduleNameToApi } from "./utilities"
 
-const json_server = true
+const json_server = false
 const PORT = json_server ? "3001" : "8080"
 const BASE_URL = `http://localhost:${PORT}/api/v1`
 
