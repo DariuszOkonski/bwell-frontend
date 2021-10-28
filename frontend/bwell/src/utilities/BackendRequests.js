@@ -1,6 +1,6 @@
 import { v4 } from "uuid"
 import UserService from "./UserService"
-import { endpoints, moduleNameToApi } from "./utilities"
+import { endpoints, moduleNameToApi, moduleNameToBackendTag } from "./utilities"
 
 const json_server = false
 const PORT = json_server ? "3001" : "8080"
@@ -15,7 +15,7 @@ const eatWell = {
         return data
     },
     fetchRecipe: async (id) => {
-        const response = await fetch(`${BASE_URL}${endpoints.APIeatWell}/${id}`)
+        const response = await fetch(`${BASE_URL}${endpoints.APIeatWell}${id}`)
         const data = await response.json()
 
         return data 
@@ -43,7 +43,7 @@ const fitWell = {
         return data
     },
     fetchActivity: async (id) => {
-        const response = await fetch(`${BASE_URL}${endpoints.APIfitWell}/${id}`)
+        const response = await fetch(`${BASE_URL}${endpoints.APIfitWell}${id}`)
         const data = await response.json()
 
         return data
@@ -52,11 +52,16 @@ const fitWell = {
 }
 
 const postNewEntry = async (module, title, content) => {
+    console.log("Backend Request ==============================")
     console.log(module, title, content)
     const POST_URL = `${BASE_URL}${moduleNameToApi(module)}`
+    console.log(POST_URL)
+
+
+    // TODO - remove uuid from objects before send to backend
 
     const postedEntry = {
-        id: v4(),
+        module: moduleNameToBackendTag(module),
         title: title,
         description: content && content[0].text ? content[0].text : "No description",
         rating: { up: 0, down: 0 },

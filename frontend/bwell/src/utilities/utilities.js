@@ -49,11 +49,14 @@ const endpoints = {
     restwell_idea: "/restwell/ideas/",
     thinkwell_idea: "/thinkwell/exercises/",
     favourites: "/favourites",
-    APIhost: "http://localhost:3001/",
+    // APIhost: "http://localhost:3001/",
+    APIhost: "http://localhost:8080/api/v1",
     APIeatWell: "/eatwell/recipes/",
     APIfitWell: "/fitwell/activities/",
-    APIrestWell: "/ideas",
-    APIthinkWell: "/exercises",
+    // APIrestWell: "/ideas",
+    // APIthinkWell: "/exercises",
+    APIrestWell: "/restwell/ideas/",
+    APIthinkWell: "/thinkwell/exercises/",
     APIusers: "/users/",
     APIuserFavourites: "/favourites",
     addEntry: (moduleUrl) => moduleUrl + "/addEntry",
@@ -101,10 +104,29 @@ const moduleNameToApi = (module) => {
     }
 }
 
+const moduleNameToBackendTag = (module) => {
+    switch (module.toLowerCase()) {
+        case modules.eatWell.name.toLowerCase():
+            return "recipe";
+    
+        case modules.fitWell.name.toLowerCase():
+            return "activity";
+    
+        case modules.thinkWell.name.toLowerCase():
+            return "exercise";
+    
+        case modules.restWell.name.toLowerCase():
+            return "idea";
+    
+        default:
+            break;
+    }
+}
+
 const contentTypes = {
     textArea: "text_area",
     ingredientsList: "ingredients_list",
     customList: "custom_list"
 }
 
-export { colors, viewportSize, endpoints, modules, contentTypes, moduleNameToApi }
+export { colors, viewportSize, endpoints, modules, contentTypes, moduleNameToApi, moduleNameToBackendTag }
