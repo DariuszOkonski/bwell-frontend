@@ -67,9 +67,9 @@ const useStyles = makeStyles((theme) => ({
       // return {id: recipe.id, header: recipe.header, ingredients: [...ingrientsList]};
     }
     const mockIds = [
-      "58512254-1150-4783-aa08-8b862e737f71",
-      "bc0181e3-e1c0-4591-b072-c27829c7a66d",
-      "e617a8a6-d9b5-4e90-916a-ae8e4898efff"
+      4,
+      14,
+      18
     ]
   useEffect(() => {      
       const getRecipe = async () => {

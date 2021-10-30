@@ -36,8 +36,8 @@ export default function IngredientsTable() {
           {selectedMeal && selectedMeal.ingredients ? selectedMeal.ingredients.map((row) => (
             <TableRow key={row.id}>
               <TableCell align="right">{row.ingredient}</TableCell>
-              <TableCell align="right">{row.quantity}</TableCell>
-              <TableCell align="right">{row.measure}</TableCell>
+              <TableCell align="right">{row.amount}</TableCell>
+              <TableCell align="right">{row.unit.name}</TableCell>
             </TableRow>
           )) : <h4> Nothing selected </h4>}
         </TableBody>

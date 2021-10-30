@@ -16,6 +16,8 @@ const eatWell = {
     },
     fetchRecipe: async (id) => {
         const response = await fetch(`${BASE_URL}${endpoints.APIeatWell}${id}`)
+        debugger;
+
         const data = await response.json()
 
         return data 
