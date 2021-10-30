@@ -8,7 +8,6 @@
 
 import React, { useContext, useState } from 'react'
 import EventButton from '../../reuseable/EventButton'
-import IngredientItem from './IngredientItem'
 import { makeStyles } from '@material-ui/core';
 import { colors } from '../../../utilities/utilities';
 import { EntryCreatorContext } from '../contexts/EntryCreatorContext';

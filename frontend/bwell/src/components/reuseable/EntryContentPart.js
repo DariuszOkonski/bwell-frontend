@@ -51,14 +51,14 @@ const useStyles = makeStyles({
 export const EntryContentPart = ({header, type, text}) => {
     const classes = useStyles()
 
-
+    debugger;   
     const getFormatted = () => {
         if (type === contentTypes.ingredientsList)
             return <ul className={classes.list}>
                     {text.map(item => {
                         console.log(item);
                     return <li key={Math.random()}>{
-                        item.id && item.ingredient && item.quantity && typeof item.measure !== "object" ? `${item.ingredient} - ${item.quantity} ${item.measure} ` : 
+                        item.id && item.ingredient && item.amount ? `${item.ingredient} - ${item.amount} ${typeof item.unit == "object" ? item.unit.name : item.unit} ` : 
                         "[ yet empty ]"}</li>
                 })}
             </ul>

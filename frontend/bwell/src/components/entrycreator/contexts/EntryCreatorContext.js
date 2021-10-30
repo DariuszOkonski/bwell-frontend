@@ -39,7 +39,26 @@ const EntryCreatorContextProvider = (props) => {
     const nextOrder = () => textAreas.length + ingredientsLists.length + customLists.length
 
 
+    const clearIds = () => {
+        setTextAreas(textAreasClearedOfIds());
+        setIngredientsLists(ingredientsListsClearedOfIds())
+    }
 
+    const textAreasClearedOfIds = () => {
+        return textAreas.map(el => {
+            if(el.id)
+                delete el.id;
+            return el
+        })
+    }
+
+    const ingredientsListsClearedOfIds = () => {
+        return ingredientsLists.map(el => {
+            if(el.id)
+                delete el.id
+            return el;
+        })
+    }
 
     // Text areas
 
@@ -80,9 +99,9 @@ const EntryCreatorContextProvider = (props) => {
                     {
                     id: v4(),
                     ingredient: "",
-                    quantity: 0,
-                    measure: {id: 0, name:"g"},
-                    possibleMeasures: [{id: 3, name:"g"},
+                    amount: 1,
+                    unit: {id: 0, name:"g"},
+                    possibleUnits: [{id: 3, name:"g"},
                                        {id: 1, name:"ounce"},
                                        {id: 2, name:"lbs"},
                                        {id: 0, name:"ml"},]
@@ -115,13 +134,13 @@ const EntryCreatorContextProvider = (props) => {
 
     // single ingredient
 
-    const addIngredient = (id, ingredient, quantity, measure, listId) => {
+    const addIngredient = (id, ingredient, amount, unit, listId) => {
         const emptyIngredient = {
             id,
             ingredient,
-            quantity,
-            measure,
-            possibleMeasures: [{id: 3, name:"g"},
+            amount,
+            unit,
+            possibleUnits: [{id: 3, name:"g"},
             {id: 1, name:"ounce"},
             {id: 2, name:"lbs"},
             {id: 0, name:"ml"},]
@@ -283,7 +302,9 @@ const EntryCreatorContextProvider = (props) => {
                 editCustomListTitle,
                 removeCustomItem,
                 removeCustomList,
-                getCustomList
+                getCustomList,
+                clearIds,
+
             }}> {
             props.children
         } </EntryCreatorContext.Provider>

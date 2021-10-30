@@ -79,12 +79,6 @@ const EntryPreview = () => {
                 {
                     serviceComponentChoice()
                 }
-
-                {/* {
-                     recipe.content.map(part => {
-                        return <EntryContentPart header={part.header} text={part.text} key={Math.random()}/>
-                    })
-                } */}
                 
                 <EntryFooter disabled={true} isLive callback={()=>setIsLive(isLive)}/>
 

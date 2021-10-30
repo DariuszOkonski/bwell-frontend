@@ -67,6 +67,7 @@ const postNewEntry = async (module, title, content) => {
         rating: { up: 0, down: 0 },
         content: content
     }
+    debugger;
     const settings = {
         method: 'POST',
         headers: {

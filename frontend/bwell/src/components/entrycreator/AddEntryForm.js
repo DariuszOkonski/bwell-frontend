@@ -77,7 +77,7 @@ const AddEntryForm = ({initModule}) => {
     const {path} = useRouteMatch();
 
 
-    const { title, setTitle, module, setModule, addIngredientsList, addCustomList, addTextArea, ingredientsLists, textAreas, customLists,  } = useContext(EntryCreatorContext)
+    const { clearIds, title, setTitle, module, setModule, addIngredientsList, addCustomList, addTextArea, ingredientsLists, textAreas, customLists,  } = useContext(EntryCreatorContext)
     // setModule(url.split("/")[1]);
     
     let history = useHistory();
@@ -118,6 +118,7 @@ const AddEntryForm = ({initModule}) => {
             alert("Not accepting empty entries")
             return;
         }
+        clearIds()
         postNewEntry(module, title, content, descriptionId)
         history.push(history.push(`/${module}`))
     }

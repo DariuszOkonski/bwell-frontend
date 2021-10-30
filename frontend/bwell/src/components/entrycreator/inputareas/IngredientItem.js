@@ -51,9 +51,9 @@ const IngredientItem = (props) => {
     
     const [id, setId] = useState(props.id)
     const [ingredient, setIngredient] = useState(props.ingredient);
-    const [quantity, setQuantity] = useState(props.quantity);
-    const [measure, setMeasure] = useState(props.measure)    
-    const [units, setUnits] = useState(props.possibleMeasures)
+    const [amount, setAmount] = useState(props.amount);
+    const [unit, setUnit] = useState(props.unit)    
+    const [possibleUnits, setPossibleUnits] = useState(props.possibleUnits)
     
     const [isSubmit, setIsSubmit] = useState(false)
     
@@ -71,11 +71,11 @@ const IngredientItem = (props) => {
     }
 
     const handleChangeQuantity = (evt) => {
-        setQuantity(evt.target.value)
+        setAmount(evt.target.value)
     }
 
     const handleChangeMeasure = (evt) => {
-        setMeasure(evt.target.value);
+        setUnit(evt.target.value);
     }
 
     const handleLoadHintsFromApi = async (ev) => {
@@ -88,10 +88,7 @@ const IngredientItem = (props) => {
             }
             try {
                 setHints({isShowing:true, results: fetcher.hints && fetcher.hints.map(ingr => {
-                    console.log( ingr);
-                    // const ing1 = 
-                    const ingr2 =  {...ingr, unit: {id:3, name:"g"}}
-                    console.log(ingr2);
+                    const ingr2 =  {...ingr, unit: ingr.possibleUnits[0]}
                     return ingr2;
                 })})
             
@@ -105,9 +102,9 @@ const IngredientItem = (props) => {
         editIngredient({
             id, 
             ingredient, 
-            quantity, 
-            measure,
-            possibleMeasures: [...units]
+            amount, 
+            unit,
+            possibleUnits: [...possibleUnits]
         }, props.listId)
     }
     const handleUpdateBasedOnApiHint = (ev) => {
@@ -116,21 +113,21 @@ const IngredientItem = (props) => {
 
         if (chosenResult) {
             // instantiate local id variable to update the ingredient's internal id for id from API
-            const newId = chosenResult.id === id ? null : chosenResult.id       
-            console.log(chosenResult);
+            const newId = chosenResult.id === id ? null : chosenResult.id                   
             fetcher.setPhrase(chosenResult.name)
-            setIngredient(chosenResult.name)
-            setUnits([...chosenResult.possibleUnits])
-            setQuantity(1)
-            setMeasure(chosenResult.unit)
+            
 
             const apiBasedIngredient = {
-                    id: chosenResult.id, 
-                    ingredient,
-                    quantity, 
-                    measure,
+                    id, 
+                    ingredient: chosenResult.name,
+                    amount: 1, 
+                    unit: chosenResult.unit,
                     possibleUnits: chosenResult.possibleUnits
             }
+            setIngredient(chosenResult.name)
+            setPossibleUnits([...chosenResult.possibleUnits])
+            setAmount(1)
+            setUnit(chosenResult.unit)
             editIngredient(apiBasedIngredient, props.listId, newId)
         }
         setHints({...hints, isShowing:false})
@@ -178,7 +175,7 @@ const IngredientItem = (props) => {
                         <input 
                             className={classes.item + " " + classes.count} 
                             type="number" 
-                            value={quantity}
+                            value={amount}
                             onChange={handleChangeQuantity}
                             onBlur={handleUpdateData}
                         />
@@ -186,12 +183,12 @@ const IngredientItem = (props) => {
     const unitsOptions = 
                         <select 
                             className={classes.item + " " + classes.unit} 
-                            value={measure}
+                            value={unit}
                             onChange={handleChangeMeasure}
                             onBlur={handleUpdateData}>
                             
                             {
-                                units.map(
+                                possibleUnits && possibleUnits.map(
                                     unit => <option key={unit.id} value={unit.name}>{unit.name}</option>
                                     )
                             }

@@ -32,6 +32,7 @@ const Recipe = (props) => {
         // setRecipe(fake_getRecipe(Number(props.match.params.id)))
         const getRecipe = async () => {
             const recipeFromServer = await eatWell.fetchRecipe(props.match.params.id)
+            debugger;
             setRecipe(recipeFromServer)
         }
         getRecipe()
