@@ -1,6 +1,6 @@
 const UserService = () => {
 
-    const loggedUser = 1;
+    const loggedUser = 73;
 
     return loggedUser;
 

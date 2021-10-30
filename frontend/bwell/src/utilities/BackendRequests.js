@@ -168,6 +168,7 @@ const favourites = {
         console.log('Modified data: ' + userData)
 
         //SEND MODIFIED OBJECT
+        debugger;
         const POST_URL = `${BASE_URL}${endpoints.APIusers}${loggedUser}`;
         const settings = {
             method: 'PUT',
