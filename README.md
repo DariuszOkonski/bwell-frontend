@@ -1,7 +1,12 @@
 <h2>bWell project - frontend 80% finished prototype</h2>
 
+
+<p><b>Backend:</b> Java, Spring Boot, Jpa + Hibernate, PostgreSQL, Spoonacular API, Spring Security & OAuth2 (future)</p>
+<p><b>Frontend:</b> React + Material UI</p>
+
+
 <p>
-    It is react based frontend (React, Material-UI) for bWell application - full stack web application that allows user to share their wellbeing ideas for 4 areas: 
+    It is react based frontend for bWell application - full stack web application that allows user to share their wellbeing ideas for 4 areas: 
 </p>
 
 <ul>
