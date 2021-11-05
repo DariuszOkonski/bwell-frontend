@@ -12,13 +12,15 @@ const FitWellPage = (props) => {
 
     const [activites, setActivities] = useState([])
     
+    let count = activites.length
     useEffect(() => {
         const getActivities = async () => {
             const recipesFromServer = await fitWell.fetchActivities()
             setActivities(recipesFromServer)
+            count = recipesFromServer.length
         }
         getActivities()
-    },[]);
+    },[count]);
 
     return (
         <>

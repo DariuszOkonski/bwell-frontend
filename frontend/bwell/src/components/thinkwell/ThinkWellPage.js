@@ -15,6 +15,7 @@ const ThinkWellPage = (props) => {
     const classes = props.useStylesPages();
 
     const { match } = props;
+    let count = excercises.length
 
     useEffect(() => {
 
@@ -28,9 +29,10 @@ const ThinkWellPage = (props) => {
         const getExcercises = async () => {
             const excercisesFromServer = await fetchExcercises()
             setExcercises(excercisesFromServer)
+            count = excercisesFromServer.length
         }
         getExcercises()
-    },[]);
+    },[count]);
 
 
     return (

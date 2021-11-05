@@ -14,13 +14,16 @@ const EatWellPage = (props) => {
     const classes = props.useStylesPages();
     const {match} = props;
 
+    let count = recipes.length
+
     useEffect(() => {
         const getRecipes = async () => {
             const recipesFromServer = await eatWell.fetchRecipes()
             setRecipes(recipesFromServer)
+            count = recipesFromServer.length
         }
         getRecipes()
-    },[]);
+    },[count]);
 
 
     return (

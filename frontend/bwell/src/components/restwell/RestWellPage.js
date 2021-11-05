@@ -14,6 +14,7 @@ const RestWellPage = (props) => {
 
     const [ideas, setIdeas] = useState([]);
     const APIurl = endpoints.APIhost + endpoints.APIrestWell;
+    let count = ideas.length
 
     useEffect(() => {
 
@@ -27,9 +28,10 @@ const RestWellPage = (props) => {
         const getIdeas = async () => {
             const ideasFromServer = await fetchIdeas()
             setIdeas(ideasFromServer)
+            count = ideasFromServer.length
         }
         getIdeas()
-    },[]);
+    },[count]);
 
     return (
         <>
