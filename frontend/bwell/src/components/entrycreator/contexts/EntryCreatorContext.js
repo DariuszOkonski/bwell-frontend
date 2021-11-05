@@ -40,8 +40,10 @@ const EntryCreatorContextProvider = (props) => {
 
 
     const clearIds = () => {
+        // Method for clearing UUID id used on frontend for managing state while creating entry. Required for compliance with backend Long type Ids.
         setTextAreas(textAreasClearedOfIds());
         setIngredientsLists(ingredientsListsClearedOfIds())
+        setCustomLists(customListsClearedOfIds())
     }
 
     const textAreasClearedOfIds = () => {
@@ -57,6 +59,29 @@ const EntryCreatorContextProvider = (props) => {
             if(el.id)
                 delete el.id
             return el;
+        })
+    }
+
+    const customListsClearedOfIds = () => {
+        return customLists.map(customList => {
+            
+            if(customList.id) 
+                delete customList.id
+            
+            customList.content = customList.content.map(row => {
+                
+                if (row.id) 
+                    delete row.id
+
+                row.cells = row.cells.map(cell => {
+                    
+                    if(cell.id) 
+                        delete cell.id  
+                    return cell
+                })
+                return row
+            })
+            return customList
         })
     }
 
