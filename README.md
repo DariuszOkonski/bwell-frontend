@@ -1,7 +1,7 @@
 <h2>bWell project - frontend 80% finished prototype</h2>
 
 
-<p><b>Backend:</b> Java, Spring Boot, Jpa + Hibernate, PostgreSQL, Spoonacular API, Spring Security & OAuth2 (future)</p>
+<p><b>Backend:</b> Java, Spring Boot, Jpa + Hibernate, PostgreSQL, Spoonacular API, Spring Security & OAuth2 (future). Repo: https://github.com/ddeer1109/bwell-backend</p>
 <p><b>Frontend:</b> React + Material UI</p>
 
 
