@@ -12,6 +12,7 @@ const MealChoiceButtons = ({modalCloseCallback}) => {
     const useStyles = makeStyles({
         container: {
             display: "flex",
+            width: "100%",
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
@@ -19,7 +20,8 @@ const MealChoiceButtons = ({modalCloseCallback}) => {
         },
         btnContainer: {
             padding: "0.5rem",
-            display: "flex"
+            width: "80%",
+            display: "flex",
         }
     })
     const classes = useStyles()

@@ -47,8 +47,7 @@ const Recipe = (props) => {
             <SimpleBreadcrumbs path={match.path} header={recipe.title} />
             <EntryContainer>
                 <div className={classes.buttonContainer} >
-                    <ModalEventButton body={<h3>ASDF!</h3>}/>
-                    {/* <EventButton callback={} text="Add to plan" isAbsolute={false} icon={<EventNoteIcon/>}/> */}
+                    <ModalEventButton/>
                 </div>
                 <EntryHeader 
                     header={recipe.title}

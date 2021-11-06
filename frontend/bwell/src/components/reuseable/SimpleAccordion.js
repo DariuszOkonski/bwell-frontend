@@ -64,13 +64,6 @@ const useStyles = makeStyles((theme) => ({
     return {id: recipe.id, header: recipe.title, ingredients: [...ingredients]};
   }
 
-  const mock = async (id) => {
-      const recipe = await eatWell.fetchRecipe(id)
-      return reduceIngredients(recipe)
-    }
-    const mockIds = [
-      7,
-    ]
   useEffect(() => {      
       const getRecipe = async () => {
         const setters = settersGenerator();
@@ -89,19 +82,17 @@ const useStyles = makeStyles((theme) => ({
   }
 
   return (
-    // <div className={classes.root}>
         <div className={classes.root}>
          {Object.keys(meals).map(key => meals[key] && 
 
          <div className={classes.unit}>
-           {/* <EntryContainer> */}
 
            <Accordion >
             
             <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls={`panel${meals[key]}a-content`}
-            id={`panel${meals[key]}a-content`}
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls={`panel${meals[key]}a-content`}
+              id={`panel${meals[key]}a-content`}
             >
               <h4 className={`${key === selectedMeal.name && classes.selected}`}>{key}: {meals[key].header} </h4>
             </AccordionSummary>
@@ -119,7 +110,6 @@ const useStyles = makeStyles((theme) => ({
             </AccordionDetails>
 
           </Accordion>
-          {/* </EntryContainer> */}
 
          </div>
          )}
