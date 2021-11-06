@@ -1,11 +1,12 @@
 import { makeStyles } from '@material-ui/core';
 import Modal from '@material-ui/core/Modal';
 import React, { useState } from 'react'
+import { viewportSize } from '../../utilities/utilities';
 import MealChoiceButtons from '../eatwell/dietplan/MealChoiceButtons';
 import { EntryContainer } from './EntryContainer';
 import EventButton from './EventButton'
 
-const ModalEventButton = (props) => {
+const ModalEventButton = ({alternateContent=null, text="Add to plan"}) => {
 
     const useStyles = makeStyles({
         container: {
@@ -15,9 +16,9 @@ const ModalEventButton = (props) => {
         },
 
         content: {
-            marginTop: "10rem",
-            minWidth: "20%",
-            minHeight: "30%",
+            // marginTop: "5rem",
+            maxWidth: viewportSize.tablet,
+            // height: "30%",
         }
     })
     
@@ -32,7 +33,7 @@ const ModalEventButton = (props) => {
         <>
             <EventButton 
             callback={handleOpen} 
-            text="Add to plan" isAbsolute={false}/>
+            text={text} isAbsolute={false}/>
 
             <Modal
             open={open}
@@ -44,7 +45,8 @@ const ModalEventButton = (props) => {
                     
                     <div className={classes.content}>
                         <EntryContainer>
-                            <MealChoiceButtons modalCloseCallback={handleClose}/>
+                            {!alternateContent ? <MealChoiceButtons modalCloseCallback={handleClose}/> :
+                            alternateContent}
                         </EntryContainer>
                     </div>
                 </div>

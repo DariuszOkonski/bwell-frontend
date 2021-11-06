@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Grid } from '@material-ui/core'
 import { useRouteMatch } from 'react-router';
-import SimpleBreadcrumbs from './../reuseable/SimpleBreadcrumbs';
+import SimpleBreadcrumbs from '../reuseable/SimpleBreadcrumbs';
 import { makeStyles } from '@material-ui/core';
 import { colors } from '../../utilities/utilities';
 import DietStatistics from './DietStatistics';
