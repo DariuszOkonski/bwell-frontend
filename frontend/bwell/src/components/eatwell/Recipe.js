@@ -12,6 +12,8 @@ import EntryPageContainer from './../reuseable/EntryPageContainer';
 import { v4 } from 'uuid';
 import { eatWell } from '../../utilities/BackendRequests';
 import DeleteButton from '../reuseable/DeleteButton';
+import EventButton from '../reuseable/EventButton';
+import ModalEventButton from '../reuseable/ModalEventButton';
 
 const useStyles = makeStyles({
     buttonContainer: {
@@ -32,7 +34,6 @@ const Recipe = (props) => {
         // setRecipe(fake_getRecipe(Number(props.match.params.id)))
         const getRecipe = async () => {
             const recipeFromServer = await eatWell.fetchRecipe(props.match.params.id)
-            debugger;
             setRecipe(recipeFromServer)
         }
         getRecipe()
@@ -46,7 +47,8 @@ const Recipe = (props) => {
             <SimpleBreadcrumbs path={match.path} header={recipe.title} />
             <EntryContainer>
                 <div className={classes.buttonContainer} >
-                    <CustomButton linkTo="" text="Add to plan" isAbsolute={false} icon={<EventNoteIcon/>}/>
+                    <ModalEventButton body={<h3>ASDF!</h3>}/>
+                    {/* <EventButton callback={} text="Add to plan" isAbsolute={false} icon={<EventNoteIcon/>}/> */}
                 </div>
                 <EntryHeader 
                     header={recipe.title}

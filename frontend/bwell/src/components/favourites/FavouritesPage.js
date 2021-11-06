@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
 export const FavouritesContext = React.createContext();
 
 const FavouritesPage = (props) => {
+    let loggedUser;
     const classes = useStyles();
-    const loggedUser = UserService();
 
     const APIurl = endpoints.APIhost + endpoints.APIusers;
 
@@ -35,6 +35,8 @@ const FavouritesPage = (props) => {
     useEffect(() => {
 
         const fetchFavourites = async () => {
+             loggedUser = await UserService();
+debugger
             return await favourites.fetchUserData(loggedUser); 
         }
 

@@ -126,10 +126,10 @@ const CalculatorFormFunctional = ({updateResults}) => {
     {step: 0.01, max: 1, min: 0,name:"Carbohydrates Percentage"},
 ]
     const [numericalData, setNumericalData] = useState({
-        age: null,
-        bodyMassInKg: null,
-        heightInCm: null,
-        activityRatio: null,
+        age: 25,
+        bodyMassInKg: 70,
+        heightInCm: 171,
+        activityRatio: 1.5,
         proteinPercentage: null,
         fatPercentage: null,
         carbohydratesPercentage: null,
@@ -138,7 +138,7 @@ const CalculatorFormFunctional = ({updateResults}) => {
     const [otherData, setOtherData] = useState({        
         goal: 'KeepCurrent',
         strategy: 'Complete',
-        isMan: false,
+        isMan: true,
 })
 
 

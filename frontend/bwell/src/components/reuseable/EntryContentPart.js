@@ -51,7 +51,6 @@ const useStyles = makeStyles({
 export const EntryContentPart = ({header, type, text}) => {
     const classes = useStyles()
 
-    debugger;   
     const getFormatted = () => {
         if (type === contentTypes.ingredientsList)
             return <ul className={classes.list}>

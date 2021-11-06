@@ -59,7 +59,7 @@ const DietStatistics = ({statistics}) => {
             flexDirection: "column"
         }
     })
-
+    
     const rendering = () => statistics && 
         <table className={classes.table}>
             <tr className={classes.tr }>

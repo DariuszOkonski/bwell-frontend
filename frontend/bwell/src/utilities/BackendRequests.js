@@ -1,12 +1,14 @@
 import { v4 } from "uuid"
 import UserService from "./UserService"
-import { endpoints, moduleNameToApi, moduleNameToBackendTag } from "./utilities"
+import { dietPlanUrls, endpoints, moduleNameToApi, moduleNameToBackendTag } from "./utilities"
 
 const json_server = false
 const PORT = json_server ? "3001" : "8080"
 const BASE_URL = `http://localhost:${PORT}/api/v1`
 
-const eatWell = {
+let currentUserId = UserService();
+
+export const eatWell = {
     fetchRecipes: async () => {
 
         const response = await fetch(`${BASE_URL}${endpoints.APIeatWell}`)
@@ -16,13 +18,21 @@ const eatWell = {
     },
     fetchRecipe: async (id) => {
         const response = await fetch(`${BASE_URL}${endpoints.APIeatWell}${id}`)
-        debugger;
+
+        const data = await response.json()
+
+        return data 
+    },
+    fetchRecipeNutritionSum: async (id) => {
+        const response = await fetch(`${BASE_URL}${endpoints.APIeatWell}${id}/nutrition`)
 
         const data = await response.json()
 
         return data 
     },
     fetchPostUserCalculatorData: async (calculatorData) => {
+        const user = await UserService(true)
+        calculatorData.user = user;
         const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}`, {
             method: 'POST',
             headers: {
@@ -31,8 +41,48 @@ const eatWell = {
             body: JSON.stringify(calculatorData)
         });
         const data = await response.json();
-
         return data
+    },
+    fetchGetUserCalculatorData: async () => {
+        const loggedId = await UserService()
+    
+        const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}/${loggedId}`)
+
+        const data = await response.json()
+
+        return data 
+    },
+
+    fetchGetUserCoverageForIngredients: async(ingredientsDtos) => {
+        const loggedId = await UserService()
+        const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}/${loggedId}/recipe`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(ingredientsDtos)
+        });
+        const data = await response.json();
+        return data
+    },
+
+    setRecipeAsMeal: async(recipeId, meal) => {
+        const loggedId = await UserService()
+        const response = await fetch(dietPlanUrls.setRecipeForMeal(loggedId, recipeId, meal))
+
+        const data = await response.json()
+
+        return data 
+    },
+
+    fetchDietPlan: async ()=> {
+        const loggedId = await UserService()
+        debugger;
+        const response = await fetch(dietPlanUrls.dietPlanForUser(loggedId))
+
+        const data = await response.json()
+
+        return data 
     }
 
 }
@@ -69,7 +119,6 @@ const postNewEntry = async (module, title, content) => {
         rating: { up: 0, down: 0 },
         content: content
     }
-    debugger;
     const settings = {
         method: 'POST',
         headers: {
@@ -136,7 +185,7 @@ const favourites = {
         }
     },
     addToFavouritesById: async (id, type) => {
-        const loggedUser = UserService();
+        const loggedUser = await await UserService();
 
         //GET JSON
         const userData = await favourites.fetchUserData(loggedUser);
@@ -188,7 +237,7 @@ const favourites = {
         }
     },
     removeFromFavouritesById: async (id, type) => {
-        const loggedUser = UserService();
+        const loggedUser = await UserService();
 
         //GET JSON
         const userData = await favourites.fetchUserData(loggedUser);
@@ -238,5 +287,5 @@ const favourites = {
 
 
 
-export { eatWell, fitWell, postNewEntry, deleteEntry, favourites }
+export { fitWell, postNewEntry, deleteEntry, favourites, currentUserId }
 

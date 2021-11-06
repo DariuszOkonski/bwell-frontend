@@ -8,12 +8,12 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { DietPlanContext } from '../eatwell/dietplan/context/DietPlanContext';
 import BasicTable from './BasicTable';
 import { EntryContainer } from './EntryContainer';
-import { colors, contentTypes } from '../../utilities/utilities';
+import { colors, contentTypes, dietPlanUrls } from '../../utilities/utilities';
 import { eatWell } from '../../utilities/BackendRequests';
 import EventButton from './EventButton';
 
 
-export default function SimpleAccordion() {
+export default function DietPlanRecipesAccordion() {
   
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,31 +52,33 @@ const useStyles = makeStyles((theme) => ({
   const classes = useStyles();
   const { meals, setMeals, settersGenerator, selectedMeal, setSelectedMeal } = useContext(DietPlanContext);
   
-  const mock = async (id) => {
-      const recipe = await eatWell.fetchRecipe(id)
-      
-      const ingredientsList = recipe.content
+  const reduceIngredients = (recipe) =>{
+    if (!recipe) return null;
+    const ingredientsList = recipe.content
         .filter(entry => entry.type == contentTypes.ingredientsList)
 
-      const ingredients = ingredientsList.reduce((previousValue, currentValue) => {
-          var asd = [...previousValue, ...currentValue.ingredients]
-          return asd
-          },[])
-      console.log(ingredients, "ASD!");
-      return {id: recipe.id, header: recipe.title, ingredients: [...ingredients]};
-      // return {id: recipe.id, header: recipe.header, ingredients: [...ingrientsList]};
+    const ingredients = ingredientsList.reduce((previousValue, currentValue) => {
+        var asd = [...previousValue, ...currentValue.ingredients]
+        return asd
+        },[])
+    return {id: recipe.id, header: recipe.title, ingredients: [...ingredients]};
+  }
+
+  const mock = async (id) => {
+      const recipe = await eatWell.fetchRecipe(id)
+      return reduceIngredients(recipe)
     }
     const mockIds = [
-      4,
-      14,
-      18
+      7,
     ]
   useEffect(() => {      
       const getRecipe = async () => {
         const setters = settersGenerator();
-        for (const id of mockIds){
-          const recipeFromServer = await mock(id)
-          console.log(recipeFromServer);
+        const dietPlan = await eatWell.fetchDietPlan()
+        for (const meal of Object.keys(dietPlanUrls.meals)){
+          debugger;
+          // const recipeFromServer = await mock(id)
+          const recipeFromServer = reduceIngredients(dietPlan[meal])
           setters.next().value(recipeFromServer)
         }
       }

@@ -81,6 +81,13 @@ const modules = {
     },
 }
 
+export const dietPlanUrls = {
+    meals: {breakfast: "breakfast", lunch: "lunch", dinner: "dinner", supper: "supper"},
+    baseUrl: `${endpoints.APIhost}/eatwell/dietplan/`,
+    dietPlanForUser: (userId) => dietPlanUrls.baseUrl + userId,
+    setRecipeForMeal: (userId, recipeId, mealName) => dietPlanUrls.baseUrl + userId + "/" + mealName + "/" + recipeId
+}
+
 const moduleNameToApi = (module) => {
     switch (module.toLowerCase()) {
         case modules.eatWell.name.toLowerCase():

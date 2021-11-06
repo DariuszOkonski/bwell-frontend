@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { colors, viewportSize } from '../../../utilities/utilities';
 import { useRouteMatch } from 'react-router'
 import EntryPageContainer from '../../reuseable/EntryPageContainer'
 import SimpleBreadcrumbs from '../../reuseable/SimpleBreadcrumbs'
 import { Grid, makeStyles } from '@material-ui/core';
 import { EntryContainer } from '../../reuseable/EntryContainer';
-import SimpleAccordion from '../../reuseable/SimpleAccordion';
+import DietPlanRecipesAccordion from '../../reuseable/SimpleAccordion';
 import IngredientsTable from './IngredientsTable';
+import DietStatistics from '../DietStatistics';
+import { eatWell } from '../../../utilities/BackendRequests';
+import { DietPlanContext } from './context/DietPlanContext';
 
 const DietPlanPage = () => {
 
@@ -37,9 +40,19 @@ const DietPlanPage = () => {
         }
     })
     const {path} = useRouteMatch()
+    const {setDemand} = useContext(DietPlanContext)
+
+    const [statistics, setStatistics] = useState(null)
     console.log(useRouteMatch(), "ASD!");
 
-
+    useEffect(() => {
+        const getStatistics = async () => {
+            const fromServer = await eatWell.fetchGetUserCalculatorData()
+            setStatistics(fromServer)
+            setDemand(fromServer)
+        }
+        getStatistics()
+    }, [])
     const classes = useStyles()
 
     return ( 
@@ -47,6 +60,12 @@ const DietPlanPage = () => {
             <div className={classes.simpleBreadcrubmContainer}>
                 <SimpleBreadcrumbs path={path}/>
             </div>
+            {
+            statistics && 
+            <EntryContainer>
+                <DietStatistics statistics={statistics}></DietStatistics>
+            </EntryContainer>
+            }
             <div className={classes.content}>
 
                 <div className={classes.part}>
@@ -57,7 +76,7 @@ const DietPlanPage = () => {
                     </EntryContainer>
                 </div>
                 <div className={classes.part}>
-                        <SimpleAccordion />
+                        <DietPlanRecipesAccordion />
 
 
                 </div>

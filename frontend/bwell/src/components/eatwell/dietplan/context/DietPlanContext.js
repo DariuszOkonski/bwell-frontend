@@ -37,7 +37,7 @@ const DietPlanContextProvider = (props) => {
           supper, setSupper,
         selectedMeal,  setSelectedMeal,
           meals, setMeals,  settersGenerator,
-          demand } }>
+          demand, setDemand } }>
             {props.children}
         </DietPlanContext.Provider>
     )
