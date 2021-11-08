@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 16px;
+  font-family: 'Lato', sans-serif;
+}
+
+.calculatorButton {
+  border: 'none';
+  cursor: 'pointer';
+  text-transform: 'capitalize';
+  background-color: '#ff934f';
+  border-radius: '2rem';
+  color: '#fff';
+  padding: '0.2rem 0.6rem';
+  font-size: '1rem';
+}
+
+.calculatorButton:hover {
+  background-color: 'red';
+}
+
+
+.login-container {
+  border-radius: 5rem;
+
+  text-align: center;
+}
+
+.login-content {
+  background: #fff;
+
+  box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+  border-radius: 5px;
+  width: 500px;
+  display: inline-block;
+  margin-top: 30px;
+  vertical-align: middle;
+  position: relative;
+  padding: 25px;
+}
+
+.social-btn {
+  margin-bottom: 15px;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.login-content:hover {
+  background-color: #f7d2bb;
+  color: "white"!important;
+}
+
+.social-btn img {
+  height: 32px;
+  float: left;
+  margin-top: 10px;
+}
+
+.social-btn.google {
+  margin-top: 7px;
+}
+
+.social-btn.facebook img {
+  height: 24px;
+  margin-left: 3px;
+}
+
+.login-title {
+  font-size: 1.5em;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 30px;
+  /* color: rgba(0, 0, 0, 0.65); */
+}

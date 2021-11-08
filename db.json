@@ -1,0 +1,44 @@
+"recipes": {
+    "id": 0,
+    "title": 0,
+    "description": 0,
+},
+
+"recipes_rating": {
+    "recipe_id": "",
+    "up": "",
+    "down": ""
+}
+
+"user_rating": {
+    "entry_id": 0,
+    "rating": "1, -1",
+}
+
+"entry_contents": {
+    "entry_id": 0,
+    "header": "",
+    "text": "",
+    "ingredient_list": 0,
+}
+## TO CONSULT 
+
+// every ingriednts list for Recipe separate table? nonsense?
+// 1-pole w postgresie jako json
+// 2-hybryda z mongodb dla przepisów
+// 3-relacyjnie
+"ingredients_lists": {
+    "id": 0,
+    "list": [
+        [{ingredient_id, {count}, {measure}}],
+        [{ingredient_id, {count}, {measure}}],
+        [{ingredient_id, {count}, {measure}}],
+    ]
+
+}
+
+"ingredients": {
+    "id": 0,
+    "name": "",
+    "api_nutrition_list": {}
+}
