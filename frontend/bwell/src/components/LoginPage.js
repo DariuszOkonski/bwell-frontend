@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
         color: colors.cardIconPrimary,
     },
     buttonContainer: {
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     formContainer: {
         justifyContent: 'center'
