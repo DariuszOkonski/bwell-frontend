@@ -1,4 +1,6 @@
+import { useHistory } from "react-router"
 import { v4 } from "uuid"
+import { ACCESS_TOKEN } from "../oauth2/constants"
 import UserService from "./UserService"
 import { dietPlanUrls, endpoints, moduleNameToApi, moduleNameToBackendTag } from "./utilities"
 
@@ -8,9 +10,24 @@ const BASE_URL = `http://localhost:${PORT}/api/v1`
 
 let currentUserId = UserService();
 
+const TokenHeaders = () => {
+    const headers = new Headers({
+        'Accept': 'application/json',
+        "Content-Type": "application/json"
+      });
+    
+      if (localStorage.getItem(ACCESS_TOKEN)) {
+        headers.append("Authorization", "Bearer " + localStorage.getItem(ACCESS_TOKEN));
+      } else {
+        window.location.href = "/login"
+        return null;
+    }
+      return {headers: headers}
+}
+
 export const eatWell = {
     fetchRecipes: async () => {
-
+        
         const response = await fetch(`${BASE_URL}${endpoints.APIeatWell}`)
         const data = await response.json()
 
@@ -24,20 +41,18 @@ export const eatWell = {
         return data 
     },
     fetchRecipeNutritionSum: async (id) => {
-        const response = await fetch(`${BASE_URL}${endpoints.APIeatWell}${id}/nutrition`)
+
+        const response = await fetch(`${BASE_URL}${endpoints.APIeatWell}${id}/nutrition`,)
 
         const data = await response.json()
-
         return data 
     },
     fetchPostUserCalculatorData: async (calculatorData) => {
         const user = await UserService(true)
         calculatorData.user = user;
-        const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}`, {
+        
+        const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}`, {...TokenHeaders(), 
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
             body: JSON.stringify(calculatorData)
         });
         const data = await response.json();
@@ -46,29 +61,38 @@ export const eatWell = {
     fetchGetUserCalculatorData: async () => {
         const loggedId = await UserService()
     
-        const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}/${loggedId}`)
+        const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}/${loggedId}`, {...TokenHeaders()})
 
         const data = await response.json()
 
         return data 
     },
 
-    fetchGetUserCoverageForIngredients: async(ingredientsDtos) => {
+    fetchGetUserCoverageForIngredients: async(recipeId) => {
         const loggedId = await UserService()
-        const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}/${loggedId}/recipe`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(ingredientsDtos)
+        const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}/${loggedId}/recipe/${recipeId}`, {
+            method: 'GET',
+            headers: TokenHeaders().headers,
+        });
+        const data = await response.json();
+        return data
+    },
+
+
+    fetchCoverageOfNutrients: async() => {
+        const loggedId = await UserService()
+        const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}/${loggedId}/dietplan/coverage`, {
+            method: 'GET',
+            headers: TokenHeaders().headers,
         });
         const data = await response.json();
         return data
     },
 
     setRecipeAsMeal: async(recipeId, meal) => {
+        
         const loggedId = await UserService()
-        const response = await fetch(dietPlanUrls.setRecipeForMeal(loggedId, recipeId, meal))
+        const response = await fetch(dietPlanUrls.setRecipeForMeal(loggedId, recipeId, meal), {headers: TokenHeaders().headers})
 
         const data = await response.json()
 
@@ -77,12 +101,20 @@ export const eatWell = {
 
     fetchDietPlan: async ()=> {
         const loggedId = await UserService()
-        debugger;
-        const response = await fetch(dietPlanUrls.dietPlanForUser(loggedId))
+        const response = await fetch(dietPlanUrls.dietPlanForUser(loggedId), {...TokenHeaders()})
 
         const data = await response.json()
 
         return data 
+    },
+    fetchSumRecipesNutrition: async () => {
+        const loggedId = await UserService()
+        const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}/${loggedId}/dietplan/sum`, {
+            method: 'GET',
+            headers: TokenHeaders().headers,
+        });
+        const data = await response.json();
+        return data
     }
 
 }
@@ -119,12 +151,10 @@ const postNewEntry = async (module, title, content) => {
         rating: { up: 0, down: 0 },
         content: content
     }
+    
     const settings = {
+        ...TokenHeaders(),
         method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
         body: JSON.stringify(postedEntry)
     };
     try {
@@ -139,12 +169,8 @@ const postNewEntry = async (module, title, content) => {
 const deleteEntry = async (module, id) => {
     const DELETE_URL = `${BASE_URL}${moduleNameToApi(module)}/${id}`
     console.log(DELETE_URL)
-    const settings = {
-        method: 'DELETE',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        }
+    const settings = {...TokenHeaders(),
+        method: 'DELETE',  
     };
     try {
         const fetchResponse = await fetch(DELETE_URL, settings);
@@ -217,7 +243,6 @@ const favourites = {
         console.log('Modified data: ' + userData)
 
         //SEND MODIFIED OBJECT
-        debugger;
         const POST_URL = `${BASE_URL}${endpoints.APIusers}${loggedUser}`;
         const settings = {
             method: 'PUT',

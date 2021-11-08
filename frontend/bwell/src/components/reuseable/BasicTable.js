@@ -48,7 +48,8 @@ export default function BasicTable({meal}) {
   });
 
   const [rows, setRows] = useState([])
-  const [recipeCoverage, setRecipeCoverage] = useState([])
+
+  const {setIncome, income} = useContext(DietPlanContext)
 
   function createData(calories, fat, carbs, protein) {
     return {calories, fat, carbs, protein };
@@ -57,10 +58,7 @@ export default function BasicTable({meal}) {
   useEffect(() => {
     const getRecipesNutrition = async () => {
       const nutrients = await eatWell.fetchRecipeNutritionSum(meal.id)
-      const recipeCover = await eatWell.fetchGetUserCoverageForIngredients(meal.ingredients.map(ingr => {
-        console.log(ingr);
-        return {detailedId: ingr.detailedId, id: ingr.id, amount: ingr.amount, unit: ingr.unit.name}
-      }))
+      const recipeCover = await eatWell.fetchGetUserCoverageForIngredients(meal.id)
       // setNutrition(nutrients)
       // setRecipeCoverage(recipeCover)
       setRows([
@@ -71,12 +69,13 @@ export default function BasicTable({meal}) {
           `${nutrients.protein.amount} ${nutrients.protein.unit}`, 
           ),
         createData(
-          `${Math.round(recipeCover.calories * 100)} %`, 
+          `${Math.round(recipeCover.calories *100)} %`, 
           `${Math.round(recipeCover.fat * 100)} %`, 
           `${Math.round(recipeCover.carbohydrates * 100)} %`, 
           `${Math.round(recipeCover.protein * 100)} %`, 
           ),
       ])
+      debugger;      
     }
     if (meal.id){
       getRecipesNutrition()

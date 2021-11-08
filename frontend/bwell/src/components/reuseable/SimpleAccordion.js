@@ -69,11 +69,11 @@ const useStyles = makeStyles((theme) => ({
         const setters = settersGenerator();
         const dietPlan = await eatWell.fetchDietPlan()
         for (const meal of Object.keys(dietPlanUrls.meals)){
-          debugger
           // const recipeFromServer = await mock(id)
           const recipeFromServer = reduceIngredients(dietPlan[meal])
           setters.next().value(recipeFromServer)
         }
+        setters.next().value()
       }
       getRecipe()
   },[])

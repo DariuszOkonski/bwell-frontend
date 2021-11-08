@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Switch, Route } from "react-router-dom";
 import Header from './components/generic/Header';
 import Footer from './components/generic/Footer';
@@ -25,6 +25,10 @@ import EntryCreatorContextProvider from './components/entrycreator/contexts/Entr
 import ErrorPage from './components/reuseable/ErrorPage';
 import DietPlanPage from './components/eatwell/dietplan/DietPlanPage';
 import DietPlanContextProvider from './components/eatwell/dietplan/context/DietPlanContext';
+import OAuth2RedirectHandler from './oauth2/oauth2/OAuth2RedirectHandler';
+import PrivateRoute from './oauth2/PrivateRoute';
+import { getCurrentUser } from './oauth2/util/APIUtils';
+import { ACCESS_TOKEN } from './oauth2/constants';
 
 const useStylesPages = makeStyles({
   categoriesBar: {
@@ -59,10 +63,48 @@ const useStylesPages = makeStyles({
   },
 })
 
-function App() {
+function App(props) {
 
   const classes = useStylesPages();
+    const [state, setState] = useState({
+      currentUser: null,
+      loading: false,
+      authenticated: false,
+    })
 
+
+    const loadCurrentlyLoggedInUser = ()=> {
+      setState({
+        loading: true
+      });
+  
+      getCurrentUser()
+        .then(response => {
+          setState({
+            currentUser: response,
+            authenticated: true,
+            loading: false
+          });
+        })
+        .catch(error => {
+          setState({
+            loading: false
+          });
+        });
+    }
+  
+   const  handleLogout = ()=> {
+      localStorage.removeItem(ACCESS_TOKEN);
+      setState({
+        authenticated: false,
+        currentUser: null
+      });
+      // Alert.success("You're safely logged out!");
+    }
+  
+    useEffect(() => {
+      loadCurrentlyLoggedInUser()
+    }, [])
     return (
       <Grid container direction={'column'} className={classes.mainContainer}>
         <Grid item>
@@ -120,17 +162,17 @@ function App() {
               </Route>
 
 
-              <Route path={[
+              <PrivateRoute path={[
                 `/${modules.eatWell.name}/addEntry`,
                 `/${modules.fitWell.name}/addEntry`,
                 `/${modules.thinkWell.name}/addEntry`,
                 `/${modules.restWell.name}/addEntry`,
-                ]} >
-                <EntryCreatorContextProvider>
-                  <AddEntry/>
-                </EntryCreatorContextProvider>           
-                
-              </Route>
+                ]}
+                authenticated={state.authenticated}
+                currentUser={state.currentUser}
+                component={AddEntry}
+                />
+                   
               
               <Route path={`/${modules.eatWell.name}/dietplan`}>
                 <DietPlanContextProvider>
@@ -139,7 +181,7 @@ function App() {
               </Route>
             
               
-
+              <Route path="/oauth2/redirect" component={OAuth2RedirectHandler}></Route>
               <Route >
                 <ErrorPage />
               </Route>

@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { colors, viewportSize } from '../../utilities/utilities';
 
 
-const EventButton = ({text, callback=null, icon=<AssignmentReturnedIcon />, isAbsolute = true}) => {
+const EventButton = ({text, callback=null, icon=<AssignmentReturnedIcon />, isAbsolute = true, isClicked=null}) => {
     
     const useStyles = makeStyles({
         button: {
@@ -52,6 +52,7 @@ const EventButton = ({text, callback=null, icon=<AssignmentReturnedIcon />, isAb
             endIcon={icon}
             className={isAbsolute ? classes.button : classes.buttonNotAbsolute}
             onClick={callback}
+            disabled={isClicked != null && isClicked == true ? true : false}
         >
             {text}
         </Button>

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import { AccessibilityNew } from '@material-ui/icons';
 import { colors, viewportSize } from '../../utilities/utilities';
 
-const DietStatistics = ({statistics}) => {
+const DietStatistics = ({statistics, demand=1}) => {
     const useStyles = makeStyles({
         container: {
             display: 'flex',
@@ -65,7 +65,7 @@ const DietStatistics = ({statistics}) => {
             <tr className={classes.tr }>
                 <th className={classes.th}>Nutrient</th>
                 <th className={classes.th}>Amount</th>
-                <th className={classes.th}>Calories coverage</th>
+                <th className={classes.th}>{ demand == 1 ? "Calories demand's coverage" : "Your plan nutrient's coverage"}</th>
             </tr>
             <tr className={classes.tr}>
                 <th className={classes.td}>Calories</th>

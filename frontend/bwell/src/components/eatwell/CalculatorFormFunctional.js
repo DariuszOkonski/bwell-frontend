@@ -169,17 +169,14 @@ const CalculatorFormFunctional = ({updateResults}) => {
     {step: 1, max: 100, min: 0,name:"Carbohydrates Percentage", hints: [
         "Percentage of carbohydrates in calories demand",
         "Recommended values 35-45",
-        "Default setting Protein-Carbs-Fat = 30-45-25"
-        ]},
-]
-
+        "Default setting Protein-Carbs-Fat = 30-45-25"]},
+    ]
     const strategyHints = [
         "Methods for calculation of calorical demand",
         "Harriss Benedict - basic caloric demand calculated with biological parameters",
         "Miffin - other basal calculation",
         "Complete Demand - the most complex calculation that sums up basal demand and calculates expected demand related with physical activity. Can be personalized by setting a goal",
     ]
-
     const goalHints = [
         "Define whether you would like to lose, gain or keep current weight. We do not recommend starting from 'Intense' programs",
         "Intense mass - 500 kcal overload - splitted mostly across protein and carbs",
@@ -258,7 +255,7 @@ const CalculatorFormFunctional = ({updateResults}) => {
                                         
                                             <div className={ styles.input +" " + styles.sliderContainer}>
 
-                                                <ActivitySlider/>
+                                                <ActivitySlider updateCallback={handleNumericalChange}/>
 
                                             </div>
                                                 <div className={`${styles.hint} ${styles.alignRight}`}><ModalEventButton text="?" alternateContent={key.hints.map((hint, index) => <p style={{padding: "1rem", fontWeight: `${index==0 ? 600 : 400}`}}>{hint}</p>)}/></div>

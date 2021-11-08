@@ -7,7 +7,9 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import { colors, viewportSize } from '../utilities/utilities';
 import TextField from '@material-ui/core/TextField';
-
+import { GOOGLE_AUTH_URL } from '../oauth2/constants';
+import googleLogo from "../assets/google-logo.png";
+import "../styles/index.css"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -130,6 +132,18 @@ const LoginPage = (props) => {
                         <Button component={Link} to={props.linkTo} variant="outlined" endIcon={<EventNoteIcon />} className={classes.checkButton} text="check">Login</Button>
                     }
                 </Grid>
+                
+                <Grid item container className={classes.buttonContainer}>
+                    <div className="login-container">
+                        <div className="login-content">
+                            <a className="btn btn-block social-btn google" href={GOOGLE_AUTH_URL}>
+                                <img src={googleLogo} className="google" alt="Google" /> 
+                                <span className="login-title">Log in with Google</span>
+                            </a>
+                        </div>
+                    </div>
+                </Grid>
+                
             </Grid>
         </Grid>
     )

@@ -27,12 +27,13 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ActivitySlider() {
+export default function ActivitySlider({updateCallback}) {
   const classes = useStyles();
   const [value, setValue] = React.useState(1.1);
 
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
+    updateCallback("activityRatio", newValue)
   };
 
   const handleInputChange = (event) => {

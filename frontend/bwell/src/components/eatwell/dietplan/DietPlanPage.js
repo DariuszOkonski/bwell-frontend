@@ -10,6 +10,7 @@ import IngredientsTable from './IngredientsTable';
 import DietStatistics from '../DietStatistics';
 import { eatWell } from '../../../utilities/BackendRequests';
 import { DietPlanContext } from './context/DietPlanContext';
+import EventButton from '../../reuseable/EventButton';
 
 const DietPlanPage = () => {
 
@@ -37,13 +38,36 @@ const DietPlanPage = () => {
         simpleBreadcrubmContainer: {
             padding: '0 0.5rem',
             // width: '90%'
+        },
+        buttonsContainer:{
+            margin: "0 auto",
+            display: "flex",
+            justifyContent: "space-between",
+            padding: "1rem",
+            width: "60%"
         }
     })
     const {path} = useRouteMatch()
-    const {setDemand} = useContext(DietPlanContext)
+    const {demand, income, setDemand} = useContext(DietPlanContext)
 
-    const [statistics, setStatistics] = useState(null)
-    console.log(useRouteMatch(), "ASD!");
+    const [statistics, setStatistics] = useState({})
+    const [clickedButton, setClickedButton] = useState({
+        demand: true,
+        income: false
+    })
+    // console.log(useRouteMatch(), "ASD!");
+
+    const handleClick = () => { 
+        if (clickedButton.demand){
+            setStatistics(income)
+        } else {
+            setStatistics(demand)
+        }
+        setClickedButton({
+            demand: !clickedButton.demand,
+            income: !clickedButton.income,
+        })
+    }
 
     useEffect(() => {
         const getStatistics = async () => {
@@ -63,7 +87,12 @@ const DietPlanPage = () => {
             {
             statistics && 
             <EntryContainer>
-                <DietStatistics statistics={statistics}></DietStatistics>
+                <DietStatistics statistics={statistics} demand={clickedButton.demand}></DietStatistics>
+                <div className={classes.buttonsContainer}>
+                    <EventButton text="Show demand" isClicked={clickedButton.demand} isAbsolute={false} callback={handleClick}/>
+                    <EventButton text="Show income" isClicked={clickedButton.income} isAbsolute={false} callback={handleClick}/>
+                </div>
+
             </EntryContainer>
             }
             <div className={classes.content}>
