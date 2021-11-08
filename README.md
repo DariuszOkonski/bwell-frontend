@@ -7,7 +7,7 @@
 <h2>
 Tech stack
 </h2>
-<h3>Backend https://github.com/ddeer1109/bwell-backend </h3>
+<h3>Backend:</h3>
 <uL>
 <li><h4>Java, Spring Boot</h4></li>
 <li><h4>Jpa, Hibernate, PostgreSQL</h4></li>
@@ -15,7 +15,7 @@ Tech stack
 <li><h4>Spoonacular API - powering eatWell module with nutrition data</h4></li> 
 </uL>
 
-<h3>Frontend</h3>
+<h3>Frontend https://github.com/DariuszOkonski/bwell-frontend </h3>
 <uL>
 <li><h4>ReactJS</h4></li>
 <li><h4>Material-UI</h4></li>
@@ -47,6 +47,4 @@ Tech stack
     <li>Freemium based commercialisation model</li>
     <li>AI based guide for activities that can help in improving wellbeing sense on user situation described with some input form</li>
 </ul>
-
-
 
