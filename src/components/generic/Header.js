@@ -76,12 +76,15 @@ return (
                 <div className={classes.buttonsContainer}>
                     {
                     loggedUser ? (<>
-                    <Button component={Link} to={endpoints.favourites} color="inherit" className={classes.button} startIcon={<FavoriteBorderIcon />}>
-                        Favourites
-                    </Button>
-                    <Button component={Link} onClick={Logout} to={endpoints.main} color="inherit" className={classes.button} startIcon={<HowToRegIcon />}>
-                        Logout
-                    </Button>
+                        <Button component={Link} to={endpoints.favourites} color="inherit" className={classes.button} startIcon={<HowToRegIcon />}>
+                                {loggedUser.email}
+                        </Button>
+                        <Button component={Link} to={endpoints.favourites} color="inherit" className={classes.button} startIcon={<FavoriteBorderIcon />}>
+                            Favourites
+                        </Button>
+                        <Button component={Link} onClick={Logout} to={endpoints.main} color="inherit" className={classes.button} >
+                            Logout
+                        </Button>
                     </>) : (
                         <>
                         <Button component={Link} to={endpoints.login} color="inherit" className={classes.button} startIcon={<HowToRegIcon />}>
