@@ -1,6 +1,6 @@
 import { endpoints } from "../../utilities/utilities";
 
-export const API_BASE_URL = "https://bwell-backend.herokuapp.com/";
+export const API_BASE_URL = "https://bwell-backend.herokuapp.com";
 
 export const ACCESS_TOKEN = "accessToken";
 
