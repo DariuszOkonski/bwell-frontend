@@ -195,10 +195,7 @@ const favourites = {
         const POST_URL = `${BASE_URL}${endpoints.APIusers}${loggedUser}`;
         const settings = {
             method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
+            headers: TokenHeaders().headers,
             body: JSON.stringify(postedEntry)
         };
         try {
@@ -211,7 +208,7 @@ const favourites = {
         }
     },
     addToFavouritesById: async (id, type) => {
-        const loggedUser = await await UserService();
+        const loggedUser = await UserService();
 
         //GET JSON
         const userData = await favourites.fetchUserData(loggedUser);
@@ -245,11 +242,8 @@ const favourites = {
         //SEND MODIFIED OBJECT
         const POST_URL = `${BASE_URL}${endpoints.APIusers}${loggedUser}`;
         const settings = {
-            method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
+            method: 'POST',
+            headers: TokenHeaders().headers,
             body: JSON.stringify(userData)
         };
         try {
