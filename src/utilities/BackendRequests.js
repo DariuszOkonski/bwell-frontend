@@ -287,10 +287,7 @@ const favourites = {
         const POST_URL = `${BASE_URL}${endpoints.APIusers}${loggedUser}`;
         const settings = {
             method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
+            headers: TokenHeaders().headers,
             body: JSON.stringify(userData)
         };
         try {
