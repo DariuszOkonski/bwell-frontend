@@ -51,7 +51,7 @@ export const eatWell = {
         const user = await UserService(true)
         calculatorData.user = user;
         
-        const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}`, {...TokenHeaders(), 
+        const response = await fetch(`http://bwell-backend.herokuapp.com/api/v1${endpoints.eatwell_calculator}`, {...TokenHeaders(), 
             method: 'POST',
             body: JSON.stringify(calculatorData)
         });
@@ -61,7 +61,7 @@ export const eatWell = {
     fetchGetUserCalculatorData: async () => {
         const loggedId = await UserService()
     
-        const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}/${loggedId}`, {...TokenHeaders()})
+        const response = await fetch(`http://bwell-backend.herokuapp.com/api/v1${endpoints.eatwell_calculator}/${loggedId}`, {...TokenHeaders()})
 
         const data = await response.json()
 
@@ -70,7 +70,7 @@ export const eatWell = {
 
     fetchGetUserCoverageForIngredients: async(recipeId) => {
         const loggedId = await UserService()
-        const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}/${loggedId}/recipe/${recipeId}`, {
+        const response = await fetch(`http://bwell-backend.herokuapp.com/api/v1${endpoints.eatwell_calculator}/${loggedId}/recipe/${recipeId}`, {
             method: 'GET',
             headers: TokenHeaders().headers,
         });
@@ -81,7 +81,7 @@ export const eatWell = {
 
     fetchCoverageOfNutrients: async() => {
         const loggedId = await UserService()
-        const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}/${loggedId}/dietplan/coverage`, {
+        const response = await fetch(`http://bwell-backend.herokuapp.com/api/v1${endpoints.eatwell_calculator}/${loggedId}/dietplan/coverage`, {
             method: 'GET',
             headers: TokenHeaders().headers,
         });
@@ -109,7 +109,7 @@ export const eatWell = {
     },
     fetchSumRecipesNutrition: async () => {
         const loggedId = await UserService()
-        const response = await fetch(`http://localhost:8080/api/v1${endpoints.eatwell_calculator}/${loggedId}/dietplan/sum`, {
+        const response = await fetch(`http://bwell-backend.herokuapp.com/api/v1${endpoints.eatwell_calculator}/${loggedId}/dietplan/sum`, {
             method: 'GET',
             headers: TokenHeaders().headers,
         });
