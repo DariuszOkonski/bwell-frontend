@@ -60,7 +60,7 @@ useEffect(() => {
         }
     }
     refreshUser()
-}, [])
+}, [loggedUser])
 
 return (
 
