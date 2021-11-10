@@ -54,7 +54,7 @@ const MainPage = () => {
                         <MainCard
                             image={EatWellLogo}
                             menuTitle={"eatWell"}
-                            description={"Nutrition Recipes - repository & search \nBMI Calculator / Fat, Carbs, Protein demand \nDiet plan"}
+                            description={"Recipes repository\nCalories demand calculator\nDiet plan"}
                             linkTo={endpoints.eatwell} />
                     </Grid>
                     <Grid item className={classes.gridItem} xs={12} md={6}>
