@@ -22,6 +22,10 @@ const UserService = async (completeData=false) => {
 }
 
 
+export const Logout = () =>{
+    localStorage.setItem(ACCESS_TOKEN, null)
+}
+
 const fetchDefaultUser = async () => {
     const response = await fetch(`${endpoints.APIhost}${endpoints.APIusers}default`)
     const data = await response.json()

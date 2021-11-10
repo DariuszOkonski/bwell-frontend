@@ -8,6 +8,12 @@ import { Link } from "react-router-dom";
 import { viewportSize, colors, endpoints } from '../../utilities/utilities';
 import SwipeableTemporaryDrawer from './SwipeableTemporaryDrawer';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+<<<<<<< HEAD
+=======
+import UserService, { Logout } from '../../utilities/UserService';
+import { useEffect, useState } from 'react';
+import { ACCESS_TOKEN } from '../../oauth2/constants';
+>>>>>>> master
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -45,6 +51,20 @@ const useStyles = makeStyles((theme) => ({
     
 const Header = (props) => {
 const classes = useStyles();
+
+const [loggedUser, setLoggedUser] = useState(null)
+
+useEffect(() => {
+    const refreshUser = async () => {
+        if (localStorage.getItem(ACCESS_TOKEN)){
+            setLoggedUser(await UserService(true))
+        } else {
+            setLoggedUser(null)
+        }
+    }
+    refreshUser()
+}, [loggedUser])
+
 return (
 
     <AppBar position="static" className={classes.header}>
@@ -57,6 +77,7 @@ return (
                 </div>
                 
                 <div className={classes.buttonsContainer}>
+<<<<<<< HEAD
                     <Button component={Link} to={endpoints.favourites} color="inherit" className={classes.button} startIcon={<FavoriteBorderIcon />}>
                         Favourites
                     </Button>
@@ -68,6 +89,31 @@ return (
                         Register
                     </Button>
 
+=======
+                    {
+                    loggedUser ? (<>
+                        <Button component={Link} to={endpoints.favourites} color="inherit" className={classes.button}>
+                                {loggedUser.email}
+                        </Button>
+                        <Button component={Link} to={endpoints.favourites} color="inherit" className={classes.button} startIcon={<FavoriteBorderIcon />}>
+                            Favourites
+                        </Button>
+                        <Button component={Link} onClick={Logout} to={endpoints.main} color="inherit" className={classes.button} startIcon={<HowToRegIcon />}>
+                            Logout
+                        </Button>
+                    </>) : (
+                        <>
+                        <Button component={Link} to={endpoints.login} color="inherit" className={classes.button} startIcon={<HowToRegIcon />}>
+                            Login
+                        </Button>
+                        <Button component={Link} to={endpoints.register} color="inherit" className={classes.button} startIcon={<PersonAdd />}>
+                            Register
+                        </Button>
+                        </>
+                    )
+                    
+}
+>>>>>>> master
                 </div>
             </div>
         </Toolbar>
