@@ -73,11 +73,11 @@ function App(props) {
       authenticated: false,
     })
 
-    const loadCurrentlyLoggedInUser = ()=> {
+    const loadCurrentlyLoggedInUser = async ()=> {
       setState({
         loading: true
       });
-      const user = UserService(true)
+      const user = await UserService(true)
       setState({
         currentUser: user,
         authenticated: user.isVerified,

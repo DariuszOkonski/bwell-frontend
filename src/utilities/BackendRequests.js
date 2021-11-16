@@ -8,7 +8,7 @@ const localhost = isLocalhost
 const PORT = localhost ? "8080" : ""
 const BASE_URL = localhost ? `http://localhost:${PORT}/api/v1` : `https://bwell-backend.herokuapp.com/api/v1`
 
-let currentUserId = UserService();
+let currentUserId = await UserService();
 
 const TokenHeaders = () => {
     const headers = new Headers({
