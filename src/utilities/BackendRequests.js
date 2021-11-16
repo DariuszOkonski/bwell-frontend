@@ -4,7 +4,7 @@ import { ACCESS_TOKEN } from "../oauth2/constants"
 import UserService from "./UserService"
 import { dietPlanUrls, endpoints, isLocalhost, moduleNameToApi, moduleNameToBackendTag } from "./utilities"
 
-const localhost = false
+const localhost = isLocalhost
 const PORT = localhost ? "8080" : ""
 const BASE_URL = localhost ? `http://localhost:${PORT}/api/v1` : `https://bwell-backend.herokuapp.com/api/v1`
 

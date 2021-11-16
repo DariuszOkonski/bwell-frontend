@@ -44,10 +44,11 @@ debugger
             const userData = await fetchFavourites()
             setUserData(userData)
         }
+        fetchFavourites()
         getIdeas()
 
         
-    },[APIurl, loggedUser, pageChangedEvent]);
+    },[loggedUser]);
 
     return (
         userData &&
