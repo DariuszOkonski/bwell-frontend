@@ -102,7 +102,7 @@ function App(props) {
   
     useEffect(() => {
       loadCurrentlyLoggedInUser()
-    }, [])
+    }, [state.authenticated])
     return (
       <Grid container direction={'column'} className={classes.mainContainer}>
         <Grid item>
