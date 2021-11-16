@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { viewportSize, colors, endpoints } from '../../utilities/utilities';
 import SwipeableTemporaryDrawer from './SwipeableTemporaryDrawer';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import UserService, { Logout } from '../../utilities/UserService';
+import UserService, { currentUser, Logout } from '../../utilities/UserService';
 import { useEffect, useState } from 'react';
 import { ACCESS_TOKEN } from '../../oauth2/constants';
 
@@ -46,10 +46,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
     
-const Header = (props) => {
+const Header = ({logout, logo, currentUser}) => {
 const classes = useStyles();
 
-const [loggedUser, setLoggedUser] = useState(null)
+const [loggedUser, setLoggedUser] = useState(currentUser)
 
 useEffect(() => {
     const refreshUser = async () => {
@@ -60,7 +60,7 @@ useEffect(() => {
         }
     }
     refreshUser()
-}, [loggedUser])
+}, [currentUser])
 
 return (
 
@@ -69,20 +69,20 @@ return (
             <div className={classes.container}>
                 
                 <div className={classes.hamburgerMenu}>
-                    <Link to="/"><img className={classes.logo} src={props.logo} alt="logo"/></Link>
+                    <Link to="/"><img className={classes.logo} src={logo} alt="logo"/></Link>
                     <SwipeableTemporaryDrawer />                    
                 </div>
                 
                 <div className={classes.buttonsContainer}>
                     {
-                    loggedUser ? (<>
+                    loggedUser && loggedUser.isVerified ? (<>
                         <Button component={Link} to={endpoints.favourites} color="inherit" className={classes.button}>
                                 {loggedUser.email}
                         </Button>
                         <Button component={Link} to={endpoints.favourites} color="inherit" className={classes.button} startIcon={<FavoriteBorderIcon />}>
                             Favourites
                         </Button>
-                        <Button component={Link} onClick={Logout} to={endpoints.main} color="inherit" className={classes.button} startIcon={<HowToRegIcon />}>
+                        <Button component={Link} onClick={logout} to={endpoints.main} color="inherit" className={classes.button} startIcon={<HowToRegIcon />}>
                             Logout
                         </Button>
                     </>) : (

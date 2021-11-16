@@ -29,6 +29,7 @@ import OAuth2RedirectHandler from './oauth2/oauth2/OAuth2RedirectHandler';
 import PrivateRoute from './oauth2/PrivateRoute';
 import { getCurrentUser } from './oauth2/util/APIUtils';
 import { ACCESS_TOKEN } from './oauth2/constants';
+import UserService, { currentUser, Logout } from './utilities/UserService';
 
 const useStylesPages = makeStyles({
   categoriesBar: {
@@ -67,46 +68,59 @@ function App(props) {
 
   const classes = useStylesPages();
     const [state, setState] = useState({
-      currentUser: null,
+      currentUser: {id: 0, isVerified:false},
       loading: false,
       authenticated: false,
     })
-
 
     const loadCurrentlyLoggedInUser = ()=> {
       setState({
         loading: true
       });
-  
-      getCurrentUser()
-        .then(response => {
-          setState({
-            currentUser: response,
-            authenticated: true,
-            loading: false
-          });
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      const user = UserService(true)
+      setState({
+        currentUser: user,
+        authenticated: user.isVerified,
+        loading: false
+      })
+      // getCurrentUser()
+      //   .then(response => {
+      //     setState({
+      //       currentUser: response,
+      //       authenticated: true,
+      //       loading: false
+      //     });
+      //   })
+      //   .catch(error => {
+      //     setState({
+      //       authenticated: false,
+      //       loading: false,
+      //       currentUser: null
+      //     })
+      //     console.log(error);
+      //   });
+
+        console.log(state);
     }
   
    const  handleLogout = ()=> {
       localStorage.removeItem(ACCESS_TOKEN);
-      setState({
-        authenticated: false,
-        currentUser: null
-      });
+      // setState({
+      //   authenticated: false,
+      //   currentUser: null
+      // });
+      // Logout()
+      loadCurrentlyLoggedInUser()
       // Alert.success("You're safely logged out!");
     }
   
     useEffect(() => {
       loadCurrentlyLoggedInUser()
-    }, [state.authenticated])
+    }, [])
     return (
       <Grid container direction={'column'} className={classes.mainContainer}>
         <Grid item>
-          <Header logo={logo} />
+          <Header logo={logo} currentUser={state.currentUser} logout={handleLogout} />
         </Grid>
         <Grid item className={classes.bodyContainer}>
           <Grid container className={classes.pageContainer}>

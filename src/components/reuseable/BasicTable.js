@@ -75,7 +75,6 @@ export default function BasicTable({meal}) {
           `${Math.round(recipeCover.protein * 100)} %`, 
           ),
       ])
-      debugger;      
     }
     if (meal.id){
       getRecipesNutrition()

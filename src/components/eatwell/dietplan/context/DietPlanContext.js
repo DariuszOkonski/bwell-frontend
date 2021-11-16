@@ -44,7 +44,6 @@ const DietPlanContextProvider = (props) => {
 
       const sumNutritions = await eatWell.fetchSumRecipesNutrition()
       const coverage = await eatWell.fetchCoverageOfNutrients()
-      debugger;
       const {calories: caloriesDemand ,  fat:fatDemand, carbohydrates: carbohydratesDemand, protein: proteinDemand} = {...sumNutritions}
       Object.keys(coverage)
         .forEach((key, index, array) =>{
