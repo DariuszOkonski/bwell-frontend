@@ -36,6 +36,7 @@ const FavouritesPage = (props) => {
 
         const fetchFavourites = async () => {
              loggedUser = await UserService();
+debugger
             return await favourites.fetchUserData(loggedUser); 
         }
 
@@ -43,11 +44,10 @@ const FavouritesPage = (props) => {
             const userData = await fetchFavourites()
             setUserData(userData)
         }
-        fetchFavourites()
         getIdeas()
 
         
-    },[loggedUser]);
+    },[APIurl, pageChangedEvent]);
 
     return (
         userData &&
