@@ -5,6 +5,9 @@ import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import TextAreaInput from '../components/entrycreator/inputareas/TextAreaInput';
 import IngredientsList from '../components/entrycreator/inputareas/IngredientsList';
 
+const isLocalhost = true
+const APIhost = isLocalhost ? "http://localhost:8080/api/v1" : "https://bwell-backend.herokuapp.com/api/v1"
+
 
 const colors = {
     white: '#FFF',
@@ -33,6 +36,7 @@ const viewportSize = {
 }
 
 const endpoints = {
+    APIhost,
     main: "/",
     register: "/register",
     login: "/login",
@@ -44,13 +48,12 @@ const endpoints = {
     eatwell_calculator: "/eatwell/calculator",
     eatwell_dietplan: "/eatwell/dietplan",
     // TODO - rething endpoint
-    eatwell_ingredient_query: "https://bwell-backend.herokuapp.com/api/v1/eatwell/ingredient/q?query=",
+    eatwell_ingredient_query: `${APIhost}/eatwell/ingredient/q?query=`,
     fitwell_activity: "/fitwell/activities/",
     restwell_idea: "/restwell/ideas/",
     thinkwell_idea: "/thinkwell/exercises/",
     favourites: "/favourites",
     // APIhost: "http://localhost:3001/",
-    APIhost: "https://bwell-backend.herokuapp.com/api/v1",
     APIeatWell: "/eatwell/recipes/",
     APIfitWell: "/fitwell/activities/",
     // APIrestWell: "/ideas",
@@ -136,4 +139,4 @@ const contentTypes = {
     customList: "custom_list"
 }
 
-export { colors, viewportSize, endpoints, modules, contentTypes, moduleNameToApi, moduleNameToBackendTag }
+export { colors, viewportSize, endpoints, modules, contentTypes, moduleNameToApi, moduleNameToBackendTag, isLocalhost }

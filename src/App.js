@@ -87,9 +87,7 @@ function App(props) {
           });
         })
         .catch(error => {
-          setState({
-            loading: false
-          });
+          console.log(error);
         });
     }
   
@@ -102,9 +100,9 @@ function App(props) {
       // Alert.success("You're safely logged out!");
     }
   
-    useEffect(() => {
-      loadCurrentlyLoggedInUser()
-    }, [])
+    // useEffect(() => {
+      // loadCurrentlyLoggedInUser()
+    // }, [state])
     return (
       <Grid container direction={'column'} className={classes.mainContainer}>
         <Grid item>
