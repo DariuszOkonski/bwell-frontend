@@ -26,7 +26,7 @@ const DeleteButton = ({entryId}) => {
             icon={<DeleteOutlineIcon/>} 
             isAbsolute={false} 
             callback={handleDelete}
-            isClicked />
+            isClicked={isClicked} />
     )
 }
 

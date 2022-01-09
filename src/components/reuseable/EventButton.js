@@ -52,7 +52,7 @@ const EventButton = ({text, callback=null, icon=<AssignmentReturnedIcon />, isAb
             endIcon={icon}
             className={isAbsolute ? classes.button : classes.buttonNotAbsolute}
             onClick={callback}
-            disabled={isClicked != null && isClicked == true ? true : false}
+            disabled={isClicked}
         >
             {text}
         </Button>

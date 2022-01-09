@@ -5,7 +5,7 @@ import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import TextAreaInput from '../components/entrycreator/inputareas/TextAreaInput';
 import IngredientsList from '../components/entrycreator/inputareas/IngredientsList';
 
-const isLocalhost = false
+const isLocalhost = false;
 const APIhost = isLocalhost ? "http://localhost:8080/api/v1" : "https://bwell-backend.herokuapp.com/api/v1"
 
 
