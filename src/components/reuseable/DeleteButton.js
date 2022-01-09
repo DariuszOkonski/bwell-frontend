@@ -8,17 +8,25 @@ import { deleteEntry } from '../../utilities/BackendRequests';
 const DeleteButton = ({entryId}) => {
     const {path} = useRouteMatch();
     const history = useHistory()
+    let isClicked = false;
+
     const handleDelete = () => {
         const module = path.split("/")[1]
         deleteEntry(module, entryId)
+        isClicked = true;
         console.log(entryId, module)
-        history.push(`/${module}`)
+        setTimeout(() => {
+            history.push(`/${module}`)
+            isClicked = false;
+        }, 500);
+        
     }
     return (
         <EventButton text="remove" 
             icon={<DeleteOutlineIcon/>} 
             isAbsolute={false} 
-            callback={handleDelete} />
+            callback={handleDelete}
+            isClicked />
     )
 }
 
