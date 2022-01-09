@@ -82,6 +82,8 @@ const AddEntryForm = ({initModule}) => {
     
     let history = useHistory();
     
+    let isClicked = false;
+
     const classes = useStyles()
     
     const [content, setContent] = useState([])
@@ -118,9 +120,13 @@ const AddEntryForm = ({initModule}) => {
             alert("Not accepting empty entries")
             return;
         }
+        isClicked = true;
         clearIds()
         postNewEntry(module, title, content, descriptionId)
-        history.push(history.push(`/${module}`))
+        setTimeout(() => {
+            history.push(history.push(`/${module}`))
+            isClicked = false;
+        }, 500)
     }
 
     return (
