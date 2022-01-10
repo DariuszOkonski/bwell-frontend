@@ -63,6 +63,7 @@ const RepositoryIdeaPage = (props) => {
                     header={ideas.title}
                     icon={<CardIcon />}
                     rating={ideas.rating}
+                    entry={ideas}
                 />
                 {
                     ideas.content.map(part => {

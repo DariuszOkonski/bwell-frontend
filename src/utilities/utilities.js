@@ -62,6 +62,7 @@ const endpoints = {
     APIrestWell: "/restwell/ideas/",
     APIthinkWell: "/thinkwell/exercises/",
     APIusers: "/users/",
+    APIrating:"/vote/",
     APIuserFavourites: "/favourites",
     addEntry: (moduleUrl) => moduleUrl + "/addEntry",
 }

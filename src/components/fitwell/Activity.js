@@ -44,6 +44,8 @@ const Activity = () => {
                     header={activity.title} 
                     icon={<DirectionsBikeIcon />}
                     rating={activity.rating}
+                    entry={activity}
+
                 />
                 {
                     activity.content.map(part => {

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import RestaurantIcon from '@material-ui/icons/Restaurant';
 import ThumbUpOutlinedIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbDownOutlinedIcon from '@material-ui/icons/ThumbDownOutlined';
@@ -7,6 +7,7 @@ import { colors, viewportSize } from '../../utilities/utilities';
 import { ThumbUpOutlined } from '@material-ui/icons';
 import { Divider } from '@material-ui/core/Divider';
 import { useTheme } from '@material-ui/core';
+import { ratings } from '../../utilities/BackendRequests';
 
 
 const useStyles = makeStyles({
@@ -48,30 +49,66 @@ const useStyles = makeStyles({
     },
     handUp: {
         fontSize: "1.6rem",
+        cursor: "pointer",
         margin: '0.25rem',
         color: `${colors.handUp}`,
         [`@media (min-width: ${viewportSize.mobileL})`] : {
             fontSize: '2rem'
-          }
+          },
+        "&:hover, &:focus": {
+            borderBottom: "3px transparent solid"
+
+        }
     },
     handDown: {
         fontSize: "1.6rem",
         margin: '0.25rem',
+        cursor: "pointer",
 
         color: `${colors.handDown}`,
         [`@media (min-width: ${viewportSize.mobileL})`] : {
             fontSize: '2rem'
-          }
+          },
+          
+        "&:hover, &:focus": {
+            borderBottom: "3px transparent solid"
+        }
     },
     ratingCount: {
         fontSize: '1rem',
         color: `${colors.textSecondary}`
+    },
+
+    clicked: {
+        cursor: "default",
+        opacity: "0.3",
+        "&:hover, &:focus": {
+            borderBottom: "none"
+
+        }
     }
 })
 
-export const EntryHeader = ({header = "todo", icon=<RestaurantIcon />, rating}) => {
+export const EntryHeader = ({header = "todo", icon=<RestaurantIcon />, rating, entry}) => {
     const classes = useStyles();
+    const [ratingState, setRating] = useState(rating)
+    const [currentVote, setCurrentVote] = useState()
 
+    const handleSetRating = async (voteStr) =>{
+        const newRating = await ratings.vote(entry, voteStr);
+        const vote = await ratings.getCurrentVote(entry.id);
+        setRating(newRating)
+        setCurrentVote(vote);
+    }
+
+    useEffect(() => {
+        const getCurrentVote = async () =>{
+            const vote = await ratings.getCurrentVote(entry.id);
+            setCurrentVote(vote);
+            console.log(vote);
+        }
+        getCurrentVote();
+    }, [])
     return (
         <div className={classes.container}>            
             <div className={classes.icon}>
@@ -81,12 +118,12 @@ export const EntryHeader = ({header = "todo", icon=<RestaurantIcon />, rating}) 
             <h3 className={classes.title}>{header}</h3>
             <div className={classes.ratingContainer}>
                 <div className={classes.rating}>
-                    <ThumbUpOutlinedIcon className={classes.handUp}/>
-                    <span className={classes.ratingCount}>{rating.up}</span>
+                    <ThumbUpOutlinedIcon onClick={() => handleSetRating("UP")} className={`${classes.handUp} ${currentVote && currentVote.voteValue === "UP" && classes.clicked}`}/>
+                    <span className={classes.ratingCount}>{ratingState.up}</span>
                 </div>
                 <div className={classes.rating}>
-                    <ThumbDownOutlinedIcon className={classes.handDown}/>
-                    <span className={classes.ratingCount}>{rating.down}</span>
+                    <ThumbDownOutlinedIcon onClick={() => handleSetRating("DOWN")} className={`${classes.handDown} ${currentVote && currentVote.voteValue === "DOWN" && classes.clicked}`}/>
+                    <span className={classes.ratingCount}>{ratingState.down}</span>
                 </div>
             </div>
         </div>

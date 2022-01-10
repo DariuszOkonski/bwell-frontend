@@ -10,7 +10,7 @@ const BASE_URL = localhost ? `http://localhost:${PORT}/api/v1` : `https://bwell-
 
 let currentUserId = UserService();
 
-const TokenHeaders = () => {
+const TokenHeaders = (doRedirect=true) => {
     const headers = new Headers({
         'Accept': 'application/json',
         "Content-Type": "application/json"
@@ -19,7 +19,7 @@ const TokenHeaders = () => {
       if (localStorage.getItem(ACCESS_TOKEN)) {
         headers.append("Authorization", "Bearer " + localStorage.getItem(ACCESS_TOKEN));
       } else {
-        window.location.href = "/login"
+        if (doRedirect) {window.location.href = "/login"}
         return null;
     }
       return {headers: headers}
@@ -303,7 +303,37 @@ const favourites = {
     },
 }
 
+const ratings = {
+    vote: async (entry, voteValue) => {
+        const POST_URL = `${BASE_URL}${endpoints.APIrating}`;
+        const user = await UserService(true);
+        console.log(user, entry)
+        const settings = {
+            method: 'POST',
+            headers: TokenHeaders().headers,
+            body: JSON.stringify({user: user, entry: entry, voteValue: voteValue})
+        };
+        try {
+            const response = await fetch(POST_URL, settings)
+            const data = await response.json()
 
+            return data;
+        } catch (error) {
+            return error;
+        }
+    },
+    getCurrentVote: async (entryId) => {
+        const get_url = `${BASE_URL}${endpoints.APIrating}${entryId}`
+        
+        try {
+            const response = await fetch(get_url, {method: "GET", headers: TokenHeaders(false).headers})
+            const data = await response.json()
+            return data;
+        } catch (error) {
+            return error;
+        }
+    }
+}
 
-export { fitWell, postNewEntry, deleteEntry, favourites, currentUserId }
+export { fitWell, postNewEntry, deleteEntry, favourites, currentUserId, ratings }
 

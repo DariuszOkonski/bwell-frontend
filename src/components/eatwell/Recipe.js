@@ -54,6 +54,8 @@ const Recipe = (props) => {
                     header={recipe.title}
                     icon={<RestaurantIcon />}
                     rating={recipe.rating}
+                    entry={recipe}
+
                 />
 
                 {
