@@ -5,7 +5,7 @@ import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import TextAreaInput from '../components/entrycreator/inputareas/TextAreaInput';
 import IngredientsList from '../components/entrycreator/inputareas/IngredientsList';
 
-const isLocalhost = false;
+const isLocalhost = true;
 const APIhost = isLocalhost ? "http://localhost:8080/api/v1" : "https://bwell-backend.herokuapp.com/api/v1"
 
 
@@ -23,6 +23,7 @@ const colors = {
     thumbDown: '#ED4F4F',
     handUp: '#4fb477',
     handDown: '#ed4f4f',
+    modalBg: 'rgba(0, 0, 0, 0.294)'
 }
 
 const viewportSize = {

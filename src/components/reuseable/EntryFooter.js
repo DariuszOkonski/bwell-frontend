@@ -5,7 +5,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import { Redirect, useHistory, useRouteMatch } from 'react-router';
 import EventButton from './EventButton';
 import { favourites } from '../../utilities/BackendRequests';
-import { endpoints } from '../../utilities/utilities';
+import { colors, endpoints } from '../../utilities/utilities';
 
 const useStyles = makeStyles({
     buttonsContainer: {
@@ -15,10 +15,18 @@ const useStyles = makeStyles({
         marginTop: "2rem"
     },
     button: {
-        margin: '0 0.5rem'
+        margin: '0.2rem 0.5rem 0.5rem 0.5rem'
     },
+    author: {
+        margin: "0.5rem 0",
+        color: colors.textPrimary,
+        textAlign: "right"
+    },
+    span: {
+        fontWeight: 400,
+    }
 })
-export const EntryFooter = ({ disabled = false, callback = () => null, isLive = false, entryId, module }) => {
+export const EntryFooter = ({ disabled = false, callback = () => null, isLive = false, entryId, module, author="None" }) => {
     const { path, url } = useRouteMatch();
     const history = useHistory();
 
@@ -36,6 +44,7 @@ export const EntryFooter = ({ disabled = false, callback = () => null, isLive = 
     const buttons = () => (
         !disabled ?
             <>
+                
                 <div className={classes.button}>
                     <CustomButton disabled={disabled} text="Back" linkTo={`/${getBackToLink()}`} isAbsolute={false} />
                 </div>
@@ -59,9 +68,12 @@ export const EntryFooter = ({ disabled = false, callback = () => null, isLive = 
     )
 
     const classes = useStyles();
-    return (
+    return (<>
+        <h5 className={classes.author}><span className={classes.span}>Author:</span> {author}</h5>
         <div className={classes.buttonsContainer}>
             {buttons()}
         </div>
+    
+    </>
     )
 }

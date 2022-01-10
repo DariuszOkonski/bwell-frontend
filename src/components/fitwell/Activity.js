@@ -51,7 +51,7 @@ const Activity = () => {
                     })
                 }
 
-                <EntryFooter entryId={activity.id} module="fitwell" />
+                <EntryFooter entryId={activity.id} module="fitwell" author={activity.author ? activity.author.email : "Unknown"} />
                 <DeleteButton entryId={activity.id}/>
             </EntryContainer>
             

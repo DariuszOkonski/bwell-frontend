@@ -70,7 +70,7 @@ const RepositoryIdeaPage = (props) => {
                     })
                 }
 
-                <EntryFooter entryId={ideas.id} module={props.repositoryType.toLowerCase()} />
+                <EntryFooter entryId={ideas.id} module={props.repositoryType.toLowerCase()} author={ideas.author ? ideas.author.email : "Unknown"}/>
                 <DeleteButton entryId={ideas.id}/>
             </EntryContainer>
         </EntryPageContainer>

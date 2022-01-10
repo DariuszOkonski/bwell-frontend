@@ -35,6 +35,7 @@ const Recipe = (props) => {
         const getRecipe = async () => {
             const recipeFromServer = await eatWell.fetchRecipe(props.match.params.id)
             setRecipe(recipeFromServer)
+            console.log(recipeFromServer);
         }
         getRecipe()
 
@@ -60,7 +61,7 @@ const Recipe = (props) => {
                         return <EntryContentPart header={part.header} text={part.text ? part.text : part.ingredients} key={v4()} type={part.type}/>
                     })
                 }
-                <EntryFooter entryId={recipe.id} module="eatwell"/>
+                <EntryFooter entryId={recipe.id} module="eatwell" author={recipe.author ? recipe.author.email : "Unknown"}/>
                 <DeleteButton entryId={recipe.id}/>
             </EntryContainer>
         </EntryPageContainer>

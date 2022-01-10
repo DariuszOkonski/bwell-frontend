@@ -141,7 +141,8 @@ const postNewEntry = async (module, title, content) => {
     const POST_URL = `${BASE_URL}${moduleNameToApi(module)}`
     console.log(POST_URL)
 
-
+    const credentials = await UserService(true);
+    console.log(credentials);
     // TODO - remove uuid from objects before send to backend
 
     const postedEntry = {
@@ -149,7 +150,8 @@ const postNewEntry = async (module, title, content) => {
         title: title,
         description: content && content[0].text ? content[0].text : "No description",
         rating: { up: 0, down: 0 },
-        content: content
+        content: content,
+        author: credentials
     }
     
     const settings = {
