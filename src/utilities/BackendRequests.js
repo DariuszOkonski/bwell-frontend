@@ -135,23 +135,21 @@ const fitWell = {
 
 }
 
-const postNewEntry = async (module, title, content) => {
-    console.log("Backend Request ==============================")
-    console.log(module, title, content)
+const postNewEntry = async (module, title, content, entry=null) => {
     const POST_URL = `${BASE_URL}${moduleNameToApi(module)}`
-    console.log(POST_URL)
 
     const credentials = await UserService(true);
-    console.log(credentials);
-    // TODO - remove uuid from objects before send to backend
-
-    const postedEntry = {
+    let postedEntry = {
         module: moduleNameToBackendTag(module),
         title: title,
         description: content && content[0].text ? content[0].text : "No description",
         rating: { up: 0, down: 0 },
         content: content,
         author: credentials
+    }
+    if(entry != null) {
+        postedEntry.id = entry.id;
+        postedEntry.rating = entry.rating;
     }
     
     const settings = {
@@ -167,7 +165,10 @@ const postNewEntry = async (module, title, content) => {
         return e;
     }
 }
+const updateEntry = async (entry) => {
+    const PUT_URL = `${BASE_URL}${moduleNameToApi(entry.module)}${entry.id}`
 
+}
 const deleteEntry = async (module, id) => {
     const DELETE_URL = `${BASE_URL}${moduleNameToApi(module)}/${id}`
     console.log(DELETE_URL)
@@ -335,5 +336,20 @@ const ratings = {
     }
 }
 
-export { fitWell, postNewEntry, deleteEntry, favourites, currentUserId, ratings }
+
+const entry = {
+    getEntryByIdIfAuthor: async (entryId, module) => {
+        const get_url = `${BASE_URL}${moduleNameToApi(module)}${entryId}`
+        try {
+            const response = await fetch(get_url, {method: "GET", headers: TokenHeaders(false).headers})
+            const data = await response.json()
+            return data;
+        } catch (error) {
+            return error;
+        }
+    }    
+    
+
+} 
+export { fitWell, postNewEntry, deleteEntry, favourites, currentUserId, ratings, entry }
 

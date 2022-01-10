@@ -43,7 +43,7 @@ const useStyles = makeStyles({
 
 const CustomButton = ({linkTo, text, icon=<AssignmentReturnedIcon />, isAbsolute = true, disabled=false, onClick}) => {
     const classes = useStyles();
-
+    console.log(linkTo)
     return (  
         <Button 
             component={Link} 

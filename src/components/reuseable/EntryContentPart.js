@@ -69,15 +69,15 @@ export const EntryContentPart = ({header, type, text}) => {
             return (
             <table className={classes.tableContainer}>
                 <tbody>
-                {text.map(row => {
+                {text.map((row, idx) => {
                     return (
-                    <tr key={row.id} className={classes.row}>
+                    <tr key={idx} className={classes.row}>
                         {
                             row.cells.map(cell => {
                                 return row.isHeaderRow ?
-                                 <th key={cell.id} className={classes.header}>{cell.value !== "" ? cell.value : "[ empty ]"}</th> 
+                                 <th key={cell.order} className={classes.header}>{cell.value !== "" ? cell.value : "[ empty ]"}</th> 
                                  :
-                                 <td key={cell.id} className={classes.cell}>{cell.value !== "" ? cell.value : "[ empty ]"}</td> 
+                                 <td key={cell.order} className={classes.cell}>{cell.value !== "" ? cell.value : "[ empty ]"}</td> 
                             })
                         }
                     </tr>

@@ -114,7 +114,8 @@ const CustomItem = ({listId, itemId, refreshList, handleAddItem}) => {
     
     const showCells = customItem && customItem.cells && customItem.cells.map(cell => 
             <CustomItemCell
-                key={cell.id} 
+                key={cell.order}
+                value={cell.value} 
                 itemId={itemId} 
                 listId={listId} 
                 cellId={cell.id} 

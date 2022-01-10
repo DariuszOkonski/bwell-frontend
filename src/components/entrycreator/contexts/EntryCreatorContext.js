@@ -18,8 +18,11 @@ export const EntryCreatorContext = createContext();
 
 const EntryCreatorContextProvider = (props) => {
 
+    const [updatedEntry, setEntry] = useState(null);
+
     const {path} = useRouteMatch();
     const [module, setModule] = useState(path.split("/")[1])
+    
     useEffect(() => {
         setModule(path.split("/")[1])
     }, [path])
@@ -38,6 +41,14 @@ const EntryCreatorContextProvider = (props) => {
 
     const nextOrder = () => textAreas.length + ingredientsLists.length + customLists.length
 
+    const populateContextWithEntryData = async (entry) => {
+        setEntry(entry);
+        setTitle(entry.title);
+        setTextAreas(entry.content.filter(el => el.type === contentTypes.textArea));
+        setIngredientsLists(entry.content.filter(el => el.type === contentTypes.ingredientsList));
+        setCustomLists(entry.content.filter(el => el.type === contentTypes.customList));
+
+    }
 
     const clearIds = () => {
         // Method for clearing UUID id used on frontend for managing state while creating entry. Required for compliance with backend Long type Ids.
@@ -48,7 +59,7 @@ const EntryCreatorContextProvider = (props) => {
 
     const textAreasClearedOfIds = () => {
         return textAreas.map(el => {
-            if(el.id)
+            if(el.id && typeof el.id == "string")
                 delete el.id;
             return el
         })
@@ -56,7 +67,7 @@ const EntryCreatorContextProvider = (props) => {
 
     const ingredientsListsClearedOfIds = () => {
         return ingredientsLists.map(el => {
-            if(el.id)
+            if(el.id && typeof el.id == "string" )
                 delete el.id
             return el;
         })
@@ -65,17 +76,17 @@ const EntryCreatorContextProvider = (props) => {
     const customListsClearedOfIds = () => {
         return customLists.map(customList => {
             
-            if(customList.id) 
+            if(customList.id && typeof customList.id == "string" ) 
                 delete customList.id
             
             customList.content = customList.content.map(row => {
                 
-                if (row.id) 
+                if (row.id && typeof row.id == "string") 
                     delete row.id
 
                 row.cells = row.cells.map(cell => {
                     
-                    if(cell.id) 
+                    if(cell.id && typeof cell.id == "string") 
                         delete cell.id  
                     return cell
                 })
@@ -310,6 +321,7 @@ const EntryCreatorContextProvider = (props) => {
                 textAreas,
                 ingredientsLists,
                 customLists,
+                updatedEntry,
                 setTitle,
                 setModule,
                 addIngredient,
@@ -329,7 +341,8 @@ const EntryCreatorContextProvider = (props) => {
                 removeCustomList,
                 getCustomList,
                 clearIds,
-
+                setEntry,
+                populateContextWithEntryData,
             }}> {
             props.children
         } </EntryCreatorContext.Provider>

@@ -6,6 +6,7 @@ import { Redirect, useHistory, useRouteMatch } from 'react-router';
 import EventButton from './EventButton';
 import { favourites } from '../../utilities/BackendRequests';
 import { colors, endpoints } from '../../utilities/utilities';
+import { ImportContactsSharp } from '@material-ui/icons';
 
 const useStyles = makeStyles({
     buttonsContainer: {
@@ -32,6 +33,7 @@ export const EntryFooter = ({ disabled = false, callback = () => null, isLive = 
 
     const getBackToLink = () => {
         const splitted = url.split("/")
+        console.log(splitted)
         return splitted[1]
     }
 
@@ -60,6 +62,13 @@ export const EntryFooter = ({ disabled = false, callback = () => null, isLive = 
                         text="Add to favourites"
                         isAbsolute={false}
                         icon={<FavoriteBorderIcon />} />
+                </div>
+                <div className={classes.button}>
+                    <CustomButton
+                        linkTo={url +"/update"}
+                        text={"Edit"}
+                        isAbsolute={false}
+                        icon={<ImportContactsSharp/>}/>
                 </div>
             </> :
             <div>

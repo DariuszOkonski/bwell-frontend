@@ -1,8 +1,10 @@
 import { makeStyles } from '@material-ui/core';
 import React from 'react'
+import { useHistory } from 'react-router-dom';
 import { colors } from '../../utilities/utilities';
 
 const InfoDialog = ({info, bgColor}) => {
+    const history = useHistory();
     const useStyles = makeStyles(() => ({
         container: {
             backgroundColor: colors.modalBg,
@@ -29,7 +31,7 @@ const InfoDialog = ({info, bgColor}) => {
     const classes = useStyles();
     return (
         <div className={classes.container}>
-            <div className={classes.resultInfo}>
+            <div  onClick={() => history.push("/")} className={classes.resultInfo}>
                 {info}
             </div>
         </div>

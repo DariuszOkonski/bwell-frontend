@@ -4,7 +4,7 @@ import { colors } from '../../../utilities/utilities'
 import { EntryCreatorContext } from '../contexts/EntryCreatorContext'
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
-const TextAreaInput = ({id}) => {
+const TextAreaInput = ({id, head='', txt=""}) => {
     
     
     const useStyles = makeStyles({
@@ -42,8 +42,8 @@ const TextAreaInput = ({id}) => {
         
     )
 
-    const [header, setHeader] = useState("")
-    const [text, setText] = useState("")
+    const [header, setHeader] = useState(head)
+    const [text, setText] = useState(txt)
 
     const handleHeader = (e) => {
         setHeader(e.target.value)

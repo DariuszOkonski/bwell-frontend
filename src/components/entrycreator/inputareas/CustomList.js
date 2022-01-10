@@ -15,7 +15,7 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { v4 } from 'uuid';
 import CustomItem from './CustomItem';
 
-const CustomList = ({listId}) => {    
+const CustomList = ({listId, custList=null}) => {    
 
     const useStyles = makeStyles({
         container: {
@@ -54,7 +54,7 @@ const CustomList = ({listId}) => {
     // const {Customs, addCustomList } = useContext(EntryCreatorContext)    
     const { getCustomList, customLists, addCustomListItem, editCustomListTitle, removeCustomList } = useContext(EntryCreatorContext)    
     
-    const [currentList, setCurrentList] = useState(getCustomList(listId))
+    const [currentList, setCurrentList] = useState(custList != null? custList : getCustomList(listId))
     const [title, setTitle] = useState(currentList && currentList.header)
     
     const handleAddItem = (e) => {

@@ -5,7 +5,7 @@ import { useDoubleTap } from 'use-double-tap'
 import { EntryCreatorContext } from '../contexts/EntryCreatorContext';
 
 
-const CustomItemCell = ({itemId,  listId, cellId, handleFocusOut, customItem, handleDeleteCell,  handleAddCell}) => {
+const CustomItemCell = ({itemId,  listId, cellId, handleFocusOut, customItem, value, handleDeleteCell,  handleAddCell}) => {
     const useStyles = makeStyles({
         item: {
             width: '25%',
@@ -27,7 +27,7 @@ const CustomItemCell = ({itemId,  listId, cellId, handleFocusOut, customItem, ha
             cursor: 'pointer'
         }
     })
-    const [customItemCell, setCustomItemCell] = useState("")
+    const [customItemCell, setCustomItemCell] = useState(value)
     const classes = useStyles()
 
     

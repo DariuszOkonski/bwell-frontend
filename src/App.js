@@ -30,6 +30,7 @@ import PrivateRoute from './oauth2/PrivateRoute';
 import { getCurrentUser } from './oauth2/util/APIUtils';
 import { ACCESS_TOKEN } from './oauth2/constants';
 import UserService, { currentUser, Logout } from './utilities/UserService';
+import EntryUpdateForm from './components/entrycreator/entryupdate/EntryUpdateForm';
 
 const useStylesPages = makeStyles({
   categoriesBar: {
@@ -100,7 +101,6 @@ function App(props) {
       //     console.log(error);
       //   });
 
-        console.log(state);
     }
   
    const  handleLogout = ()=> {
@@ -163,15 +163,27 @@ function App(props) {
               <Route exact path={`${endpoints.fitwell_activity}:id`}>
                 <Activity />
               </Route>
-              <Route path={`${endpoints.restwell_idea}:id`}>
+              <Route exact path={`${endpoints.restwell_idea}:id`}>
                 <RepositoryIdeaPage repositoryType='restWell' />
               </Route>
-              <Route path={`${endpoints.thinkwell_idea}:id`}>
+              <Route exact path={`${endpoints.thinkwell_idea}:id`}>
                 <RepositoryIdeaPage repositoryType='thinkWell' />
               </Route>
               <Route path={endpoints.favourites}>
                 <FavouritesPage />
               </Route>
+
+
+              <PrivateRoute exact path={[
+                `${endpoints.APIeatWell}:id/update`,
+                `${endpoints.APIfitWell}:id/update`,
+                `${endpoints.APIthinkWell}:id/update`,
+                `${endpoints.APIrestWell}:id/update`,
+                ]}
+                authenticated={state.authenticated}
+                currentUser={state.currentUser}
+                component={EntryUpdateForm}
+                />
 
 
               <PrivateRoute path={[

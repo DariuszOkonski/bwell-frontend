@@ -95,6 +95,7 @@ export const EntryHeader = ({header = "todo", icon=<RestaurantIcon />, rating, e
     const [currentVote, setCurrentVote] = useState()
 
     const handleSetRating = async (voteStr) =>{
+        if (!entry){ return }
         const newRating = await ratings.vote(entry, voteStr);
         const vote = await ratings.getCurrentVote(entry.id);
         setRating(newRating)
@@ -103,6 +104,7 @@ export const EntryHeader = ({header = "todo", icon=<RestaurantIcon />, rating, e
 
     useEffect(() => {
         const getCurrentVote = async () =>{
+            if (!entry){ return }
             const vote = await ratings.getCurrentVote(entry.id);
             setCurrentVote(vote);
             console.log(vote);

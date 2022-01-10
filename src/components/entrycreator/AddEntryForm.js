@@ -14,10 +14,11 @@ import { useHistory, useRouteMatch } from 'react-router';
 import AddIcon from '@material-ui/icons/Add';
 import CustomList from './inputareas/CustomList';
 import { postNewEntry } from '../../utilities/BackendRequests';
+import InfoDialog from '../reuseable/InfoDialog'
 
 
 
-const AddEntryForm = ({initModule}) => {
+const AddEntryForm = ({initModule, updateMode=false}) => {
     const useStyles = makeStyles({
         headerContainer: {
             display: 'flex',
@@ -77,22 +78,22 @@ const AddEntryForm = ({initModule}) => {
     const {path} = useRouteMatch();
 
 
-    const { clearIds, title, setTitle, module, setModule, addIngredientsList, addCustomList, addTextArea, ingredientsLists, textAreas, customLists,  } = useContext(EntryCreatorContext)
+    const { clearIds, title, setTitle, module, setModule, addIngredientsList, addCustomList, addTextArea, ingredientsLists, textAreas, customLists, updatedEntry } = useContext(EntryCreatorContext)
     // setModule(url.split("/")[1]);
     
     let history = useHistory();
     
-    let isClicked = false;
-
     const classes = useStyles()
     
     const [content, setContent] = useState([])
 
     const [descriptionId, setDescriptionId] = useState(0, () => setDescriptionId(0))
-
-
     
     const [moduleObj, setModuleObj] = useState({module: path.split("/")[1], icon: getIcon(path.split("/")[1])})
+
+    const [resultInfo, setResultInfo] = useState({});
+
+    const [isClicked, setIsClicked] = useState(false)
 
     const changeModule = (newModule) => {
         history.push(`/${newModule}/addentry`)
@@ -116,17 +117,33 @@ const AddEntryForm = ({initModule}) => {
     }, [ingredientsLists, textAreas, moduleObj, customLists])
 
     const handleSubmitAddEntry = () => {
+        setIsClicked(true);
+        
         if (!title || !content){
-            alert("Not accepting empty entries")
+            setResultInfo(
+                {message: "Entry was not submitted. Check if you provided title and any content.", 
+                bgColor: colors.thumbDown}
+                );
+            setTimeout(() => {
+                setIsClicked(false);
+            }, 2000);
             return;
         }
-        isClicked = true;
-        clearIds()
-        postNewEntry(module, title, content, descriptionId)
+        clearIds() 
+        
+        if (!updateMode) { 
+            postNewEntry(module, title, content)
+        } else {
+            postNewEntry(module, title, content, updatedEntry);
+        }
+        setResultInfo(
+            {message: `Your ${title} was submitted and added to repository. You will be redirected...`, 
+            bgColor: colors.thumbUp}
+            );
         setTimeout(() => {
             history.push(history.push(`/${module}`))
-            isClicked = false;
-        }, 500)
+            setIsClicked(false);
+        }, 2000)
     }
 
     return (
@@ -162,11 +179,11 @@ const AddEntryForm = ({initModule}) => {
             {content.length > 0 ? content.map(content => {
                 switch (content.type) {
                     case contentTypes.ingredientsList:
-                        return <IngredientsList key={content.id} listId={content.id}/>
+                        return <IngredientsList content={content} key={content.id} listId={content.id}/>
                     case contentTypes.textArea:
-                        return <TextAreaInput id={content.id} key={content.id}/>
+                        return <TextAreaInput head={content.header} txt={content.text} id={content.id} key={content.id}/>
                     case contentTypes.customList:
-                        return <CustomList listId={content.id} key={content.id} />
+                        return <CustomList custList={content} listId={content.id} key={content.id} />
                 }
             }) : 
             (
@@ -179,7 +196,7 @@ const AddEntryForm = ({initModule}) => {
                     <CustomButton text="Back" linkTo="/" isAbsolute={false}/>
                     <EventButton icon={<EventNote/>} text="Add entry" callback={handleSubmitAddEntry} isAbsolute={false}/>
             </div>
-
+            {isClicked && <InfoDialog info={resultInfo.message} bgColor={resultInfo.bgColor}/>}
         </EntryContainer>
     )
 }

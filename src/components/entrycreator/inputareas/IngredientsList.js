@@ -7,7 +7,7 @@ import { EntryCreatorContext } from '../contexts/EntryCreatorContext';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { v4 } from 'uuid';
 
-const IngredientsList = ({listId}) => {    
+const IngredientsList = ({listId, content}) => {    
 
     const useStyles = makeStyles({
         container: {
@@ -46,9 +46,10 @@ const IngredientsList = ({listId}) => {
     // const {ingredients, addIngredient } = useContext(EntryCreatorContext)    
     const { ingredientsLists, addIngredient, editIngredientsListTitle, removeIngredientsList } = useContext(EntryCreatorContext)    
     
-    const [currentList] = ingredientsLists.filter(list => list.id === listId)
+    const [currentList] =  ingredientsLists.filter(list => list.id === listId)
+    // const [currentList] =  content.ingredients;
        
-    const [title, setTitle] = useState("")
+    const [title, setTitle] = useState(content.header);
     const handleAddItem = (e) => {
         addIngredient(v4(), "", 0, "unit", listId);
     }
