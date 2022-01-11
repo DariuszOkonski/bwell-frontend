@@ -60,7 +60,7 @@ const Recipe = (props) => {
 
                 {
                      recipe.content.map(part => {
-                        return <EntryContentPart header={part.header} text={part.text ? part.text : part.ingredients ? part.ingredients : part.content} key={v4()} type={part.type}/>
+                        return <EntryContentPart header={part.header} text={part.text ? part.text : part.ingredients ? part.ingredients : part.content} key={part.id} type={part.type}/>
                     })
                 }
                 <EntryFooter entryId={recipe.id} module="eatwell" author={recipe.author ? recipe.author.email : "Unknown"}/>

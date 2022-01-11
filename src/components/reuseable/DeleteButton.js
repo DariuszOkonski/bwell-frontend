@@ -27,7 +27,7 @@ const DeleteButton = ({entryId}) => {
         setTimeout(() => {
             if (isSucceed === true) history.push(`/${module}`)
             setIsClicked(false);
-        }, isSucceed !== true ? 3000 : 1500);
+        }, 3000);
         
     }
     return <>
