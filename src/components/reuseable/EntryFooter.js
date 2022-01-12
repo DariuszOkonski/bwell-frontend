@@ -39,8 +39,9 @@ export const EntryFooter = ({ disabled = false, callback = () => null, isLive = 
 
     const addToFavourites = async () => {
         await favourites.addToFavouritesById(entryId, module);
-        
-        history.push('/favourites');
+        setTimeout(() => {
+            history.push('/favourites');
+        }, 2000)
     }
 
     const buttons = () => (
