@@ -13,7 +13,7 @@ const EntryUpdateForm = (props) => {
     const entryId = props.match.params.id;
     const module = url.split("/")[1]
 
-    const [isAuthor, setIsAuthor] = useState(true)
+    const [isAuthor, setIsAuthor] = useState(false)
 
     const { populateContextWithEntryData } = useContext(EntryCreatorContext)
 
@@ -21,9 +21,8 @@ const EntryUpdateForm = (props) => {
         const getEntry = async () => {
             const user = await UserService(true);
             const ent = await entry.getEntryByIdIfAuthor(entryId, module);
-            // setIsAuthor(ent.author && ent.author.id === user.id);
+            setIsAuthor(ent.author && ent.author.id === user.id);
             populateContextWithEntryData(ent);
-            console.log(ent)
         }
     
         getEntry()
