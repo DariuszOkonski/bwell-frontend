@@ -55,7 +55,7 @@ export const EntryContentPart = ({header, type, text}) => {
         if (type === contentTypes.ingredientsList)
             return <ul className={classes.list}>
                     {text.map(item => {
-                        console.log(item);
+                        
                     return <li key={Math.random()}>{
                         item.id && item.ingredient && item.amount ? `${item.ingredient} - ${item.amount} ${typeof item.unit == "object" ? item.unit.name : item.unit} ` : 
                         "[ yet empty ]"}</li>

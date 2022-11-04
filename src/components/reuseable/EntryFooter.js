@@ -33,7 +33,7 @@ export const EntryFooter = ({ disabled = false, callback = () => null, isLive = 
 
     const getBackToLink = () => {
         const splitted = url.split("/")
-        console.log(splitted)
+        
         return splitted[1]
     }
 
@@ -57,7 +57,7 @@ export const EntryFooter = ({ disabled = false, callback = () => null, isLive = 
                             event.preventDefault()
                             addToFavourites()
                         }}
-                        // linkTo="#"
+                        linkTo="#"
                         disabled={disabled}
                         className={classes.button}
                         text="Add to favourites"

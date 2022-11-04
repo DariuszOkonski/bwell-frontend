@@ -35,7 +35,7 @@ const Recipe = (props) => {
         const getRecipe = async () => {
             const recipeFromServer = await eatWell.fetchRecipe(props.match.params.id)
             setRecipe(recipeFromServer)
-            console.log(recipeFromServer);
+            
         }
         getRecipe()
 

@@ -24,7 +24,7 @@ const Activity = () => {
             const ActivityFromServer = await fitWell.fetchActivity(url_parts[ENTRY_ID_INDEX])
             setActivity(ActivityFromServer)
         }
-        console.log(activity, " Activity !")
+        
         getActivity()
     },[])
 

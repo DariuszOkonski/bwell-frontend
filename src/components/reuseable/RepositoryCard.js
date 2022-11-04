@@ -47,7 +47,7 @@ const useStyles = makeStyles({
   }
 })
 
-const sliceString = (str) => str.slice(0, 50) + '...';
+const sliceString = (str) => str ? str.slice(0, 50) + '...' : 'no description';
 
 
 const RepositoryCard = (props) => {

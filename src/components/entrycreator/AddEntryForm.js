@@ -15,6 +15,7 @@ import AddIcon from '@material-ui/icons/Add';
 import CustomList from './inputareas/CustomList';
 import { postNewEntry } from '../../utilities/BackendRequests';
 import InfoDialog from '../reuseable/InfoDialog'
+import { isUserAuthenticated } from '../../utilities/UserService'
 
 
 
@@ -194,7 +195,7 @@ const AddEntryForm = ({initModule, updateMode=false}) => {
         
             <div className={classes.buttonContainer}>
                     <CustomButton text="Back" linkTo="/" isAbsolute={false}/>
-                    <EventButton icon={<EventNote/>} text="Add entry" callback={handleSubmitAddEntry} isAbsolute={false}/>
+                    <EventButton icon={<EventNote/>} text="Add entry" callback={handleSubmitAddEntry} isAbsolute={false} isClicked={!isUserAuthenticated()}/>
             </div>
             {isClicked && <InfoDialog info={resultInfo.message} bgColor={resultInfo.bgColor}/>}
         </EntryContainer>

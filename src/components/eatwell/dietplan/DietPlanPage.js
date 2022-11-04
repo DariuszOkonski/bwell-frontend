@@ -55,7 +55,7 @@ const DietPlanPage = () => {
         demand: true,
         income: false
     })
-    // console.log(useRouteMatch(), "ASD!");
+    // 
 
     const handleClick = () => { 
         if (clickedButton.demand){

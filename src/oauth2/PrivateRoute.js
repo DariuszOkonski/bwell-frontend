@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Route, Redirect, useRouteMatch } from "react-router-dom";
+import { Route, Redirect, useRouteMatch, useHistory } from "react-router-dom";
 import EntryCreatorContextProvider from "../components/entrycreator/contexts/EntryCreatorContext";
+import InfoDialog from "../components/reuseable/InfoDialog";
 import { entry } from "../utilities/BackendRequests";
 import UserService from "../utilities/UserService";
 import { ACCESS_TOKEN } from "./constants";
@@ -10,6 +11,7 @@ const PrivateRoute = ({ component: Component, currentUser, authenticated,   ...r
       
     const [loggedUser, setLoggedUser] = useState(currentUser)
     const [redirect, setRedirect] = useState(false)
+    const history = useHistory();
 
     setTimeout(() => setRedirect(true), 3000);
 
@@ -22,7 +24,7 @@ const PrivateRoute = ({ component: Component, currentUser, authenticated,   ...r
             } else {
               setLoggedUser(null)
             }
-          console.log(loggedUser)
+          console.log(history)
 
         }
         refreshUser()
@@ -33,18 +35,19 @@ const PrivateRoute = ({ component: Component, currentUser, authenticated,   ...r
     {...rest}
 
     render={props => {
-      console.log(loggedUser);
-      return loggedUser && loggedUser.isVerified ? (
+      return (loggedUser && loggedUser.isVerified) || history.location.search === "?unlogged=true" ? (
         <EntryCreatorContextProvider>
             <Component {...rest} {...props} />
         </EntryCreatorContextProvider>        
       
-      ) : (redirect ? <Redirect
-          to={{
-            pathname: "/login",
-            state: { from: props.location }
-          }}/> : <h4>Loading user...</h4>  
-      )
+      ) : 
+      // (redirect ? <Redirect
+      //     to={{
+      //       pathname: "/login",
+      //       state: { from: props.location }
+      //     }}/> : <h4>Loading user...</h4>  
+      // )
+      <InfoDialog redirectPath={history.location.pathname + "?unlogged=true"} info="As you are not authenticated you are able to only try this functionality but cannot post your data. Log in to make it possible."/>
     }
     }
   />

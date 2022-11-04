@@ -208,7 +208,7 @@ const EntryCreatorContextProvider = (props) => {
             return list
         });
         setIngredientsLists(updatedLists)
-        console.log("updated ingredients lists => ", ingredientsLists)
+        
     }
 
 

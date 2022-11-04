@@ -3,7 +3,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom';
 import { colors } from '../../utilities/utilities';
 
-const InfoDialog = ({info, bgColor}) => {
+const InfoDialog = ({info, bgColor, redirectPath="/"}) => {
     const history = useHistory();
     const useStyles = makeStyles(() => ({
         container: {
@@ -31,7 +31,7 @@ const InfoDialog = ({info, bgColor}) => {
     const classes = useStyles();
     return (
         <div className={classes.container}>
-            <div  onClick={() => history.push("/")} className={classes.resultInfo}>
+            <div  onClick={() => history.push(redirectPath)} className={classes.resultInfo}>
                 {info}
             </div>
         </div>

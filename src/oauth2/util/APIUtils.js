@@ -1,3 +1,4 @@
+import { currentUser } from "../../utilities/UserService";
 import { API_BASE_URL, ACCESS_TOKEN } from "../constants";
 
 const request = options => {
@@ -12,19 +13,29 @@ const request = options => {
   const defaults = { headers: headers };
   options = Object.assign({}, defaults, options);
 
-  return fetch(options.url, options).then(response =>
-    response.json().then(json => {
-      if (!response.ok) {
-        return Promise.reject(json);
-      }
-      return json;
-    })
-  );
+  return fetch(options.url, options)
+  .then(response =>{
+    console.log(response)
+    if (!response.ok){
+      return Promise.reject("Couldn't get user");
+    }
+    return response.json()
+    .then(json => json)
+  })
+  .catch(err => {
+    console.log('User is not signed in.')
+    return null;
+  });
 };
 
 export function getCurrentUser() {
-  if (!localStorage.getItem(ACCESS_TOKEN)) {
-    return Promise.reject("No access token set.");
+  // if (!localStorage.getItem(ACCESS_TOKEN)) {
+  //   console.log("rejected");
+  //   return Promise.reject("No access token set.");
+  // }
+
+  if (currentUser && !currentUser.isVerified) {
+    return currentUser;
   }
 
   return request({

@@ -43,19 +43,18 @@ const useStyles = makeStyles({
 
 const CustomButton = ({linkTo, text, icon=<AssignmentReturnedIcon />, isAbsolute = true, disabled=false, onClick}) => {
     const classes = useStyles();
-    console.log(linkTo)
     return (  
-        <Button 
+        linkTo ? <Button 
             component={Link} 
             to={linkTo} 
             variant="outlined" 
             endIcon={icon}
             className={isAbsolute ? classes.button : classes.buttonNotAbsolute}
-            disabled={disabled}
+            disabled={!linkTo && disabled}
             onClick={onClick}
         >
             {text}
-        </Button>
+        </Button> : <></>
     );
 }
  

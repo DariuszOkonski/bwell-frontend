@@ -93,7 +93,7 @@ const IngredientItem = (props) => {
                 })})
             
             } catch (error) {
-                console.log(error);                
+                
             }
         }
     }

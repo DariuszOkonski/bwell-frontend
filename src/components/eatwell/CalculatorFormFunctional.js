@@ -210,9 +210,9 @@ const CalculatorFormFunctional = ({updateResults}) => {
 
     const handleOtherDataChange = (key, value) => {        
         const local = {...otherData}
-        // console.log(local);
+        // 
         local[key] = value
-        console.log(local);        
+        
         setOtherData({...local})
     }
     
@@ -225,11 +225,11 @@ const CalculatorFormFunctional = ({updateResults}) => {
         localNumerical.proteinPercentage = numericalData.proteinPercentage && numericalData.proteinPercentage / 100
         localNumerical.carbohydratesPercentage = numericalData.carbohydratesPercentage && numericalData.carbohydratesPercentage / 100
         const input = {id, ...localNumerical, ...otherData}
-        console.log(input);
+        
 
         const resp = await eatWell.fetchPostUserCalculatorData(input)
         updateResults(resp);
-        // console.log(resp);
+        // 
     }
 
 

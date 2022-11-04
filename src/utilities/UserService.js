@@ -5,28 +5,25 @@ import { endpoints } from "./utilities";
 
 export let currentUser;
 
-const UserService = async (completeData=false) => {
-    let defaultUser = await fetchDefaultUser()
-    console.log("Summoning")
-    if (localStorage.getItem(ACCESS_TOKEN))
-    {
-        try {
-            defaultUser = await getCurrentUser()
-        } catch (error) {
-            console.log(error);
-            return {
-                id:0,
-                isVerified: false
-            }
-        }
-        defaultUser = defaultUser.user
-        
-    }
-    console.log(defaultUser);
-    
-    if (completeData) return defaultUser;
+export const isUserAuthenticated = () => {
+    console.log(currentUser);
+    return currentUser && currentUser.isVerified
+};
 
-    const loggedUser = defaultUser.id;
+const UserService = async (completeData=false) => {
+    // let defaultUser = await fetchDefaultUser()
+    let currentUserCompleteData = await getCurrentUser();
+
+    let basicUserInfo = 
+            currentUserCompleteData && currentUserCompleteData.user ? 
+            currentUserCompleteData.user : 
+            await fetchDefaultUser();
+
+    currentUser = basicUserInfo;
+    console.log(currentUser);
+    if (completeData) return basicUserInfo;
+
+    const loggedUser = basicUserInfo.id;
 
     return loggedUser;
 

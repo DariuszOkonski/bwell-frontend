@@ -86,7 +86,7 @@ const CustomItem = ({listId, itemId, refreshList, handleAddItem}) => {
     // updates item by deletion of cell
     const handleDeleteCell = (cellId) => {
         const cells = customItem.cells.filter(cell => cellId !== cell.id)
-        console.log(cells);
+        
         const local = {
             id: itemId,
             order: customItem.order, 

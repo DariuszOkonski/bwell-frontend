@@ -50,8 +50,7 @@ const DietPlanContextProvider = (props) => {
           coverage[`${key}Percentage`] = coverage[key]
           delete coverage[key]
       })
-      console.log(coverage);
-      debugger; 
+      
       setIncome({caloriesDemand: caloriesDemand.amount, fatDemand: fatDemand.amount, carbohydratesDemand: carbohydratesDemand.amount, proteinDemand: proteinDemand.amount, ...coverage})
     }
     

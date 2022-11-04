@@ -98,7 +98,7 @@ function App(props) {
       //       loading: false,
       //       currentUser: null
       //     })
-      //     console.log(error);
+      //     
       //   });
 
     }

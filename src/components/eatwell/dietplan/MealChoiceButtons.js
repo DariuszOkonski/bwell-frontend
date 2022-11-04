@@ -38,7 +38,7 @@ const MealChoiceButtons = ({modalCloseCallback}) => {
     },[])
     const {params} = useRouteMatch()
     const handleClick = (meal) => {
-        console.log(params);
+        
         eatWell.setRecipeAsMeal(params.id, meal)
         modalCloseCallback()
     }

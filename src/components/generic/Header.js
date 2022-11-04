@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import { viewportSize, colors, endpoints } from '../../utilities/utilities';
 import SwipeableTemporaryDrawer from './SwipeableTemporaryDrawer';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import UserService, { currentUser, Logout } from '../../utilities/UserService';
+import UserService, { currentUser, isUserAuthenticated, Logout } from '../../utilities/UserService';
 import { useEffect, useState } from 'react';
 import { ACCESS_TOKEN } from '../../oauth2/constants';
 

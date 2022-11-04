@@ -1,8 +1,11 @@
+import axios from "axios"
 import { useHistory } from "react-router"
 import { v4 } from "uuid"
 import { ACCESS_TOKEN } from "../oauth2/constants"
+import { Ax } from "./interceptors"
 import UserService from "./UserService"
 import { dietPlanUrls, endpoints, isLocalhost, moduleNameToApi, moduleNameToBackendTag } from "./utilities"
+import _history from "./_history"
 
 const localhost = isLocalhost
 const PORT = localhost ? "8080" : ""
@@ -142,7 +145,7 @@ const postNewEntry = async (module, title, content, entry=null) => {
     let postedEntry = {
         module: moduleNameToBackendTag(module),
         title: title,
-        description: content && content[0].text ? content[0].text : "No description",
+        description: content.length > 0 && content[0] && content[0].text && "No description",
         rating: { up: 0, down: 0 },
         content: content,
         author: credentials
@@ -158,7 +161,8 @@ const postNewEntry = async (module, title, content, entry=null) => {
         body: JSON.stringify(postedEntry)
     };
     try {
-        const fetchResponse = await fetch(POST_URL, settings);
+        // const fetchResponse = await fetch(POST_URL, settings);
+        const fetchResponse = Ax.post(POST_URL, settings.body)
         const data = await fetchResponse.json();
         return data;
     } catch (e) {
@@ -171,7 +175,7 @@ const updateEntry = async (entry) => {
 }
 const deleteEntry = async (module, id) => {
     const DELETE_URL = `${BASE_URL}${moduleNameToApi(module)}/${id}`
-    console.log(DELETE_URL)
+    
     const settings = {...TokenHeaders(),
         method: 'DELETE',  
     };
@@ -187,8 +191,8 @@ const deleteEntry = async (module, id) => {
 const favourites = {
     fetchUserData: async (loggedUser) => {
         const APIendpoint = `${BASE_URL}${endpoints.APIusers}${loggedUser}`;
-        console.log('api endpoint ===================')
-        console.log(APIendpoint)
+        
+        
         const response = await fetch(APIendpoint)
         const data = await response.json()
 
@@ -216,8 +220,8 @@ const favourites = {
         //GET JSON
         const userData = await favourites.fetchUserData(loggedUser);
 
-        console.log('Actual data: ' + userData)
-        console.log(userData)
+        
+        
 
         //ADD WITHOUT DUPLICATES
         switch (type) {
@@ -240,7 +244,7 @@ const favourites = {
             default:
         }
 
-        console.log('Modified data: ' + userData)
+        
 
         //SEND MODIFIED OBJECT
         const POST_URL = `${BASE_URL}${endpoints.APIusers}${loggedUser}`;
@@ -264,8 +268,8 @@ const favourites = {
         //GET JSON
         const userData = await favourites.fetchUserData(loggedUser);
 
-        console.log('Actual data: ' + userData)
-        console.log(userData)
+        
+        
 
         //REMOVE FROM SET
         switch (type) {
@@ -284,7 +288,7 @@ const favourites = {
             default:
         }
 
-        console.log('Modified data: ' + userData)
+        
 
         //SEND MODIFIED OBJECT
         const POST_URL = `${BASE_URL}${endpoints.APIusers}${loggedUser}`;
@@ -308,17 +312,20 @@ const ratings = {
     vote: async (entry, voteValue) => {
         const POST_URL = `${BASE_URL}${endpoints.APIrating}`;
         const user = await UserService(true);
-        console.log(user, entry)
         const settings = {
-            method: 'POST',
-            headers: TokenHeaders().headers,
-            body: JSON.stringify({user: user, entry: entry, voteValue: voteValue})
+            // method: 'POST',
+            // headers: TokenHeaders().headers,
+            data: JSON.stringify({user: user, entry: entry, voteValue: voteValue})
         };
+        console.log(settings)
         try {
-            const response = await fetch(POST_URL, settings)
-            const data = await response.json()
+            // const response = await fetch(POST_URL, settings)
+            const response = await Ax.post(POST_URL, settings.data)
+            // const response = Ax.post(POST_URL, settings).then()
+            // console.log(response);
+            // const data = await response.json()
 
-            return data;
+            return response.data;
         } catch (error) {
             return error;
         }
@@ -326,10 +333,14 @@ const ratings = {
     getCurrentVote: async (entryId) => {
         const get_url = `${BASE_URL}${endpoints.APIrating}${entryId}`
         
+        
         try {
-            const response = await fetch(get_url, {method: "GET", headers: TokenHeaders(false).headers})
-            const data = await response.json()
-            return data;
+            const response = await Ax.get(get_url);
+            console.log(response)
+            // const response = await fetch(get_url, {method: "GET", headers: TokenHeaders(false).headers});
+            // const data = await response.json()
+            // console.log(data);
+            return response.data;
         } catch (error) {
             return error;
         }
@@ -350,6 +361,15 @@ const entry = {
     }    
     
 
-} 
-export { fitWell, postNewEntry, deleteEntry, favourites, currentUserId, ratings, entry }
+}
+
+const handleRedirectIfNotAuthorized = (err) => {
+    
+    if (err && [403, 401].includes(err.status)) {
+        _history.push('/login');
+    }
+    return err; 
+}
+
+export { fitWell, postNewEntry, deleteEntry, favourites, currentUserId, ratings, entry, handleRedirectIfNotAuthorized }
 

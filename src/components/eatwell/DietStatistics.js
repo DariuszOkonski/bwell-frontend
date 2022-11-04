@@ -94,7 +94,7 @@ const DietStatistics = ({statistics, demand=1}) => {
     const classes = useStyles();
     useEffect(() => {
     }, [statistics])
-    console.log(statistics)
+    
     return (
         <div className={classes.container}>
             <div className={classes.iconContainer}>

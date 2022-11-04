@@ -10,7 +10,7 @@ import EntryPreview from './EntryPreview'
 const AddEntry = () => {
 
     const {path} = useRouteMatch()
-    console.log(path)
+    
 
     const useStyles = makeStyles({
         content: {

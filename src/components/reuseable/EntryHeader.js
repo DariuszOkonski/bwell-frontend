@@ -8,6 +8,7 @@ import { ThumbUpOutlined } from '@material-ui/icons';
 import { Divider } from '@material-ui/core/Divider';
 import { useTheme } from '@material-ui/core';
 import { ratings } from '../../utilities/BackendRequests';
+import { isUserAuthenticated } from '../../utilities/UserService';
 
 
 const useStyles = makeStyles({
@@ -104,10 +105,10 @@ export const EntryHeader = ({header = "todo", icon=<RestaurantIcon />, rating, e
 
     useEffect(() => {
         const getCurrentVote = async () =>{
-            if (!entry){ return }
+            if (!entry || !isUserAuthenticated()){ return }
             const vote = await ratings.getCurrentVote(entry.id);
             setCurrentVote(vote);
-            console.log(vote);
+            
         }
         getCurrentVote();
     }, [])
