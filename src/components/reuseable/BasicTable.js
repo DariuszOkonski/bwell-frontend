@@ -88,12 +88,12 @@ export default function BasicTable({meal}) {
     // <TableContainer component={Paper}>
       <table className={classes.table}>
         <thead>
-          <th className={classes.th}>
-            <td className={classes.td} >Energy</td>
-            <td className={classes.td} >Fat</td>
-            <td className={classes.td} >Carbs</td>
-            <td className={classes.td} >Protein</td>
-          </th>
+          <tr className={classes.th}>
+            <th className={classes.td} >Energy</th>
+            <th className={classes.td} >Fat</th>
+            <th className={classes.td} >Carbs</th>
+            <th className={classes.td} >Protein</th>
+          </tr>
         </thead>
         {/* <h2>{nutrition}</h2> */}
         <tbody>

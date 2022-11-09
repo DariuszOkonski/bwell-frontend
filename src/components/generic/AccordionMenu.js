@@ -23,6 +23,7 @@ export default function AccordionMenu({toggleDrawer, anchor}) {
       }
     })
     const classes = useStyles();
+    
 
     return (
     <div>
@@ -39,7 +40,6 @@ export default function AccordionMenu({toggleDrawer, anchor}) {
               <li className={classes.li}>
                 <Link
                   className={classes.a} 
-                  className={classes.a}
                   to={endpoints.eatwell} 
                   onClick={toggleDrawer(anchor, false)}
                 >repository</Link>

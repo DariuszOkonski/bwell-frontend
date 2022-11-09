@@ -1,12 +1,12 @@
 import { ACCESS_TOKEN } from "../oauth2/constants";
 import { getCurrentUser } from "../oauth2/util/APIUtils";
+import { Ax } from "./interceptors";
 import { endpoints } from "./utilities";
 
 
 export let currentUser;
 
 export const isUserAuthenticated = () => {
-    console.log(currentUser);
     return currentUser && currentUser.isVerified
 };
 
@@ -36,8 +36,8 @@ export const Logout = () =>{
 }
 
 const fetchDefaultUser = async () => {
-    const response = await fetch(`${endpoints.APIhost}${endpoints.APIusers}default`)
-    const data = await response.json()
+    const response = await Ax.get(`${endpoints.APIhost}${endpoints.APIusers}default`)
+    const data = response.data
 
     return data
 }

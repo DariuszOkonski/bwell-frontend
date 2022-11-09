@@ -38,12 +38,12 @@ body {
 
   box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
   border-radius: 5px;
-  width: 500px;
+  width: 80%;
   display: inline-block;
   margin-top: 30px;
   vertical-align: middle;
   position: relative;
-  padding: 25px;
+  padding: 10px;
 }
 
 .social-btn {

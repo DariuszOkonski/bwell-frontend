@@ -11,7 +11,7 @@ const localhost = isLocalhost
 const PORT = localhost ? "8080" : ""
 const BASE_URL = localhost ? `http://localhost:${PORT}/api/v1` : `https://bwell-backend.herokuapp.com/api/v1`
 
-let currentUserId = UserService();
+// let currentUserId = await UserService();
 
 const TokenHeaders = (doRedirect=true) => {
     const headers = new Headers({
@@ -22,8 +22,8 @@ const TokenHeaders = (doRedirect=true) => {
       if (localStorage.getItem(ACCESS_TOKEN)) {
         headers.append("Authorization", "Bearer " + localStorage.getItem(ACCESS_TOKEN));
       } else {
-        if (doRedirect) {window.location.href = "/login"}
-        return null;
+        if (doRedirect) {handleRedirectIfNotAuthorized({status: 401})}
+        return {headers: headers};
     }
       return {headers: headers}
 }
@@ -118,7 +118,14 @@ export const eatWell = {
         });
         const data = await response.json();
         return data
+    },
+    fetchNutritionDetailsForRecipesIngredients: async (recipeId) => {
+        const url = `${endpoints.APIhost}${endpoints.APIeatWellNutritionOfRecipe(recipeId)}`;
+        const response = await Ax.get(url)
+
+        return response.data
     }
+
 
 }
 
@@ -189,25 +196,29 @@ const deleteEntry = async (module, id) => {
 }
 
 const favourites = {
+    favouritesAPI: `${BASE_URL}${endpoints.APIusers}/favourites`,
     fetchUserData: async (loggedUser) => {
-        const APIendpoint = `${BASE_URL}${endpoints.APIusers}${loggedUser}`;
+        const APIendpoint = `${BASE_URL}${endpoints.APIusers}/${loggedUser}`;
         
         
-        const response = await fetch(APIendpoint)
-        const data = await response.json()
+        const response = await Ax.get(APIendpoint)
+        // const data = await response.json()
 
-        return data;
+        return response.data;
     },
     modifyUserData: async (loggedUser, postedEntry) => {
-        const POST_URL = `${BASE_URL}${endpoints.APIusers}${loggedUser}`;
+        const POST_URL = `${favourites.favouritesAPI}`;
+        console.log(postedEntry.favourites);
         const settings = {
             method: 'POST',
             headers: TokenHeaders().headers,
-            body: JSON.stringify(postedEntry)
+            body: JSON.stringify(postedEntry.favourites)
         };
         try {
-            const response = await fetch(POST_URL, settings)
-            const data = await response.json()
+            // const response = await fetch(POST_URL, settings)
+            // const data = await response.json()
+            const response = await Ax.get(POST_URL, settings)
+            const data = response.data
 
             return data;
         } catch (error) {
@@ -247,11 +258,12 @@ const favourites = {
         
 
         //SEND MODIFIED OBJECT
-        const POST_URL = `${BASE_URL}${endpoints.APIusers}${loggedUser}`;
+        const POST_URL = `${favourites.favouritesAPI}`;
+        console.log(userData.favourites);
         const settings = {
             method: 'POST',
             headers: TokenHeaders().headers,
-            body: JSON.stringify(userData)
+            body: JSON.stringify(userData.favourites)
         };
         try {
             const response = await fetch(POST_URL, settings)
@@ -291,11 +303,11 @@ const favourites = {
         
 
         //SEND MODIFIED OBJECT
-        const POST_URL = `${BASE_URL}${endpoints.APIusers}${loggedUser}`;
+        const POST_URL = `${favourites.favouritesAPI}`;
         const settings = {
-            method: 'PUT',
+            method: 'POST',
             headers: TokenHeaders().headers,
-            body: JSON.stringify(userData)
+            body: JSON.stringify(userData.favourites)
         };
         try {
             const response = await fetch(POST_URL, settings)
@@ -371,5 +383,5 @@ const handleRedirectIfNotAuthorized = (err) => {
     return err; 
 }
 
-export { fitWell, postNewEntry, deleteEntry, favourites, currentUserId, ratings, entry, handleRedirectIfNotAuthorized }
+export { fitWell, postNewEntry, deleteEntry, favourites, ratings, entry, handleRedirectIfNotAuthorized, }
 

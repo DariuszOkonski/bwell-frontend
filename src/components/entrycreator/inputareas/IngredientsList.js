@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import EventButton from '../../reuseable/EventButton'
 import IngredientItem from './IngredientItem'
 import { makeStyles } from '@material-ui/core';
@@ -6,6 +6,7 @@ import { colors } from '../../../utilities/utilities';
 import { EntryCreatorContext } from '../contexts/EntryCreatorContext';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import { v4 } from 'uuid';
+import { keyboardcombinations } from '../../../utilities/keyboardcombinations';
 
 const IngredientsList = ({listId, content}) => {    
 
@@ -50,6 +51,8 @@ const IngredientsList = ({listId, content}) => {
     // const [currentList] =  content.ingredients;
        
     const [title, setTitle] = useState(content.header);
+    const [notOnCooldown, setNotOnCooldown] = useState(true);
+
     const handleAddItem = (e) => {
         addIngredient(v4(), "", 0, "unit", listId);
     }
@@ -61,6 +64,16 @@ const IngredientsList = ({listId, content}) => {
     const handleRemoveIngredientsList = () => {
         removeIngredientsList(listId);
     }
+
+    useEffect(() => {
+        const callback = e => {
+            if (keyboardcombinations.ctrlShiftArrowDown) {
+                addIngredient(v4(), "", 0, "unit", listId);
+            }  
+        }
+        document.addEventListener('keydown', callback, false)
+        return () => {document.removeEventListener('keydown', callback)}
+    }, [])
 
     
     const showIngredients = ( currentList && currentList.ingredients) && currentList.ingredients.map(

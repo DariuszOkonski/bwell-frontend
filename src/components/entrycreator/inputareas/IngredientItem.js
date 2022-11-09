@@ -50,6 +50,7 @@ const IngredientItem = (props) => {
     const { removeIngredient, editIngredient } = useContext(EntryCreatorContext)
     
     const [id, setId] = useState(props.id)
+    const [nextInput, setNextInput] = useState({next: "ingredient", previous: ""})
     const [ingredient, setIngredient] = useState(props.ingredient);
     const [amount, setAmount] = useState(props.amount);
     const [unit, setUnit] = useState(props.unit)    
@@ -67,6 +68,7 @@ const IngredientItem = (props) => {
     }    
 
     const handleChangeIngredient = (evt) => {
+        console.log(props)
         setIngredient(evt.target.value)
     }
 
@@ -95,6 +97,12 @@ const IngredientItem = (props) => {
             } catch (error) {
                 
             }
+        }
+    }
+
+    const handleEnterPressForHintsLoad = (ev) => {
+        if (ev.key === "Enter") {
+            handleLoadHintsFromApi();
         }
     }
 
@@ -129,6 +137,7 @@ const IngredientItem = (props) => {
             setAmount(1)
             setUnit(chosenResult.unit)
             editIngredient(apiBasedIngredient, props.listId, newId)
+            // ev.target.nextElementSibling.nextElementSibling.focus()
         }
         setHints({...hints, isShowing:false})
     }
@@ -138,16 +147,19 @@ const IngredientItem = (props) => {
     }
     
 
-    const ingredientTextInput = <input 
+    const ingredientTextInput = <input
+                                    autoFocus
                                     className={classes.item} 
                                     type="text" 
                                     placeholder="ingredient" 
                                     value={ingredient}
                                     onChange={handleChangeIngredient}
-                                    onBlur={handleLoadHintsFromApi}/>
+                                    // onBlur={handleLoadHintsFromApi}
+                                    onKeyPress={handleEnterPressForHintsLoad}
+                                    />
 
     const ingredientHintsSelect = <select
-                                    autoFocus 
+                                    // autoFocus={!ingredient} 
                                     value={ingredient}
                                     className={classes.item + " " + classes.hints}
                                     onChange={handleChangeIngredient}
@@ -185,7 +197,8 @@ const IngredientItem = (props) => {
                             className={classes.item + " " + classes.unit} 
                             value={unit}
                             onChange={handleChangeMeasure}
-                            onBlur={handleUpdateData}>
+                            onBlur={handleUpdateData}
+                            >
                             
                             {
                                 possibleUnits && possibleUnits.map(

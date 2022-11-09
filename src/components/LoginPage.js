@@ -26,9 +26,9 @@ const useStyles = makeStyles((theme) => ({
     card: {
         border: `2px solid ${colors.borderPrimary}`,
         backgroundColor: colors.white,
-        padding: '1rem',
+        padding: '2rem',
         borderRadius: '1rem',
-        overflow: 'hidden',
+        // overflow: 'hidden',
     },
     header: {
         justifyContent: 'space-between',
@@ -55,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
             fontSize: '0.6rem'
         },
         marginRight: '0.5rem',
+        marginTop: '0.5rem',
     },
     cardDescriptionIcon: {
         position: 'relative',
@@ -72,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center'
     },
     fullWidth: {
-        width: '100%'
+        width: '80%'
     }
 }))
 
@@ -101,7 +102,7 @@ const LoginPage = (props) => {
                     </Grid>
                 </Grid>
                 <Grid item container className={classes.formContainer}>
-                    <form className={classes.root} noValidate autoComplete="off">
+                    <form disabled className={classes.root} noValidate autoComplete="off">
                         <TextField className={classes.fullWidth}
                             required
                             variant="outlined"

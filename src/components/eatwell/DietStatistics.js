@@ -62,6 +62,8 @@ const DietStatistics = ({statistics, demand=1}) => {
     
     const rendering = () => statistics && 
         <table className={classes.table}>
+            <tbody>
+
             <tr className={classes.tr }>
                 <th className={classes.th}>Nutrient</th>
                 <th className={classes.th}>Amount</th>
@@ -90,6 +92,8 @@ const DietStatistics = ({statistics, demand=1}) => {
                 <td className={classes.td}>{Math.round(statistics.carbohydratesDemand)} g</td>
                 <td className={classes.td}>{Math.round(statistics.carbohydratesPercentage*100)}%</td>
             </tr>
+            </tbody>
+
         </table>
     const classes = useStyles();
     useEffect(() => {

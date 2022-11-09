@@ -5,7 +5,15 @@ import EmojiObjectsOutlinedIcon from '@material-ui/icons/EmojiObjectsOutlined';
 import TextAreaInput from '../components/entrycreator/inputareas/TextAreaInput';
 import IngredientsList from '../components/entrycreator/inputareas/IngredientsList';
 
-const isLocalhost = false;
+const isLocalhost = Boolean(
+    window.location.hostname === 'localhost' ||
+      // [::1] is the IPv6 localhost address.
+      window.location.hostname === '[::1]' ||
+      // 127.0.0.1/8 is considered localhost for IPv4.
+      window.location.hostname.match(
+        /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+      )
+  );
 const APIhost = isLocalhost ? "http://localhost:8080/api/v1" : "https://bwell-backend.herokuapp.com/api/v1"
 
 
@@ -56,6 +64,7 @@ const endpoints = {
     favourites: "/favourites",
     // APIhost: "http://localhost:3001/",
     APIeatWell: "/eatwell/recipes/",
+    APIeatWellNutritionOfRecipe: (id) => `/eatwell/recipes/${id}/ingredients/nutrition`,
     APIfitWell: "/fitwell/activities/",
     // APIrestWell: "/ideas",
     // APIthinkWell: "/exercises",

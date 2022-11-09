@@ -181,13 +181,18 @@ const EntryCreatorContextProvider = (props) => {
             {id: 2, name:"lbs"},
             {id: 0, name:"ml"},]
         }
+
+        let countOfIngrs = 0;
         const updatedLists = ingredientsLists.map(list => {
             if (list.id === listId) {
                 const localState = list.ingredients
+                if (localState.length > 10) { return list; }
                 list.ingredients = [...localState, emptyIngredient]
+                
             }
             return list
         });
+
         setIngredientsLists(updatedLists)
     };
 

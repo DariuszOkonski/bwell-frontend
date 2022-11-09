@@ -51,8 +51,9 @@ Ax.interceptors.request.use(
     return config;
   },
   error => {
-        console.log(error)
-        Promise.reject(error)
+    console.log(error);
+    handleRedirectIfNotAuthorized(error.response);
+    Promise.reject(error)
     }
 )
 
@@ -65,10 +66,10 @@ Ax.interceptors.response.use(
     },
     function (error) {
       console.log(error)
-      if (error.config.method !== 'get') {
+      // if (error.config.method !== 'get') {
           console.log("should be rr")
           handleRedirectIfNotAuthorized(error.response)
-      }
+      // }
   
      
       return Promise.reject(error)

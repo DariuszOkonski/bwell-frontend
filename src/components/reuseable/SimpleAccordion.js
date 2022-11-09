@@ -9,7 +9,7 @@ import { DietPlanContext } from '../eatwell/dietplan/context/DietPlanContext';
 import BasicTable from './BasicTable';
 import { EntryContainer } from './EntryContainer';
 import { colors, contentTypes, dietPlanUrls } from '../../utilities/utilities';
-import { eatWell } from '../../utilities/BackendRequests';
+import { eatWell, fetchNutritionDetailsForRecipesIngredients } from '../../utilities/BackendRequests';
 import EventButton from './EventButton';
 
 
@@ -52,8 +52,11 @@ const useStyles = makeStyles((theme) => ({
   const classes = useStyles();
   const { meals, setMeals, settersGenerator, selectedMeal, setSelectedMeal } = useContext(DietPlanContext);
   
-  const reduceIngredients = (recipe) =>{
+  const reduceIngredients = async (recipe) =>{
     if (!recipe) return null;
+
+    const ingrDetails = await eatWell.fetchNutritionDetailsForRecipesIngredients(recipe.id);
+
     const ingredientsList = recipe.content
         .filter(entry => entry.type == contentTypes.ingredientsList)
 
@@ -61,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
         var asd = [...previousValue, ...currentValue.ingredients]
         return asd
         },[])
-    return {id: recipe.id, header: recipe.title, ingredients: [...ingredients]};
+    return {id: recipe.id, header: recipe.title, ingredients: [...ingredients], ingredientDetails: ingrDetails.ingredientsNutrients};
   }
 
   useEffect(() => {      
@@ -70,22 +73,23 @@ const useStyles = makeStyles((theme) => ({
         const dietPlan = await eatWell.fetchDietPlan()
         for (const meal of Object.keys(dietPlanUrls.meals)){
           // const recipeFromServer = await mock(id)
-          const recipeFromServer = reduceIngredients(dietPlan[meal])
+          const recipeFromServer = await reduceIngredients(dietPlan[meal])
+          console.log(recipeFromServer);
           setters.next().value(recipeFromServer)
         }
         setters.next().value()
       }
       getRecipe()
   },[])
-  const showDetails = (key) => {
-    setSelectedMeal({name: key, ingredients: meals[key].ingredients})
+  const showDetails = (key, withNutrients=false) => {
+    setSelectedMeal({withNutrients, name: key, ingredients: meals[key].ingredients, ingrDetails: meals[key].ingredientDetails})
   }
 
   return (
         <div className={classes.root}>
          {Object.keys(meals).map(key => meals[key] && 
 
-         <div className={classes.unit}>
+         <div key={key} className={classes.unit}>
 
            <Accordion >
             
@@ -104,6 +108,7 @@ const useStyles = makeStyles((theme) => ({
                   
                 <div className={classes.btnContainer}>
                   <EventButton text="Details" isAbsolute={false} callback={()=>showDetails(key)}/>
+                  <EventButton text="Nutrition details" isAbsolute={false} callback={()=>showDetails(key, true)}/>
                 </div>            
               
               </div>            
