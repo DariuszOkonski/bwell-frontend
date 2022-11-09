@@ -67,7 +67,7 @@ const IngredientsList = ({listId, content}) => {
 
     useEffect(() => {
         const callback = e => {
-            if (keyboardcombinations.ctrlShiftArrowDown) {
+            if (keyboardcombinations.ctrlShiftArrowDown(e)) {
                 addIngredient(v4(), "", 0, "unit", listId);
             }  
         }
